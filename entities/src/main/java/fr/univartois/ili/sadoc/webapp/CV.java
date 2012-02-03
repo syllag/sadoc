@@ -28,8 +28,6 @@ public class CV implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String empreinte;
-	
 	@OneToOne
 	private User user;
 	
@@ -44,14 +42,6 @@ public class CV implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getEmpreinte() {
-		return empreinte;
-	}
-
-	public void setEmpreinte(String empreinte) {
-		this.empreinte = empreinte;
 	}
 
 	public User getUser() {

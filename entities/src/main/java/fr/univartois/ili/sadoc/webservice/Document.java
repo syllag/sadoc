@@ -78,5 +78,5 @@ public abstract class Document implements Serializable {
 	public void setCertificat(Certificat certificat) {
 		this.certificat = certificat;
 	}
-	
+
 }

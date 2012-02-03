@@ -28,7 +28,6 @@ public abstract class Degree implements Serializable {
 	
 	private String nom;
 	private String description;
-	private int year;
 		
 	@OneToMany
 	private List<Competence> competences;
@@ -65,14 +64,6 @@ public abstract class Degree implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
 	}
 
 }

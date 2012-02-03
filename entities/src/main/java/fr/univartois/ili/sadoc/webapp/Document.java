@@ -30,6 +30,7 @@ public abstract class Document implements Serializable {
 	
 	private String nom;
 	private String empreinte;
+	private String url;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
@@ -66,6 +67,14 @@ public abstract class Document implements Serializable {
 
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

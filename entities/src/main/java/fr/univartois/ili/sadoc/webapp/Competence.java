@@ -32,9 +32,6 @@ public abstract class Competence implements Serializable {
 	@OneToMany
 	private List<Degree> degrees;
 	
-	@OneToMany
-	private List<CV> cvs;
-
 	/************************************************/
 	
 	public int getId() {
@@ -67,14 +64,6 @@ public abstract class Competence implements Serializable {
 
 	public void setDegrees(List<Degree> degrees) {
 		this.degrees = degrees;
-	}
-
-	public List<CV> getCvs() {
-		return cvs;
-	}
-
-	public void setCvs(List<CV> cvs) {
-		this.cvs = cvs;
 	}
 
 }
