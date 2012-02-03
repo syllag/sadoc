@@ -28,8 +28,8 @@ public abstract class User implements Serializable {
 	private String id;
 	// TODO Numéro de SECU ou Numéro carte séjour
 	
-	private String nom;
-	private String prenom;
+	private String firstName;
+	private String surname;
 	private String mail;
 	private String password;
 	private String adresse;
@@ -69,20 +69,20 @@ public abstract class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getPrenom() {
-		return prenom;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getMail() {

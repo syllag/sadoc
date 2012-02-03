@@ -28,7 +28,7 @@ public abstract class Document implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String nom;
+	private String name;
 	private String empreinte;
 	
 	@Temporal(TemporalType.DATE)
@@ -47,12 +47,12 @@ public abstract class Document implements Serializable {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmpreinte() {

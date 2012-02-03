@@ -28,7 +28,7 @@ public class Competence implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String nom;
+	private String name;
 	private String description;
 	
 	@Temporal(TemporalType.DATE)
@@ -44,12 +44,12 @@ public class Competence implements Serializable {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
