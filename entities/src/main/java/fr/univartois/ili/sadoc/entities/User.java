@@ -1,5 +1,4 @@
 package fr.univartois.ili.sadoc.entities;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import javax.persistence.OneToMany;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
- * 
+ *
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -22,48 +21,25 @@ public class User implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	// TODO Numéro de SECU ou Numéro carte séjour
-
+	
 	private String firstName;
 	private String lastName;
 	private String mail;
-	private String password;
-	private String address;
-	private String zipCode;
-	private String town;
-	private String phone;
-
+	
 	@OneToMany
-	private List<Resume> resumes;
-
-	@OneToMany
-	private List<Degree> degrees;
-
+	private List<Certificate> certificates;
+	
 	/************************************************/
-
+	
 	public User(){}
 	
 	/************************************************/
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public List<Degree> getDegrees() {
-		return degrees;
-	}
-
-	public void setDegrees(List<Degree> degrees) {
-		this.degrees = degrees;
-	}
 
 	public int getId() {
 		return id;
@@ -97,44 +73,12 @@ public class User implements Serializable {
 		this.mail = mail;
 	}
 
-	public List<Resume> getResumes() {
-		return resumes;
+	public List<Certificate> getCertificates() {
+		return certificates;
 	}
 
-	public void setResumes(List<Resume> resumes) {
-		this.resumes = resumes;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public String getTown() {
-		return town;
-	}
-
-	public void setTown(String town) {
-		this.town = town;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setCertificates(List<Certificate> certificates) {
+		this.certificates = certificates;
 	}
 
 }

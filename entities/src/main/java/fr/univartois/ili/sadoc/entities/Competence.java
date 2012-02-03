@@ -1,6 +1,7 @@
 package fr.univartois.ili.sadoc.entities;
+
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -29,15 +31,15 @@ public class Competence implements Serializable {
 	private String name;
 	private String description;
 	
-	@OneToMany
-	private List<Degree> degrees;
+	@Temporal(TemporalType.DATE)
+	private Date creationDate;
 	
 	/************************************************/
-	
+
 	public Competence(){}
 	
 	/************************************************/
-	
+
 	public int getId() {
 		return id;
 	}
@@ -62,12 +64,12 @@ public class Competence implements Serializable {
 		this.description = description;
 	}
 
-	public List<Degree> getDegrees() {
-		return degrees;
+	public Date getCreationDate() {
+		return creationDate;
 	}
 
-	public void setDegrees(List<Degree> degrees) {
-		this.degrees = degrees;
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 }

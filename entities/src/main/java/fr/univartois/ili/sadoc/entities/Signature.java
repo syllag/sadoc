@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Acquisition implements Serializable {
+public class Signature implements Serializable {
 	/**
 	 * 
 	 */
@@ -30,30 +30,25 @@ public class Acquisition implements Serializable {
 	private int id;
 	
 	@OneToOne
-	private User user;
+	private Document document;
 	
 	@OneToOne
-	private Document document;
+	private User user;
 	
 	@OneToOne
 	private Competence competence;
 	
+	@OneToOne
+	private Certificate certificate;
+	
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
-	
-	/************************************************/
 
-	public Acquisition() {}
-	
-	/************************************************/
-	
-	public User getUser() {
-		return user;
-	}
+	/****************************************/
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+	public Signature(){}
+	
+	/****************************************/
 
 	public Document getDocument() {
 		return document;
@@ -63,12 +58,28 @@ public class Acquisition implements Serializable {
 		this.document = document;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Competence getCompetence() {
 		return competence;
 	}
 
 	public void setCompetence(Competence competence) {
 		this.competence = competence;
+	}
+
+	public Certificate getCertificate() {
+		return certificate;
+	}
+
+	public void setCertificate(Certificate certificate) {
+		this.certificate = certificate;
 	}
 
 	public Date getCreationDate() {
@@ -86,5 +97,4 @@ public class Acquisition implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 }
