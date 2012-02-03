@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,10 +28,14 @@ public abstract class Document implements Serializable {
 	private int id;
 	
 	private String name;
-	private String empreinte;
+	private String sum;
 	
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
+	
+	/************************************************/
+	
+	public Document(){}
 	
 	/************************************************/
 	
@@ -52,12 +55,12 @@ public abstract class Document implements Serializable {
 		this.name = name;
 	}
 
-	public String getEmpreinte() {
-		return empreinte;
+	public String getSum() {
+		return sum;
 	}
 
-	public void setEmpreinte(String empreinte) {
-		this.empreinte = empreinte;
+	public void setSum(String sum) {
+		this.sum = sum;
 	}
 
 	public Date getCreationDate() {

@@ -1,4 +1,5 @@
 package fr.univartois.ili.sadoc.webapp;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import javax.persistence.OneToMany;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
- *
+ * 
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -21,25 +22,33 @@ public abstract class User implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	// TODO Numéro de SECU ou Numéro carte séjour
-	
+
 	private String firstName;
 	private String lastName;
 	private String mail;
 	private String password;
-	private String adresse;
+	private String address;
+	private String zipCode;
+	private String town;
 	private String phone;
-	
+
 	@OneToMany
-	private List<CV> cvs;
+	private List<Resume> resumes;
+
+	@OneToMany
+	private List<Degree> degrees;
+
+	/************************************************/
+
+	public User(){}
 	
 	/************************************************/
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -56,11 +65,6 @@ public abstract class User implements Serializable {
 		this.degrees = degrees;
 	}
 
-	@OneToMany
-	private List<Degree> degrees;
-
-	/************************************************/
-	
 	public String getId() {
 		return id;
 	}
@@ -93,20 +97,36 @@ public abstract class User implements Serializable {
 		this.mail = mail;
 	}
 
-	public List<CV> getCvs() {
-		return cvs;
+	public List<Resume> getResumes() {
+		return resumes;
 	}
 
-	public void setCvs(List<CV> cvs) {
-		this.cvs = cvs;
+	public void setResumes(List<Resume> resumes) {
+		this.resumes = resumes;
 	}
 
-	public String getAdresse() {
-		return adresse;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getTown() {
+		return town;
+	}
+
+	public void setTown(String town) {
+		this.town = town;
 	}
 
 	public String getPhone() {

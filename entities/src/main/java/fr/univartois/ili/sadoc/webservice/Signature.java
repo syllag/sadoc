@@ -23,8 +23,6 @@ public class Signature implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
-
 	@Id
 	@OneToOne
 	private Document document;
@@ -42,7 +40,11 @@ public class Signature implements Serializable {
 	private Date creationDate;
 
 	/****************************************/
+
+	public Signature(){}
 	
+	/****************************************/
+
 	public Document getDocument() {
 		return document;
 	}

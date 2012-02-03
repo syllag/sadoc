@@ -40,6 +40,10 @@ public class Acquisition implements Serializable {
 	
 	/************************************************/
 
+	public Acquisition() {}
+	
+	/************************************************/
+	
 	public User getUser() {
 		return user;
 	}

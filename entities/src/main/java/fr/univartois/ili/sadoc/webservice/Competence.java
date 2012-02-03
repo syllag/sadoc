@@ -35,7 +35,11 @@ public class Competence implements Serializable {
 	private Date creationDate;
 	
 	/************************************************/
+
+	public Competence(){}
 	
+	/************************************************/
+
 	public int getId() {
 		return id;
 	}

@@ -37,6 +37,10 @@ public abstract class User implements Serializable {
 	
 	/************************************************/
 	
+	public User(){}
+	
+	/************************************************/
+
 	public String getId() {
 		return id;
 	}

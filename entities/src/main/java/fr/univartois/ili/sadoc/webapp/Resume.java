@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class CV implements Serializable {
+public class Resume implements Serializable {
 	/**
 	 * 
 	 */
@@ -34,6 +34,10 @@ public class CV implements Serializable {
 	@OneToMany
 	private List<Competence> competences;
 
+	/************************************************/
+	
+	public Resume(){}
+	
 	/************************************************/
 	
 	public int getId() {

@@ -34,6 +34,10 @@ public abstract class Degree implements Serializable {
 	
 	/************************************************/
 
+	public Degree(){}
+	
+	/************************************************/
+
 	public List<Competence> getCompetences() {
 		return competences;
 	}

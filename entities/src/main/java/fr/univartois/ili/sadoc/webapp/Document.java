@@ -29,7 +29,7 @@ public abstract class Document implements Serializable {
 	private int id;
 	
 	private String name;
-	private String empreinte;
+	private String sum;
 	private String url;
 	
 	@Temporal(TemporalType.DATE)
@@ -37,6 +37,10 @@ public abstract class Document implements Serializable {
 	
 	/************************************************/
 	
+	public Document(){}
+	
+	/************************************************/
+
 	public int getId() {
 		return id;
 	}
@@ -53,12 +57,12 @@ public abstract class Document implements Serializable {
 		this.name = name;
 	}
 
-	public String getEmpreinte() {
-		return empreinte;
+	public String getSum() {
+		return sum;
 	}
 
-	public void setEmpreinte(String empreinte) {
-		this.empreinte = empreinte;
+	public void setSum(String sum) {
+		this.sum = sum;
 	}
 
 	public String getUrl() {

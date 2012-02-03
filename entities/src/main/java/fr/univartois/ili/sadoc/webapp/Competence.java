@@ -34,6 +34,10 @@ public abstract class Competence implements Serializable {
 	
 	/************************************************/
 	
+	public Competence(){}
+	
+	/************************************************/
+	
 	public int getId() {
 		return id;
 	}
