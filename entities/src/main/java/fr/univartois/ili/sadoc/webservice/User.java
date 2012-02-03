@@ -29,7 +29,7 @@ public abstract class User implements Serializable {
 	// TODO Numéro de SECU ou Numéro carte séjour
 	
 	private String firstName;
-	private String surname;
+	private String lastName;
 	private String mail;
 	
 	@OneToMany
@@ -53,12 +53,12 @@ public abstract class User implements Serializable {
 		this.firstName = firstName;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getMail() {
