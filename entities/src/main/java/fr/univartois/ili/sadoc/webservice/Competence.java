@@ -32,7 +32,7 @@ public class Competence implements Serializable {
 	private String description;
 	
 	@Temporal(TemporalType.DATE)
-	private Date dateCreation;
+	private Date creationDate;
 	
 	/************************************************/
 	
@@ -60,12 +60,12 @@ public class Competence implements Serializable {
 		this.description = description;
 	}
 
-	public Date getDateCreation() {
-		return dateCreation;
+	public Date getCreationDate() {
+		return creationDate;
 	}
 
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
-	
+
 }

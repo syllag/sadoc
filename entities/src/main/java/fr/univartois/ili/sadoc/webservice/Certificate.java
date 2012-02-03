@@ -31,9 +31,6 @@ public class Certificate implements Serializable {
 	@OneToOne
 	private User user;
 	
-	@OneToMany
-	private List<Document> documents;
-	
 	private String publicKey;
 	private String privateKey;
 	
@@ -50,12 +47,6 @@ public class Certificate implements Serializable {
 	}
 	public void setUser(User user) {
 		this.user = user;
-	}
-	public List<Document> getDocuments() {
-		return documents;
-	}
-	public void setDocuments(List<Document> documents) {
-		this.documents = documents;
 	}
 	public String getPublicKey() {
 		return publicKey;

@@ -33,7 +33,7 @@ public abstract class Document implements Serializable {
 	private String url;
 	
 	@Temporal(TemporalType.DATE)
-	private Date dateCreation;
+	private Date creationDate;
 	
 	/************************************************/
 	
@@ -61,20 +61,20 @@ public abstract class Document implements Serializable {
 		this.empreinte = empreinte;
 	}
 
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
 	public String getUrl() {
 		return url;
 	}
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 }
