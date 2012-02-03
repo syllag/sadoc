@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.entities;
+package fr.univartois.ili.sadoc.entities.webservice;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,56 +18,50 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Acquisition implements Serializable {
+public class Competence implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne
-	private User user;
-	
-	@OneToOne
-	private Document document;
-	
-	@OneToOne
-	private Competence competence;
+	private String name;
+	private String description;
 	
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 	
 	/************************************************/
 
-	public Acquisition() {}
+	public Competence(){}
 	
 	/************************************************/
-	
-	public User getUser() {
-		return user;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public Document getDocument() {
-		return document;
+	public String getName() {
+		return name;
 	}
 
-	public void setDocument(Document document) {
-		this.document = document;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Competence getCompetence() {
-		return competence;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setCompetence(Competence competence) {
-		this.competence = competence;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getCreationDate() {
@@ -77,14 +70,6 @@ public class Acquisition implements Serializable {
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 }

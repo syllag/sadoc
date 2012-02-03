@@ -1,6 +1,7 @@
-package fr.univartois.ili.sadoc.entities;
+package fr.univartois.ili.sadoc.entities.webservice;
+
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -17,58 +18,58 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Document implements Serializable {
+public class Certificate implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
-	private String sum;
+	@OneToOne
+	private User user;
 	
-	@Temporal(TemporalType.DATE)
-	private Date creationDate;
-	
-	/************************************************/
-	
-	public Document(){}
+	private String publicKey;
+	private String privateKey;
 	
 	/************************************************/
+
+	public Certificate(){}
 	
+	/************************************************/
+
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
+	
+	public User getUser() {
+		return user;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
-
-	public String getSum() {
-		return sum;
+	
+	public String getPublicKey() {
+		return publicKey;
 	}
-
-	public void setSum(String sum) {
-		this.sum = sum;
+	
+	public void setPublicKey(String publicKey) {
+		this.publicKey = publicKey;
 	}
-
-	public Date getCreationDate() {
-		return creationDate;
+	
+	public String getPrivateKey() {
+		return privateKey;
 	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	
+	public void setPrivateKey(String privateKey) {
+		this.privateKey = privateKey;
 	}
-
+	
 }

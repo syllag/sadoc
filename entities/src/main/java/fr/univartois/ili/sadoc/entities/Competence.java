@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Competence implements Serializable {
+public class Competence implements Serializable {
 	/**
 	 * 
 	 */
