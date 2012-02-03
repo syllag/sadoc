@@ -32,6 +32,7 @@ public abstract class User implements Serializable {
 	private String prenom;
 	private String mail;
 	private String password;
+	private String adresse;
 	
 	@OneToMany
 	private List<CV> cvs;
@@ -97,6 +98,14 @@ public abstract class User implements Serializable {
 
 	public void setCvs(List<CV> cvs) {
 		this.cvs = cvs;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 }

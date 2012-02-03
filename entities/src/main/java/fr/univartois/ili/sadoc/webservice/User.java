@@ -31,6 +31,7 @@ public abstract class User implements Serializable {
 	private String nom;
 	private String prenom;
 	private String mail;
+	private String adresse;
 	
 	@OneToMany
 	private List<Certificat> certificats;
@@ -75,6 +76,14 @@ public abstract class User implements Serializable {
 
 	public void setCertificats(List<Certificat> certificats) {
 		this.certificats = certificats;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 }
