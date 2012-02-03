@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Certificat implements Serializable {
+public class Certificate implements Serializable {
 	/**
 	 * 
 	 */

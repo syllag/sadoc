@@ -33,7 +33,7 @@ public abstract class User implements Serializable {
 	private String mail;
 	
 	@OneToMany
-	private List<Certificat> certificats;
+	private List<Certificate> certificates;
 	
 	/************************************************/
 	
@@ -69,12 +69,12 @@ public abstract class User implements Serializable {
 		this.mail = mail;
 	}
 
-	public List<Certificat> getCertificats() {
-		return certificats;
+	public List<Certificate> getCertificates() {
+		return certificates;
 	}
 
-	public void setCertificats(List<Certificat> certificats) {
-		this.certificats = certificats;
+	public void setCertificates(List<Certificate> certificates) {
+		this.certificates = certificates;
 	}
 
 }

@@ -35,7 +35,7 @@ public abstract class Document implements Serializable {
 	private Date dateCreation;
 	
 	@OneToOne
-	private Certificat certificat;
+	private Certificate certificate;
 
 	/************************************************/
 	
@@ -71,12 +71,12 @@ public abstract class Document implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	public Certificat getCertificat() {
-		return certificat;
+	public Certificate getCertificate() {
+		return certificate;
 	}
 
-	public void setCertificat(Certificat certificat) {
-		this.certificat = certificat;
+	public void setCertificat(Certificate certificate) {
+		this.certificate = certificate;
 	}
 
 }
