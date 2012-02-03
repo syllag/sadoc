@@ -3,7 +3,6 @@ package fr.univartois.ili.sadoc.webapp;
 import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,14 +12,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Degree;
+import fr.univartois.ili.sadoc.entities.Document;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
  * 
  */
-public class DegreeTest {
+public class DocumentTest {
 	private EntityManager em;
 
     @Before
@@ -35,21 +33,16 @@ public class DegreeTest {
     
     @Test
     public void testPersist() throws ParseException {
-    	final Competence competence = new Competence();
-    	final Degree degree = new Degree();
-    	
-    	ArrayList<Competence> liste = new ArrayList<Competence>();
-    	liste.add(competence);
-    	degree.setCompetences(liste);    	
+    	final Document document = new Document();
+    	document.setName("Toto en tutu kaki sur le titi caca");
+    	document.setSum("54gr6t8ghz4g84azfaz84d0aef4r0gf4erg56g16044gyj4");
     	
     	em.getTransaction().begin();
-        em.persist(competence);
-        em.persist(degree);
+        em.persist(document);
         em.getTransaction().commit();
         
-        Degree degreeTest = em.find(Degree.class, degree.getId());
-        assertEquals(degree.getCompetences(),degreeTest.getCompetences());
-        assertEquals(degree.getDescription(), degreeTest.getDescription());
-        assertEquals(degree.getName(),degreeTest.getName());
+        Document documentTest = em.find(Document.class, document.getId());
+        assertEquals(document.getName(), documentTest.getName());
+        assertEquals(document.getSum(), documentTest.getSum());
     }
 }

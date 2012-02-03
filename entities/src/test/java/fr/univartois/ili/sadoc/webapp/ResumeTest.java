@@ -14,13 +14,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Degree;
+import fr.univartois.ili.sadoc.entities.Resume;
+import fr.univartois.ili.sadoc.entities.User;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
  * 
  */
-public class DegreeTest {
+public class ResumeTest {
 	private EntityManager em;
 
     @Before
@@ -35,21 +36,24 @@ public class DegreeTest {
     
     @Test
     public void testPersist() throws ParseException {
+    	final Resume resume = new Resume();
     	final Competence competence = new Competence();
-    	final Degree degree = new Degree();
+    	final User user = new User();
     	
+    	resume.setUser(user);
     	ArrayList<Competence> liste = new ArrayList<Competence>();
     	liste.add(competence);
-    	degree.setCompetences(liste);    	
+    	resume.setCompetences(liste);
+    	
     	
     	em.getTransaction().begin();
         em.persist(competence);
-        em.persist(degree);
+        em.persist(user);
+        em.persist(resume);
         em.getTransaction().commit();
         
-        Degree degreeTest = em.find(Degree.class, degree.getId());
-        assertEquals(degree.getCompetences(),degreeTest.getCompetences());
-        assertEquals(degree.getDescription(), degreeTest.getDescription());
-        assertEquals(degree.getName(),degreeTest.getName());
+        Resume resumeTest = em.find(Resume.class, resume.getId());
+        assertEquals(resume.getCompetences(), resumeTest.getCompetences());
+        assertEquals(resume.getUser(), resumeTest.getUser());
     }
 }
