@@ -1,7 +1,6 @@
-package fr.univartois.ili.sadoc.webapp;
-
+package fr.univartois.ili.sadoc.entities;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToMany;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -18,7 +16,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Document implements Serializable {
+public abstract class Degree implements Serializable {
 	/**
 	 * 
 	 */
@@ -29,17 +27,24 @@ public abstract class Document implements Serializable {
 	private int id;
 	
 	private String name;
-	private String sum;
-	private String url;
-	
-	@Temporal(TemporalType.DATE)
-	private Date creationDate;
-	
-	/************************************************/
-	
-	public Document(){}
+	private String description;
+		
+	@OneToMany
+	private List<Competence> competences;
 	
 	/************************************************/
+
+	public Degree(){}
+	
+	/************************************************/
+
+	public List<Competence> getCompetences() {
+		return competences;
+	}
+
+	public void setCompetences(List<Competence> competences) {
+		this.competences = competences;
+	}
 
 	public int getId() {
 		return id;
@@ -57,28 +62,12 @@ public abstract class Document implements Serializable {
 		this.name = name;
 	}
 
-	public String getSum() {
-		return sum;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setSum(String sum) {
-		this.sum = sum;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

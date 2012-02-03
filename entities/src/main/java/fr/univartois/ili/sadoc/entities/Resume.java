@@ -1,4 +1,5 @@
-package fr.univartois.ili.sadoc.webapp;
+package fr.univartois.ili.sadoc.entities;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -16,7 +18,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Competence implements Serializable {
+public class Resume implements Serializable {
 	/**
 	 * 
 	 */
@@ -26,15 +28,15 @@ public abstract class Competence implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
-	private String description;
+	@OneToOne
+	private User user;
 	
 	@OneToMany
-	private List<Degree> degrees;
-	
+	private List<Competence> competences;
+
 	/************************************************/
 	
-	public Competence(){}
+	public Resume(){}
 	
 	/************************************************/
 	
@@ -46,28 +48,20 @@ public abstract class Competence implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public User getUser() {
+		return user;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public String getDescription() {
-		return description;
+	public List<Competence> getCompetences() {
+		return competences;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public List<Degree> getDegrees() {
-		return degrees;
-	}
-
-	public void setDegrees(List<Degree> degrees) {
-		this.degrees = degrees;
+	public void setCompetences(List<Competence> competences) {
+		this.competences = competences;
 	}
 
 }

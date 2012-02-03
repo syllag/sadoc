@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.webapp;
+package fr.univartois.ili.sadoc.entities;
 
 import java.io.Serializable;
 import java.util.Date;
