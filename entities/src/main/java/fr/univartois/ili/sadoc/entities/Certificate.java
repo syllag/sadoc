@@ -27,7 +27,7 @@ public class Certificate implements Serializable {
 	private int id;
 	
 	@OneToOne
-	private User user;
+	private Owner user;
 	
 	private String publicKey;
 	private String privateKey;
@@ -46,11 +46,11 @@ public class Certificate implements Serializable {
 		this.id = id;
 	}
 	
-	public User getUser() {
+	public Owner getUser() {
 		return user;
 	}
 	
-	public void setUser(User user) {
+	public void setUser(Owner user) {
 		this.user = user;
 	}
 	

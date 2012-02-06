@@ -33,7 +33,7 @@ public class Signature implements Serializable {
 	private Document document;
 	
 	@OneToOne
-	private User user;
+	private Owner user;
 	
 	@OneToOne
 	private Competence competence;
@@ -58,11 +58,11 @@ public class Signature implements Serializable {
 		this.document = document;
 	}
 
-	public User getUser() {
+	public Owner getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Owner user) {
 		this.user = user;
 	}
 

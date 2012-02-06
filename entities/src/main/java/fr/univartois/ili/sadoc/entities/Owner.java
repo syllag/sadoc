@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User implements Serializable {
+public class Owner implements Serializable {
 	/**
 	 * 
 	 */
@@ -37,7 +37,7 @@ public class User implements Serializable {
 	
 	/************************************************/
 	
-	public User(){}
+	public Owner(){}
 	
 	/************************************************/
 
