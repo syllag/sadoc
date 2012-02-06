@@ -136,5 +136,9 @@ public class Owner implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	public boolean equals(Owner owner) {
+		return this.id == owner.getId();
+	}
 
 }

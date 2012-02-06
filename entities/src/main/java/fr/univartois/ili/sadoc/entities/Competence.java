@@ -70,4 +70,9 @@ public class Competence implements Serializable {
 		this.degrees = degrees;
 	}
 
+	public boolean equals(Competence competence) {
+		return this.id == competence.getId();
+	}
+
+	
 }

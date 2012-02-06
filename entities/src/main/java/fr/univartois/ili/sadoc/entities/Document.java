@@ -70,5 +70,9 @@ public class Document implements Serializable {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
+	
+	public boolean equals(Document document) {
+		return this.id == document.getId();
+	}
 
 }
