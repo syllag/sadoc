@@ -15,7 +15,7 @@ import org.junit.Test;
 import fr.univartois.ili.sadoc.entities.Acquisition;
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Document;
-import fr.univartois.ili.sadoc.entities.User;
+import fr.univartois.ili.sadoc.entities.Owner;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -36,7 +36,7 @@ public class AcquisitionTest {
     
     @Test
     public void testPersist() throws ParseException {
-    	final User user = new User();
+    	final Owner user = new Owner();
     	final Document document = new Document();
     	final Competence competence = new Competence();
     	final Acquisition acquisition = new Acquisition();

@@ -2,30 +2,30 @@ package fr.univartois.ili.sadoc.dao;
 
 import javax.persistence.EntityManager;
 
-import fr.univartois.ili.sadoc.entities.User;
+import fr.univartois.ili.sadoc.entities.Owner;
 
 public abstract class UserDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
 	
-	public static void create(User user) {
+	public static void create(Owner user) {
 		em.getTransaction().begin();
 		em.persist(user);
 		em.getTransaction().commit();
 	}
 
-	public static User findById(int id) {
-        User user = em.find(User.class, id);
+	public static Owner findById(int id) {
+        Owner user = em.find(Owner.class, id);
 		return user;
 	}
 
-	public static void update(User user) {
+	public static void update(Owner user) {
 		em.getTransaction().begin();
 		em.merge(user);
 		em.getTransaction().commit();
 	}
 
-	public static void delete(User user) {
+	public static void delete(Owner user) {
 		em.getTransaction().begin();
 		em.remove(user);
 		em.getTransaction().commit();

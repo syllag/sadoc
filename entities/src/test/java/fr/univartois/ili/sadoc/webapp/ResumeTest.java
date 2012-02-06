@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Resume;
-import fr.univartois.ili.sadoc.entities.User;
+import fr.univartois.ili.sadoc.entities.Owner;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -38,7 +38,7 @@ public class ResumeTest {
     public void testPersist() throws ParseException {
     	final Resume resume = new Resume();
     	final Competence competence = new Competence();
-    	final User user = new User();
+    	final Owner user = new Owner();
     	
     	resume.setUser(user);
     	ArrayList<Competence> liste = new ArrayList<Competence>();

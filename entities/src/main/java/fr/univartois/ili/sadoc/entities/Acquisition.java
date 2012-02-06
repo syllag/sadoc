@@ -30,7 +30,7 @@ public class Acquisition implements Serializable {
 	private int id;
 	
 	@OneToOne
-	private User user;
+	private Owner user;
 	
 	@OneToOne
 	private Document document;
@@ -47,11 +47,11 @@ public class Acquisition implements Serializable {
 	
 	/************************************************/
 	
-	public User getUser() {
+	public Owner getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Owner user) {
 		this.user = user;
 	}
 

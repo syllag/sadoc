@@ -29,7 +29,7 @@ public class Resume implements Serializable {
 	private int id;
 	
 	@OneToOne
-	private User user;
+	private Owner user;
 	
 	@OneToMany
 	private List<Competence> competences;
@@ -48,11 +48,11 @@ public class Resume implements Serializable {
 		this.id = id;
 	}
 
-	public User getUser() {
+	public Owner getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Owner user) {
 		this.user = user;
 	}
 

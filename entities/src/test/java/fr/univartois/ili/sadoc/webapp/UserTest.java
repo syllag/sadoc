@@ -7,7 +7,7 @@ import java.text.ParseException;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.UserDAO;
-import fr.univartois.ili.sadoc.entities.User;
+import fr.univartois.ili.sadoc.entities.Owner;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -17,7 +17,7 @@ public class UserTest {
 
     @Test
     public void testPersist() throws ParseException {
-    	final User user = new User();
+    	final Owner user = new Owner();
     	user.setFirstName("Jean");
     	user.setLastName("Dupont");
     	user.setMail("jean.dupont@jaimal.com");
@@ -29,7 +29,7 @@ public class UserTest {
     	
     	
     	UserDAO.create(user);
-    	User userTest = UserDAO.findById(user.getId());
+    	Owner userTest = UserDAO.findById(user.getId());
     	
         assertEquals(user.getId(), userTest.getId());
         assertEquals(user.getFirstName(), userTest.getFirstName());
