@@ -15,7 +15,7 @@
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 		<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/sadoc" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/sadocwebservice" />
  			<property name="javax.persistence.jdbc.user" value="sadoc" />
 			<property name="javax.persistence.jdbc.password" value="sadoc" /> 
 			<property name="eclipselink.ddl-generation" value="create-tables" />
