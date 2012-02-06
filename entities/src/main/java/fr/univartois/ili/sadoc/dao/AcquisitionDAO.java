@@ -34,19 +34,19 @@ public abstract class AcquisitionDAO {
 		return acquisition;
 	}
 	
-	public static List<Document> findByDocument(Document document) {
-		final TypedQuery<Document> query;
-        query = em.createQuery(Request.FIND_IN_ACQUISITION_BY_DOCUMENT, Document.class);
+	public static List<Acquisition> findByDocument(Document document) {
+		final TypedQuery<Acquisition> query;
+        query = em.createQuery(Request.FIND_IN_ACQUISITION_BY_DOCUMENT, Acquisition.class);
         query.setParameter("owner", document);
-        List<Document> acquisition = query.getResultList();
+        List<Acquisition> acquisition = query.getResultList();
 		return acquisition;
 	}
 	
-	public static List<Competence> findByCompetence(Competence competence) {
-		final TypedQuery<Competence> query;
-        query = em.createQuery(Request.FIND_IN_ACQUISITION_BY_COMPETENCE, Competence.class);
+	public static List<Acquisition> findByCompetence(Competence competence) {
+		final TypedQuery<Acquisition> query;
+        query = em.createQuery(Request.FIND_IN_ACQUISITION_BY_COMPETENCE, Acquisition.class);
         query.setParameter("owner", competence);
-        List<Competence> acquisition = query.getResultList();
+        List<Acquisition> acquisition = query.getResultList();
 		return acquisition;
 	}
 
