@@ -30,7 +30,7 @@ public class Competence implements Serializable {
 	private String name;
 	private String description;
 	
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="competence")
+	@OneToMany
 	private List<Degree> degrees;
 	
 	/************************************************/
