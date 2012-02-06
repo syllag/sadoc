@@ -24,7 +24,9 @@ public class CompetenceTest {
     	final Degree degree = new Degree();
     	ArrayList<Degree> liste = new ArrayList<Degree>();
     	liste.add(degree);
-    	competence.setDegrees(liste);    	
+    	competence.setDegrees(liste);  
+    	competence.setDescription("blablabla");
+    	competence.setName("toto");
     
     	CompetenceDAO.create(competence);
     	DegreeDAO.create(degree);
