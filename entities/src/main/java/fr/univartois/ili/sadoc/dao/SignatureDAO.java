@@ -53,7 +53,7 @@ public abstract class SignatureDAO {
 	
 	public static List<Signature> findByCertificate(Certificate certificate) {
 		final TypedQuery<Signature> query;
-        query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_COMPETENCE, Signature.class);
+        query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_CERTIFICATE, Signature.class);
         query.setParameter("owner", certificate);
         List<Signature> signature = query.getResultList();
 		return signature;
