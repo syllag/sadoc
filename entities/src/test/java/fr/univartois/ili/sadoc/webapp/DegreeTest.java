@@ -5,14 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
+import fr.univartois.ili.sadoc.dao.CompetenceDAO;
+import fr.univartois.ili.sadoc.dao.DegreeDAO;
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Degree;
 
@@ -21,18 +17,7 @@ import fr.univartois.ili.sadoc.entities.Degree;
  * 
  */
 public class DegreeTest {
-	private EntityManager em;
-
-    @Before
-    public void setUp() {
-        EntityManagerFactory fact = Persistence.createEntityManagerFactory("TestPU");
-        em = fact.createEntityManager();
-    }
-
-    @After
-    public void tearDown() {
-    }
-    
+	    
     @Test
     public void testPersist() throws ParseException {
     	final Competence competence = new Competence();
@@ -42,12 +27,11 @@ public class DegreeTest {
     	liste.add(competence);
     	degree.setCompetences(liste);    	
     	
-    	em.getTransaction().begin();
-        em.persist(competence);
-        em.persist(degree);
-        em.getTransaction().commit();
-        
-        Degree degreeTest = em.find(Degree.class, degree.getId());
+    	CompetenceDAO.create(competence);
+    	DegreeDAO.create(degree);
+    	Competence competenceTest = CompetenceDAO.findById(competence.getId());
+    	Degree degreeTest = DegreeDAO.findById(degree.getId());
+    	
         assertEquals(degree.getCompetences(),degreeTest.getCompetences());
         assertEquals(degree.getDescription(), degreeTest.getDescription());
         assertEquals(degree.getName(),degreeTest.getName());
