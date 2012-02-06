@@ -6,7 +6,7 @@ import java.text.ParseException;
 
 import org.junit.Test;
 
-import fr.univartois.ili.sadoc.dao.UserDAO;
+import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.Owner;
 
 /**
@@ -28,8 +28,8 @@ public class UserTest {
     	user.setPhone("0669696969");
     	
     	
-    	UserDAO.create(user);
-    	Owner userTest = UserDAO.findById(user.getId());
+    	OwnerDAO.create(user);
+    	Owner userTest = OwnerDAO.findById(user.getId());
     	
         assertEquals(user.getId(), userTest.getId());
         assertEquals(user.getFirstName(), userTest.getFirstName());

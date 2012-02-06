@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 
 import fr.univartois.ili.sadoc.entities.Owner;
 
-public abstract class UserDAO {
+public abstract class OwnerDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
 	
