@@ -27,9 +27,11 @@ public class CompetenceTest {
     	competence.setDegrees(liste);  
     	competence.setDescription("blablabla");
     	competence.setName("toto");
-    
-    	CompetenceDAO.create(competence);
+    	
     	DegreeDAO.create(degree);
+    	CompetenceDAO.create(competence);
+    	
+    	
     	Competence competenceTest = CompetenceDAO.findById(competence.getId());
     	Degree degreeTest = DegreeDAO.findById(degree.getId());
     	
