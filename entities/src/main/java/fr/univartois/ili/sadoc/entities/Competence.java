@@ -2,6 +2,7 @@ package fr.univartois.ili.sadoc.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Competence implements Serializable {
 	private String name;
 	private String description;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="competence")
 	private List<Degree> degrees;
 	
 	/************************************************/
