@@ -15,15 +15,15 @@ public abstract class AcquisitionDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
 	
-	public static void create(Document document) {
+	public static void create(Acquisition acquisition) {
 		em.getTransaction().begin();
-		em.persist(document);
+		em.persist(acquisition);
 		em.getTransaction().commit();
 	}
 
-	public static Document findById(int id) {
-        Document document = em.find(Document.class, id);
-		return document;
+	public static Acquisition findById(int id) {
+		Acquisition acquisition = em.find(Acquisition.class, id);
+		return acquisition;
 	}
 	
 	public static List<Acquisition> findByOwner(Owner owner) {
@@ -50,15 +50,15 @@ public abstract class AcquisitionDAO {
 		return acquisition;
 	}
 
-	public static void update(Document document) {
+	public static void update(Acquisition acquisition) {
 		em.getTransaction().begin();
-		em.merge(document);
+		em.merge(acquisition);
 		em.getTransaction().commit();
 	}
 
-	public static void delete(Document document) {
+	public static void delete(Acquisition acquisition) {
 		em.getTransaction().begin();
-		em.remove(document);
+		em.remove(acquisition);
 		em.getTransaction().commit();
 	}
 }

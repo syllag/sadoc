@@ -2,32 +2,32 @@ package fr.univartois.ili.sadoc.dao;
 
 import javax.persistence.EntityManager;
 
-import fr.univartois.ili.sadoc.entities.Document;
+import fr.univartois.ili.sadoc.entities.Resume;
 
 public abstract class ResumeDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
 	
-	public static void create(Document document) {
+	public static void create(Resume resume) {
 		em.getTransaction().begin();
-		em.persist(document);
+		em.persist(resume);
 		em.getTransaction().commit();
 	}
 
-	public static Document findById(int id) {
-        Document document = em.find(Document.class, id);
-		return document;
+	public static Resume findById(int id) {
+		Resume resume = em.find(Resume.class, id);
+		return resume;
 	}
 
-	public static void update(Document document) {
+	public static void update(Resume resume) {
 		em.getTransaction().begin();
-		em.merge(document);
+		em.merge(resume);
 		em.getTransaction().commit();
 	}
 
-	public static void delete(Document document) {
+	public static void delete(Resume resume) {
 		em.getTransaction().begin();
-		em.remove(document);
+		em.remove(resume);
 		em.getTransaction().commit();
 	}
 }

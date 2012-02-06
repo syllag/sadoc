@@ -2,7 +2,7 @@ package fr.univartois.ili.sadoc.dao;
 
 import javax.persistence.EntityManager;
 
-import fr.univartois.ili.sadoc.entities.Acquisition;
+import fr.univartois.ili.sadoc.entities.Degree;
 
 public abstract class DegreeDAO {
 
@@ -10,26 +10,26 @@ public abstract class DegreeDAO {
 	
 	
 	
-	public static void create(Acquisition acquisition) {
+	public static void create(Degree degree) {
 		em.getTransaction().begin();
-		em.persist(acquisition);
+		em.persist(degree);
 		em.getTransaction().commit();
 	}
 
-	public static Acquisition findById(int id) {
-        Acquisition acquisition = em.find(Acquisition.class, id);
-		return acquisition;
+	public static Degree findById(int id) {
+		Degree degree = em.find(Degree.class, id);
+		return degree;
 	}
 
-	public static void update(Acquisition acquisition) {
+	public static void update(Degree degree) {
 		em.getTransaction().begin();
-		em.merge(acquisition);
+		em.merge(degree);
 		em.getTransaction().commit();
 	}
 
-	public static void delete(Acquisition acquisition) {
+	public static void delete(Degree degree) {
 		em.getTransaction().begin();
-		em.remove(acquisition);
+		em.remove(degree);
 		em.getTransaction().commit();
 	}
 }
