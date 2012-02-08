@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -26,11 +26,11 @@ public class Certificate implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne
-	private Owner user;
-	
 	private String publicKey;
 	private String privateKey;
+	
+	@ManyToOne
+	private Owner owner;
 	
 	/************************************************/
 
@@ -44,14 +44,6 @@ public class Certificate implements Serializable {
 	
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public Owner getUser() {
-		return user;
-	}
-	
-	public void setUser(Owner user) {
-		this.user = user;
 	}
 	
 	public String getPublicKey() {
@@ -68,6 +60,14 @@ public class Certificate implements Serializable {
 	
 	public void setPrivateKey(String privateKey) {
 		this.privateKey = privateKey;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 	
 }
