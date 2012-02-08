@@ -2,12 +2,15 @@ package fr.univartois.ili.sadoc;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.CertificateDAO;
 import fr.univartois.ili.sadoc.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.entities.Certificate;
 import fr.univartois.ili.sadoc.entities.Competence;
@@ -21,6 +24,12 @@ import fr.univartois.ili.sadoc.entities.Signature;
  */
 public class SignatureTest {
 
+	 @Before
+     public void initTests(){
+             PersistenceProvider.setProvider("sadocjpatest");
+     }
+
+	
 	@Test
 	public void testPersist() {
 		final Document document = new Document();
@@ -47,4 +56,9 @@ public class SignatureTest {
 		assertEquals(signature.getDocument(),signatureTest.getDocument());
 		assertEquals(signature.getOwner(),signatureTest.getOwner());
 	}
+	
+	@After
+    public void endTests(){
+            PersistenceProvider.removeProvider();
+    }
 }
