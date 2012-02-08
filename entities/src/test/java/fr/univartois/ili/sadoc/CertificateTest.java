@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.entities.Certificate;
 import fr.univartois.ili.sadoc.entities.Owner;
@@ -33,6 +34,8 @@ public class CertificateTest {
 		owner.setLastName("Oisal");
 		owner.setMail("albert.oisal@gmail.com");
 		certificate.setOwner(owner);
+		
+		OwnerDAO.create(owner);
 		
 		CertificateDAO.create(certificate);
 		

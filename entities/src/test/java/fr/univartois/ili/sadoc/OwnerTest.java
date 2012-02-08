@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.univartois.ili.sadoc.dao.CertificateDAO;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.entities.Certificate;
@@ -37,6 +38,8 @@ public class OwnerTest {
 		ArrayList<Certificate> liste = new ArrayList<Certificate>();
 		liste.add(certificate);
 		owner.setCertificates(liste);
+		
+		CertificateDAO.create(certificate);
 		
 		OwnerDAO.create(owner);
 		
