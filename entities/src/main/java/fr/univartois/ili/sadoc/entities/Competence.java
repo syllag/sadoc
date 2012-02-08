@@ -1,15 +1,15 @@
 package fr.univartois.ili.sadoc.entities;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -30,12 +30,16 @@ public class Competence implements Serializable {
 	private String name;
 	private String description;
 	
-	@OneToMany
-	private List<Degree> degrees;
+	@ManyToMany 
+	private List<Degree> degrees= new ArrayList<Degree>();
 	
 	/************************************************/
 	
 	public Competence(){}
+	
+	public Competence(List<Degree> degrees){
+		this.degrees.addAll(degrees);
+	}
 	
 	/************************************************/
 	

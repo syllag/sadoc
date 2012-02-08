@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -23,13 +24,23 @@ public class CompetenceTest {
     	final Competence competence = new Competence();
     	final Degree degree = new Degree();
     	ArrayList<Degree> liste = new ArrayList<Degree>();
-    	liste.add(degree);
-    	competence.setDegrees(liste);  
+    	
     	competence.setDescription("blablabla");
     	competence.setName("toto");
+    	
     
     	CompetenceDAO.create(competence);
     	DegreeDAO.create(degree);
+    	
+    	liste.add(degree);
+    	competence.setDegrees(liste);  
+    	List<Competence> d= degree.getCompetences();
+    	d.add(competence);
+    	degree.setCompetences(d);
+    	
+    	CompetenceDAO.update(competence);
+    	DegreeDAO.update(degree);
+    	
     	Competence competenceTest = CompetenceDAO.findById(competence.getId());
     	Degree degreeTest = DegreeDAO.findById(degree.getId());
     	
