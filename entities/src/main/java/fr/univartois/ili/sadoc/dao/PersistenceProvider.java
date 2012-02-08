@@ -3,15 +3,19 @@ package fr.univartois.ili.sadoc.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-public class PersistenceProvider {
+public abstract class PersistenceProvider {
 
 	private static EntityManager em = null;
 	
 	public static EntityManager getEntityManager(){
 		if (em == null){
-			em = Persistence.createEntityManagerFactory("sadocjpa").createEntityManager();
+			setProvider("sadocjpa");
 		}
 		return em;
+	}
+	
+	public static void setProvider(String persistenceUnit){
+		em = Persistence.createEntityManagerFactory(persistenceUnit).createEntityManager();
 	}
 
 }
