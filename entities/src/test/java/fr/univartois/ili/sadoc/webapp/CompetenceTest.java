@@ -6,10 +6,13 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.dao.DegreeDAO;
+import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Degree;
 
@@ -18,6 +21,13 @@ import fr.univartois.ili.sadoc.entities.Degree;
  * 
  */
 public class CompetenceTest {
+	
+	
+	@Before
+	public void initTests(){
+		PersistenceProvider.setProvider("sadocjpatest");
+	}
+	 
 	
     @Test
     public void testPersist() throws ParseException {
@@ -48,4 +58,9 @@ public class CompetenceTest {
         assertEquals(competence.getDescription(), competenceTest.getDescription());
         assertEquals(competence.getName(),competenceTest.getName());
     }
+    
+    @After
+	public void endTests(){
+		PersistenceProvider.removeProvider();
+	}
 }

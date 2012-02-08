@@ -4,9 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.entities.Owner;
 
 /**
@@ -15,6 +18,11 @@ import fr.univartois.ili.sadoc.entities.Owner;
  */
 public class OwnerTest {
 
+	@Before
+	public void initTests(){
+		PersistenceProvider.setProvider("sadocjpatest");
+	}
+	
     @Test
     public void testPersist() throws ParseException {
     	final Owner user = new Owner();
@@ -41,4 +49,9 @@ public class OwnerTest {
         assertEquals(user.getTown(), userTest.getTown());
         assertEquals(user.getPhone(), userTest.getPhone());
     }
+    
+    @After
+	public void endTests(){
+		PersistenceProvider.removeProvider();
+	}
 }

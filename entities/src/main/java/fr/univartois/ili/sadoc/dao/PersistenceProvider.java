@@ -17,5 +17,9 @@ public abstract class PersistenceProvider {
 	public static void setProvider(String persistenceUnit){
 		em = Persistence.createEntityManagerFactory(persistenceUnit).createEntityManager();
 	}
+	
+	public static void removeProvider(){
+		em = null;
+	}
 
 }
