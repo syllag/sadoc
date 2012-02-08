@@ -8,9 +8,9 @@ public abstract class OwnerDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
 	
-	public static void create(Owner user) {
+	public static void create(Owner owner) {
 		em.getTransaction().begin();
-		em.persist(user);
+		em.persist(owner);
 		em.getTransaction().commit();
 	}
 
