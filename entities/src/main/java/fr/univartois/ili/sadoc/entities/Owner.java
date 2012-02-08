@@ -47,6 +47,19 @@ public class Owner implements Serializable {
 
 	public Owner(){}
 	
+	public Owner(String firstName,String lastName,String mail, String password, String address,String zipCode,String town, String phone, List<Resume> resumes,List<Degree> degrees){
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.mail=mail;
+		this.password=password;
+		this.address=address;
+		this.zipCode=zipCode;
+		this.town=town;
+		this.phone=phone;
+		this.resumes.addAll(resumes);
+		this.degrees=degrees;
+	}
+	
 	/************************************************/
 
 	public String getPassword() {

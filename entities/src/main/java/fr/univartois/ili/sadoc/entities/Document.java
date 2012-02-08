@@ -37,6 +37,12 @@ public class Document implements Serializable {
 	
 	public Document(){}
 	
+	public Document(String name, String checkSum, Date creationDate){
+		this.name=name;
+		this.checkSum=checkSum;
+		this.creationDate=creationDate;
+	}
+	
 	/************************************************/
 	
 	public int getId() {

@@ -38,6 +38,11 @@ public class Resume implements Serializable {
 	
 	public Resume(){}
 	
+	public Resume(Owner owner,List<Competence> competences){
+		this.owner=owner;
+		this.competences=competences;
+	}
+	
 	/************************************************/
 	
 	public int getId() {

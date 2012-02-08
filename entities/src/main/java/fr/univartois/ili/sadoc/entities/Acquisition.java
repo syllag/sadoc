@@ -45,10 +45,11 @@ public class Acquisition implements Serializable {
 
 	public Acquisition() {}
 	
-	public Acquisition(Owner owner,Document document, Competence competence){
+	public Acquisition(Owner owner,Document document, Competence competence,Date creationDate){
 		this.owner=owner;
 		this.document=document;
 		this.competence=competence;
+		this.creationDate=creationDate;
 	}
 	
 	/************************************************/
