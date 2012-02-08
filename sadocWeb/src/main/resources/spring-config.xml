@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+	<!-- exercice 2.a -->
+	<bean id="businessObject" class="fr.artois.univ.ili.bo.BusinessObjectImpl">
+		<property name="valeur" value="12345" />
+	</bean>
+	<bean id="serviceObject2" class="fr.artois.univ.ili.so.ServiceObjectImpl2">
+		<property name="businessObject" ref="businessObject" />
+	</bean>
+	<bean id="serviceObject3" class="fr.artois.univ.ili.so.ServiceObjectImpl3">
+		<constructor-arg ref="businessObject" />
+	</bean>
+
+
+	<!-- exercice 2.b -->
+
+	<bean id="serviceObject2InnerBean" class="fr.artois.univ.ili.so.ServiceObjectImpl2InnerBean">
+
+		<property name="businessObject">
+			<bean class="fr.artois.univ.ili.bo.BusinessObjectImpl">
+				<property name="valeur" value="54321" />
+			</bean>
+		</property>
+	</bean>
+
+
+	<!-- exercice 2.c -->
+
+	<bean id="serviceTechObject" class="fr.artois.univ.ili.so.ServiceTechObjectImpl">
+
+		<property name="listNodes">
+			<list>
+				<bean id="node1" class="fr.artois.univ.ili.transverse.NodeImpl" />
+				<bean id="node2" class="fr.artois.univ.ili.transverse.NodeImpl" />
+				<bean id="node3" class="fr.artois.univ.ili.transverse.NodeImpl" />
+				<bean id="node4" class="fr.artois.univ.ili.transverse.NodeImpl" />
+			</list>
+		</property>
+
+	</bean>
+	<!-- exercice 2.d -->
+
+	<bean id="dataAccessObject" class="fr.artois.univ.ili.dao.DataAccessObject">
+
+		<property name="bundle">
+			<props>
+				<prop key="user">ILI_USER</prop>
+				<prop key="password">ILI_PASSWD</prop>
+				<prop key="base">jdbc:mysql://localhost:3306/stock</prop>
+			</props>
+		</property>
+
+	</bean>
+
+	<bean id="statLocatorImpl" class="fr.artois.univ.ili.transverse.StatLocatorImpl"
+		factory-method="getInstance">
+	</bean>
+	<bean id="serviceStatObject" class="fr.artois.univ.ili.so.ServiceStatObjectImpl">
+		<property name="statLocator" ref="statLocatorImpl">
+		</property>
+	</bean>
+
+
+
+
+
+	<!-- exercice 3.b -->
+	
+	
+	
+
+	<!-- exercice 3.c -->
+
+	<!-- exercice 3.d -->
+
+	<!-- exercice 4.a -->
+
+	<!-- exercice 4.b -->
+
+	<!-- exercice 4.c -->
+
+	<!-- exercice 4.d -->
+
+	<!-- exercice 4.e -->
+
+</beans>
