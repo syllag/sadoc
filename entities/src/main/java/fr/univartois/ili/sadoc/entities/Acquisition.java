@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
- *
+ * @autor damien wattiez <damien.wattiez at gmail.com>
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -44,6 +44,12 @@ public class Acquisition implements Serializable {
 	/************************************************/
 
 	public Acquisition() {}
+	
+	public Acquisition(Owner owner,Document document, Competence competence){
+		this.owner=owner;
+		this.document=document;
+		this.competence=competence;
+	}
 	
 	/************************************************/
 	

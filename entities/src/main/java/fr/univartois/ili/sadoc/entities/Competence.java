@@ -37,6 +37,10 @@ public class Competence implements Serializable {
 	
 	public Competence(){}
 	
+	public Competence(List<Degree> degrees){
+		this.degrees.addAll(degrees);
+	}
+	
 	/************************************************/
 	
 	public int getId() {

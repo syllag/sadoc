@@ -38,6 +38,10 @@ public class Degree implements Serializable {
 
 	public Degree(){}
 	
+	public Degree(List<Competence> competences){
+		this.competences.addAll(competences);
+	}
+	
 	/************************************************/
 
 	public List<Competence> getCompetences() {
