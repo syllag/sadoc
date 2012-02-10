@@ -30,6 +30,9 @@ public class DocumentTest {
 		document.setCreationDate(new Date(45123645));
 		document.setName("Document_secret.txt");
 		document.setCheckSum("ergf568g4tr8gh04r5g4f0z4f0zea5f41ze54");
+		byte[] tab = new byte[3];
+		tab[0]=1;tab[1]=2;tab[2]=3;
+		document.setPk7(tab);
 		
 		DocumentDAO.create(document);
 		
@@ -38,6 +41,7 @@ public class DocumentTest {
 		assertEquals(document.getCreationDate(),documentTest.getCreationDate());
 		assertEquals(document.getName(),documentTest.getName());
 		assertEquals(document.getCheckSum(),documentTest.getCheckSum());
+		assertEquals(document.getPk7(),documentTest.getPk7());
 	}
 	
 	@After

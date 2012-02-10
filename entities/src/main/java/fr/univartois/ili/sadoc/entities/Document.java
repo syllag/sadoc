@@ -29,6 +29,7 @@ public class Document implements Serializable {
 	
 	private String name;
 	private String checkSum;
+	private byte[] pk7;
 	
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
@@ -69,6 +70,14 @@ public class Document implements Serializable {
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public byte[] getPk7() {
+		return pk7;
+	}
+
+	public void setPk7(byte[] pk7) {
+		this.pk7 = pk7;
 	}
 
 }
