@@ -41,8 +41,8 @@ public class WSPublicImpl implements WSPublic {
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=false)
 	public void createCertificate(Owner owner) {
 		// Generation clefs publiques & prives
-		Certificate certificate = new Certificate("publicKey", "privateKey", owner);
-		CertificateDAO.create(certificate);
+		//Certificate certificate = new Certificate("publicKey", "privateKey", owner);
+		//CertificateDAO.create(certificate);
 	}
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public List<Certificate> getCertificate(Owner owner) {

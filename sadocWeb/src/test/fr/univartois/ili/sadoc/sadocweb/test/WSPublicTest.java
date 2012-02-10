@@ -3,6 +3,10 @@ package fr.univartois.ili.sadoc.sadocweb.test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.List;
 
 import org.junit.After;
@@ -41,10 +45,19 @@ public class WSPublicTest {
 	public void getCertificateTest(){
 		Owner owner1 = new Owner("firstname1", "lastName1", "mail1");
 		Owner owner2 = new Owner("firstname2", "lastName2", "mail2");
+		KeyPairGenerator ke2 = null;
+		try {
+			ke2 = KeyPairGenerator.getInstance("RSA");
+		} catch (NoSuchAlgorithmException e) {
+			
+			e.printStackTrace();
+		}
+		ke2.initialize(1024, new SecureRandom());
 		
-		Certificate certif1 = new Certificate("key1", "key1", owner1);
-		Certificate certif2 = new Certificate("key2", "key2", owner1);
-		Certificate certif3 = new Certificate("key3", "key3", owner2);
+		KeyPair k2 = ke2.generateKeyPair();
+		Certificate certif1 = new Certificate(k2.getPublic(), k2.getPrivate(), owner1);
+		Certificate certif2 = new Certificate(k2.getPublic(), k2.getPrivate(), owner1);
+		Certificate certif3 = new Certificate(k2.getPublic(), k2.getPrivate(), owner1);
 
 		
 		

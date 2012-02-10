@@ -1,6 +1,8 @@
 package fr.univartois.ili.sadoc.entities;
 
 import java.io.Serializable;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,8 +28,8 @@ public class Certificate implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String publicKey;
-	private String privateKey;
+	private PublicKey publicKey;
+	private PrivateKey privateKey;
 	
 	@ManyToOne
 	private Owner owner;
@@ -36,12 +38,12 @@ public class Certificate implements Serializable {
 
 	public Certificate(){}
 	
-	public Certificate(String publicKey, String privateKey) {
+	public Certificate(PublicKey publicKey, PrivateKey privateKey) {
 		this.publicKey=publicKey;
 		this.privateKey=privateKey;
 	}
 	
-	public Certificate(String publicKey, String privateKey, Owner owner) {
+	public Certificate(PublicKey publicKey, PrivateKey privateKey, Owner owner) {
 		this.publicKey=publicKey;
 		this.privateKey=privateKey;
 		this.owner=owner;
@@ -57,19 +59,19 @@ public class Certificate implements Serializable {
 		this.id = id;
 	}
 	
-	public String getPublicKey() {
+	public PublicKey getPublicKey() {
 		return publicKey;
 	}
 	
-	public void setPublicKey(String publicKey) {
+	public void setPublicKey(PublicKey publicKey) {
 		this.publicKey = publicKey;
 	}
 	
-	public String getPrivateKey() {
+	public PrivateKey getPrivateKey() {
 		return privateKey;
 	}
 	
-	public void setPrivateKey(String privateKey) {
+	public void setPrivateKey(PrivateKey privateKey) {
 		this.privateKey = privateKey;
 	}
 

@@ -2,6 +2,12 @@ package fr.univartois.ili.sadoc;
 
 import static org.junit.Assert.assertEquals;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -30,13 +36,23 @@ public class OwnerTest {
 	@Test
 	public void testPersist() {
 		final Owner owner = new Owner();
+		KeyPairGenerator ke2 = null;
+		try {
+			ke2 = KeyPairGenerator.getInstance("RSA");
+		} catch (NoSuchAlgorithmException e) {
+			
+			e.printStackTrace();
+		}
+		ke2.initialize(1024, new SecureRandom());
+		
+		KeyPair k2 = ke2.generateKeyPair();
 		final Certificate certificate = new Certificate();
 		
 		owner.setFirstName("Albert");
 		owner.setLastName("Oisal");
 		owner.setMail("albert.oisal@gmail.com");
-		certificate.setPrivateKey("zf54gr84g0tg456g40g4r54");
-		certificate.setPublicKey("zer5erf564rg4rgzr04g4r4");
+		certificate.setPrivateKey(k2.getPrivate());
+		certificate.setPublicKey(k2.getPublic());
 		ArrayList<Certificate> liste = new ArrayList<Certificate>();
 		liste.add(certificate);
 		owner.setCertificates(liste);
