@@ -1,3 +1,5 @@
+package fr.univartois.ili.sadoc.sadocweb.qrcode;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
