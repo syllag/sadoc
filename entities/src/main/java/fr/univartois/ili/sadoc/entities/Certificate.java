@@ -36,6 +36,17 @@ public class Certificate implements Serializable {
 
 	public Certificate(){}
 	
+	public Certificate(String publicKey, String privateKey) {
+		this.publicKey=publicKey;
+		this.privateKey=privateKey;
+	}
+	
+	public Certificate(String publicKey, String privateKey, Owner owner) {
+		this.publicKey=publicKey;
+		this.privateKey=privateKey;
+		this.owner=owner;
+	}
+	
 	/************************************************/
 
 	public int getId() {

@@ -40,6 +40,19 @@ public class Owner implements Serializable {
 	
 	public Owner(){}
 	
+	public Owner(String firstName, String lastName, String mail) {
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.mail=mail;
+	}
+	
+	public Owner(String firstName, String lastName, String mail, List<Certificate> certificates) {
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.mail=mail;
+		this.certificates=certificates;
+	}
+	
 	/************************************************/
 
 	public int getId() {

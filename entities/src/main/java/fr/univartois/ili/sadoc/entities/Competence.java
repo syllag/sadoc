@@ -38,6 +38,11 @@ public class Competence implements Serializable {
 
 	public Competence(){}
 	
+	public Competence(String name, String description) {
+		this.name=name;
+		this.description=description;		
+	}
+	
 	/************************************************/
 
 	public int getId() {

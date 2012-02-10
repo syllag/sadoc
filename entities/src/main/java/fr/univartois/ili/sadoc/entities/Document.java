@@ -38,6 +38,12 @@ public class Document implements Serializable {
 	
 	public Document(){}
 	
+	public Document(String name, String checksum, byte[] pk7) {
+		this.name=name;
+		this.checkSum=checksum;
+		this.pk7=pk7;
+	}
+	
 	/************************************************/
 	
 	public int getId() {
