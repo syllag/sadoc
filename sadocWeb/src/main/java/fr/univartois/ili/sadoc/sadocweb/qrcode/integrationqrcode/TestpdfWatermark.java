@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.sadocweb.qrcode;
+package fr.univartois.ili.sadoc.sadocweb.qrcode.integrationqrcode;
 
 import java.awt.Image;
 import java.io.File;
