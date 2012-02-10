@@ -1,5 +1,7 @@
 package fr.univartois.ili.sadoc.sadocweb.spring;
 
+import java.util.List;
+
 import fr.univartois.ili.sadoc.entities.Certificate;
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Owner;
@@ -14,6 +16,6 @@ public interface WSPublic {
 
 	public void createCertificate(Owner utilisateur);
 
-	public Certificate[] getCertificate(Owner utilisateur);
+	public List<Certificate> getCertificate(Owner utilisateur);
 
 }

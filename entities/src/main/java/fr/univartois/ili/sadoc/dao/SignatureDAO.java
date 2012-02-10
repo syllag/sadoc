@@ -58,6 +58,22 @@ public abstract class SignatureDAO {
         List<Signature> signature = query.getResultList();
 		return signature;
 	}
+	
+	public static List<Document> findDocumentByOwner(Owner owner) {
+		final TypedQuery<Document> query;
+        query = em.createQuery(Request.FIND_DOCUMENT_IN_SIGNATURE_BY_OWNER, Document.class);
+        query.setParameter("owner", owner);
+        List<Document> documents = query.getResultList();
+		return documents;
+	}
+	
+	public static List<Competence> findCompetenceByDocument(Document document) {
+		final TypedQuery<Competence> query;
+        query = em.createQuery(Request.FIND_COMPETENCE_IN_SIGNATURE_BY_DOCUMENT, Competence.class);
+        query.setParameter("document", document);
+        List<Competence> competences = query.getResultList();
+		return competences;
+	}
 
 	public static void update(Signature signature) {
 		em.getTransaction().begin();

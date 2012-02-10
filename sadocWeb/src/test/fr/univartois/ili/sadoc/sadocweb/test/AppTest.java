@@ -1,4 +1,4 @@
-package java.fr.univartois.ili.sadoc.sadocweb.test;
+package fr.univartois.ili.sadoc.sadocweb.test;
 
 
 

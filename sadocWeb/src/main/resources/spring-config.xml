@@ -5,7 +5,7 @@
        http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
 
-	<bean id="businessObject" class="fr.univartois.ili.sadoc.sadocweb.springbidon.BusinessObjectImpl">
+	<!-- <bean id="businessObject" class="fr.univartois.ili.sadoc.sadocweb.springbidon.BusinessObjectImpl">
 		<property name="valeur" value="12345" />
 	</bean>
 	<bean id="serviceObject2" class="fr.univartois.ili.sadoc.sadocweb.springbidon.ServiceObjectImpl2">
@@ -13,8 +13,9 @@
 	</bean>
 	<bean id="serviceObject3" class="fr.univartois.ili.sadoc.sadocweb.springbidon.ServiceObjectImpl3">
 		<constructor-arg ref="businessObject" />
-	</bean>
-
-
+	</bean>-->
+	
+	<bean id="wsPrivate" class="fr.univartois.ili.sadoc.sadocweb.spring.WSPrivateImpl"/>
+	<bean id="wsPublic" class="fr.univartois.ili.sadoc.sadocweb.spring.WSPublicImpl"/>
 
 </beans>

@@ -39,9 +39,9 @@ public class WSPublicImpl implements WSPublic {
 		CertificateDAO.create(certificate);
 	}
 
-	public Certificate[] getCertificate(Owner owner) {
+	public List<Certificate> getCertificate(Owner owner) {
 		List<Certificate> certificates = CertificateDAO.findByOwner(owner);
-		return (Certificate[]) certificates.toArray();
+		return certificates;
 	}
 
 }
