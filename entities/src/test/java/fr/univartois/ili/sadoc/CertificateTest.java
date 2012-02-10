@@ -2,9 +2,13 @@ package fr.univartois.ili.sadoc;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.entities.Certificate;
 import fr.univartois.ili.sadoc.entities.Owner;
 
@@ -13,6 +17,11 @@ import fr.univartois.ili.sadoc.entities.Owner;
  * 
  */
 public class CertificateTest {
+	
+	@Before
+    public void initTests(){
+            PersistenceProvider.setProvider("sadocjpatest");
+    }
 	
 	@Test
 	public void testPersist() {
@@ -26,6 +35,8 @@ public class CertificateTest {
 		owner.setMail("albert.oisal@gmail.com");
 		certificate.setOwner(owner);
 		
+		OwnerDAO.create(owner);
+		
 		CertificateDAO.create(certificate);
 		
 		Certificate certificateTest = CertificateDAO.findById(certificate.getId());
@@ -34,5 +45,11 @@ public class CertificateTest {
 		assertEquals(certificate.getPublicKey(),certificateTest.getPublicKey());
 		assertEquals(certificate.getOwner(),certificateTest.getOwner());
 	}
+	
+	@After
+    public void endTests(){
+            PersistenceProvider.removeProvider();
+    }
+
 	
 }

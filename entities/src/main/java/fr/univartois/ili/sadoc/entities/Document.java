@@ -28,7 +28,8 @@ public class Document implements Serializable {
 	private int id;
 	
 	private String name;
-	private String sum;
+	private String checkSum;
+	private byte[] pk7;
 	
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
@@ -55,12 +56,12 @@ public class Document implements Serializable {
 		this.name = name;
 	}
 
-	public String getSum() {
-		return sum;
+	public String getCheckSum() {
+		return checkSum;
 	}
 
-	public void setSum(String sum) {
-		this.sum = sum;
+	public void setCheckSum(String checkSum) {
+		this.checkSum = checkSum;
 	}
 
 	public Date getCreationDate() {
@@ -69,6 +70,14 @@ public class Document implements Serializable {
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public byte[] getPk7() {
+		return pk7;
+	}
+
+	public void setPk7(byte[] pk7) {
+		this.pk7 = pk7;
 	}
 
 }

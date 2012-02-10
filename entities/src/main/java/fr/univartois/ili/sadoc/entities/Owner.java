@@ -1,6 +1,7 @@
 package fr.univartois.ili.sadoc.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Owner implements Serializable {
 	private String mail;
 	
 	@OneToMany
-	private ArrayList<Certificate> certificates;
+	private List<Certificate> certificates;
 	
 	/************************************************/
 	
@@ -73,7 +74,7 @@ public class Owner implements Serializable {
 		this.mail = mail;
 	}
 
-	public ArrayList<Certificate> getCertificates() {
+	public List<Certificate> getCertificates() {
 		return certificates;
 	}
 

@@ -4,9 +4,13 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import fr.univartois.ili.sadoc.dao.CertificateDAO;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.entities.Certificate;
 import fr.univartois.ili.sadoc.entities.Owner;
 
@@ -15,6 +19,11 @@ import fr.univartois.ili.sadoc.entities.Owner;
  * 
  */
 public class OwnerTest {
+	
+	@Before
+    public void initTests(){
+            PersistenceProvider.setProvider("sadocjpatest");
+    }
 	
 	@Test
 	public void testPersist() {
@@ -30,6 +39,8 @@ public class OwnerTest {
 		liste.add(certificate);
 		owner.setCertificates(liste);
 		
+		CertificateDAO.create(certificate);
+		
 		OwnerDAO.create(owner);
 		
 		Owner ownerTest = OwnerDAO.findById(owner.getId());
@@ -39,4 +50,9 @@ public class OwnerTest {
 		assertEquals(owner.getMail(),ownerTest.getMail());
 		assertEquals(owner.getCertificates(),ownerTest.getCertificates());
 	}
+	
+	@After
+    public void endTests(){
+            PersistenceProvider.removeProvider();
+    }
 }

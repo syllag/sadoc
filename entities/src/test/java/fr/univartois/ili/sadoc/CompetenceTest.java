@@ -4,9 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.CompetenceDAO;
+import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.entities.Competence;
 
 /**
@@ -14,6 +17,12 @@ import fr.univartois.ili.sadoc.entities.Competence;
  * 
  */
 public class CompetenceTest {
+	
+	 @Before
+     public void initTests(){
+             PersistenceProvider.setProvider("sadocjpatest");
+     }
+
 	
 	@Test
 	public void testPersist() {
@@ -31,4 +40,9 @@ public class CompetenceTest {
 		assertEquals(competence.getDescription(),competenceTest.getDescription());
 		assertEquals(competence.getName(),competenceTest.getName());
 	}
+	
+	@After
+    public void endTests(){
+            PersistenceProvider.removeProvider();
+    }
 }
