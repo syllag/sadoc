@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.univartois.ili.sadoc.advancedTest.InitDataForTest;
 import fr.univartois.ili.sadoc.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.entities.Competence;
@@ -21,6 +22,7 @@ public class CompetenceTest {
 	 @Before
      public void initTests(){
              PersistenceProvider.setProvider("sadocjpatest");
+             InitDataForTest.createDataForTest();
      }
 
 	

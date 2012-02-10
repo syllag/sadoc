@@ -3,14 +3,20 @@ package fr.univartois.ili.sadoc;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.univartois.ili.sadoc.advancedTest.InitDataForTest;
 import fr.univartois.ili.sadoc.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.dao.PersistenceProvider;
+import fr.univartois.ili.sadoc.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.entities.Document;
+import fr.univartois.ili.sadoc.entities.Owner;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -21,6 +27,7 @@ public class DocumentTest {
 	@Before
     public void initTests(){
             PersistenceProvider.setProvider("sadocjpatest");
+            InitDataForTest.createDataForTest();
     }
 	
 	@Test
@@ -42,6 +49,22 @@ public class DocumentTest {
 		assertEquals(document.getName(),documentTest.getName());
 		assertEquals(document.getCheckSum(),documentTest.getCheckSum());
 		assertEquals(document.getPk7(),documentTest.getPk7());
+	}
+	
+	@Test
+	public void getDocumentFromOwner () {
+		EntityManager em = PersistenceProvider.getEntityManager();
+		List<Owner> owners = em.createQuery(
+	                "SELECT o FROM Owner o ORDER BY o.id",
+	                Owner.class).getResultList();
+		List<Document> documents = SignatureDAO.findDocumentByOwner(owners.get(0));
+		
+		assertEquals(documents.get(0).getName(), "document3");
+		assertEquals(documents.get(1).getName(), "document3");
+		assertEquals(documents.get(2).getName(), "document3");
+		assertEquals(documents.get(3).getName(), "document6");
+		assertEquals(documents.get(4).getName(), "document6");
+		assertEquals(documents.get(5).getName(), "document6");
 	}
 	
 	@After

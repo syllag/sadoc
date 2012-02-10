@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.univartois.ili.sadoc.advancedTest.InitDataForTest;
 import fr.univartois.ili.sadoc.dao.CertificateDAO;
 import fr.univartois.ili.sadoc.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.dao.DocumentDAO;
@@ -27,6 +28,7 @@ public class SignatureTest {
 	 @Before
      public void initTests(){
              PersistenceProvider.setProvider("sadocjpatest");
+             InitDataForTest.createDataForTest();
      }
 
 	
