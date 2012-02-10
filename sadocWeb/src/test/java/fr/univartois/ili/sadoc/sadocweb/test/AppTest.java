@@ -1,4 +1,6 @@
-package fr.univartois.ili.sadoc.sadocweb.test;
+package java.fr.univartois.ili.sadoc.sadocweb.test;
+
+
 
 
 import junit.framework.Test;
