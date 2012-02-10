@@ -29,6 +29,8 @@ public class Document implements Serializable {
 	
 	private String name;
 	private String checkSum;
+	private byte[] pk7;
+	private String url;
 	
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
@@ -37,9 +39,11 @@ public class Document implements Serializable {
 	
 	public Document(){}
 	
-	public Document(String name, String checkSum, Date creationDate){
+	public Document(String name, String checkSum,String url,byte[] pk7,Date creationDate){
 		this.name=name;
 		this.checkSum=checkSum;
+		this.url=url;
+		this.pk7=pk7;
 		this.creationDate=creationDate;
 	}
 	
