@@ -5,6 +5,7 @@ import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
 
+
 public interface WSPrivate {
 
 	boolean verifyDocument(Byte[] doc, Certificate certificat, Owner utilisateur);
