@@ -67,6 +67,14 @@ public abstract class SignatureDAO {
 		return documents;
 	}
 	
+	public static Owner findOwnerByDocument(Document document) {
+		final TypedQuery<Owner> query;
+        query = em.createQuery(Request.FIND_OWNER_IN_SIGNATURE_BY_DOCUMENT, Owner.class);
+        query.setParameter("document", document);
+        Owner owner = query.getSingleResult();
+		return owner;
+	}
+	
 	public static List<Competence> findCompetenceByDocument(Document document) {
 		final TypedQuery<Competence> query;
         query = em.createQuery(Request.FIND_COMPETENCE_IN_SIGNATURE_BY_DOCUMENT, Competence.class);
