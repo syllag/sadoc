@@ -58,6 +58,15 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webXml>src/main/webService/WEB-INF/web.xml</webXml>
+				</configuration>
+			</plugin>
+		</plugins>
 		<finalName>sadocWeb</finalName>
 	</build>
 </project>
