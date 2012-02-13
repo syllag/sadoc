@@ -8,6 +8,7 @@ public abstract class Request {
 	public static final String FIND_IN_SIGNATURE_BY_CERTIFICATE = "SELECT s FROM Signature s WHERE s.certificate = :certificate";
 	public static final String FIND_IN_CERTIFICATE_BY_OWNER = "SELECT c FROM Certificate c WHERE c.owner = :owner";
 	public static final String FIND_DOCUMENT_IN_SIGNATURE_BY_OWNER = "SELECT s.document FROM Signature s WHERE s.owner = :owner";
+	public static final String FIND_OWNER_IN_SIGNATURE_BY_DOCUMENT = "SELECT DISTINCT s.owner FROM Signature s WHERE s.document = :document";
 	public static final String FIND_COMPETENCE_IN_SIGNATURE_BY_DOCUMENT = "SELECT DISTINCT s.competence FROM Signature s WHERE s.document = :document";
 
 }
