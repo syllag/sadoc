@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="account">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="accountBalanceRequest"/>
+        <xs:element ref="accountBalanceResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="accountBalanceRequest">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:string"/>
+      <xs:attribute name="number" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="accountBalanceResponse">
+    <xs:complexType>
+      <xs:attribute name="balance" use="required" type="xs:decimal"/>
+      <xs:attribute name="number" use="required" type="xs:integer"/>
+      <xs:attribute name="time" use="required" type="xs:dateTime"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
