@@ -37,10 +37,9 @@ public class Competence implements Serializable {
 	
 	public Competence(){}
 	
-	public Competence(String name, String description,List<Degree> degrees){
+	public Competence(String name, String description){
 		this.name=name;
 		this.description=description;
-		this.degrees.addAll(degrees);
 	}
 	
 	/************************************************/

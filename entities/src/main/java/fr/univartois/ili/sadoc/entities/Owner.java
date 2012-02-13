@@ -47,7 +47,7 @@ public class Owner implements Serializable {
 
 	public Owner(){}
 	
-	public Owner(String firstName,String lastName,String mail, String password, String address,String zipCode,String town, String phone, List<Resume> resumes,List<Degree> degrees){
+	public Owner(String firstName,String lastName,String mail, String password, String address,String zipCode,String town, String phone){
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.mail=mail;
@@ -56,8 +56,6 @@ public class Owner implements Serializable {
 		this.zipCode=zipCode;
 		this.town=town;
 		this.phone=phone;
-		this.resumes.addAll(resumes);
-		this.degrees=degrees;
 	}
 	
 	/************************************************/
