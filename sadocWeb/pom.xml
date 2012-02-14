@@ -38,6 +38,25 @@
 	<version>2.1</version>
 </dependency>
 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.0</version>
+			</dependency>
+
 		<!-- Expression Language (depends on core) Define this if you use Spring 
 			Expression APIs (org.springframework.expression.*) -->
 		<dependency>
@@ -164,11 +183,17 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<webXml>src/main/webService/WEB-INF/web.xml</webXml>
-				</configuration>
+<!-- 				<configuration> -->
+<!-- 					<webXml>src/main/webService/WEB-INF/web.xml</webXml> -->
+<!-- 				</configuration> -->
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<finalName>sadocWeb</finalName>
 	</build>
 </project>
