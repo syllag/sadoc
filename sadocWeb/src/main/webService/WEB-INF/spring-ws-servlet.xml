@@ -13,12 +13,11 @@
 	<!-- Use this for autowired DI -->
 	<context:component-scan base-package="fr.univartois.ili.sadoc.sadocweb.springsample" />
 
+	<!-- WSDL available at http://localhost:8080/sadocWeb/services/sadoc.wsdl -->
 	<sws:dynamic-wsdl id="sadoc" portTypeName="SadocServices"
 		locationUri="/services/" targetNamespace="http://sadoc.com/ac/schemas">
 		<sws:xsd location="/WEB-INF/sadoc-services.xsd" />
 	</sws:dynamic-wsdl>
-
-	<bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping" />
 
 	<bean id="AccountService" class="fr.univartois.ili.sadoc.sadocweb.springsample.AccountServiceImpl" />
 

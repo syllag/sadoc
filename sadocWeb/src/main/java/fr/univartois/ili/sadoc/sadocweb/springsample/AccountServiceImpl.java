@@ -1,12 +1,12 @@
 package fr.univartois.ili.sadoc.sadocweb.springsample;
 
-public class AccountServiceImpl implements AccountService {
+import org.w3c.dom.Element;
 
-	public OrderRequest createOrder() {
-		return new OrderRequest();
-	}
+public class AccountServiceImpl implements AccountService {
 	
-	public String getOrder(String order) {
+	public Element order;
+	
+	public Element getOrder(Element order) {
 		return order;
 		
 	}

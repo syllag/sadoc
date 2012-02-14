@@ -1,8 +1,8 @@
 package fr.univartois.ili.sadoc.sadocweb.springsample;
 
-public interface AccountService {
+import org.w3c.dom.Element;
 
-	public OrderRequest createOrder();
+public interface AccountService {
 	
-	public String getOrder(String order);
+	public Element getOrder(Element order);
 }

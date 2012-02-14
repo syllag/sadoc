@@ -32,6 +32,11 @@
 	<version>3.1.0.RELEASE</version>
 </dependency>
 
+<dependency>
+	<groupId>org.codehaus.castor</groupId>
+	<artifactId>spring-orm</artifactId>
+	<version>2.1</version>
+</dependency>
 
 		<!-- Expression Language (depends on core) Define this if you use Spring 
 			Expression APIs (org.springframework.expression.*) -->

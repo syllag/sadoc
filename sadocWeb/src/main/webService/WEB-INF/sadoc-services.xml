@@ -1,6 +1,4 @@
 <?xml version="1.0"?>
-<account>
 	<accountBalanceRequest number="123" name="Lahoucine" />
 	<accountBalanceResponse balance="100.50" number="123"
 		time="2009-05-30T09:30:10.5" />
-</account>

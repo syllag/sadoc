@@ -1,33 +1,34 @@
 package fr.univartois.ili.sadoc.sadocweb.springsample;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import org.springframework.ws.soap.SoapHeader;
 import org.w3c.dom.Element;
 
-@Endpoint                                                                                
-public class AccountBalanceServiceStub {
+@Endpoint
+public class AccountBalanceServiceStub implements AccountService {
 
-  private final AccountService accountService;
+	private final AccountServiceImpl accountService;
+	private Element order;
 
-  @Autowired                                                                             
-  public AccountBalanceServiceStub(AccountService accountService) {
-      this.accountService = accountService;
-  }
+	@Autowired
+	public AccountBalanceServiceStub(AccountServiceImpl accountService) {
+		this.accountService = accountService;
+	}
 
-  @PayloadRoot(localPart = "order", namespace = "http://sadoc.com/ac/schemas")                        
-  public void order(@RequestPayload Element orderElement) {                              
-    accountService.createOrder();
-  }
+	public AccountService getAccountService() {
+		return accountService;
+	}
 
-  @PayloadRoot(localPart = "accountBalanceRequest", namespace = "http://sadoc.com/ac/schemas")                 
-  @ResponsePayload
-  public String getOrder(@RequestPayload OrderRequest orderRequest, SoapHeader header) {
-//    return accountService.getOrder(Integer.toString(orderRequest.getId()));
-	  return "123";
-  }
-  
+	@PayloadRoot(localPart = "accountBalanceRequest", namespace = "http://sadoc.com/ac/schemas")
+	@ResponsePayload
+	public Element getOrder(@RequestPayload Element order) {
+		order.setAttribute("balance", "100.50");
+		order.setAttribute("number", "123");
+		order.setAttribute("time", "2009-05-30T09:30:10.5");
+		return order;
+	}
+
 }
