@@ -2,9 +2,9 @@ package fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils;
 
 import java.util.ResourceBundle;
 
-public class MyProperties {
+public class QRCProperties {
 	
-	private static MyProperties instance;
+	private static QRCProperties instance;
 	
 	public static final String NAME_FILE_PROPERTIES = "qrc";
 	
@@ -19,7 +19,7 @@ public class MyProperties {
 	/**
 	 * Constructor
 	 */
-	private MyProperties() {
+	private QRCProperties() {
 		ResourceBundle bundle = ResourceBundle.getBundle(NAME_FILE_PROPERTIES);
 		this.path = bundle.getString(PATH_KEY);
 		this.format = bundle.getString(FORMAT_KEY);
@@ -31,9 +31,9 @@ public class MyProperties {
 	/**
 	 * @return instance
 	 */
-	public static MyProperties getInstance() {
+	public static QRCProperties getInstance() {
 		if (instance == null) {
-			new MyProperties();
+			new QRCProperties();
 		}
 		
 		return instance;
