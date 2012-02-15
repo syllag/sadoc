@@ -11,7 +11,7 @@ import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.core.WriterExcep
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.qrcode.decoder.ErrorCorrectionLevel;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.qrcode.encoder.Encoder;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.qrcode.encoder.QRCode;
-import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.MyProperties;
+import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.QRCProperties;
 
 /**
  * @author francois
@@ -39,7 +39,7 @@ public class QRCodeWriterManager2 {
 	private String data;
 	private String name;
 
-	private MyProperties props;
+	private QRCProperties props;
 
 	/**
 	 * Constructor
@@ -59,7 +59,7 @@ public class QRCodeWriterManager2 {
 		this.setParam();
 		this.setZoom(zoom);
 
-		this.props = MyProperties.getInstance();
+		this.props = QRCProperties.getInstance();
 
 		instance = this;
 	}
@@ -80,9 +80,8 @@ public class QRCodeWriterManager2 {
 	 * @param data
 	 * @return
 	 */
-	public QRCodeWriterManager2 encode(String name, String data) {
+	public QRCodeWriterManager2 encode(String data) {
 		this.processData(data);
-		this.name = name;
 
 		this.encodeData();
 
@@ -197,8 +196,11 @@ public class QRCodeWriterManager2 {
 
 	/**
 	 * Get the file image
+	 * 
+	 * @param name
 	 */
-	public void getFileImage() {
+	public void getFileImage(String name) {
+		this.name = name;
 		BufferedImage imgQRC = this.getImage();
 		File fileImgQRC = new File(this.props.getPath() + this.name + "."
 				+ this.props.getFormat());

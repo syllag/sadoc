@@ -11,7 +11,7 @@ import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.core.BarcodeForm
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.core.MatrixToImageWriter;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.core.WriterException;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.qrcode.QRCodeWriter;
-import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.MyProperties;
+import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.QRCProperties;
 
 /**
  * @author francois
@@ -23,7 +23,7 @@ public class QRCodeWriterManager {
 
 	private static final int MAX_SIZE_DATA = 60;
 
-	private MyProperties props;
+	private QRCProperties props;
 
 	private String name;
 	private String data;
@@ -32,7 +32,7 @@ public class QRCodeWriterManager {
 	 * Constructor
 	 */
 	private QRCodeWriterManager() {
-		props = MyProperties.getInstance();
+		props = QRCProperties.getInstance();
 
 		instance = this;
 	}
@@ -48,7 +48,7 @@ public class QRCodeWriterManager {
 	/**
 	 * @return
 	 */
-	public MyProperties getProps() {
+	public QRCProperties getProps() {
 		return props;
 	}
 
@@ -71,10 +71,8 @@ public class QRCodeWriterManager {
 	 * @param data
 	 * @return
 	 */
-	public QRCodeWriterManager encode(String name, String data) {
+	public QRCodeWriterManager encode(String data) {
 		this.processData(data);
-		this.name = name;
-
 		this.encodeData();
 
 		return this;
@@ -131,8 +129,12 @@ public class QRCodeWriterManager {
 
 	/**
 	 * Get the file image
+	 * 
+	 * @param name
 	 */
-	public void getFileImage() {
+	public void getFileImage(String name) {
+		this.name = name;
+		
 		BufferedImage imgQRC = this.getImage();
 
 		File fileImgQRC = null;
