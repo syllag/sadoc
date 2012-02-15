@@ -17,8 +17,8 @@ public class QRCodeMainTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		BufferedImage test = QRCodeWriterManager.getInstance().encode(null, "http://www.cril.univ-artois.fr/master/master-pro.html").getImage();
-		BufferedImage test2 = QRCodeWriterManager2.getInstance().encode("img_qrc2", "http://www.univ-artois.fr/0A1B2C3D4E5F6G7H8I9J10K11L12M_2345").getImage();
+		BufferedImage test = QRCodeWriterManager.getInstance().encode("http://www.cril.univ-artois.fr/master/master-pro.html").getImage();
+		BufferedImage test2 = QRCodeWriterManager2.getInstance().encode("http://www.univ-artois.fr/0A1B2C3D4E5F6G7H8I9J10K11L12M_2345").getImage();
 		
 		System.out.println("--->" + QRCodeReaderManager.getInstance().decodeImage(test));
 		System.out.println("--->" + QRCodeReaderManager2.getInstance().decodeImage(test2));
