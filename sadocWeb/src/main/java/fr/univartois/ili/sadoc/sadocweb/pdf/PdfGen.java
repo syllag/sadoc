@@ -28,10 +28,10 @@ public class PdfGen {
 	private Image imgQrCode;
 	private String urlQrCode;
 	
-	private static String URL_LOGO = "http://google.fr";
-	private static int LARGEUR_QRCODE_PAGE = 544;
-	private static int HAUTEUR_QRCODE_PAGE = 792;
-	private static int HAUTEUR_LOGO_PAGE = 765;
+	private static final String URL_LOGO = "http://google.fr";
+	private static final int LARGEUR_QRCODE_PAGE = 544;
+	private static final int HAUTEUR_QRCODE_PAGE = 792;
+	private static final int HAUTEUR_LOGO_PAGE = 765;
 
 	public PdfGen() {
 	}
