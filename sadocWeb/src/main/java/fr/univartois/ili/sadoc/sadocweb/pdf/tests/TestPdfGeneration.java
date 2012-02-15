@@ -1,15 +1,16 @@
-package fr.univartois.ili.sadoc.sadocweb.qrcode.integrationqrcode;
+package fr.univartois.ili.sadoc.sadocweb.pdf.tests;
 
 import java.awt.Image;
 
 import com.itextpdf.text.pdf.PdfReader;
 
+import fr.univartois.ili.sadoc.sadocweb.pdf.PdfGen;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.ManageQRCodeIntegration;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.QRCodeWriterManager;
 
-class TestpdfWatermark implements ManageQRCodeIntegration {
+class TestPdfGeneration implements ManageQRCodeIntegration {
 
-	public TestpdfWatermark() {
+	public TestPdfGeneration() {
 		super();
 	}
 
@@ -23,7 +24,7 @@ class TestpdfWatermark implements ManageQRCodeIntegration {
 	public static void main(String args[]) throws Exception {
 		PdfReader reader = new PdfReader("test.pdf");
 
-		System.out.println(new TestpdfWatermark().generatePdfWithQrCode(reader,
+		System.out.println(new TestPdfGeneration().generatePdfWithQrCode(reader,
 				"http://www.cril.univ-artois.fr/master/master-pro.html"));
 
 	}

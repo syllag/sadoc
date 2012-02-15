@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.sadocweb.qrcode.integrationqrcode;
+package fr.univartois.ili.sadoc.sadocweb.pdf;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -16,6 +16,8 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfImportedPage;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import fr.univartois.ili.sadoc.sadocweb.pdf.utils.UtilsImgQrCod;
 
 public class PdfGen {
 
