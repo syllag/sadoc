@@ -19,7 +19,7 @@ import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.MyProperti
 public class QRCodeReaderManager2 {
 
 	private static QRCodeReaderManager2 instance;
-	
+
 	private MyProperties props;
 
 	private String name;
@@ -45,22 +45,37 @@ public class QRCodeReaderManager2 {
 	}
 
 	/**
-	 * @param name
-	 * @return
+	 * @param bi
+	 * @return a string
 	 */
-	public String decode(String name) {
+	public String decodeImage(BufferedImage bi) {
+		return this.decodeData(bi);
+	}
+
+	/**
+	 * @param name
+	 * @return a string
+	 */
+	public String decodeFileImage(String name) {
 		this.name = name;
 
-		return this.decodeData();
+		return this.decodeData(null);
 	}
 
 	/**
 	 * @return
 	 */
-	private String decodeData() {
+	private String decodeData(BufferedImage bi) {
+		BufferedImage imgQRC = null;
 		try {
-			BufferedImage imgQRC = ImageIO.read(new File(this.props.getPath() + this.name
-					+ "." + this.props.getFormat()));
+
+			if (bi != null) {
+				imgQRC = bi;
+			} else {
+				imgQRC = ImageIO.read(new File(this.props.getPath() + this.name
+						+ "." + this.props.getFormat()));
+
+			}
 
 			return new Decoder().decode(
 					this.createMatrix(this.createTabInt(imgQRC),
@@ -106,7 +121,7 @@ public class QRCodeReaderManager2 {
 	 * @param h
 	 * @return
 	 */
-	private boolean [][] createMatrix(int[][] tabInt, int w, int h) {
+	private boolean[][] createMatrix(int[][] tabInt, int w, int h) {
 		int cpt = 0;
 		for (int i = 0; i < w; i++) {
 			if (tabInt[i][0] == 1)
@@ -149,7 +164,7 @@ public class QRCodeReaderManager2 {
 			}
 
 		}
-		
+
 		return matrice;
 	}
 }

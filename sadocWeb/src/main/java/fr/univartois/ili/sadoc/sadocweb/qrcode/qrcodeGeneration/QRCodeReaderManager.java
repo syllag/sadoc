@@ -50,19 +50,27 @@ public class QRCodeReaderManager {
 	}
 
 	/**
-	 * @param name
-	 * @return
+	 * @param bi
+	 * @return a string
 	 */
-	public String decode(String name) {
+	public String decodeImage(BufferedImage bi) {
+		return this.decodeData(bi);
+	}
+
+	/**
+	 * @param name
+	 * @return a string
+	 */
+	public String decodeFileImage(String name) {
 		this.name = name;
-		
-		return this.readImage();
+
+		return this.decodeData(null);
 	}
 
 	/**
 	 * 
 	 */
-	private String readImage() {
+	private String decodeData(BufferedImage bi) {
 		// Ouverture du fichier
 		File fileImgQRC = null;
 		// Lecture de l'image dans un buffer
@@ -72,10 +80,13 @@ public class QRCodeReaderManager {
 		Result result = null;
 
 		try {
-			fileImgQRC = new File(this.props.getPath() + this.name + "."
-					+ this.props.getFormat());
-
-			imgQRC = ImageIO.read(fileImgQRC);
+			if (bi != null) {
+				imgQRC = bi;
+			} else {
+				fileImgQRC = new File(this.props.getPath() + this.name + "."
+						+ this.props.getFormat());
+				imgQRC = ImageIO.read(fileImgQRC);
+			}
 
 			ls = new BufferedImageLuminanceSource(imgQRC);
 
