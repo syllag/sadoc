@@ -10,7 +10,7 @@ import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.core.ChecksumExc
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.core.FormatException;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.core.NotFoundException;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.qrcode.decoder.Decoder;
-import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.MyProperties;
+import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.QRCProperties;
 
 /**
  * @author francois
@@ -20,7 +20,7 @@ public class QRCodeReaderManager2 {
 
 	private static QRCodeReaderManager2 instance;
 
-	private MyProperties props;
+	private QRCProperties props;
 
 	private String name;
 
@@ -28,7 +28,7 @@ public class QRCodeReaderManager2 {
 	 * Constructor
 	 */
 	private QRCodeReaderManager2() {
-		props = MyProperties.getInstance();
+		props = QRCProperties.getInstance();
 
 		instance = this;
 	}
