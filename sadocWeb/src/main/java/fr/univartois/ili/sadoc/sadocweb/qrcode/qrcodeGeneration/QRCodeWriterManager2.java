@@ -80,9 +80,8 @@ public class QRCodeWriterManager2 {
 	 * @param data
 	 * @return
 	 */
-	public QRCodeWriterManager2 encode(String name, String data) {
+	public QRCodeWriterManager2 encode(String data) {
 		this.processData(data);
-		this.name = name;
 
 		this.encodeData();
 
@@ -197,8 +196,11 @@ public class QRCodeWriterManager2 {
 
 	/**
 	 * Get the file image
+	 * 
+	 * @param name
 	 */
-	public void getFileImage() {
+	public void getFileImage(String name) {
+		this.name = name;
 		BufferedImage imgQRC = this.getImage();
 		File fileImgQRC = new File(this.props.getPath() + this.name + "."
 				+ this.props.getFormat());

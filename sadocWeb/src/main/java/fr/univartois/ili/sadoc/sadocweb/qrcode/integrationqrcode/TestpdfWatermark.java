@@ -14,7 +14,7 @@ class TestpdfWatermark implements ManageQRCodeIntegration {
 	}
 
 	public String generatePdfWithQrCode(PdfReader reader, String url) {
-		Image imglQrCode = QRCodeWriterManager.getInstance().encode(null, url)
+		Image imglQrCode = QRCodeWriterManager.getInstance().encode(url)
 				.getImage();
 		PdfGen pdfGen = new PdfGen(reader, imglQrCode, url);
 		return "test : le fichier de sortie : " + pdfGen.generatePdf();
