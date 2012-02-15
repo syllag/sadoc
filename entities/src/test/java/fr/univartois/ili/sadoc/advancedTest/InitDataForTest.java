@@ -34,35 +34,35 @@ public abstract class InitDataForTest {
 		Owner kevin = new Owner("kevin", "pogo", "kevin.pogo@jaimal.com");
 
 		// Create Competences
-		Competence competence1 = new Competence("Compétence 1 C2I1",
+		Competence competence1 = new Competence("competence01",
 				"Première compétence du C2I1");
-		Competence competence2 = new Competence("Compétence 2 C2I1",
+		Competence competence2 = new Competence("competence02",
 				"Deuxième compétence du C2I1");
-		Competence competence3 = new Competence("Compétence 3 C2I1",
+		Competence competence3 = new Competence("competence03",
 				"Troisième compétence du C2I1");
-		Competence competence4 = new Competence("Compétence 1 C2I2 et C2I1",
+		Competence competence4 = new Competence("competence04",
 				"Première compétence du C2I2 et quatrième compétence du C2I1");
-		Competence competence5 = new Competence("Compétence 2 C2I2",
+		Competence competence5 = new Competence("competence05",
 				"Deuxième compétence du C2I2");
-		Competence competence6 = new Competence("Compétence 3 C2I2",
+		Competence competence6 = new Competence("competence06",
 				"Troisième compétence du C2I2");
 		Competence competence7 = new Competence(
-				"Compétence semestre 1 licence, C2I1 et C2I2",
+				"competence07",
 				"Première compétence de la licence et cinquième compétence C2I1, C2I2");
 		Competence competence8 = new Competence(
-				"Compétence semestre 2 licence",
+				"competence08",
 				"Deuxième compétence de la licence");
 		Competence competence9 = new Competence(
-				"Compétence semestre 3 licence",
+				"competence09",
 				"Troisième compétence de la licence");
 		Competence competence10 = new Competence(
-				"Compétence semestre 4 licence et master",
+				"competence10",
 				"Quatrième compétence de la licence, troisième compétence du master");
 		Competence competence11 = new Competence(
-				"Compétence semestre 1 master et C2I2",
+				"competence11",
 				"Première compétence du master et quatrième compétence C2I2");
 		Competence competence12 = new Competence(
-				"Compétence semestre 2 master", "Deuxième compétence du master");
+				"competence12", "Deuxième compétence du master");
 
 		// Board byte for file
 		byte[] pk7 = new byte[2];

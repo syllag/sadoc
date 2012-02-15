@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Owner implements Serializable {
+public class Owner implements Serializable, Comparable<Object> {
 	/**
 	 * 
 	 */
@@ -55,6 +55,14 @@ public class Owner implements Serializable {
 	
 	/************************************************/
 
+	public int compareTo(Object other) { 
+	      String name1 = ((Owner) other).getLastName()+((Owner) other).getFirstName(); 
+	      String name2 = this.getLastName()+this.getFirstName(); 
+	      return name2.compareTo(name1);
+	   } 
+	
+	/************************************************/
+	
 	public int getId() {
 		return id;
 	}

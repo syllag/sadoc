@@ -1,6 +1,10 @@
 package fr.univartois.ili.sadoc.dao;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -64,6 +68,9 @@ public abstract class SignatureDAO {
         query = em.createQuery(Request.FIND_DOCUMENT_IN_SIGNATURE_BY_OWNER, Document.class);
         query.setParameter("owner", owner);
         List<Document> documents = query.getResultList();
+        Set<Document> docs = new HashSet<Document>(documents);
+        documents = new ArrayList<Document> (docs);
+        Collections.sort(documents);
 		return documents;
 	}
 	
@@ -80,6 +87,9 @@ public abstract class SignatureDAO {
         query = em.createQuery(Request.FIND_COMPETENCE_IN_SIGNATURE_BY_DOCUMENT, Competence.class);
         query.setParameter("document", document);
         List<Competence> competences = query.getResultList();
+        Set<Competence> docs = new HashSet<Competence>(competences);
+        competences = new ArrayList<Competence> (docs);
+        Collections.sort(competences);
 		return competences;
 	}
 

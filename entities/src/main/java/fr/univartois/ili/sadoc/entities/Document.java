@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Document implements Serializable {
+public class Document implements Serializable, Comparable<Object> {
 	/**
 	 * 
 	 */
@@ -43,6 +43,14 @@ public class Document implements Serializable {
 		this.checkSum=checksum;
 		this.pk7=pk7;
 	}
+	
+	/************************************************/
+	
+	public int compareTo(Object other) { 
+	      String name1 = ((Document) other).getName(); 
+	      String name2 = this.getName(); 
+	      return name2.compareTo(name1);
+	} 
 	
 	/************************************************/
 	

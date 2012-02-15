@@ -51,22 +51,6 @@ public class DocumentTest {
 		assertEquals(document.getPk7(),documentTest.getPk7());
 	}
 	
-	@Test
-	public void getDocumentFromOwner () {
-		EntityManager em = PersistenceProvider.getEntityManager();
-		List<Owner> owners = em.createQuery(
-	                "SELECT o FROM Owner o ORDER BY o.id",
-	                Owner.class).getResultList();
-		List<Document> documents = SignatureDAO.findDocumentByOwner(owners.get(0));
-		
-		assertEquals(documents.get(0).getName(), "document3");
-		assertEquals(documents.get(1).getName(), "document3");
-		assertEquals(documents.get(2).getName(), "document3");
-		assertEquals(documents.get(3).getName(), "document6");
-		assertEquals(documents.get(4).getName(), "document6");
-		assertEquals(documents.get(5).getName(), "document6");
-	}
-	
 	@After
     public void endTests(){
             PersistenceProvider.removeProvider();

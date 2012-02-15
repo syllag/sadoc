@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Competence implements Serializable {
+public class Competence implements Serializable, Comparable<Object> {
 	/**
 	 * 
 	 */
@@ -45,6 +45,14 @@ public class Competence implements Serializable {
 	
 	/************************************************/
 
+	public int compareTo(Object other) { 
+	      String name1 = ((Competence) other).getName(); 
+	      String name2 = this.getName()+this.getName(); 
+	      return name2.compareTo(name1);
+	   } 
+	
+	/************************************************/
+	
 	public int getId() {
 		return id;
 	}
