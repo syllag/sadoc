@@ -1,13 +1,16 @@
 package fr.univartois.ili.sadoc.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
+import fr.univartois.ili.sadoc.configuration.Request;
 import fr.univartois.ili.sadoc.entities.Competence;
 
 public abstract class CompetenceDAO {
 
-	private static final EntityManager em = PersistenceProvider.getEntityManager();
-	
+	private static final EntityManager em = PersistenceProvider
+			.getEntityManager();
+
 	public static void create(Competence competence) {
 		em.getTransaction().begin();
 		em.persist(competence);
@@ -15,7 +18,16 @@ public abstract class CompetenceDAO {
 	}
 
 	public static Competence findById(int id) {
-        Competence competence = em.find(Competence.class, id);
+		Competence competence = em.find(Competence.class, id);
+		return competence;
+	}
+
+	public static Competence findByAcronym(String acronym) {
+		final TypedQuery<Competence> query;
+		query = em.createQuery(Request.FIND_COMPETENCE_BY_ACRONYM,
+				Competence.class);
+		query.setParameter("acronym", acronym);
+		Competence competence = query.getSingleResult();
 		return competence;
 	}
 

@@ -29,6 +29,7 @@ public class Competence implements Serializable {
 	
 	private String name;
 	private String description;
+	private String acronym;
 	
 	@ManyToMany 
 	private List<Degree> degrees= new ArrayList<Degree>();
@@ -80,5 +81,12 @@ public class Competence implements Serializable {
 		return this.id == competence.getId();
 	}
 
+	public String getAcronym() {
+		return acronym;
+	}
+
+	public void setAcronym(String acronym) {
+		this.acronym = acronym;
+	}
 	
 }
