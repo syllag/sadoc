@@ -8,9 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.AcquisitionDAO;
@@ -104,7 +102,6 @@ public class AvancedTest {
 		assertEquals(4, ownerJimmy.get(0).getDegrees().get(0).getCompetences()
 				.size());
 	}
-	
 
 	// other test
 
@@ -115,7 +112,7 @@ public class AvancedTest {
 		query = em.createQuery(
 				"select distinct d FROM Competence d WHERE d.name = :name ",
 				Competence.class);
-		
+
 		query.setParameter("name", "competence 1 C2I1");
 		List<Competence> competenceTest = query.getResultList();
 		List<Acquisition> acquisitionTest = AcquisitionDAO
@@ -164,15 +161,14 @@ public class AvancedTest {
 		List<Acquisition> acquisitionTest = AcquisitionDAO
 				.findByDocument(documentTest.get(0));
 		assertEquals(3, acquisitionTest.size());
-		assertEquals("competence 1 C2I1",
-				acquisitionTest.get(0).getCompetence().getName());
-		assertEquals("competence 2 C2I1",
-				acquisitionTest.get(1).getCompetence().getName());
-		assertEquals("competence semestre 2 master",
-				acquisitionTest.get(2).getCompetence().getName());
+		assertEquals("competence 1 C2I1", acquisitionTest.get(0)
+				.getCompetence().getName());
+		assertEquals("competence 2 C2I1", acquisitionTest.get(1)
+				.getCompetence().getName());
+		assertEquals("competence semestre 2 master", acquisitionTest.get(2)
+				.getCompetence().getName());
 	}
-	
-	
+
 	@Test
 	public void testListDocumentFromAcquisition() {
 		EntityManager em = PersistenceProvider.getEntityManager();
@@ -200,14 +196,14 @@ public class AvancedTest {
 		List<Acquisition> acquisitionTest = AcquisitionDAO
 				.findByOwner(ownerJimmy.get(0));
 		assertEquals(6, acquisitionTest.size());
-		assertEquals("document3",
-				acquisitionTest.get(0).getDocument().getName());
-		assertEquals("document4",
-				acquisitionTest.get(3).getDocument().getName());
-		assertEquals("document5",
-				acquisitionTest.get(4).getDocument().getName());
+		assertEquals("document3", acquisitionTest.get(0).getDocument()
+				.getName());
+		assertEquals("document4", acquisitionTest.get(3).getDocument()
+				.getName());
+		assertEquals("document5", acquisitionTest.get(4).getDocument()
+				.getName());
 	}
-	
+
 	@Test
 	public void testListDocumentFromAcquisitionCompetence() {
 		EntityManager em = PersistenceProvider.getEntityManager();
@@ -220,14 +216,14 @@ public class AvancedTest {
 		List<Acquisition> acquisitionTest = AcquisitionDAO
 				.findByCompetence(competenceTest.get(0));
 		assertEquals(3, acquisitionTest.size());
-		assertEquals("document2",
-				acquisitionTest.get(0).getDocument().getName());
-		assertEquals("document5",
-				acquisitionTest.get(1).getDocument().getName());
-		assertEquals("document6",
-				acquisitionTest.get(2).getDocument().getName());
+		assertEquals("document2", acquisitionTest.get(0).getDocument()
+				.getName());
+		assertEquals("document5", acquisitionTest.get(1).getDocument()
+				.getName());
+		assertEquals("document6", acquisitionTest.get(2).getDocument()
+				.getName());
 	}
-	
+
 	@Test
 	public void testOwnerFromAcquisition() {
 		EntityManager em = PersistenceProvider.getEntityManager();
@@ -242,7 +238,7 @@ public class AvancedTest {
 
 		assertEquals(4, acquisitionTest.size());
 	}
-	
+
 	@Test
 	public void testListOwnerFromAcquisitionCompetence() {
 		EntityManager em = PersistenceProvider.getEntityManager();
@@ -254,14 +250,12 @@ public class AvancedTest {
 		List<Competence> competenceTest = query.getResultList();
 		List<Acquisition> acquisitionTest = AcquisitionDAO
 				.findByCompetence(competenceTest.get(0));
-		
+
 		assertEquals(2, acquisitionTest.size());
-		assertEquals("jimmy",
-				acquisitionTest.get(0).getOwner().getFirstName());
-		assertEquals("kevin",
-				acquisitionTest.get(1).getOwner().getFirstName());
+		assertEquals("jimmy", acquisitionTest.get(0).getOwner().getFirstName());
+		assertEquals("kevin", acquisitionTest.get(1).getOwner().getFirstName());
 	}
-	
+
 	@Test
 	public void testListOwnerFromAcquisitionDocument() {
 		EntityManager em = PersistenceProvider.getEntityManager();
@@ -274,12 +268,10 @@ public class AvancedTest {
 		List<Acquisition> acquisitionTest = AcquisitionDAO
 				.findByDocument(documentTest.get(0));
 		assertEquals(1, acquisitionTest.size());
-		assertEquals("francois",
-				acquisitionTest.get(0).getOwner().getFirstName());
+		assertEquals("francois", acquisitionTest.get(0).getOwner()
+				.getFirstName());
 	}
-	
 
-	
 	@After
 	public void endTests() {
 		PersistenceProvider.removeProvider();
