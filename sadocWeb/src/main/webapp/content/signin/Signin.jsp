@@ -11,17 +11,6 @@
 </head>
 
 <body>
-	<script>
-		function checkPassword() {
-			var p1 = document.getElementById('password');
-			var p2 = document.getElementById('confirm_password');
-			if (p1.value != p2.value) {
-				p2.setCustomValidity("passwords don't match");
-			} else {
-				p2.setCustomValidity('');
-			}
-		}
-	</script>
 
 	<header class="header">
 		<a href="#"><img src='img/logo.png' /></a>
@@ -30,23 +19,39 @@
 
 	<section class="inscription">
 		<form method="post" action="signIn">
-			<input type="text" name="prenom" id="prenom"
+			<input type="text" name="form.firstname" id="prenom"
 				placeholder="Type your Firstname" required /> <input type="text"
-				name="nom" id="nom" placeholder="Type your Lastname" required /> <input
-				type="text" name="email" id="email" placeholder="Type your email"
-				required /> <input type="password" name="password" id="password"
-				placeholder="Type your password" required /> <input type="password"
-				name="confirm_password" id="confirm_password"
+				name="form.name" id="nom" placeholder="Type your Lastname" required />
+			<input type="text" name="form.email" id="email"
+				placeholder="Type your email"
+				pattern="([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))"
+				required /> <input type="password" name="form.password"
+				id="password" placeholder="Type your password" required /> <input
+				type="password" name="form.password2" id="confirm_password"
 				placeholder="Confirm your password" required
-				onfocus="checkPassword();" />
+				onblur="checkPassword();" />
 			<div id="msg_erreur">
 				<s:actionerror />
 			</div>
 
-			<button type=submit class="button">SIGN IN</button>
+			<button type=submit onfocus="checkPassword();" class="button">SIGN
+				IN</button>
 		</form>
 	</section>
 
 	<footer> </footer>
+
+
+	<script>
+		function checkPassword() {
+			var p1 = document.getElementById('password');
+			var p2 = document.getElementById('confirm_password');
+			if (p1.value != p2.value) {
+				p2.setCustomValidity("Passwords don't match");
+			} else {
+				p2.setCustomValidity('');
+			}
+		}
+	</script>
 </body>
 </html>

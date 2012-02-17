@@ -10,11 +10,11 @@
 			<result name="success">content/signin/Signin.jsp</result>
 			<result name="error">content/connect/Connect.jsp</result>
 		</action>
-
+		
 		<action name="signIn" class="fr.univartois.ili.sadoc.actions.ManageSignIn"
 			method="execute">
-			<result type="success">content/profile/Profile.jsp</result>
-			<result type="success">content/signin/Signin.jsp</result>
+			<result name="success">content/signin/Signin.jsp</result>
 		</action>
+
 	</package>
 </struts>

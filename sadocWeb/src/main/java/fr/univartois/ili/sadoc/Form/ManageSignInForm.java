@@ -2,27 +2,30 @@ package fr.univartois.ili.sadoc.Form;
 
 public class ManageSignInForm {
 
-	private String firsname;
+	private String firstname;
 	private String name;
 	private String mail;
 	private String password;
 	private String password2;
+
+	public ManageSignInForm() {
+	}
 	
-	public ManageSignInForm(String firsname, String name, String mail,
+	public ManageSignInForm(String firstname, String name, String mail,
 			String password, String password2) {
 		super();
-		this.firsname = firsname;
+		this.firstname = firstname;
 		this.name = name;
 		this.mail = mail;
 		this.password = password;
 		this.password2 = password2;
 	}
 
-	public String getFirsname() {
-		return firsname;
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setFirsname(String firsname) {
-		this.firsname = firsname;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 	public String getName() {
 		return name;

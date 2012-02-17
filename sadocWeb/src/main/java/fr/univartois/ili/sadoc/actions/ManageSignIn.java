@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.Form.ManageSignInForm;
-import fr.univartois.ili.sadoc.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.dao.OwnerDAO; 
 import fr.univartois.ili.sadoc.entities.Owner;
 
 public class ManageSignIn extends ActionSupport {
@@ -18,15 +18,14 @@ public class ManageSignIn extends ActionSupport {
 
 	/**
 	 * formulaire contenant l'evenement qui va être creer
-	 */
+	 */ 
 	private ManageSignInForm form;
 
-	public String execute() throws Exception {
+	public String execute() {
 		Owner personne = new Owner();
-		personne.setFirstName(form.getFirsname());
+		personne.setFirstName(form.getFirstname());
 		personne.setLastName(form.getName());
 		personne.setMail(form.getMail());
-
 		// enregistrement dans la base de donnée
 		try {
 			// crypte le password
@@ -53,13 +52,9 @@ public class ManageSignIn extends ActionSupport {
 	 * @see com.opensymphony.xwork2.ActionSupport#validate()
 	 */
 	public void validate() {
-		// validation du mot de passe
-		if (!form.getPassword().equals(form.getPassword2())) {
-			addActionMessage("The passwords aren't the same");
-		}
-		if (OwnerDAO.findByMail(form.getMail()) != null) {
+		/*if (OwnerDAO.findByMail(form.getMail()) != null) {
 			addActionMessage("A user already exist with this mail adress");
-		}
+		}*/
 	}
 
 	/**
