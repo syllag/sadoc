@@ -17,14 +17,21 @@ import fr.univartois.ili.sadoc.entities.Signature;
 public class WSPublicImpl implements WSPublic {
 
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=false)
-	public void createOwner(String lastName, String firstName, String mail)
+	public Owner createOwner(String lastName, String firstName, String mail)
 			throws Exception {
 		Owner owner = new Owner(firstName, lastName, mail);
 		OwnerDAO.create(owner);
+		return owner;
+	}
+	
+	public Byte[] signDocument(Byte[] doc, String name, Owner owner,
+			Competence[] competence) {
+		List<Certificate> certificates = getCertificate(owner);
+		return signDocument(doc, name, certificates.get(0), competence);
 	}
 
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=false)
-	public Byte[] signDocument(Byte[] doc, Certificate certificate,
+	public Byte[] signDocument(Byte[] doc, String name, Certificate certificate,
 			Competence[] competence) {
 		// Creation du document ? Recuperation du document ? WTF
 		Document document = new Document();
@@ -44,10 +51,10 @@ public class WSPublicImpl implements WSPublic {
 		//Certificate certificate = new Certificate("publicKey", "privateKey", owner);
 		//CertificateDAO.create(certificate);
 	}
+	
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public List<Certificate> getCertificate(Owner owner) {
 		List<Certificate> certificates = CertificateDAO.findByOwner(owner);
 		return certificates;
 	}
-
 }

@@ -8,10 +8,13 @@ import fr.univartois.ili.sadoc.entities.Owner;
 
 public interface WSPublic {
 
-	public void createOwner(String nom, String prenom, String mail)
+	public Owner createOwner(String nom, String prenom, String mail)
 			throws Exception;
 
-	public Byte[] signDocument(Byte[] doc, Certificate certificat,
+	public Byte[] signDocument(Byte[] doc, String name, Owner owner,
+			Competence[] competence);
+	
+	public Byte[] signDocument(Byte[] doc, String name, Certificate certificat,
 			Competence[] competence);
 
 	public void createCertificate(Owner utilisateur);

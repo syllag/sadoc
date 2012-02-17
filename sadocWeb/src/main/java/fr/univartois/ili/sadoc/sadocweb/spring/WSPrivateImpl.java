@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.dao.SignatureDAO;
-import fr.univartois.ili.sadoc.entities.Certificate;
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
@@ -21,7 +20,7 @@ public class WSPrivateImpl implements WSPrivate {
 	
 	
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
-	public boolean verifyDocument(Byte[] doc, Certificate certificat,
+	public boolean verifyDocument(Byte[] doc, Document document,
 			Owner utilisateur) {
 		// TODO Auto-generated method stub
 		return false;

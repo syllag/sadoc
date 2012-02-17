@@ -1,40 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://sadoc.com/ac/schemas" elementFormDefault="qualified">
-  <xs:element name="accountBalanceRequest">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="user"/>
-      </xs:sequence>
-      <xs:attribute name="name" use="required" type="xs:string"/>
-      <xs:attribute name="number" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="user">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="number"/>
-        <xs:element ref="name"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="name" type="xs:string"/>
-  <xs:element name="accountBalanceResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="orderRequest"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="orderRequest">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="balance"/>
-        <xs:element ref="number"/>
-        <xs:element ref="time"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="balance" type="xs:decimal"/>
-  <xs:element name="time" type="xs:dateTime"/>
-  <xs:element name="number" type="xs:integer"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" targetNamespace="http://sadoc.com/ac/schemas">
+	<xs:element name="createOwnerRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="firstName" />
+				<xs:element ref="lastName" />
+				<xs:element ref="mail" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="createOwnerReponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="owner" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="signDocumentRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="doc" />
+				<xs:element ref="name" />
+				<xs:element ref="owner" />
+				<xs:element ref="competence" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="signDocumentReponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="bytes" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bytes" type="xs:NCName" />
+	<xs:element name="createCertificateRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="owner" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="createCertificateResponse">
+		<xs:complexType />
+	</xs:element>
+	<xs:element name="verifyDocumentRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="doc" />
+				<xs:element ref="document" />
+				<xs:element ref="owner" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="verifyDocumentResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="validation" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocumentInformationsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocumentInformationsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="owner" />
+				<xs:element ref="competence" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="validation" type="xs:boolean" />
+	<xs:element name="importDocumentRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="owner" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="importDocumentResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="document" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="importCompetencesRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="document" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="importCompetencesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="competence" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="doc" type="xs:string" />
+	<xs:element name="name" type="xs:NCName" />
+	<xs:element name="owner">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id" />
+				<xs:element ref="firstName" />
+				<xs:element ref="lastName" />
+				<xs:element ref="mail" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="firstName" type="xs:NCName" />
+	<xs:element name="lastName" type="xs:NCName" />
+	<xs:element name="mail" type="xs:string" />
+	<xs:element name="competence">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id" />
+				<xs:element ref="name" />
+				<xs:element ref="description" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="description" type="xs:string" />
+	<xs:element name="document">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id" />
+				<xs:element ref="name" />
+				<xs:element ref="checkSum" />
+				<xs:element ref="pk7" />
+				<xs:element ref="creationDate" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="checkSum" type="xs:string" />
+	<xs:element name="pk7" type="xs:string" />
+	<xs:element name="creationDate" type="xs:date" />
+	<xs:element name="id" type="xs:integer" />
 </xs:schema>

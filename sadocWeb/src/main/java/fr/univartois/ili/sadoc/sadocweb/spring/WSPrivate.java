@@ -10,7 +10,7 @@ import fr.univartois.ili.sadoc.entities.Owner;
 
 public interface WSPrivate {
 	
-	boolean verifyDocument(Byte[] doc, Certificate certificat, Owner utilisateur);
+	boolean verifyDocument(Byte[] doc, Document document, Owner utilisateur);
 
 	Map<Owner, List<Competence>> getDocumentInformations(int documentId);
 	
