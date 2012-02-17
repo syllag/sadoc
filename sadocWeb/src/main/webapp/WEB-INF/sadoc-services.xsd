@@ -34,7 +34,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="bytes" type="xs:NCName" />
+	<xs:element name="bytes" type="xs:string" />
 	<xs:element name="createCertificateRequest">
 		<xs:complexType>
 			<xs:sequence>
@@ -106,7 +106,7 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="doc" type="xs:string" />
-	<xs:element name="name" type="xs:NCName" />
+	<xs:element name="name" type="xs:string" />
 	<xs:element name="owner">
 		<xs:complexType>
 			<xs:sequence>
@@ -117,8 +117,8 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="firstName" type="xs:NCName" />
-	<xs:element name="lastName" type="xs:NCName" />
+	<xs:element name="firstName" type="xs:string" />
+	<xs:element name="lastName" type="xs:string" />
 	<xs:element name="mail" type="xs:string" />
 	<xs:element name="competence">
 		<xs:complexType>
@@ -137,7 +137,6 @@
 				<xs:element ref="name" />
 				<xs:element ref="checkSum" />
 				<xs:element ref="pk7" />
-				<xs:element ref="creationDate" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

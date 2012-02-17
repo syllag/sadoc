@@ -57,7 +57,7 @@ public class WSPublicTest {
 		KeyPair k2 = ke2.generateKeyPair();
 		Certificate certif1 = new Certificate(k2.getPublic(), k2.getPrivate(), owner1);
 		Certificate certif2 = new Certificate(k2.getPublic(), k2.getPrivate(), owner1);
-		Certificate certif3 = new Certificate(k2.getPublic(), k2.getPrivate(), owner1);
+		Certificate certif3 = new Certificate(k2.getPublic(), k2.getPrivate(), owner2);
 
 		
 		

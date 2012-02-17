@@ -1,28 +1,51 @@
 <mapping>
 
-  <!--  Mapping for OrderRequest  -->
-  <class name="fr.univartois.ili.sadoc.sadocweb.springsample.OrderRequest">
-    <map-to xml="orderRequest" />
-	<field name="balance" type="double">
-		  <bind-xml name="balance" node="element"/>
+	<!-- Mapping for Owner -->
+	<class name="fr.univartois.ili.sadoc.entities.Owner">
+		<map-to xml="owner" />
+		<field name="id" type="integer">
+			<bind-xml name="id" node="element" />
 		</field>
-    <field name="number" type="integer">
-      <bind-xml name="number" node="element" />
-    </field>
-        <field name="time" type="string">
-      <bind-xml name="time" node="element" />
-    </field>
-  </class>
-  
-    <!--  Mapping for User  -->
-  <class name="fr.univartois.ili.sadoc.sadocweb.springsample.User">
-    <map-to xml="user" />
-    <field name="number" type="integer">
-      <bind-xml name="number" node="element" />
-    </field>
-        <field name="name" type="string">
-      <bind-xml name="name" node="element" />
-    </field>
-  </class>
+		<field name="firstName" type="string">
+			<bind-xml name="firstName" node="element" />
+		</field>
+		<field name="lastName" type="string">
+			<bind-xml name="lastName" node="element" />
+		</field>
+		<field name="mail" type="string">
+			<bind-xml name="mail" node="element" />
+		</field>
+	</class>
+
+	<!-- Mapping for Document -->
+	<class name="fr.univartois.ili.sadoc.entities.Document">
+		<map-to xml="document" />
+		<field name="id" type="integer">
+			<bind-xml name="id" node="element" />
+		</field>
+		<field name="name" type="string">
+			<bind-xml name="name" node="element" />
+		</field>
+		<field name="checkSum" type="string">
+			<bind-xml name="checkSum" node="element" />
+		</field>		
+		<field name="pk7" type="byte">
+			<bind-xml name="pk7" node="element" />
+		</field>	
+	</class>
+	
+		<!-- Mapping for Competence -->
+	<class name="fr.univartois.ili.sadoc.entities.Competence">
+		<map-to xml="competence" />
+		<field name="id" type="integer">
+			<bind-xml name="id" node="element" />
+		</field>
+		<field name="name" type="string">
+			<bind-xml name="name" node="element" />
+		</field>
+		<field name="description" type="string">
+			<bind-xml name="description" node="element" />
+		</field>	
+	</class>
 
 </mapping>
