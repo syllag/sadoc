@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.univartois.ili.sadoc.Form.ManageSignInForm;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.Owner;
 

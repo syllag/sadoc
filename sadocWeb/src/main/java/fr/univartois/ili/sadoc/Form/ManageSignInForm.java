@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.actions;
+package fr.univartois.ili.sadoc.Form;
 
 public class ManageSignInForm {
 
