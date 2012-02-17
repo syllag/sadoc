@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,6 +11,18 @@
 </head>
 
 <body>
+	<script>
+		function checkPassword() {
+			var p1 = document.getElementById('password');
+			var p2 = document.getElementById('confirm_password');
+			if (p1.value != p2.value) {
+				p2.setCustomValidity("passwords don't match");
+			} else {
+				p2.setCustomValidity('');
+			}
+		}
+	</script>
+
 	<header class="header">
 		<a href="#"><img src='img/logo.png' /></a>
 		<h1>Système d'authentification de document</h1>
@@ -18,17 +31,18 @@
 	<section class="inscription">
 		<form method="post" action="signIn">
 			<input type="text" name="prenom" id="prenom"
-				placeholder="Type your Firstname" required />
-			<input type="text"
-				name="nom" id="nom" placeholder="Type your Lastname" required /> 
-			<input
+				placeholder="Type your Firstname" required /> <input type="text"
+				name="nom" id="nom" placeholder="Type your Lastname" required /> <input
 				type="text" name="email" id="email" placeholder="Type your email"
-				required /> 
-			<input type="password" name="password" id="password"
-				placeholder="Type your password" required /> 
-			<input type="password"
+				required /> <input type="password" name="password" id="password"
+				placeholder="Type your password" required /> <input type="password"
 				name="confirm_password" id="confirm_password"
-				placeholder="Confirm your password" required />
+				placeholder="Confirm your password" required
+				onfocus="checkPassword();" />
+			<div id="msg_erreur">
+				<s:actionerror />
+			</div>
+
 			<button type=submit class="button">SIGN IN</button>
 		</form>
 	</section>

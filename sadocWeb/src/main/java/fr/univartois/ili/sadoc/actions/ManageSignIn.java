@@ -1,9 +1,19 @@
 package fr.univartois.ili.sadoc.actions;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
+import com.opensymphony.xwork2.ActionSupport;
+
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.Owner;
 
-public class ManageSignIn {
+public class ManageSignIn extends ActionSupport {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * formulaire contenant l'evenement qui va être creer
@@ -11,20 +21,28 @@ public class ManageSignIn {
 	private ManageSignInForm form;
 
 	public String execute() throws Exception {
-
 		Owner personne = new Owner();
 		personne.setFirstName(form.getFirsname());
 		personne.setLastName(form.getName());
 		personne.setMail(form.getMail());
-		personne.setPassword(form.getPassword());
-  
+
 		// enregistrement dans la base de donnée
 		try {
-	    	OwnerDAO.create(personne);
+			// crypte le password
+			MessageDigest alg = MessageDigest.getInstance("MD5");
+			String password = form.getPassword();
+			alg.reset();
+			alg.update(password.getBytes());
+			byte[] msgDigest = alg.digest();
+			BigInteger number = new BigInteger(1, msgDigest);
+			String str = number.toString(16);
+			
+			personne.setPassword(str);
+			OwnerDAO.create(personne);
 		} catch (Exception e) {
 			e.printStackTrace();
+			addActionMessage("Momentary problem... Please try agin later.");
 		}
-
 		return "success";
 	}
 
@@ -36,20 +54,11 @@ public class ManageSignIn {
 	public void validate() {
 		// validation du mot de passe
 		if (!form.getPassword().equals(form.getPassword2())) {
-
+			addActionMessage("The passwords aren't the same");
 		}
-		if (form.getFirsname().length() == 0 || form.getName().length() == 0
-				|| form.getMail().length() == 0 || form.getPassword().length() == 0){
-			
+		if (OwnerDAO.findByMail(form.getMail()) != null) {
+			addActionMessage("A user already exist with this mail adress");
 		}
-		
-    	if (OwnerDAO.findByMail(form.getMail()) != null){
-    		
-    		
-    	}
-			
-		// addFieldError("creation.description",getText("error.creation.description"));
-
 	}
 
 	/**
