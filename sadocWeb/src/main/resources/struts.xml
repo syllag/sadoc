@@ -5,6 +5,9 @@
 	<constant name="struts.custom.i18n.resources" value="demo" />
 	<package name="sadocWeb" namespace="/" extends="struts-default">
 	<default-action-ref name="index" />
-		
+	<action name="validateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect" method="execute">
+		<result name="success">content/signin/Signin.jsp</result>
+		<result name="error">content/connect/Connect.jsp</result>
+	</action>
 	</package>
 </struts>
