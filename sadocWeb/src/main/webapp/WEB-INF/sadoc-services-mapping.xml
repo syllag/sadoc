@@ -28,13 +28,13 @@
 		</field>
 		<field name="checkSum" type="string">
 			<bind-xml name="checkSum" node="element" />
-		</field>		
+		</field>
 		<field name="pk7" type="byte">
 			<bind-xml name="pk7" node="element" />
-		</field>	
+		</field>
 	</class>
-	
-		<!-- Mapping for Competence -->
+
+	<!-- Mapping for Competence -->
 	<class name="fr.univartois.ili.sadoc.entities.Competence">
 		<map-to xml="competence" />
 		<field name="id" type="integer">
@@ -45,7 +45,10 @@
 		</field>
 		<field name="description" type="string">
 			<bind-xml name="description" node="element" />
-		</field>	
+		</field>
+		<field name="acronym" type="string">
+			<bind-xml name="acronym" node="element" />
+		</field>
 	</class>
-
+	
 </mapping>

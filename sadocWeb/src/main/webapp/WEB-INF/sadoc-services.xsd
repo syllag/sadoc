@@ -126,6 +126,7 @@
 				<xs:element ref="id" />
 				<xs:element ref="name" />
 				<xs:element ref="description" />
+				<xs:element ref="acronym" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -144,4 +145,5 @@
 	<xs:element name="pk7" type="xs:string" />
 	<xs:element name="creationDate" type="xs:date" />
 	<xs:element name="id" type="xs:integer" />
+	<xs:element name="acronym" type="xs:string" />
 </xs:schema>

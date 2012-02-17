@@ -30,6 +30,7 @@ public class Competence implements Serializable, Comparable<Object> {
 	
 	private String name;
 	private String description;
+	private String acronym;
 	
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
@@ -83,6 +84,14 @@ public class Competence implements Serializable, Comparable<Object> {
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public String getAcronym() {
+		return acronym;
+	}
+
+	public void setAcronym(String acronym) {
+		this.acronym = acronym;
 	}
 
 }
