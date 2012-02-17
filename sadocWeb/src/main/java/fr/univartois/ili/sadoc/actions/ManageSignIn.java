@@ -1,57 +1,52 @@
 package fr.univartois.ili.sadoc.actions;
 
-import java.io.IOException;
-import fr.univartois.ili.sadoc.entities.Owner;
-import java.util.Date;
-
 public class ManageSignIn {
-	
-	private String firsname;
-	private String name;
-	private String mail;
-	private String password;
-	private String password2;
-	
-	
-	public String getFirsname() {
-		return firsname;
-	}
-	public void setFirsname(String firsname) {
-		this.firsname = firsname;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getMail() {
-		return mail;
-	}
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getPassword2() {
-		return password2;
-	}
-	public void setPassword2(String password2) {
-		this.password2 = password2;
-	}
-	
-	public String signIn() {
-		System.out.println("Dans la méthode enregistrer...");
-		Owner personne = new Owner();
-		if(this.name.equals("")) {
-			return "input";
-		}
 
+	/**
+	 * formulaire contenant l'evenement qui va être creer
+	 */
+	private ManageSignInForm form;
+
+	public String execute() throws Exception {
 		return "success";
-      }
-	
+		
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.opensymphony.xwork2.ActionSupport#validate()
+	 */
+	public void validate() {
+		// validation du mot de passe
+		if (!form.getPassword().equals(form.getPassword2())) {
+
+		}
+		if (form.getFirsname().length() == 0 || form.getName().length() == 0
+				|| form.getMail().length() == 0 || form.getPassword().length() == 0){
+			
+		}
+			
+		// addFieldError("creation.description",getText("error.creation.description"));
+
+	}
+
+	/**
+	 * getter du formulaire de creation d'evenement
+	 * 
+	 * @return
+	 */
+	public ManageSignInForm getForm() {
+		return form;
+	}
+
+	/**
+	 * setter du formulaire d'evenement
+	 * 
+	 * @param creation
+	 */
+	public void setForm(ManageSignInForm signinform) {
+		this.form = signinform;
+	}
+
 }
