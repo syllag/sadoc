@@ -37,7 +37,7 @@ public abstract class AcquisitionDAO {
 	public static List<Acquisition> findByDocument(Document document) {
 		final TypedQuery<Acquisition> query;
         query = em.createQuery(Request.FIND_IN_ACQUISITION_BY_DOCUMENT, Acquisition.class);
-        query.setParameter("owner", document);
+        query.setParameter("document", document);
         List<Acquisition> acquisition = query.getResultList();
 		return acquisition;
 	}
@@ -45,7 +45,7 @@ public abstract class AcquisitionDAO {
 	public static List<Acquisition> findByCompetence(Competence competence) {
 		final TypedQuery<Acquisition> query;
         query = em.createQuery(Request.FIND_IN_ACQUISITION_BY_COMPETENCE, Acquisition.class);
-        query.setParameter("owner", competence);
+        query.setParameter("competence", competence);
         List<Acquisition> acquisition = query.getResultList();
 		return acquisition;
 	}
