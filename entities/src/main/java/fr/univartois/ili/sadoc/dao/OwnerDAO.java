@@ -1,7 +1,9 @@
 package fr.univartois.ili.sadoc.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
+import fr.univartois.ili.sadoc.configuration.Request;
 import fr.univartois.ili.sadoc.entities.Owner;
 
 public abstract class OwnerDAO {
@@ -19,6 +21,13 @@ public abstract class OwnerDAO {
 		return user;
 	}
 
+	public static Owner findByMail(String mail) {
+		TypedQuery<Owner> query;
+		query = em.createQuery(Request.FIND_OWNER_BY_MAIL, Owner.class);
+		query.setParameter("mail", mail);
+		return query.getSingleResult();
+	}
+	
 	public static void update(Owner user) {
 		em.getTransaction().begin();
 		em.merge(user);
