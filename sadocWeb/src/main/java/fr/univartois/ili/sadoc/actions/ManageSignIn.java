@@ -1,5 +1,8 @@
 package fr.univartois.ili.sadoc.actions;
 
+import fr.univartois.ili.sadoc.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.entities.Owner;
+
 public class ManageSignIn {
 
 	/**
@@ -8,8 +11,21 @@ public class ManageSignIn {
 	private ManageSignInForm form;
 
 	public String execute() throws Exception {
+
+		Owner personne = new Owner();
+		personne.setFirstName(form.getFirsname());
+		personne.setLastName(form.getName());
+		personne.setMail(form.getMail());
+		personne.setPassword(form.getPassword());
+  
+		// enregistrement dans la base de donnée
+		try {
+	    	OwnerDAO.create(personne);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return "success";
-		
 	}
 
 	/*
@@ -26,6 +42,11 @@ public class ManageSignIn {
 				|| form.getMail().length() == 0 || form.getPassword().length() == 0){
 			
 		}
+		
+    	if (OwnerDAO.findByMail(form.getMail()) != null){
+    		
+    		
+    	}
 			
 		// addFieldError("creation.description",getText("error.creation.description"));
 
