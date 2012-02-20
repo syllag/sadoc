@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.Form.ManageSignInForm;
-import fr.univartois.ili.sadoc.dao.OwnerDAO; 
+import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.Owner;
 
 public class ManageSignIn extends ActionSupport {
@@ -18,7 +18,7 @@ public class ManageSignIn extends ActionSupport {
 
 	/**
 	 * formulaire contenant l'evenement qui va être creer
-	 */ 
+	 */
 	private ManageSignInForm form;
 
 	public String execute() {
@@ -28,20 +28,12 @@ public class ManageSignIn extends ActionSupport {
 		personne.setMail(form.getMail());
 		// enregistrement dans la base de donnée
 		try {
-			// crypte le password
-			MessageDigest alg = MessageDigest.getInstance("MD5");
-			String password = form.getPassword();
-			alg.reset();
-			alg.update(password.getBytes());
-			byte[] msgDigest = alg.digest();
-			BigInteger number = new BigInteger(1, msgDigest);
-			String str = number.toString(16);
-			
-			personne.setPassword(str);
+
+			personne.setPassword(form.getPassword());
 			OwnerDAO.create(personne);
 		} catch (Exception e) {
-			e.printStackTrace();
 			addActionMessage("Momentary problem... Please try agin later.");
+			return "input";
 		}
 		return "success";
 	}
@@ -52,9 +44,13 @@ public class ManageSignIn extends ActionSupport {
 	 * @see com.opensymphony.xwork2.ActionSupport#validate()
 	 */
 	public void validate() {
-		/*if (OwnerDAO.findByMail(form.getMail()) != null) {
-			addActionMessage("A user already exist with this mail adress");
-		}*/
+		try {
+			if (OwnerDAO.findByMail(form.getMail()) != null) {
+				addActionMessage("A user already exist with this mail adress");
+			}
+		} catch (Exception e) {
+			addActionMessage("Momentary problem... Please try agin later.");
+		}
 	}
 
 	/**
