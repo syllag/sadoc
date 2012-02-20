@@ -1,15 +1,15 @@
-package fr.univartois.ili.sadoc.sadocweb.springsample;
+package fr.univartois.ili.sadoc.sadocweb.wssample;
 
-public class OrderRequest {
+public class Order {
 	
 	private int number;
 	private double balance;
 	private String time;
 	
-	public OrderRequest() {
-		this.number = 123;
-		this.balance = 100.50;
-		this.time = "2009-05-30T09:30:10.5";
+	public Order() {
+		this.number = 999;
+		this.balance = 45454545;
+		this.time = "order time from constructor";
 	}
 
 	public int getNumber() {

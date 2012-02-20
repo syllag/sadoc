@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.sadocweb.springsample;
+package fr.univartois.ili.sadoc.sadocweb.wssample;
 
 public class User {
 	

@@ -64,7 +64,7 @@ public class WSStub implements WSPrivate, WSPublic {
 		return wsPrivate.verifyDocument(doc, document, utilisateur);
 	}
 
-	@PayloadRoot(localPart = "createCertificateRequest", namespace = "http://sadoc.com/ac/schemas")
+	@PayloadRoot(localPart = "getDocumentInformationsRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
 	public Map<Owner, List<Competence>> getDocumentInformations(
 			@RequestPayload int documentId) {
