@@ -38,7 +38,7 @@
 
 	<distributionManagement>
 		<site>
-			<id>fsnet-dev</id>
+			<id>sadoc-dev</id>
 			<url>${sites.directory}</url>
 		</site>
 	</distributionManagement>
