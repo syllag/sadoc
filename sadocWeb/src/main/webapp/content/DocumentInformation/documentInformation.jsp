@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="Système d'authentification de document." />
 <title>Votre gestionnaire de compétence en ligne</title>
-<link href="css/documentInformation.css" type="text/css" rel="stylesheet" />
+<link href="css/style.css" type="text/css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="img/favicon.png" />
 </head>
 
@@ -17,7 +17,7 @@
 <div id="wrapper">
 	
 	
-	<section id="content">
+	<section id="content2">
 		<div class="user">
 			<h3> ${owner.lastName} ${owner.firstName} </h3>
 			<p> ${owner.town}, ${owner.zipCode} </p>

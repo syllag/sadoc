@@ -24,6 +24,6 @@
                         <result name="success">content/profile/Profile.jsp</result>
                         <result name="input">content/profile/EditProfile.jsp</result>
                 </action>
-
+                
         </package>
 </struts>

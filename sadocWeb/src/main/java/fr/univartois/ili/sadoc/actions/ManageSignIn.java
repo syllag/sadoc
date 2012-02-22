@@ -26,6 +26,8 @@ public class ManageSignIn extends ActionSupport {
 	 * @see com.opensymphony.xwork2.ActionSupport#execute()
 	 */
 	public String execute() {
+		if (form == null) return INPUT;
+		
 		Owner personne = new Owner();
 		personne.setFirstName(form.getFirstname());
 		personne.setLastName(form.getName());
@@ -38,7 +40,7 @@ public class ManageSignIn extends ActionSupport {
 			// TODO : connecter la personne
 		} catch (Exception e) {
 			addActionMessage("Momentary problem... Please try agin later.");
-			return "input";
+			return INPUT;
 		}
 		return SUCCESS;
 	}
