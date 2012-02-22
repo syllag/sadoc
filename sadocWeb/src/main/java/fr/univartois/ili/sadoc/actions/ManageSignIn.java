@@ -22,7 +22,8 @@ public class ManageSignIn extends ActionSupport {
 		personne.setFirstName(form.getFirstname());
 		personne.setLastName(form.getName());
 		personne.setMail(form.getMail());
-		// enregistrement dans la base de donnée
+		// enregistrement dans la base de donnée !
+		// TODO : cryptage password
 		try {
 			personne.setPassword(form.getPassword());
 			OwnerDAO.create(personne);

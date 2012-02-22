@@ -19,9 +19,10 @@
 		</action>
 		
 		<action name="ModifyProfile" class="fr.univartois.ili.sadoc.actions.ManageProfile"
-            method="execute">
-            <result name="success">profile/EditProfile.jsp</result>
-            <result name="input">profile/Profile.jsp</result>
-        </action>
+			method="execute" >
+			<result type="success">content/profile/EditProfile.jsp</result>
+			<result type="input">content/profile/Profile.jsp</result>
+		</action>
+
 	</package>
 </struts>
