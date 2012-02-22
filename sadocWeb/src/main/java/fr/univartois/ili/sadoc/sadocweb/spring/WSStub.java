@@ -44,6 +44,7 @@ public class WSStub {
 		return wsPublic.signDocument(request.getDoc(), request.getName(), request.getOwner(), request.getCompetence());
 	}
 
+
 	public byte[] signDocument(byte[] doc, String name, Certificate certificat,
 			Competence[] competence) {
 		return null;

@@ -23,7 +23,6 @@ import fr.univartois.ili.sadoc.sadocweb.utils.Crypt;
 import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
 
-
 public class WSPublicImpl implements WSPublic {
 	
 
