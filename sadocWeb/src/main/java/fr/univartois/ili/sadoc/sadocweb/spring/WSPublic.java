@@ -2,10 +2,13 @@ package fr.univartois.ili.sadoc.sadocweb.spring;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Competence;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
 
+@Service("wsPublic")
 public interface WSPublic {
 
 	public Owner createOwner(String nom, String prenom, String mail)

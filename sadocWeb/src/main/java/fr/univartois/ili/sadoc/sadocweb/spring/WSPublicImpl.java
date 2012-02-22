@@ -3,6 +3,9 @@ package fr.univartois.ili.sadoc.sadocweb.spring;
 import java.io.FileInputStream;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,16 +28,27 @@ import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
 public class WSPublicImpl implements WSPublic {
 	
+	@Resource(name="ownerDAO")
+	private OwnerDAO  ownerDAO ;
 
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+//	public WSPublicImpl() {
+//		
+//	}
+//	
+//	public WSPublicImpl(OwnerDAO ownerDAO) {
+//		super();
+//		this.ownerDAO = new OwnerDAO();
+//	}
+
+	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner createOwner(String lastName, String firstName, String mail)
 			throws Exception {
 		Owner owner = new Owner(firstName, lastName, mail);
-		OwnerDAO.create(owner);
+		ownerDAO.create(owner);
 		return owner;
 	}
 
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
 			Competence[] competence) {
 		Certificate certificate = getCertificate(owner).get(0);
@@ -64,13 +78,13 @@ public class WSPublicImpl implements WSPublic {
 		return dest;
 	}
 
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name,
 			Certificate certificate, Competence[] competence) {
 		return null;
 	}
 
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void createCertificate(Owner owner) {
 		// Generation clefs publiques & prives
 		// Certificate certificate = new Certificate("publicKey", "privateKey",
@@ -78,9 +92,20 @@ public class WSPublicImpl implements WSPublic {
 		// CertificateDAO.create(certificate);
 	}
 
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
 		List<Certificate> certificates = CertificateDAO.findByOwner(owner);
 		return certificates;
 	}
+
+//	public OwnerDAO getOwnerDAO() {
+//		return ownerDAO;
+//	}
+//
+//	@Autowired
+//	public void setOwnerDAO(OwnerDAO ownerDAO) {
+//		this.ownerDAO = ownerDAO;
+//	}
+	
+	
 }

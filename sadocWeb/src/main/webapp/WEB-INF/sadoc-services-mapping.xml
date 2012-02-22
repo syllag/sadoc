@@ -1,7 +1,7 @@
 <mapping>
 
 	<!-- Mapping for Owner -->
-	<class name="fr.univartois.ili.sadoc.entities.Owner">
+	<class name="fr.univartois.ili.sadoc.entities.classes.Owner">
 		<map-to xml="owner" />
 		<field name="id" type="integer">
 			<bind-xml name="id" node="element" />
@@ -18,7 +18,7 @@
 	</class>
 
 	<!-- Mapping for Document -->
-	<class name="fr.univartois.ili.sadoc.entities.Document">
+	<class name="fr.univartois.ili.sadoc.entities.classes.Document">
 		<map-to xml="document" />
 		<field name="id" type="integer">
 			<bind-xml name="id" node="element" />
@@ -35,7 +35,7 @@
 	</class>
 
 	<!-- Mapping for Competence -->
-	<class name="fr.univartois.ili.sadoc.entities.Competence">
+	<class name="fr.univartois.ili.sadoc.entities.classes.Competence">
 		<map-to xml="competence" />
 		<field name="id" type="integer">
 			<bind-xml name="id" node="element" />

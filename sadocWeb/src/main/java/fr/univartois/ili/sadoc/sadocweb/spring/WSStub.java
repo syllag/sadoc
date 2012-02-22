@@ -3,6 +3,8 @@ package fr.univartois.ili.sadoc.sadocweb.spring;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -19,22 +21,20 @@ import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
 @Endpoint
 public class WSStub {
 	
-	private final WSPrivateImpl wsPrivate;
-
-	private final WSPublicImpl wsPublic;
+	@Resource(name="wsPrivate")
+	private  WSPrivate wsPrivate;
+	@Resource(name="wsPublic")
+	private  WSPublic wsPublic;
 	
-	private final OwnerDAO ownerDAO = new OwnerDAO();
+	//private final OwnerDAO ownerDAO = new OwnerDAO();
 	
-	@Autowired
-	public WSStub(WSPrivateImpl wsPrivate, WSPublicImpl wsPublic) {
-		this.wsPrivate = wsPrivate;
-		this.wsPublic = wsPublic;
-	}
+	
 
 	@PayloadRoot(localPart = "createOwnerRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
 	public Owner createOwner(@RequestPayload CreateOwnerRequest request)
 			throws Exception {
+		System.out.println("Debug createOwner : "+request.getLastName()+request.getFirstName()+request.getMail());
 		return wsPublic.createOwner(request.getLastName(), request.getFirstName(), request.getMail());
 	}
 
@@ -92,16 +92,16 @@ public class WSStub {
 		return wsPrivate.getDocument(id);
 	}
 	
-	public WSPrivate getWsPrivate() {
-		return wsPrivate;
-	}
+//	public WSPrivate getWsPrivate() {
+//		return wsPrivate;
+//	}
+//
+//	public WSPublic getWsPublic() {
+//		return wsPublic;
+//	}
 
-	public WSPublic getWsPublic() {
-		return wsPublic;
-	}
-
-	public OwnerDAO getOwnerDAO() {
-		return ownerDAO;
-	}
+//	public OwnerDAO getOwnerDAO() {
+//		return ownerDAO;
+//	}
 
 }

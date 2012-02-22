@@ -1,49 +1,53 @@
 package fr.univartois.ili.sadoc.entities.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import fr.univartois.ili.sadoc.entities.classes.Certificate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import fr.univartois.ili.sadoc.entities.classes.Owner;
 import fr.univartois.ili.sadoc.entities.configuration.Request;
 
+@Service("ownerDAO")
+@Transactional
 public class OwnerDAO {
 
-	private static final EntityManager em = PersistenceProvider.getEntityManager();
-	
-	public OwnerDAO(){}
-	
-	public static void create(Owner owner) {
-		em.getTransaction().begin();
-		em.persist(owner);
-		em.getTransaction().commit();
+	private static EntityManager em;
+
+	public OwnerDAO() {
+		// em= PersistenceProvider.getEntityManager();
 	}
 
-	public static Owner findById(int id) {
-        Owner user = em.find(Owner.class, id);
+	public void create(Owner owner) {
+
+		System.out
+				.println("la création de Owner ça marche: " + owner.getMail());
+
+		// em.persist(owner);
+
+	}
+
+	public Owner findById(int id) {
+		Owner user = em.find(Owner.class, id);
 		return user;
 	}
-	
-	public static Owner findByMail(String mail) {
+
+	public Owner findByMail(String mail) {
 		final TypedQuery<Owner> query;
-		query = em.createQuery(Request.FIND_OWNER_BY_MAIL,
-				Owner.class);
+		query = em.createQuery(Request.FIND_OWNER_BY_MAIL, Owner.class);
 		query.setParameter("mail", mail);
 		Owner owner = query.getSingleResult();
 		return owner;
 	}
 
-	public static void update(Owner user) {
-		em.getTransaction().begin();
+	public void update(Owner user) {
 		em.merge(user);
-		em.getTransaction().commit();
 	}
 
-	public static void delete(Owner user) {
-		em.getTransaction().begin();
+	public void delete(Owner user) {
+
 		em.remove(user);
-		em.getTransaction().commit();
+
 	}
 }
