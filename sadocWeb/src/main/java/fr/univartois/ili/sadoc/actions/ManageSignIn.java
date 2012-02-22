@@ -27,6 +27,7 @@ public class ManageSignIn extends ActionSupport {
 		try {
 			personne.setPassword(form.getPassword());
 			OwnerDAO.create(personne);
+			// TODO : connecter la personne
 		} catch (Exception e) {
 			addActionMessage("Momentary problem... Please try agin later.");
 			return "input";

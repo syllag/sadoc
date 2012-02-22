@@ -18,8 +18,6 @@ public class ManageConnect extends ActionSupport {
 	private ManageConnectForm connect;
 	
 	public String execute(){
-		System.out.println(connect.getEmail());
-		System.out.println(connect.getPassword());
 		return SUCCESS;
 	}
 	
