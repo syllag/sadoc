@@ -1,17 +1,19 @@
-package fr.univartois.ili.sadoc.dao;
+package fr.univartois.ili.sadoc.entities.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import fr.univartois.ili.sadoc.configuration.Request;
-import fr.univartois.ili.sadoc.entities.Certificate;
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Certificate;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.configuration.Request;
 
-public abstract class OwnerDAO {
+public class OwnerDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
+	
+	public OwnerDAO(){}
 	
 	public static void create(Owner owner) {
 		em.getTransaction().begin();

@@ -1,12 +1,14 @@
-package fr.univartois.ili.sadoc.dao;
+package fr.univartois.ili.sadoc.entities.dao;
 
 import javax.persistence.EntityManager;
 
-import fr.univartois.ili.sadoc.entities.Document;
+import fr.univartois.ili.sadoc.entities.classes.Document;
 
-public abstract class DocumentDAO {
+public class DocumentDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
+	
+	public DocumentDAO(){}
 	
 	public static void create(Document document) {
 		em.getTransaction().begin();

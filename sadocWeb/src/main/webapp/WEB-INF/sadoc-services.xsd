@@ -34,7 +34,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="bytes" type="xs:string" />
+	<xs:element name="bytes" type="xs:base64Binary" />
 	<xs:element name="createCertificateRequest">
 		<xs:complexType>
 			<xs:sequence>
@@ -105,7 +105,21 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="doc" type="xs:string" />
+	<xs:element name="getDocumentRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:id" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocumentResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:document" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="doc" type="xs:base64Binary" />
 	<xs:element name="name" type="xs:string" />
 	<xs:element name="owner">
 		<xs:complexType>
@@ -142,7 +156,7 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="checkSum" type="xs:string" />
-	<xs:element name="pk7" type="xs:string" />
+	<xs:element name="pk7" type="xs:base64Binary" />
 	<xs:element name="creationDate" type="xs:date" />
 	<xs:element name="id" type="xs:integer" />
 	<xs:element name="acronym" type="xs:string" />
