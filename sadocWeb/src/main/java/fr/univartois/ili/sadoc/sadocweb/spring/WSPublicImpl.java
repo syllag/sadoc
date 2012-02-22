@@ -22,9 +22,6 @@ import fr.univartois.ili.sadoc.sadocweb.sign.integrationsign.SignFile;
 import fr.univartois.ili.sadoc.sadocweb.utils.Crypt;
 import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
-
-
-
 public class WSPublicImpl implements WSPublic {
 	
 
