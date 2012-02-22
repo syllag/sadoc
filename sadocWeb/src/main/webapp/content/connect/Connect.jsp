@@ -22,8 +22,9 @@
 	<form method="POST" action="ValidateConnect">
 		<input type="email" name="connect.email" id="email" placeholder="Your email" required  />
 		<input type="password" name="connect.password" id="password" placeholder="Your password" required />
-		<button type=submit class="button" >LOG IN</button>
+		<button type=submit class="buttonLogin" >LOG IN</button>
 	</form>
+	<a href="SignIn"><button class="buttonSignin">SIGN IN</button></a>
 </section>
 
 <footer>
