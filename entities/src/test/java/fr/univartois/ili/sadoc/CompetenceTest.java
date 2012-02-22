@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.advancedTest.InitDataForTest;
-import fr.univartois.ili.sadoc.dao.CompetenceDAO;
-import fr.univartois.ili.sadoc.dao.PersistenceProvider;
-import fr.univartois.ili.sadoc.entities.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.dao.CompetenceDAO;
+import fr.univartois.ili.sadoc.entities.dao.PersistenceProvider;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
