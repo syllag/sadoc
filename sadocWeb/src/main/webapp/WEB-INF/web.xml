@@ -17,7 +17,7 @@
 	</filter-mapping>
 
 	<welcome-file-list>
-		<welcome-file>content/signin/Signin.jsp</welcome-file>
+		<welcome-file>content/connect/Connect.jsp</welcome-file>
 	</welcome-file-list>
 
 </web-app>
