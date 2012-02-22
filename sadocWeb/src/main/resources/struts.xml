@@ -23,6 +23,12 @@
 			<result type="success">content/profile/EditProfile.jsp</result>
 			<result type="input">content/profile/Profile.jsp</result>
 		</action>
+		
+		<action name="checkDocument" class="fr.univartois.ili.sadoc.actions.CheckDocument"
+			method="execute" >
+			<result type="success">content/checkDocument.jsp</result>
+			<result type="input">content/checkDocumentError.jsp</result>
+		</action>
 
 	</package>
 </struts>
