@@ -9,11 +9,12 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import fr.univartois.ili.sadoc.dao.OwnerDAO;
-import fr.univartois.ili.sadoc.entities.Certificate;
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Document;
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Certificate;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Document;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
+
 
 @Endpoint
 public class WSStub {
@@ -39,11 +40,11 @@ public class WSStub {
 
 	@PayloadRoot(localPart = "signDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public Byte[] signDocument(@RequestPayload SignDocumentRequest request) {
+	public byte[] signDocument(@RequestPayload SignDocumentRequest request) {
 		return wsPublic.signDocument(request.getDoc(), request.getName(), request.getOwner(), request.getCompetence());
 	}
 
-	public Byte[] signDocument(Byte[] doc, String name, Certificate certificat,
+	public byte[] signDocument(byte[] doc, String name, Certificate certificat,
 			Competence[] competence) {
 		return null;
 	}
@@ -84,6 +85,12 @@ public class WSStub {
 		return wsPrivate.importCompetences(document);
 	}
 
+	@PayloadRoot(localPart = "getDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
+	@ResponsePayload
+	public Document getDocument(@RequestPayload  int id) {
+		return wsPrivate.getDocument(id);
+	}
+	
 	public WSPrivate getWsPrivate() {
 		return wsPrivate;
 	}

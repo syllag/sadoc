@@ -14,11 +14,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.advancedTest.InitDataForTest;
-import fr.univartois.ili.sadoc.dao.CertificateDAO;
-import fr.univartois.ili.sadoc.dao.OwnerDAO;
-import fr.univartois.ili.sadoc.dao.PersistenceProvider;
-import fr.univartois.ili.sadoc.entities.Certificate;
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Certificate;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.entities.dao.PersistenceProvider;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>

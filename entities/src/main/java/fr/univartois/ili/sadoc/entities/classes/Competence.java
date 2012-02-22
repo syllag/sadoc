@@ -1,4 +1,5 @@
-package fr.univartois.ili.sadoc.entities;
+package fr.univartois.ili.sadoc.entities.classes;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,7 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Document implements Serializable, Comparable<Object> {
+public class Competence implements Serializable, Comparable<Object> {
 	/**
 	 * 
 	 */
@@ -28,29 +29,28 @@ public class Document implements Serializable, Comparable<Object> {
 	private int id;
 	
 	private String name;
-	private String checkSum;
-	private byte[] pk7;
+	private String description;
+	private String acronym;
 	
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 	
 	/************************************************/
+
+	public Competence(){}
 	
-	public Document(){}
-	
-	public Document(String name, String checksum, byte[] pk7) {
+	public Competence(String name, String description) {
 		this.name=name;
-		this.checkSum=checksum;
-		this.pk7=pk7;
+		this.description=description;		
 	}
 	
 	/************************************************/
-	
+
 	public int compareTo(Object other) { 
-	      String name1 = ((Document) other).getName(); 
-	      String name2 = this.getName(); 
+	      String name1 = ((Competence) other).getName(); 
+	      String name2 = this.getName()+this.getName(); 
 	      return name2.compareTo(name1);
-	} 
+	   } 
 	
 	/************************************************/
 	
@@ -70,12 +70,12 @@ public class Document implements Serializable, Comparable<Object> {
 		this.name = name;
 	}
 
-	public String getCheckSum() {
-		return checkSum;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setCheckSum(String checkSum) {
-		this.checkSum = checkSum;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getCreationDate() {
@@ -86,12 +86,12 @@ public class Document implements Serializable, Comparable<Object> {
 		this.creationDate = creationDate;
 	}
 
-	public byte[] getPk7() {
-		return pk7;
+	public String getAcronym() {
+		return acronym;
 	}
 
-	public void setPk7(byte[] pk7) {
-		this.pk7 = pk7;
+	public void setAcronym(String acronym) {
+		this.acronym = acronym;
 	}
 
 }

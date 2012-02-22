@@ -3,16 +3,16 @@ package fr.univartois.ili.sadoc.sadocweb.spring;
 
 public class SignDocumentResponse {
 
-	private Byte[] doc;
+	private byte[] doc;
 
 	public SignDocumentResponse() {
 	}
 
-	public Byte[] getDoc() {
+	public byte[] getDoc() {
 		return doc;
 	}
 
-	public void setDoc(Byte[] doc) {
+	public void setDoc(byte[] doc) {
 		this.doc = doc;
 	}
 

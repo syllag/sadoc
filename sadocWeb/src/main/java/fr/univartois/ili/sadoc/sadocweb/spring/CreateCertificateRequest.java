@@ -1,6 +1,6 @@
 package fr.univartois.ili.sadoc.sadocweb.spring;
 
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
 
 
 public class CreateCertificateRequest {

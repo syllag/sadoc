@@ -1,12 +1,12 @@
 package fr.univartois.ili.sadoc.sadocweb.spring;
 
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
 
 
 public class SignDocumentRequest {
 	
-	private Byte[] doc;
+	private byte[] doc;
 	private String name;
 	private Owner owner;
 	private Competence[] competence;
@@ -14,11 +14,11 @@ public class SignDocumentRequest {
 	public SignDocumentRequest() {
 	}
 
-	public Byte[] getDoc() {
+	public byte[] getDoc() {
 		return doc;
 	}
 
-	public void setDoc(Byte[] doc) {
+	public void setDoc(byte[] doc) {
 		this.doc = doc;
 	}
 
