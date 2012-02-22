@@ -1,10 +1,6 @@
 package fr.univartois.ili.sadoc.actions;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-
 import com.opensymphony.xwork2.ActionSupport;
-
 import fr.univartois.ili.sadoc.Form.ManageSignInForm;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.Owner;
@@ -28,7 +24,6 @@ public class ManageSignIn extends ActionSupport {
 		personne.setMail(form.getMail());
 		// enregistrement dans la base de donnée
 		try {
-
 			personne.setPassword(form.getPassword());
 			OwnerDAO.create(personne);
 		} catch (Exception e) {

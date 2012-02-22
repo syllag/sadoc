@@ -5,16 +5,23 @@
 	<constant name="struts.custom.i18n.resources" value="demo" />
 	<package name="sadocWeb" namespace="/" extends="struts-default">
 		<default-action-ref name="index" />
+		
 		<action name="validateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect"
 			method="execute">
 			<result name="success">content/signin/Signin.jsp</result>
-			<result name="error">content/connect/Connect.jsp</result>
+			<result name="input">content/connect/Connect.jsp</result>
 		</action>
 		
 		<action name="signIn" class="fr.univartois.ili.sadoc.actions.ManageSignIn"
 			method="execute">
 			<result name="success">content/signin/Signin.jsp</result>
+			<result name="input">content/signin/Signin.jsp</result>
 		</action>
-
+		
+		<action name="ModifyProfile" class="fr.univartois.ili.sadoc.actions.ManageProfile"
+            method="execute">
+            <result name="success">profile/EditProfile.jsp</result>
+            <result name="input">profile/Profile.jsp</result>
+        </action>
 	</package>
 </struts>
