@@ -5,6 +5,10 @@ import fr.univartois.ili.sadoc.Form.ManageSignInForm;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.Owner;
 
+/**
+ * @author Diane Dutartre <LiDaYuRan at gmail.com>
+ * 
+ */
 public class ManageSignIn extends ActionSupport {
 
 	/**
@@ -17,6 +21,10 @@ public class ManageSignIn extends ActionSupport {
 	 */
 	private ManageSignInForm form;
 
+	/************************************************/
+	/* (non-Javadoc)
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() {
 		Owner personne = new Owner();
 		personne.setFirstName(form.getFirstname());
@@ -32,7 +40,7 @@ public class ManageSignIn extends ActionSupport {
 			addActionMessage("Momentary problem... Please try agin later.");
 			return "input";
 		}
-		return "success";
+		return SUCCESS;
 	}
 
 	/*
@@ -50,6 +58,11 @@ public class ManageSignIn extends ActionSupport {
 		}
 	}
 
+	
+	
+
+	/************************************************/
+	
 	/**
 	 * getter du formulaire de creation d'evenement
 	 * 
