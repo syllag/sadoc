@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="fr">
@@ -6,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description"
 	content="Système d'authentification de document." />
-<title>Votre gestionnaire de compétence en ligne</title>
+<title>Votre gestionnaire de compétences en ligne</title>
 <link href="css/style.css" type="text/css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="img/favicon.png" />
 </head>
@@ -14,9 +15,11 @@
 <body>
 
 	<header class="header">
-		<a href="#"><img src='img/logo.png' /></a>
+		<a href="Home"><img src='img/logo.png' /></a>
 		<h1>Système d'authentification de documents</h1>
 	</header>
+	
+	<c:import url="../layouts/MenuNotConnected.jsp"/>
 
 	<section class="inscription">
 		<form method="post" action="SignIn">

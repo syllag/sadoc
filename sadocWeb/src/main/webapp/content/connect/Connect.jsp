@@ -12,10 +12,11 @@
 
 <body>
 <header class="header">
-	<a href="#"><img src='img/logo.png' /></a><h1>Système d'authentification de document</h1>
+	<a href="Home"><img src='img/logo.png' /></a>
+	<h1>Système d'authentification de documents</h1>
 </header>
 
-<c:import url="../layouts/Menu.jsp"/>
+<c:import url="../layouts/MenuNotConnected.jsp"/>
 
 <section class="connection">
 	<form method="POST" action="ValidateConnect">

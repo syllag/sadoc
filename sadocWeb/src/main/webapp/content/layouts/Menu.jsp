@@ -3,7 +3,7 @@
 		<a href="Home">Accueil</a>
 	</li>
 	<li>
-		<a href="SignIn">Profil</a>
+		<a href="Profile">Profil</a>
 	</li>
 	<li>
 		<a href="Competence">Competence</a>

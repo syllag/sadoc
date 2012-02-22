@@ -25,5 +25,9 @@
                         <result name="input">content/profile/EditProfile.jsp</result>
                 </action>
                 
+                <action name="Home" class="fr.univartois.ili.sadoc.actions.ManageHome"
+                		method="execute">
+                	<result>content/home/Home.jsp</result>
+                </action>
         </package>
 </struts>

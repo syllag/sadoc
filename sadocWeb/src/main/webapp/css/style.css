@@ -39,9 +39,9 @@ body, html{
 
 
 .main_menu{
-border-bottom: 4px solid #00aeef ;
+border-bottom: 4px solid #0089BD ;
 font-size: 18px ;
-color: #00aeef;
+color: #0089bd;
 font-weight: bold ;
 padding: 0px 0px 5px 0px ;
 text-align: center;
@@ -62,12 +62,12 @@ text-shadow: none;
 }
 
 .main_menu li a:focus{
-color: #0089bd;
+color: #00AEEF;
 outline : none;
 }
 
 .main_menu li a {
-color: #00aeef;
+color: #0089bd;
 font-weight: bold ;
 text-decoration: none ;
 }

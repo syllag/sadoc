@@ -20,10 +20,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-				<version>1.2</version>
-			</dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
@@ -41,7 +41,7 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.1-901.jdbc4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
@@ -52,16 +52,11 @@
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
 			<version>2.3.1.2</version>
-		</dependency>	
+		</dependency>
 
 
 	</dependencies>
 	<build>
 		<finalName>sadocWeb</finalName>
-		<resource>
-				
-				<directory>${project.groupId}/entities/src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
 	</build>
 </project>
