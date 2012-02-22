@@ -13,6 +13,16 @@ public class ManageConnectForm {
 		}
 
 
+	
+
+		public ManageConnectForm() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+
+
+
+
 		public String getEmail() {
 			return email;
 		}
@@ -21,6 +31,8 @@ public class ManageConnectForm {
 		public void setEmail(String email) {
 			this.email = email;
 		}
+
+
 
 
 		public String getPassword() {
