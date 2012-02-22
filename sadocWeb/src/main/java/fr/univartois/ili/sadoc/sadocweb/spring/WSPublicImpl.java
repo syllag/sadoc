@@ -2,6 +2,8 @@ package fr.univartois.ili.sadoc.sadocweb.spring;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +16,9 @@ import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
 import fr.univartois.ili.sadoc.entities.Signature;
 
-public class WSPublicImpl implements WSPublic {
 
+public class WSPublicImpl implements WSPublic {
+	
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=false)
 	public Owner createOwner(String lastName, String firstName, String mail)
 			throws Exception {
