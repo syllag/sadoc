@@ -25,6 +25,7 @@ public class ManageConnect extends ActionSupport {
 	private ManageConnectForm connect;
 	
 	public String execute(){
+
 		
 		EntityManager em = PersistenceProvider.getEntityManager();
 		TypedQuery<Owner> query;
@@ -42,7 +43,7 @@ public class ManageConnect extends ActionSupport {
 		
 		//take information profile
 		
-		
+
 		return SUCCESS;
 	}
 

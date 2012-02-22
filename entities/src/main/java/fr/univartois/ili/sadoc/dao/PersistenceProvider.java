@@ -9,7 +9,7 @@ public abstract class PersistenceProvider {
 	
 	public static EntityManager getEntityManager(){
 		if (em == null){
-			setProvider("sadocjpa");
+			setProvider("sadocjpatest");
 		}
 		return em;
 	}
