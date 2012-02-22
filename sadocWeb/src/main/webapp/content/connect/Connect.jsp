@@ -15,8 +15,8 @@
 
 <section class="connection">
 	<form method="POST" action="validateConnect">
-		<input type="text" name="email" id="email" placeholder="Your email" required  />
-		<input type="password" name="password" id="password" placeholder="Your password" required />
+		<input type="email" name="connect.email" id="email" placeholder="Your email" required  />
+		<input type="password" name="connect.password" id="password" placeholder="Your password" required />
 		<button type=submit class="button" >LOG IN</button>
 	</form>
 </section>
