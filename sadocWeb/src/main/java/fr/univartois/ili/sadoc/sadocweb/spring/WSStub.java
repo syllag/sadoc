@@ -36,13 +36,13 @@ public class WSStub implements WSPrivate, WSPublic {
 
 	@PayloadRoot(localPart = "signDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public Byte[] signDocument(@RequestPayload Byte[] doc,
+	public byte[] signDocument(@RequestPayload byte[] doc,
 			@RequestPayload String name, @RequestPayload Owner owner,
 			@RequestPayload Competence[] competence) {
 		return wsPublic.signDocument(doc, name, owner, competence);
 	}
 
-	public Byte[] signDocument(Byte[] doc, String name, Certificate certificat,
+	public byte[] signDocument(byte[] doc, String name, Certificate certificat,
 			Competence[] competence) {
 		return null;
 	}
