@@ -8,11 +8,14 @@ import fr.univartois.ili.sadoc.entities.classes.Competence;
 import fr.univartois.ili.sadoc.entities.classes.Document;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
 
+
 public interface WSPrivate {
 	
 	boolean verifyDocument(Byte[] doc, Document document, Owner utilisateur);
 
 	Map<Owner, List<Competence>> getDocumentInformations(int documentId);
+	
+	Document getDocument(int id);
 	
 	List<Document> importDocument(Owner owner);
 

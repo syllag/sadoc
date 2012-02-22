@@ -1,7 +1,6 @@
 package fr.univartois.ili.sadoc.sadocweb.spring;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Propagation;

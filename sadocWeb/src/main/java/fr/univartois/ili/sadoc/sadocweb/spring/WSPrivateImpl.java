@@ -50,4 +50,9 @@ public class WSPrivateImpl implements WSPrivate {
 		return competences;
 	}
 
+	public Document getDocument(int id) {
+		Document document = DocumentDAO.findById(id);
+		return document;
+	}
+
 }

@@ -83,6 +83,12 @@ public class WSStub implements WSPrivate, WSPublic {
 		return wsPrivate.importCompetences(document);
 	}
 
+	@PayloadRoot(localPart = "getDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
+	@ResponsePayload
+	public Document getDocument(@RequestPayload  int id) {
+		return wsPrivate.getDocument(id);
+	}
+	
 	public WSPrivate getWsPrivate() {
 		return wsPrivate;
 	}
