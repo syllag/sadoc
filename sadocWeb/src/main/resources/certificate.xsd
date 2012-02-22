@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<!-- Element racine "certificate" -->
+	<xsd:element name="certificate">
+		
+
+		<!-- Definition de la cle de l'element "certificate" -->
+        <xsd:complexType>
+			<!-- Elements contenu dans l'element racine "certificate" : "domain" -->
+			<xsd:sequence>
+				<xsd:element name="domain" type="Tdomain" maxOccurs="unbounded" />
+			</xsd:sequence>
+
+			<!-- Attributs de l'element racine "certificate" -->
+			<xsd:attribute name="name" type="xsd:token" use="required" />
+			<xsd:attribute name="date" type="xsd:date" use="required" />
+		</xsd:complexType>
+        
+
+		<!-- Definition de la cle de l'element "domain" -->
+        <xsd:key name="nameCertificate">
+			<!-- endroit ou doit se trouver la cle -->
+			
+			<!-- valeur de l'element ou de l'attribut qui represente la cle -->
+            <xsd:selector xpath="." />
+            
+            <xsd:field xpath="@name" />
+        </xsd:key>
+        
+
+		<!-- Definition de la cle de l'element "competence" -->
+        <xsd:key name="idDomain">
+			
+            <xsd:selector xpath="./domain" />
+            
+            <xsd:field xpath="@id" />
+        </xsd:key>
+        
+        <xsd:key name="idCompetence">
+			
+            <xsd:selector xpath="./domain/competence" />
+            
+            <xsd:field xpath="@id" />
+        </xsd:key>
+    </xsd:element>
+
+
+
+	<!-- Definition de de l'element "domain" -->
+	<xsd:complexType name="Tdomain">
+		<xsd:sequence>
+			<xsd:element name="competence" type="Tcompetence" maxOccurs="unbounded" />
+		</xsd:sequence>
+
+		<!-- Attributs de l'element racine "domain" -->
+		<xsd:attribute name="id" type="xsd:token" use="required" />
+		<xsd:attribute name="name" type="xsd:string" use="required" />
+	</xsd:complexType>
+
+	<!-- Definition de de l'element "competence" -->
+	<xsd:complexType name="Tcompetence">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<!-- Attributs de l'element racine "competence" -->
+				<xsd:attribute name="id" type="xsd:token" use="required" />
+				<xsd:attribute name="name" type="xsd:string" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+</xsd:schema>

@@ -23,6 +23,7 @@ import fr.univartois.ili.sadoc.sadocweb.utils.Crypt;
 import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
 public class WSPublicImpl implements WSPublic {
+	
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner createOwner(String lastName, String firstName, String mail)

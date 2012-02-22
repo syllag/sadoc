@@ -12,7 +12,9 @@
 	<sws:annotation-driven />
 
 	<!-- Use this for autowired DI -->
-	<context:component-scan base-package="fr.univartois.ili.sadoc.sadocweb" />
+	<context:component-scan base-package="fr.univartois.ili.sadoc" />
+	<context:component-scan base-package="fr.univartois.ili.sadoc.dao" />
+	<context:component-scan base-package="fr.univartois.ili.sadoc.sadocWeb" />
 
 	<!-- WSDL available at http://localhost:8080/sadocWeb/services/sadoc.wsdl -->
 	<sws:dynamic-wsdl id="sadoc" portTypeName="SadocServices"
@@ -59,7 +61,9 @@
 		<property name="mappingLocation" value="/WEB-INF/sadoc-services-mapping.xml" />
 	</bean>
 
+	<bean id="ownerDAO" class="fr.univartois.ili.sadoc.dao.OwnerDAO" />
 	<bean id="wsPrivate" class="fr.univartois.ili.sadoc.sadocweb.spring.WSPrivateImpl" />
 	<bean id="wsPublic" class="fr.univartois.ili.sadoc.sadocweb.spring.WSPublicImpl" />
-
+	
+	
 </beans>
