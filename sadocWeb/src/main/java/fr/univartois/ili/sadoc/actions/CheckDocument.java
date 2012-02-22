@@ -11,13 +11,13 @@ import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
 import fr.univartois.ili.sadoc.utils.TestID;
 
-public class CheckDocument extends ActionSupport{
+public class CheckDocument extends ActionSupport {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private String sa = null;
 	private Document document = null;
 	private Owner owner = null;
@@ -30,7 +30,7 @@ public class CheckDocument extends ActionSupport{
 	public void setSa(final String sa) {
 		this.sa = sa;
 	}
-	
+
 	public Document getDocument() {
 		return document;
 	}
@@ -43,30 +43,23 @@ public class CheckDocument extends ActionSupport{
 		return owner;
 	}
 
-	public String execute(){
-		System.out.println("sa:"+sa);
-		//if(TestID.trueFalseID(sa)){
-			 //long realID = TestID.findRealID(sa);
-		
-		long realID= Long.parseLong(sa);
-		
-			System.out.println("Etape 1");
-				ClientWebServiceImpl clientWS = new ClientWebServiceImpl();
-				System.out.println("Etape 2");
-				
-				document = clientWS.getDocument(realID);
-				System.out.println("Etape 3");
-				Map <Owner,List<Competence>> competences = clientWS.getCompetences(realID);
-				System.out.println("Etape 4");
-				for(Owner user : competences.keySet()){
-					owner = user;
-					listCompetences = competences.get(owner);
-				}
-				return SUCCESS;
-		
-		//System.out.println("MISSION FAILED");
-		
-		//return INPUT;
+	public String execute() {
+		if (TestID.trueFalseID(sa)) {
+			long realID = TestID.findRealID(sa);
+			ClientWebServiceImpl clientWS = new ClientWebServiceImpl();
+			document = clientWS.getDocument(realID);
+
+			Map<Owner, List<Competence>> competences = clientWS
+					.getCompetences(realID);
+
+			for (Owner user : competences.keySet()) {
+				owner = user;
+				listCompetences = competences.get(owner);
+			}
+			return SUCCESS;
+		}
+
+		return INPUT;
 	}
 
 }
