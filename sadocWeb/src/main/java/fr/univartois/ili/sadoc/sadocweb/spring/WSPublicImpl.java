@@ -25,26 +25,19 @@ import fr.univartois.ili.sadoc.sadocweb.sign.integrationsign.SignFile;
 import fr.univartois.ili.sadoc.sadocweb.utils.Crypt;
 import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
-
 public class WSPublicImpl implements WSPublic {
 	
 	@Resource(name="ownerDAO")
 	private OwnerDAO  ownerDAO ;
 
-//	public WSPublicImpl() {
-//		
-//	}
-//	
-//	public WSPublicImpl(OwnerDAO ownerDAO) {
-//		super();
-//		this.ownerDAO = new OwnerDAO();
-//	}
+
 
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner createOwner(String lastName, String firstName, String mail)
 			throws Exception {
 		Owner owner = new Owner(firstName, lastName, mail);
 		ownerDAO.create(owner);
+
 		return owner;
 	}
 
