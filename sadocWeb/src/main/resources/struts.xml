@@ -27,7 +27,7 @@
 		<action name="checkDocument" class="fr.univartois.ili.sadoc.actions.CheckDocument"
 			method="execute" >
 			<result type="success">content/checkDocument.jsp</result>
-			<result type="input">content/checkDocumentError.jsp</result>
+			<result type="error">content/checkDocumentError.jsp</result>
 		</action>
 
 	</package>
