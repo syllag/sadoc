@@ -10,11 +10,13 @@ import fr.univartois.ili.sadoc.entities.Certificate;
 import fr.univartois.ili.sadoc.entities.Owner;
 import fr.univartois.ili.sadoc.entities.Signature;
 
-public abstract class CertificateDAO {
+public class CertificateDAO {
 
 	private static final EntityManager em = PersistenceProvider
 			.getEntityManager();
 
+	public CertificateDAO(){}
+	
 	public static void create(Certificate certificate) {
 		em.getTransaction().begin();
 		em.persist(certificate);

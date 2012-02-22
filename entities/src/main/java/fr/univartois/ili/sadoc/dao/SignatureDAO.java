@@ -16,9 +16,11 @@ import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
 import fr.univartois.ili.sadoc.entities.Signature;
 
-public abstract class SignatureDAO {
+public class SignatureDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
+	
+	public SignatureDAO(){}
 	
 	public static void create(Signature signature) {
 		em.getTransaction().begin();
