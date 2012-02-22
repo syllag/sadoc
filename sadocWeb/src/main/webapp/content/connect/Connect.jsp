@@ -14,7 +14,7 @@
 </header>
 
 <section class="connection">
-	<form method="POST" action="validateConnect">
+	<form method="POST" action="ValidateConnect">
 		<input type="text" name="email" id="email" placeholder="Your email" required  />
 		<input type="password" name="password" id="password" placeholder="Your password" required />
 		<button type=submit class="button" >LOG IN</button>

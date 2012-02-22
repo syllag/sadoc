@@ -6,13 +6,13 @@
 	<package name="sadocWeb" namespace="/" extends="struts-default">
 		<default-action-ref name="index" />
 		
-		<action name="validateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect"
+		<action name="ValidateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect"
 			method="execute">
 			<result name="success">content/signin/Signin.jsp</result>
 			<result name="input">content/connect/Connect.jsp</result>
 		</action>
 		
-		<action name="signIn" class="fr.univartois.ili.sadoc.actions.ManageSignIn"
+		<action name="SignIn" class="fr.univartois.ili.sadoc.actions.ManageSignIn"
 			method="execute">
 			<result name="success">content/profile/Profile.jsp</result>
 			<result name="input">content/signin/Signin.jsp</result>
@@ -20,8 +20,8 @@
 		
 		<action name="ModifyProfile" class="fr.univartois.ili.sadoc.actions.ManageProfile"
 			method="execute" >
-			<result type="success">content/profile/EditProfile.jsp</result>
-			<result type="input">content/profile/Profile.jsp</result>
+			<result name="success">content/profile/Profile.jsp</result>
+			<result name="input">content/profile/EditProfile.jsp</result>
 		</action>
 
 	</package>

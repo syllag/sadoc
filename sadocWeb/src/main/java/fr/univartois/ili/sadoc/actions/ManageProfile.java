@@ -16,13 +16,14 @@ import fr.univartois.ili.sadoc.entities.Owner;
  * 
  */
 public class ManageProfile extends ActionSupport implements SessionAware {
+
 	private static final long serialVersionUID = 1L;
 	private ManageProfileForm form;
-	private Map session;
+	private Map<String, Object> session;
 	
 	/************************************************/
 
-	public String execute () throws Exception {
+	public String execute () {
 		session = ActionContext.getContext().getSession();
 		String mail = (String) session.get("mail");
 		
@@ -60,10 +61,10 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	public void setForm(ManageProfileForm form) {
 		this.form = form;
 	}
-	public void setSession(Map session){
+	public void setSession(Map<String, Object> session){
 		  session = this.getSession();
 	}
-	public Map getSession(){
+	public Map<String, Object> getSession(){
 		return session;
 	}
 }

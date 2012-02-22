@@ -5,7 +5,6 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>sadocWeb</display-name>
 
-
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
@@ -17,7 +16,7 @@
 	</filter-mapping>
 
 	<welcome-file-list>
-		<welcome-file>content/signin/Signin.jsp</welcome-file>
+		<welcome-file>content/connect/Connect.jsp</welcome-file>
 	</welcome-file-list>
 
 </web-app>

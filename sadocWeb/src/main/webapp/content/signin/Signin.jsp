@@ -18,7 +18,7 @@
 	</header>
 
 	<section class="inscription">
-		<form method="post" action="signIn">
+		<form method="post" action="SignIn">
 			<input type="text" name="form.firstname" id="prenom"
 				placeholder="Type your Firstname" required /> <input type="text"
 				name="form.name" id="nom" placeholder="Type your Lastname" required />
