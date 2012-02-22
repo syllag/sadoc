@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,7 +7,7 @@
 <meta name="description"
 	content="Système d'authentification de document." />
 <title>Votre gestionnaire de compétence en ligne</title>
-<link href="css/signin.css" type="text/css" rel="stylesheet" />
+<link href="css/style.css" type="text/css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="img/favicon.png" />
 </head>
 
@@ -14,11 +15,11 @@
 
 	<header class="header">
 		<a href="#"><img src='img/logo.png' /></a>
-		<h1>Système d'authentification de document</h1>
+		<h1>Système d'authentification de documents</h1>
 	</header>
 
 	<section class="inscription">
-		<form method="post" action="signIn">
+		<form method="post" action="SignIn">
 			<input type="text" name="form.firstname" id="prenom"
 				placeholder="Type your Firstname" required /> <input type="text"
 				name="form.name" id="nom" placeholder="Type your Lastname" required />

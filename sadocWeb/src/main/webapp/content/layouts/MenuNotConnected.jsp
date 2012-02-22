@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/style.css" type="text/css" rel="stylesheet" />
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>PROFILE</h1>
+
 </body>
 </html>

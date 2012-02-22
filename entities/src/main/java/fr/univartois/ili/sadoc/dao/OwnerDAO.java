@@ -28,6 +28,15 @@ public abstract class OwnerDAO {
 		return query.getSingleResult();
 	}
 	
+	
+	public static Owner findOwner(String mail,String password) {
+		TypedQuery<Owner> query;
+		query = em.createQuery(Request.FIND_OWNER_BY_MAIL_PASSWORD, Owner.class);
+		query.setParameter("mail", mail);
+		query.setParameter("password", password);
+		return query.getSingleResult();
+	}
+	
 	public static void update(Owner user) {
 		em.getTransaction().begin();
 		em.merge(user);
