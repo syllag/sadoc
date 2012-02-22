@@ -4,13 +4,7 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.custom.i18n.resources" value="demo" />
 	<package name="sadocWeb" namespace="/" extends="struts-default">
-<<<<<<< HEAD
-	<default-action-ref name="index" />
-	<action name="validateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect" method="execute">
-		<result name="success">content/signin/Signin.jsp</result>
-		<result name="input">content/connect/Connect.jsp</result>
-	</action>
-=======
+
 		<default-action-ref name="index" />
 		
 		<action name="validateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect"
@@ -31,6 +25,5 @@
 			<result type="input">content/profile/Profile.jsp</result>
 		</action>
 
->>>>>>> branch 'master' of https://code.google.com/p/sadoc/
 	</package>
 </struts>
