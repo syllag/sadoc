@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,31 +19,30 @@
 	
 	<section id="content">
 		<div class="user">
-			<h3> Nom Prenom </h3>
-			<p> Ville , code postal </p>
-			<p> adresse </p>
-			<p> Numero de tel </p>
+			<h3> ${owner.lastName} ${owner.firstName} </h3>
+			<p> ${owner.town}, ${owner.zipCode} </p>
+			<p>${owner.address} </p>
+			<p> ${owner.phone} </p>
 
 		</div>
 		<hr />
-		<p class="auth"> Le document a √©t√© certifi√© par SADOC , le JJ/MM/AAAA <p>
+		<p class="auth"> Le document a ÈtÈ certifiÈ par SADOC , le ${document.creationDate} <p>
 		<hr />
 
 		<div class="infoCompetence">
-			<p> comp√©tence :<p>
-			<p> description comp√©tence :</p>
-			<p> comp√©tence :<p>
-			<p> description comp√©tence :</p>
-				
+			<c:forEach var="competence" items="${listCompetences}">
+			<p> compÈtence : ${competence.name}<p>
+			<p> description compÈtence : ${competence.description}</p>
+			</c:forEach>	
 		</div>
 	
 		<div class="infoDocument">
-			<p> Nom du document :</p>
-			<p> url document :</p>
+			<p> Nom du document : ${document.name}</p>
+			<p> url document : ${document.url}</p>
 		</div>
 
 		<div class="infoP7S">
-			<p>signature du fichier (fichier *.p7s) :</p>
+			<p>signature du fichier (fichier *.p7s) : ${document.pk7}</p>
 		</div>
 	</section>
 </div>
