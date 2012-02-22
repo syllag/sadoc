@@ -2,11 +2,12 @@ package fr.univartois.ili.sadoc.sadocweb.spring;
 
 import fr.univartois.ili.sadoc.entities.classes.Owner;
 
-public class CreateOwnerResponse {
 
+public class CreateCertificateRequest {
+	
 	private Owner owner;
-
-	public CreateOwnerResponse() {
+	
+	public CreateCertificateRequest() {
 	}
 
 	public Owner getOwner() {

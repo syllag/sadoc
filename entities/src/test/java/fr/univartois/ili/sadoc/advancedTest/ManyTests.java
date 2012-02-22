@@ -10,11 +10,11 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import fr.univartois.ili.sadoc.dao.PersistenceProvider;
-import fr.univartois.ili.sadoc.dao.SignatureDAO;
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Document;
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Document;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.dao.PersistenceProvider;
+import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>

@@ -9,17 +9,22 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import fr.univartois.ili.sadoc.entities.Certificate;
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Document;
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Certificate;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Document;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
+
 
 @Endpoint
-public class WSStub implements WSPrivate, WSPublic {
+public class WSStub {
+	
+	private final WSPrivateImpl wsPrivate;
 
-	private final WSPrivate wsPrivate;
-	private final WSPublic wsPublic;
-
+	private final WSPublicImpl wsPublic;
+	
+	private final OwnerDAO ownerDAO = new OwnerDAO();
+	
 	@Autowired
 	public WSStub(WSPrivateImpl wsPrivate, WSPublicImpl wsPublic) {
 		this.wsPrivate = wsPrivate;
@@ -28,19 +33,17 @@ public class WSStub implements WSPrivate, WSPublic {
 
 	@PayloadRoot(localPart = "createOwnerRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public Owner createOwner(@RequestPayload String nom,
-			@RequestPayload String prenom, @RequestPayload String mail)
+	public Owner createOwner(@RequestPayload CreateOwnerRequest request)
 			throws Exception {
-		return wsPublic.createOwner(nom, prenom, mail);
+		return wsPublic.createOwner(request.getLastName(), request.getFirstName(), request.getMail());
 	}
 
 	@PayloadRoot(localPart = "signDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public byte[] signDocument(@RequestPayload byte[] doc,
-			@RequestPayload String name, @RequestPayload Owner owner,
-			@RequestPayload Competence[] competence) {
-		return wsPublic.signDocument(doc, name, owner, competence);
+	public byte[] signDocument(@RequestPayload SignDocumentRequest request) {
+		return wsPublic.signDocument(request.getDoc(), request.getName(), request.getOwner(), request.getCompetence());
 	}
+
 
 	public byte[] signDocument(byte[] doc, String name, Certificate certificat,
 			Competence[] competence) {
@@ -49,8 +52,8 @@ public class WSStub implements WSPrivate, WSPublic {
 
 	@PayloadRoot(localPart = "createCertificateRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public void createCertificate(@RequestPayload Owner owner) {
-		wsPublic.createCertificate(owner);
+	public void createCertificate(@RequestPayload CreateCertificateRequest request) {
+		wsPublic.createCertificate(request.getOwner());
 	}
 
 	public List<Certificate> getCertificate(Owner utilisateur) {
@@ -83,12 +86,22 @@ public class WSStub implements WSPrivate, WSPublic {
 		return wsPrivate.importCompetences(document);
 	}
 
+	@PayloadRoot(localPart = "getDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
+	@ResponsePayload
+	public Document getDocument(@RequestPayload  int id) {
+		return wsPrivate.getDocument(id);
+	}
+	
 	public WSPrivate getWsPrivate() {
 		return wsPrivate;
 	}
 
 	public WSPublic getWsPublic() {
 		return wsPublic;
+	}
+
+	public OwnerDAO getOwnerDAO() {
+		return ownerDAO;
 	}
 
 }

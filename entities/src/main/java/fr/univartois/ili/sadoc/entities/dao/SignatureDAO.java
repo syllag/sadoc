@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.dao;
+package fr.univartois.ili.sadoc.entities.dao;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,12 +9,12 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import fr.univartois.ili.sadoc.configuration.Request;
-import fr.univartois.ili.sadoc.entities.Certificate;
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Document;
-import fr.univartois.ili.sadoc.entities.Owner;
-import fr.univartois.ili.sadoc.entities.Signature;
+import fr.univartois.ili.sadoc.entities.classes.Certificate;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Document;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Signature;
+import fr.univartois.ili.sadoc.entities.configuration.Request;
 
 public class SignatureDAO {
 

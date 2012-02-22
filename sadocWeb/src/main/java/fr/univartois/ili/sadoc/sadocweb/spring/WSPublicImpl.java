@@ -1,7 +1,6 @@
 package fr.univartois.ili.sadoc.sadocweb.spring;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Propagation;
@@ -9,21 +8,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itextpdf.text.pdf.PdfReader;
 
-import fr.univartois.ili.sadoc.dao.CertificateDAO;
-import fr.univartois.ili.sadoc.dao.DocumentDAO;
-import fr.univartois.ili.sadoc.dao.OwnerDAO;
-import fr.univartois.ili.sadoc.dao.SignatureDAO;
-import fr.univartois.ili.sadoc.entities.Certificate;
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Document;
-import fr.univartois.ili.sadoc.entities.Owner;
-import fr.univartois.ili.sadoc.entities.Signature;
+import fr.univartois.ili.sadoc.entities.classes.Certificate;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Document;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Signature;
+import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
+import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.sadocweb.pdf.ManageQRCImpl;
 import fr.univartois.ili.sadoc.sadocweb.sign.integrationsign.SignFile;
 import fr.univartois.ili.sadoc.sadocweb.utils.Crypt;
 import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
+
+
+
 public class WSPublicImpl implements WSPublic {
+	
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner createOwner(String lastName, String firstName, String mail)

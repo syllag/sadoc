@@ -1,8 +1,8 @@
-package fr.univartois.ili.sadoc.dao;
+package fr.univartois.ili.sadoc.entities.dao;
 
 import javax.persistence.EntityManager;
 
-import fr.univartois.ili.sadoc.entities.Document;
+import fr.univartois.ili.sadoc.entities.classes.Document;
 
 public class DocumentDAO {
 
