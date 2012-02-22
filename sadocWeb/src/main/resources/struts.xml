@@ -29,5 +29,11 @@
                 		method="execute">
                 	<result>content/home/Home.jsp</result>
                 </action>
+                
+                <action name="checkDocument" class="fr.univartois.ili.sadoc.actions.CheckDocument"
+						method="execute" >
+					<result name="success">content/DocumentInformation/documentInformation.jsp</result>
+				<result name="input">content/DocumentInformation/documentInformationError.jsp</result>
+			</action>
         </package>
 </struts>
