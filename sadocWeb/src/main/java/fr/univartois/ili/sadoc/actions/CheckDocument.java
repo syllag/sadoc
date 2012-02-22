@@ -1,6 +1,7 @@
 package fr.univartois.ili.sadoc.actions;
 
 import java.util.List;
+import java.util.Map;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -43,20 +44,29 @@ public class CheckDocument extends ActionSupport{
 	}
 
 	public String execute(){
-		if(TestID.trueFalseID(sa)){
-			long realID = TestID.findRealID(sa);
-			try{
+		System.out.println("sa:"+sa);
+		//if(TestID.trueFalseID(sa)){
+			 //long realID = TestID.findRealID(sa);
+		
+		long realID= Long.parseLong(sa);
+		
+			System.out.println("Etape 1");
 				ClientWebServiceImpl clientWS = new ClientWebServiceImpl();
+				System.out.println("Etape 2");
+				
 				document = clientWS.getDocument(realID);
-				owner = clientWS.getOwner(realID);
-				listCompetences = clientWS.getListCompetences(realID);
-			}
-			catch(Exception e){
-				return ERROR;
-			}
-			return SUCCESS;
-		}
-		return ERROR;
+				System.out.println("Etape 3");
+				Map <Owner,List<Competence>> competences = clientWS.getCompetences(realID);
+				System.out.println("Etape 4");
+				for(Owner user : competences.keySet()){
+					owner = user;
+					listCompetences = competences.get(owner);
+				}
+				return SUCCESS;
+		
+		//System.out.println("MISSION FAILED");
+		
+		//return INPUT;
 	}
 
 }
