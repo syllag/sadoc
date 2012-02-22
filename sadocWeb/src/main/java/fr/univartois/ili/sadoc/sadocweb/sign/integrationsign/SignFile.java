@@ -38,7 +38,8 @@ import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.bouncycastle.operator.jcajce.JcaDigestCalculatorProviderBuilder;
 import org.bouncycastle.util.Store;
-import fr.univartois.ili.sadoc.entities.Owner;
+
+import fr.univartois.ili.sadoc.entities.classes.Owner;
 
 public class SignFile {
 	

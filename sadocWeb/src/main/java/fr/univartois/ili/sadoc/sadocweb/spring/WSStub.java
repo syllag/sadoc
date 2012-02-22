@@ -9,10 +9,10 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import fr.univartois.ili.sadoc.entities.Certificate;
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Document;
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Certificate;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Document;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
 
 @Endpoint
 public class WSStub implements WSPrivate, WSPublic {

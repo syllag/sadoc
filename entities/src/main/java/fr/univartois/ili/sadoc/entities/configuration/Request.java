@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.configuration;
+package fr.univartois.ili.sadoc.entities.configuration;
 
 public abstract class Request {
 	

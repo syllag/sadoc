@@ -10,11 +10,11 @@ import java.util.Set;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.univartois.ili.sadoc.dao.DocumentDAO;
-import fr.univartois.ili.sadoc.dao.SignatureDAO;
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Document;
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Document;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
+import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 
 public class WSPrivateImpl implements WSPrivate {
 	

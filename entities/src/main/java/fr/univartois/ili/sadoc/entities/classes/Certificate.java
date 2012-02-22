@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.entities;
+package fr.univartois.ili.sadoc.entities.classes;
 
 import java.io.Serializable;
 import java.security.PrivateKey;

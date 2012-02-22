@@ -15,11 +15,11 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import fr.univartois.ili.sadoc.dao.CertificateDAO;
-import fr.univartois.ili.sadoc.dao.OwnerDAO;
-import fr.univartois.ili.sadoc.dao.PersistenceProvider;
-import fr.univartois.ili.sadoc.entities.Certificate;
-import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Certificate;
+import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.entities.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.sadocweb.spring.WSPublic;
 
 public class WSPublicTest {

@@ -1,10 +1,10 @@
-package fr.univartois.ili.sadoc.dao;
+package fr.univartois.ili.sadoc.entities.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import fr.univartois.ili.sadoc.configuration.Request;
-import fr.univartois.ili.sadoc.entities.Competence;
+import fr.univartois.ili.sadoc.entities.classes.Competence;
+import fr.univartois.ili.sadoc.entities.configuration.Request;
 
 public class CompetenceDAO {
 

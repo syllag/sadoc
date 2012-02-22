@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.dao;
+package fr.univartois.ili.sadoc.entities.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
