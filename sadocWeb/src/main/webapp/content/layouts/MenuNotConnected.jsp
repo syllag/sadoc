@@ -5,7 +5,7 @@
 	<li class="${currentMenu == 'SignIn' ? 'menu_active' : ''}">
 		<a href="SignIn">Inscription</a>
 	</li>
-	<li class="${currentMenu == 'ValidateConnect' ? 'menu_active' : ''}">
+	<li class="${currentMenu == 'Connect' ? 'menu_active' : ''}">
 		<a href="ValidateConnect">Connexion</a>
 	</li>
 </menu>

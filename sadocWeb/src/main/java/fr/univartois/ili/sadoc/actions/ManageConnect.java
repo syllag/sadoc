@@ -25,8 +25,6 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	
 	public String execute() {
-		session = ActionContext.getContext().getSession();
-		session.put("currentMenu", "ValidateConnect");
 		
 		if (connect == null) return INPUT;
 		Owner owner = OwnerDAO.findOwner(connect.getEmail(),

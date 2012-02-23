@@ -11,7 +11,7 @@
 
 <body>
 <header class="header">
-	<a href="#"><img src='img/logo.png' /></a><h1>SystÃ¨me d'authentification de document</h1>
+	<a href="#"><img src='img/logo.png' /></a><h1>Système d'authentification de document</h1>
 </header>
 
 <c:import url="../layouts/Menu.jsp"/>

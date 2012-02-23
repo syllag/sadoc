@@ -33,8 +33,6 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 * @see com.opensymphony.xwork2.ActionSupport#execute()
 	 */
 	public String execute() {
-		session = ActionContext.getContext().getSession();
-		session.put("currentMenu", "SignIn");
 		
 		if (form == null) return INPUT;
 		

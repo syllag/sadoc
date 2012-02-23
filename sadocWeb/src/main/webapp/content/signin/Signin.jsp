@@ -1,6 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+	session.setAttribute("currentMenu", "SignIn");
+%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
