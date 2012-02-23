@@ -14,7 +14,7 @@
 
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
 			<property name="eclipselink.ddl-generation.output-mode"
 				value="database" />
 			<property name="eclipselink.weaving" value="static" />
@@ -32,7 +32,7 @@
 <!-- 		<class>fr.univartois.ili.sadoc.entities.Resume</class> -->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:myDbWebServiceSADoc;create=true" />
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
 		</properties>

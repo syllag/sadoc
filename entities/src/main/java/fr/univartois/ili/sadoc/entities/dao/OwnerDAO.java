@@ -15,19 +15,15 @@ import fr.univartois.ili.sadoc.entities.configuration.Request;
 @Transactional
 public class OwnerDAO {
 	
-	protected EntityManager entityManager;
+	@PersistenceContext(unitName="sadocjpa")
+	private static EntityManager entityManager;
 
 	public EntityManager getEm() {
 		return entityManager;
 	}
-	
-	@PersistenceContext(unitName="sadocjpa")
-	public void setEm(EntityManager em) {
-		this.entityManager = em;
-	}
 
 	public OwnerDAO() {
-		 entityManager= PersistenceProvider.getEntityManager();
+		entityManager = PersistenceProvider.getEntityManager();
 	}
 
 	public void create(Owner owner) {
