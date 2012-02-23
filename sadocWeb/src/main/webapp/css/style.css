@@ -68,33 +68,25 @@ body,html {
 	text-shadow: 2px 2px 2px #fff;
 }
 
-.inscription {
+.connection,.inscription {
 	width: 400px;
 	border: 1px solid #eee;
 	margin: auto;
 	margin-top: 80px;
 	padding: 50px 20px 50px 20px;
-	height: 350px;
-	border: 1px solid #97b3bd;
-	background: url(../img/inscription.png);
-}
-
-.inscription form {
-	text-align: center;
-}
-
-.connection {
-	width: 400px;
-	border: 1px solid #eee;
-	margin: auto;
-	margin-top: 80px;
-	padding: 50px 20px 50px 20px;
-	height: 150px;
 	border: 1px solid #97b3bd;
 	background: url(../img/connection.png);
 }
 
-.connection form {
+.connection {
+	background: url(../img/connection.png);
+}
+
+.inscription {
+	background: url(../img/inscription.png);
+}
+
+.connection form,.inscription form {
 	text-align: center;
 }
 
@@ -331,4 +323,8 @@ p.lien_competence a {
 	font-style: italic;
 	text-indent: 40px;
 	color: #0089bd;
+}
+
+.spacer {
+	clear: both;
 }
