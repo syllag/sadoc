@@ -84,12 +84,53 @@
 	<!-- <bean id="ownerDAO" class="fr.univartois.ili.sadoc.dao.OwnerDAO" 
 		/> -->
 	
+<!-- 	<bean id="ownerDAO" class="fr.univartois.ili.sadoc.entities.dao.OwnerDAO"> -->
+<!-- 		<property name="entityManagerFactory" ref="entityManagerFactory" /> -->
+<!-- 	</bean> -->
+	
 	<bean id="wsPrivate" class="fr.univartois.ili.sadoc.sadocweb.spring.WSPrivateImpl" />
 	<bean id="wsPublic" class="fr.univartois.ili.sadoc.sadocweb.spring.WSPublicImpl">
 
 
 	</bean>
+   
+   	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/sadocwebservice" />
+		<property name="username" value="sadoc" />
+		<property name="password" value="sadoc" />
+	</bean>
 
+	<bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+		<property name="persistenceXmlLocations">
+			<list>
+				<value>/META-INF/persistence.xml</value>
+			</list>
+		</property>
+		<property name="defaultDataSource" ref="dataSource" />
+	</bean>
+	
+		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 
+  <!-- JPA EntityManagerFactory for PostegreSQL -->
+		<property name="jpaVendorAdapter">
+        <bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+       			 <property name="database" value="POSTGRESQL" />
+                <property name="databasePlatform" value="org.eclipse.persistence.platform.database.DerbyPlatform" />
+                <property name="showSql" value="true" />
+				<property name="generateDdl" value="true" />
+        </bean>
+		</property>
+		<property name="persistenceUnitName" value="sadocjpa"/>
+		<property name="persistenceUnitManager" ref="persistenceUnitManager" />
+	</bean>
 
+<!-- <bean id="entityManagerFactory" -->
+<!--         class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" -->
+<!--         p:dataSource-ref="dataSource" p:persistence-xml-location="/META-INF/persistence.xml" -->
+<!--         p:persistence-unit-name="sadocjpa"> -->
+<!-- </bean> -->
+
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	
 </beans>

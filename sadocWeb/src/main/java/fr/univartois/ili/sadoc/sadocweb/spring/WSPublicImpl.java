@@ -5,10 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.itextpdf.text.pdf.PdfReader;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
