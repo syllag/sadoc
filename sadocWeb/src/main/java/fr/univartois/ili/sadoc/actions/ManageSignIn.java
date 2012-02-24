@@ -27,6 +27,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 */
 	private ManageSignInForm form;
 	private Map<String, Object> session;
+	private OwnerDAO odao=new OwnerDAO();
 	
 	/************************************************/
 	/* (non-Javadoc)
@@ -44,7 +45,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		// TODO : cryptage password
 		try {
 			personne.setPassword(form.getPassword());
-			OwnerDAO.create(personne);
+			odao.create(personne);
 			// TODO : connecter la personne
 		} catch (Exception e) {
 			addActionMessage("Momentary problem... Please try agin later.");
@@ -60,7 +61,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 */
 	public void validate() {
 		try {
-			if (OwnerDAO.findByMail(form.getMail()) != null) {
+			if (odao.findByMail(form.getMail()) != null) {
 				addActionMessage("A user already exist with this mail adress");
 			}
 		} catch (Exception e) {
