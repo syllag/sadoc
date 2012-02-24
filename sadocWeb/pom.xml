@@ -15,6 +15,24 @@
 			
 		</dependency>
 		
+<!-- 		<dependency> -->
+<!-- 	<groupId>org.springframework</groupId> -->
+<!-- 	<artifactId>spring</artifactId> -->
+<!-- 	<version>2.5.6</version> -->
+<!-- </dependency> -->
+
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+		
+		<dependency>
+	<groupId>cglib</groupId>
+	<artifactId>cglib</artifactId>
+	<version>2.2.2</version>
+</dependency>
+		
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -34,6 +52,7 @@
 			<scope>test</scope>
 		</dependency>
 
+            
 		<dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-core</artifactId>
@@ -211,6 +230,27 @@
 			<version>1.0.1</version>
 		</dependency>
 	</dependencies>
+	
+			<repositories>
+		<repository>
+			<id>EclipseLink Repo</id>
+			<url>http://www.eclipse.org/downloads/download.php?r=1&amp;nf=1&amp;file=/rt/eclipselink/maven.repo
+			</url>
+		</repository>
+		<repository>
+			<id>maven-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven 1</name>
+			<url>http://download.java.net/maven/1/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven 2</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+	
 	<build>
 		<plugins>
 			<plugin>

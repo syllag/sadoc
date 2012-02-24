@@ -12,7 +12,7 @@
 <!-- 	<bean id="wsPublic" class="fr.univartois.ili.sadoc.sadocweb.spring.WSPublicImpl" > -->
 <!-- 		<property name="ownerDAO" ref="ownerDAO" />  -->
 		
-<!-- <!--        <constructor-arg ref="ownerDAO" /> --> -->
+<!--        <constructor-arg ref="ownerDAO" /> -->
 	
 <!-- 	</bean> -->
 
