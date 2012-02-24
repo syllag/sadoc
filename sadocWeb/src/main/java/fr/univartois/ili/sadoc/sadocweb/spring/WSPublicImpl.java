@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.itextpdf.text.pdf.PdfReader;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
@@ -28,7 +31,7 @@ public class WSPublicImpl implements WSPublic {
 
 
 
-	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+//	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner createOwner(String lastName, String firstName, String mail)
 			throws Exception {
 		Owner owner = new Owner(firstName, lastName, mail);
