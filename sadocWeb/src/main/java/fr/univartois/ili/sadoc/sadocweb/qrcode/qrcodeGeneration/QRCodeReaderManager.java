@@ -21,7 +21,7 @@ import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.QRCPropert
  * @author francois
  * 
  */
-public class QRCodeReaderManager {
+public final class QRCodeReaderManager {
 
 	private static QRCodeReaderManager instance;
 
@@ -94,43 +94,43 @@ public class QRCodeReaderManager {
 					new HybridBinarizer(ls)));
 
 		} catch (NullPointerException e) {
-			System.err
-					.println("Probleme d'ouverture d'un fichier dans QRCodeReaderManager -> "
-							+ this.props.getPath()
-							+ this.name
-							+ "."
-							+ this.props.getFormat());
+//			System.err
+//					.println("Probleme d'ouverture d'un fichier dans QRCodeReaderManager -> "
+//							+ this.props.getPath()
+//							+ this.name
+//							+ "."
+//							+ this.props.getFormat());
 			e.printStackTrace();
 			return null;
 		} catch (IOException e) {
-			System.err
-					.println("Probleme de lecture de l'image dans QRCodeReaderManager -> "
-							+ this.name + "." + this.props.getFormat());
+//			System.err
+//					.println("Probleme de lecture de l'image dans QRCodeReaderManager -> "
+//							+ this.name + "." + this.props.getFormat());
 			e.printStackTrace();
 			return null;
 		} catch (NotFoundException e) {
-			System.err
-					.println("Probleme de decodage d'un fichier dans QRCodeReaderManager -> "
-							+ this.name + "." + this.props.getFormat());
+//			System.err
+//					.println("Probleme de decodage d'un fichier dans QRCodeReaderManager -> "
+//							+ this.name + "." + this.props.getFormat());
 			e.printStackTrace();
 			return null;
 		} catch (ChecksumException e) {
-			System.err
-					.println("Probleme de decodage d'un fichier dans QRCodeReaderManager -> "
-							+ this.name + "." + this.props.getFormat());
+//			System.err
+//					.println("Probleme de decodage d'un fichier dans QRCodeReaderManager -> "
+//							+ this.name + "." + this.props.getFormat());
 			e.printStackTrace();
 			return null;
 		} catch (FormatException e) {
-			System.err
-					.println("Probleme de decodage d'un fichier dans QRCodeReaderManager -> "
-							+ this.name + "." + this.props.getFormat());
+//			System.err
+//					.println("Probleme de decodage d'un fichier dans QRCodeReaderManager -> "
+//							+ this.name + "." + this.props.getFormat());
 			e.printStackTrace();
 			return null;
 		}
 
 		// Affichage des donnees
-		System.out.println(new StringBuffer("Image QRC decodee : ")
-				.append(this.name).append(" -> ").append(result.getText()));
+//		System.out.println(new StringBuffer("Image QRC decodee : ")
+//				.append(this.name).append(" -> ").append(result.getText()));
 		return result.getText();
 	}
 

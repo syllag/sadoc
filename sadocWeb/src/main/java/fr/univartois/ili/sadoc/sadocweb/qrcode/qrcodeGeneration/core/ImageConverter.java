@@ -41,6 +41,7 @@ public final class ImageConverter {
       } else if ("-2d".equals(arg)) {
         rowSampling = false;
       } else if (arg.startsWith("-")) {
+    	  //Avoid s.o.p.
         System.err.println("Ignoring unrecognized option: " + arg);
       }
     }
@@ -114,6 +115,7 @@ public final class ImageConverter {
     }
 
     File output = getOutput(uri);
+    //Avoid s.o.p.
     System.out.printf("Writing output to %s\n", output);
     ImageIO.write(result, FORMAT, output);
   }

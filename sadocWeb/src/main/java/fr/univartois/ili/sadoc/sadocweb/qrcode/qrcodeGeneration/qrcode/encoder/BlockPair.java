@@ -6,8 +6,8 @@ final class BlockPair {
   private final byte[] errorCorrectionBytes;
 
   BlockPair(byte[] data, byte[] errorCorrection) {
-    dataBytes = data;
-    errorCorrectionBytes = errorCorrection;
+    dataBytes = data.clone();
+    errorCorrectionBytes = errorCorrection.clone();
   }
 
   public byte[] getDataBytes() {

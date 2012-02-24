@@ -22,14 +22,14 @@ public final class DecoderResult {
     if (rawBytes == null && text == null) {
       throw new IllegalArgumentException();
     }
-    this.rawBytes = rawBytes;
+    this.rawBytes = rawBytes.clone();
     this.text = text;
     this.byteSegments = byteSegments;
     this.ecLevel = ecLevel;
   }
 
   public byte[] getRawBytes() {
-    return rawBytes;
+    return rawBytes.clone();
   }
 
   public String getText() {

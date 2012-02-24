@@ -25,7 +25,7 @@ public final class Mode {
   private final String name;
 
   private Mode(int[] characterCountBitsForVersions, int bits, String name) {
-    this.characterCountBitsForVersions = characterCountBitsForVersions;
+    this.characterCountBitsForVersions = characterCountBitsForVersions.clone();
     this.bits = bits;
     this.name = name;
   }

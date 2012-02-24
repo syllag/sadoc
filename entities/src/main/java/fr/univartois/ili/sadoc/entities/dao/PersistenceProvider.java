@@ -4,9 +4,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 public class PersistenceProvider {
-
+	
 	private static EntityManager em = null;
 
+	private PersistenceProvider(){}
+	
 	public static EntityManager getEntityManager() {
 		if (em == null) {
 			setProvider("sadocjpa");

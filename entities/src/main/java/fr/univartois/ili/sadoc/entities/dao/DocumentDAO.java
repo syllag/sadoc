@@ -8,7 +8,7 @@ public class DocumentDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
 	
-	public DocumentDAO(){}
+	private DocumentDAO(){}
 	
 	public static void create(Document document) {
 		em.getTransaction().begin();
@@ -17,8 +17,7 @@ public class DocumentDAO {
 	}
 
 	public static Document findById(int id) {
-		Document document = em.find(Document.class, id);
-		return document;
+		return em.find(Document.class, id);
 	}
 
 	public static void update(Document document) {

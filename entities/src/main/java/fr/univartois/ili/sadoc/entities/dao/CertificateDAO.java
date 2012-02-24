@@ -7,7 +7,6 @@ import javax.persistence.TypedQuery;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
-import fr.univartois.ili.sadoc.entities.classes.Signature;
 import fr.univartois.ili.sadoc.entities.configuration.Request;
 
 public class CertificateDAO {
@@ -15,7 +14,7 @@ public class CertificateDAO {
 	private static final EntityManager em = PersistenceProvider
 			.getEntityManager();
 
-	public CertificateDAO(){}
+	private CertificateDAO(){}
 	
 	public static void create(Certificate certificate) {
 		em.getTransaction().begin();
@@ -24,8 +23,7 @@ public class CertificateDAO {
 	}
 
 	public static Certificate findById(int id) {
-		Certificate certificate = em.find(Certificate.class, id);
-		return certificate;
+		return em.find(Certificate.class, id);
 	}
 
 	public static List<Certificate> findByOwner(Owner owner) {
@@ -33,8 +31,7 @@ public class CertificateDAO {
 		query = em.createQuery(Request.FIND_IN_CERTIFICATE_BY_OWNER,
 				Certificate.class);
 		query.setParameter("owner", owner);
-		List<Certificate> certificates = query.getResultList();
-		return certificates;
+		return query.getResultList();
 	}
 
 	public static void update(Certificate certificate) {

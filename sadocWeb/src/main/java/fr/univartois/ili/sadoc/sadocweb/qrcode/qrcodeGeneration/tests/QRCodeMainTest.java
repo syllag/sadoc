@@ -2,8 +2,6 @@ package fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.tests;
 
 import java.awt.image.BufferedImage;
 
-import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.QRCodeReaderManager;
-import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.QRCodeReaderManager2;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.QRCodeWriterManager;
 import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.QRCodeWriterManager2;
 
@@ -13,6 +11,10 @@ import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.QRCodeWriterMana
  */
 public class QRCodeMainTest {
 
+	private QRCodeMainTest(){
+		
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -27,10 +29,12 @@ public class QRCodeMainTest {
 				.encode("http://www.univ-artois.fr/0A1B2C3D4E5F6G7H8I9J10K11L12M_2345")
 				.getImage();
 
-		System.out.println("--->"
-				+ QRCodeReaderManager.getInstance().decodeImage(test));
-		System.out.println("--->"
-				+ QRCodeReaderManager2.getInstance().decodeImage(test2));
+		//FAUT VIRER LES SOP !
+		
+//		System.out.println("--->"
+//				+ QRCodeReaderManager.getInstance().decodeImage(test));
+//		System.out.println("--->"
+//				+ QRCodeReaderManager2.getInstance().decodeImage(test2));
 
 	}
 

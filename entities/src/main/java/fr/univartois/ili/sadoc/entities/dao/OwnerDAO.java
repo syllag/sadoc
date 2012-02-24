@@ -21,24 +21,24 @@ public class OwnerDAO {
 
 	public void create(Owner owner) {
 
-		System.out
-				.println("la création de Owner ça marche: " + owner.getMail());
+		
+		//On ne laisse pas les s.o.p. lorsque l'on commit !!!!!!!!!
+		
+		//System.out.println("la création de Owner ça marche: " + owner.getMail());
 
 		// em.persist(owner);
 
 	}
 
 	public Owner findById(int id) {
-		Owner user = em.find(Owner.class, id);
-		return user;
+		return  em.find(Owner.class, id);
 	}
 
 	public Owner findByMail(String mail) {
 		final TypedQuery<Owner> query;
 		query = em.createQuery(Request.FIND_OWNER_BY_MAIL, Owner.class);
 		query.setParameter("mail", mail);
-		Owner owner = query.getSingleResult();
-		return owner;
+		return query.getSingleResult(); 
 	}
 
 	public void update(Owner user) {

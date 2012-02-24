@@ -15,6 +15,8 @@ import javax.swing.ImageIcon;
 
 public class UtilsImgQrCod {
 
+	private UtilsImgQrCod(){}
+	
 	/**
 	 * Ajoute une image sur une image.
 	 * 

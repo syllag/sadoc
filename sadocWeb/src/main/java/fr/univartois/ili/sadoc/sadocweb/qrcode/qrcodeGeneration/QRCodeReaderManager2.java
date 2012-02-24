@@ -16,7 +16,7 @@ import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.QRCPropert
  * @author francois
  * 
  */
-public class QRCodeReaderManager2 {
+public final class QRCodeReaderManager2 {
 
 	private static QRCodeReaderManager2 instance;
 
@@ -81,16 +81,16 @@ public class QRCodeReaderManager2 {
 					this.createMatrix(this.createTabInt(imgQRC),
 							imgQRC.getWidth(), imgQRC.getHeight())).getText();
 		} catch (IOException e) {
-			System.err.println("Probleme de lecture !");
+//			System.err.println("Probleme de lecture !");
 			e.printStackTrace();
 		} catch (ChecksumException e) {
-			System.err.println("ChecksumException");
+//			System.err.println("ChecksumException");
 			e.printStackTrace();
 		} catch (FormatException e) {
-			System.err.println("FormatException");
+//			System.err.println("FormatException");
 			e.printStackTrace();
 		} catch (NotFoundException e) {
-			System.err.println("NotFoundException");
+//			System.err.println("NotFoundException");
 			e.printStackTrace();
 		}
 
@@ -124,14 +124,15 @@ public class QRCodeReaderManager2 {
 	private boolean[][] createMatrix(int[][] tabInt, int w, int h) {
 		int cpt = 0;
 		for (int i = 0; i < w; i++) {
-			if (tabInt[i][0] == 1)
+			if (tabInt[i][0] == 1){
 				cpt++;
-			else
+			}else{
 				break;
+			}
 		}
 
 		int sizeModule = cpt / 7;
-		System.out.println(sizeModule);
+//		System.out.println(sizeModule);
 		boolean[][] matrice = new boolean[w / sizeModule][h / sizeModule];
 		cpt = 0;
 		int cpt2 = 0;

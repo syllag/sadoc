@@ -17,7 +17,7 @@ import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.QRCPropert
  * @author francois
  * 
  */
-public class QRCodeWriterManager2 {
+public final class QRCodeWriterManager2 {
 
 	private static QRCodeWriterManager2 instance;
 
@@ -94,8 +94,9 @@ public class QRCodeWriterManager2 {
 	private void processData(String data) {
 		if (data.length() < MAX_SIZE_DATA) {
 			this.data = data;
-			for (int i = 0; i < (MAX_SIZE_DATA - data.length()); i++)
+			for (int i = 0; i < (MAX_SIZE_DATA - data.length()); i++){
 				this.data += " ";
+			}
 		} else {
 			this.data = data.substring(0, MAX_SIZE_DATA);
 		}
@@ -106,12 +107,13 @@ public class QRCodeWriterManager2 {
 	 * @param zoom
 	 */
 	private void setZoom(int zoom) {
-		if (zoom < 1)
+		if (zoom < 1){
 			this.zoom = 1;
-		else if (zoom > ZOOM_MAX)
+		}else if (zoom > ZOOM_MAX){
 			this.zoom = ZOOM_MAX;
-		else
+		}else{
 			this.zoom = zoom;
+		}
 	}
 
 	/**
@@ -141,7 +143,7 @@ public class QRCodeWriterManager2 {
 		try {
 			Encoder.encode(this.data, qrc.getECLevel(), qrc);
 		} catch (WriterException e) {
-			System.err.println("Probleme d'encodage !");
+//			System.err.println("Probleme d'encodage !");
 			e.printStackTrace();
 		}
 	}
@@ -152,8 +154,8 @@ public class QRCodeWriterManager2 {
 	 * @return
 	 */
 	public BufferedImage getImage() {
-		System.out.println("TEST : \n QRC valide ? : " + qrc.isValid() + "\n"
-				+ qrc.toString());
+//		System.out.println("TEST : \n QRC valide ? : " + qrc.isValid() + "\n"
+//				+ qrc.toString());
 
 		byte[][] matriceQRC = qrc.getMatrix().getArray();
 
@@ -167,10 +169,11 @@ public class QRCodeWriterManager2 {
 		for (i = 0; i < matriceQRC.length; i++) {
 			for (j = 0; j < matriceQRC.length; j++) {
 				int couleur = -1;
-				if (matriceQRC[j][i] == 0)
+				if (matriceQRC[j][i] == 0){
 					couleur = Color.WHITE.getRGB();
-				else
+				}else{
 					couleur = Color.BLACK.getRGB();
+				}
 
 				this.drawImageZoom(imgQRC, i, j, couleur);
 			}
@@ -208,9 +211,9 @@ public class QRCodeWriterManager2 {
 		try {
 			ImageIO.write(imgQRC, this.props.getFormat(), fileImgQRC);
 
-			System.out.println("\nImage genere !!!");
+//			System.out.println("\nImage genere !!!");
 		} catch (IOException e) {
-			System.err.println("Probleme d'ecriture !");
+//			System.err.println("Probleme d'ecriture !");
 			e.printStackTrace();
 		}
 

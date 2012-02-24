@@ -17,13 +17,17 @@ final class GF256Poly {
   /**
    * @param field the {@link GF256} instance representing the field to use
    * to perform computations
-   * @param coefficients coefficients as ints representing elements of GF(256), arranged
+   * @param coeffs coefficients as int representing elements of GF(256), arranged
    * from most significant (highest-power term) coefficient to least significant
    * @throws IllegalArgumentException if argument is null or empty,
    * or if leading coefficient is 0 and this is not a
-   * constant polynomial (that is, it is not the monomial "0")
+   * constant polynomial (that is, it is not the minimal "0")
    */
-  GF256Poly(GF256 field, int[] coefficients) {
+  GF256Poly(GF256 field, int[] coeffs) {
+	  
+	  int[] coefficients=coeffs.clone();
+	  
+	  
     if (coefficients == null || coefficients.length == 0) {
       throw new IllegalArgumentException();
     }

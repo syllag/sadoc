@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -15,7 +14,6 @@ import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Competence;
 import fr.univartois.ili.sadoc.entities.classes.Document;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
-import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
 
 
 @Endpoint
@@ -34,7 +32,8 @@ public class WSStub {
 	@ResponsePayload
 	public Owner createOwner(@RequestPayload CreateOwnerRequest request)
 			throws Exception {
-		System.out.println("Debug createOwner : "+request.getLastName()+request.getFirstName()+request.getMail());
+		//Utilisation d'un logger à la place
+		//System.out.println("Debug createOwner : "+request.getLastName()+request.getFirstName()+request.getMail());
 		return wsPublic.createOwner(request.getLastName(), request.getFirstName(), request.getMail());
 	}
 
@@ -47,6 +46,7 @@ public class WSStub {
 
 	public byte[] signDocument(byte[] doc, String name, Certificate certificat,
 			Competence[] competence) {
+		//Cette méthode devrait-elle renvoyer un tableau vide plutôt que null ?
 		return null;
 	}
 

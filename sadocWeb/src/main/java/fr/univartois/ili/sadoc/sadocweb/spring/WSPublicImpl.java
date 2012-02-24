@@ -5,10 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.itextpdf.text.pdf.PdfReader;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
@@ -65,6 +61,7 @@ public class WSPublicImpl implements WSPublic {
 			byte[] p7s = sf.signDocument(dest, owner);
 			document.setPk7(p7s);
 			DocumentDAO.update(document);
+			fis.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -87,8 +84,7 @@ public class WSPublicImpl implements WSPublic {
 
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
-		List<Certificate> certificates = CertificateDAO.findByOwner(owner);
-		return certificates;
+		return CertificateDAO.findByOwner(owner);
 	}
 
 //	public OwnerDAO getOwnerDAO() {

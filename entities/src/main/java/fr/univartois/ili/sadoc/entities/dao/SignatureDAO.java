@@ -20,7 +20,7 @@ public class SignatureDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
 	
-	public SignatureDAO(){}
+	private SignatureDAO(){}
 	
 	public static void create(Signature signature) {
 		em.getTransaction().begin();
@@ -29,40 +29,35 @@ public class SignatureDAO {
 	}
 
 	public static Signature findById(int id) {
-		Signature signature = em.find(Signature.class, id);
-		return signature;
+		return em.find(Signature.class, id);
 	}
 	
 	public static List<Signature> findByOwner(Owner owner) {
 		final TypedQuery<Signature> query;
         query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_OWNER, Signature.class);
         query.setParameter("owner", owner);
-        List<Signature> signature = query.getResultList();
-		return signature;
+        return query.getResultList();
 	}
 	
 	public static List<Signature> findByDocument(Document document) {
 		final TypedQuery<Signature> query;
         query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_DOCUMENT, Signature.class);
         query.setParameter("owner", document);
-        List<Signature> signature = query.getResultList();
-		return signature;
+        return query.getResultList();
 	}
 	
 	public static List<Signature> findByCompetence(Competence competence) {
 		final TypedQuery<Signature> query;
         query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_COMPETENCE, Signature.class);
         query.setParameter("owner", competence);
-        List<Signature> signature = query.getResultList();
-		return signature;
+        return query.getResultList();
 	}
 	
 	public static List<Signature> findByCertificate(Certificate certificate) {
 		final TypedQuery<Signature> query;
         query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_CERTIFICATE, Signature.class);
         query.setParameter("owner", certificate);
-        List<Signature> signature = query.getResultList();
-		return signature;
+        return query.getResultList();
 	}
 	
 	public static List<Document> findDocumentByOwner(Owner owner) {
@@ -80,8 +75,7 @@ public class SignatureDAO {
 		final TypedQuery<Owner> query;
         query = em.createQuery(Request.FIND_OWNER_IN_SIGNATURE_BY_DOCUMENT, Owner.class);
         query.setParameter("document", document);
-        Owner owner = query.getSingleResult();
-		return owner;
+        return query.getSingleResult();
 	}
 	
 	public static List<Competence> findCompetenceByDocument(Document document) {

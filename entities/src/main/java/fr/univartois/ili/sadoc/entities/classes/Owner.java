@@ -1,6 +1,5 @@
 package fr.univartois.ili.sadoc.entities.classes;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -55,6 +54,18 @@ public class Owner implements Serializable, Comparable<Object> {
 	
 	/************************************************/
 
+	//
+	// Pourquoi ne pas redéfinir la méthode equals ??
+	// Au lieu de redéfinir compareTo
+	//
+	//
+	// This class defines a compareTo(...) method but inherits its equals()
+	// method from java.lang.Object. Generally, the value of compareTo should
+	// return zero if and only if equals returns true. If this is violated,
+	// weird and unpredictable failures will occur in classes such as
+	// PriorityQueue. In Java 5 the PriorityQueue.remove method uses the
+	// compareTo method, while in Java 6 it uses the equals method.
+	
 	public int compareTo(Object other) { 
 	      String name1 = ((Owner) other).getLastName()+((Owner) other).getFirstName(); 
 	      String name2 = this.getLastName()+this.getFirstName(); 
@@ -99,7 +110,7 @@ public class Owner implements Serializable, Comparable<Object> {
 		return certificates;
 	}
 
-	public void setCertificates(ArrayList<Certificate> certificates) {
+	public void setCertificates(List<Certificate> certificates) {
 		this.certificates = certificates;
 	}
 

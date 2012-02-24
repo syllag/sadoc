@@ -33,8 +33,8 @@ public final class Result {
       throw new IllegalArgumentException("Text and bytes are null");
     }
     this.text = text;
-    this.rawBytes = rawBytes;
-    this.resultPoints = resultPoints;
+    this.rawBytes = rawBytes.clone();
+    this.resultPoints = resultPoints.clone();
     this.format = format;
     this.resultMetadata = null;
     this.timestamp = timestamp;
@@ -51,7 +51,7 @@ public final class Result {
    * @return raw bytes encoded by the barcode, if applicable, otherwise <code>null</code>
    */
   public byte[] getRawBytes() {
-    return rawBytes;
+    return rawBytes.clone();
   }
 
   /**
@@ -60,7 +60,7 @@ public final class Result {
    *         specific to the type of barcode that was decoded.
    */
   public ResultPoint[] getResultPoints() {
-    return resultPoints;
+    return resultPoints.clone();
   }
 
   /**
@@ -76,7 +76,7 @@ public final class Result {
    *   like orientation.
    */
   public Hashtable getResultMetadata() {
-    return resultMetadata;
+    return (Hashtable) resultMetadata.clone();
   }
 
   public void putMetadata(ResultMetadataType type, Object value) {
@@ -103,7 +103,7 @@ public final class Result {
 
   public void addResultPoints(ResultPoint[] newPoints) {
     if (resultPoints == null) {
-      resultPoints = newPoints;
+      resultPoints = newPoints.clone();
     } else if (newPoints != null && newPoints.length > 0) {
       ResultPoint[] allPoints = new ResultPoint[resultPoints.length + newPoints.length];
       System.arraycopy(resultPoints, 0, allPoints, 0, resultPoints.length);

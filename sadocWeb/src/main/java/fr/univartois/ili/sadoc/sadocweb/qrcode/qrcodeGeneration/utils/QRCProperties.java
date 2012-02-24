@@ -2,7 +2,7 @@ package fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils;
 
 import java.util.ResourceBundle;
 
-public class QRCProperties {
+public final class QRCProperties {
 	
 	private static QRCProperties instance;
 	

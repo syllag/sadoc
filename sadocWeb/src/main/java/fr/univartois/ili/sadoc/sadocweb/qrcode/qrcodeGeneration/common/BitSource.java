@@ -20,7 +20,7 @@ public final class BitSource {
    * Bits are read within a byte from most-significant to least-significant bit.
    */
   public BitSource(byte[] bytes) {
-    this.bytes = bytes;
+    this.bytes = bytes.clone();
   }
 
   /**

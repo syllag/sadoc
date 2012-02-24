@@ -90,11 +90,11 @@ public class Signature implements Serializable {
 	}
 
 	public Date getCreationDate() {
-		return creationDate;
+		return (Date) creationDate.clone();
 	}
 
 	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+		this.creationDate = (Date) creationDate.clone();
 	}
 
 	public int getId() {

@@ -17,7 +17,7 @@ import fr.univartois.ili.sadoc.sadocweb.qrcode.qrcodeGeneration.utils.QRCPropert
  * @author francois
  * 
  */
-public class QRCodeWriterManager {
+public final class QRCodeWriterManager {
 
 	private static QRCodeWriterManager instance;
 
@@ -84,8 +84,9 @@ public class QRCodeWriterManager {
 	private void processData(String data) {
 		if (data.length() < MAX_SIZE_DATA) {
 			this.data = data;
-			for (int i = 0; i < (MAX_SIZE_DATA - data.length()); i++)
+			for (int i = 0; i < (MAX_SIZE_DATA - data.length()); i++){
 				this.data += " ";
+			}
 		} else {
 			this.data = data.substring(0, MAX_SIZE_DATA);
 		}
@@ -103,9 +104,8 @@ public class QRCodeWriterManager {
 			bitMatrix = writer.encode(this.data, BarcodeFormat.QR_CODE,
 					this.props.getSize(), this.props.getSize());
 		} catch (WriterException e) {
-			System.err
-					.println("Probleme d'encodage d'un fichier dans QRCmainEnc -> "
-							+ this.name + "." + this.props.getFormat());
+			//On evite les s.o.p. si on veux ecrire un message on utlise un logger
+			//System.err.println("Probleme d'encodage d'un fichier dans QRCmainEnc -> "+ this.name + "." + this.props.getFormat());
 			e.printStackTrace();
 
 			return null;
@@ -144,23 +144,26 @@ public class QRCodeWriterManager {
 					+ this.props.getFormat());
 			// Ecriture de l'image dans le fichier
 			ImageIO.write(imgQRC, this.props.getFormat(), fileImgQRC);
-			System.out.println(new StringBuffer(
-					"Image QRC encodee et generee : ").append(this.name)
-					.append(".").append(this.props.getFormat()).append(" -> ")
-					.append(this.data));
+			//On evite les s.o.p. si on veux ecrire un message on utlise un logger
+//			System.out.println(new StringBuffer(
+//					"Image QRC encodee et generee : ").append(this.name)
+//					.append(".").append(this.props.getFormat()).append(" -> ")
+//					.append(this.data));
 		} catch (NullPointerException e) {
-			System.err
-					.println("Probleme d'ouverture d'un fichier dans QRCmainEnc -> "
-							+ this.props.getPath()
-							+ this.name
-							+ "."
-							+ this.props.getFormat());
+			//On evite les s.o.p. si on veux ecrire un message on utlise un logger
+//			System.err
+//					.println("Probleme d'ouverture d'un fichier dans QRCmainEnc -> "
+//							+ this.props.getPath()
+//							+ this.name
+//							+ "."
+//							+ this.props.getFormat());
 			e.printStackTrace();
 			return;
 		} catch (IOException e) {
-			System.err
-					.println("Probleme d'ecriture de l'image dans QRCmainEnc -> "
-							+ this.name + "." + this.props.getFormat());
+			//On evite les s.o.p. si on veux ecrire un message on utlise un logger
+//			System.err
+//					.println("Probleme d'ecriture de l'image dans QRCmainEnc -> "
+//							+ this.name + "." + this.props.getFormat());
 			e.printStackTrace();
 			return;
 		}

@@ -14,7 +14,7 @@ final class DataBlock {
 
   private DataBlock(int numDataCodewords, byte[] codewords) {
     this.numDataCodewords = numDataCodewords;
-    this.codewords = codewords;
+    this.codewords = codewords.clone();
   }
 
   /**

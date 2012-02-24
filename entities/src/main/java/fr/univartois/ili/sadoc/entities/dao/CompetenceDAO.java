@@ -10,7 +10,7 @@ public class CompetenceDAO {
 
 	private static final EntityManager em = PersistenceProvider.getEntityManager();
 	
-	public CompetenceDAO(){}
+	private CompetenceDAO(){}
 	
 	public static void create(Competence competence) {
 		em.getTransaction().begin();
@@ -19,8 +19,7 @@ public class CompetenceDAO {
 	}
 
 	public static Competence findById(int id) {
-        Competence competence = em.find(Competence.class, id);
-		return competence;
+        return em.find(Competence.class, id);
 	}
 	
 	public static Competence findByAcronym(String acronym) {

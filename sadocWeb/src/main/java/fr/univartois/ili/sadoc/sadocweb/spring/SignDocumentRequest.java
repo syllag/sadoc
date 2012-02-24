@@ -15,11 +15,11 @@ public class SignDocumentRequest {
 	}
 
 	public byte[] getDoc() {
-		return doc;
+		return doc.clone();
 	}
 
 	public void setDoc(byte[] doc) {
-		this.doc = doc;
+		this.doc = doc.clone();
 	}
 
 	public String getName() {
@@ -39,11 +39,11 @@ public class SignDocumentRequest {
 	}
 
 	public Competence[] getCompetence() {
-		return competence;
+		return competence.clone();
 	}
 
 	public void setCompetence(Competence[] competence) {
-		this.competence = competence;
+		this.competence = competence.clone();
 	}
 	
 }
