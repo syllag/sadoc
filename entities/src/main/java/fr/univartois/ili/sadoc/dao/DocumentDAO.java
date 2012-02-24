@@ -1,33 +1,49 @@
 package fr.univartois.ili.sadoc.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import fr.univartois.ili.sadoc.entities.Document;
 
-public abstract class DocumentDAO {
+public class DocumentDAO {
 
-	private static final EntityManager em = PersistenceProvider.getEntityManager();
-	
-	public static void create(Document document) {
-		em.getTransaction().begin();
-		em.persist(document);
-		em.getTransaction().commit();
+	protected EntityManager entityManager;
+
+	public EntityManager getentityManager() {
+		return entityManager;
 	}
 
-	public static Document findById(int id) {
-		Document document = em.find(Document.class, id);
+	@PersistenceContext(unitName = "sadocjpa")
+	public void setentityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	
+	
+	public DocumentDAO(){
+		entityManager = PersistenceProvider.getEntityManager();
+
+	}
+	
+	public void create(Document document) {
+		entityManager.getTransaction().begin();
+		entityManager.persist(document);
+		entityManager.getTransaction().commit();
+	}
+
+	public Document findById(int id) {
+		Document document = entityManager.find(Document.class, id);
 		return document;
 	}
 
-	public static void update(Document document) {
-		em.getTransaction().begin();
-		em.merge(document);
-		em.getTransaction().commit();
+	public void update(Document document) {
+		entityManager.getTransaction().begin();
+		entityManager.merge(document);
+		entityManager.getTransaction().commit();
 	}
 
-	public static void delete(Document document) {
-		em.getTransaction().begin();
-		em.remove(document);
-		em.getTransaction().commit();
+	public void delete(Document document) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(document);
+		entityManager.getTransaction().commit();
 	}
 }

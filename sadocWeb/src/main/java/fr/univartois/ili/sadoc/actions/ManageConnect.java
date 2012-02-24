@@ -27,7 +27,8 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	public String execute() {
 		
 		if (connect == null) return INPUT;
-		Owner owner = OwnerDAO.findOwner(connect.getEmail(),
+		OwnerDAO odao=new OwnerDAO();
+		Owner owner = odao.findOwner(connect.getEmail(),
 				connect.getPassword());
 
 		// if empty

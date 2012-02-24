@@ -25,10 +25,12 @@ import fr.univartois.ili.sadoc.entities.Owner;
  */
 public class AvancedTest {
 
+	private AcquisitionDAO acquisitionDAO;
+	
 	@Before
 	public void initTests() {
 		PersistenceProvider.setProvider("sadocjpatest");
-
+		acquisitionDAO =new AcquisitionDAO();
 		// create data
 		InitDataForTest initData = new InitDataForTest();
 		initData.createDataForTest();
@@ -129,7 +131,7 @@ public class AvancedTest {
 
 		query.setParameter("name", "competence 1 C2I1");
 		List<Competence> competenceTest = query.getResultList();
-		List<Acquisition> acquisitionTest = AcquisitionDAO
+		List<Acquisition> acquisitionTest = acquisitionDAO
 				.findByCompetence(competenceTest.get(0));
 		assertEquals(3, acquisitionTest.size());
 	}
@@ -144,7 +146,7 @@ public class AvancedTest {
 		query.setParameter("firstName", "jimmy");
 		List<Owner> ownerJimmy = query.getResultList();
 
-		List<Acquisition> acquisitionTest = AcquisitionDAO
+		List<Acquisition> acquisitionTest = acquisitionDAO
 				.findByOwner(ownerJimmy.get(0));
 		assertEquals(6, acquisitionTest.size());
 	}
@@ -158,7 +160,7 @@ public class AvancedTest {
 				Document.class);
 		query.setParameter("name", "document1");
 		List<Document> documentTest = query.getResultList();
-		List<Acquisition> acquisitionTest = AcquisitionDAO
+		List<Acquisition> acquisitionTest = acquisitionDAO
 				.findByDocument(documentTest.get(0));
 		assertEquals(3, acquisitionTest.size());
 	}
@@ -173,7 +175,7 @@ public class AvancedTest {
 		query.setParameter("name", "document1");
 		List<Document> documentTest = query.getResultList();
 
-		List<Acquisition> acquisitionTest = AcquisitionDAO
+		List<Acquisition> acquisitionTest = acquisitionDAO
 				.findByDocument(documentTest.get(0));
 		assertEquals(3, acquisitionTest.size());
 	}
@@ -187,7 +189,7 @@ public class AvancedTest {
 				Owner.class);
 		query.setParameter("firstName", "jimmy");
 		List<Owner> ownerJimmy = query.getResultList();
-		List<Acquisition> acquisitionTest = AcquisitionDAO
+		List<Acquisition> acquisitionTest = acquisitionDAO
 				.findByOwner(ownerJimmy.get(0));
 		assertEquals(6, acquisitionTest.size());
 	}
@@ -201,7 +203,7 @@ public class AvancedTest {
 				Competence.class);
 		query.setParameter("name", "competence semestre 4 licence et master");
 		List<Competence> competenceTest = query.getResultList();
-		List<Acquisition> acquisitionTest = AcquisitionDAO
+		List<Acquisition> acquisitionTest = acquisitionDAO
 				.findByCompetence(competenceTest.get(0));
 		assertEquals(3, acquisitionTest.size());
 	}
@@ -215,7 +217,7 @@ public class AvancedTest {
 				Owner.class);
 		query.setParameter("firstName", "francois");
 		List<Owner> ownerTest = query.getResultList();
-		List<Acquisition> acquisitionTest = AcquisitionDAO
+		List<Acquisition> acquisitionTest = acquisitionDAO
 				.findByOwner(ownerTest.get(0));
 
 		assertEquals(4, acquisitionTest.size());
@@ -230,7 +232,7 @@ public class AvancedTest {
 				Competence.class);
 		query.setParameter("name", "competence semestre 2 licence");
 		List<Competence> competenceTest = query.getResultList();
-		List<Acquisition> acquisitionTest = AcquisitionDAO
+		List<Acquisition> acquisitionTest = acquisitionDAO
 				.findByCompetence(competenceTest.get(0));
 
 		assertEquals(2, acquisitionTest.size());
@@ -245,7 +247,7 @@ public class AvancedTest {
 				Document.class);
 		query.setParameter("name", "document2");
 		List<Document> documentTest = query.getResultList();
-		List<Acquisition> acquisitionTest = AcquisitionDAO
+		List<Acquisition> acquisitionTest = acquisitionDAO
 				.findByDocument(documentTest.get(0));
 		assertEquals(1, acquisitionTest.size());
 		assertEquals("francois", acquisitionTest.get(0).getOwner()

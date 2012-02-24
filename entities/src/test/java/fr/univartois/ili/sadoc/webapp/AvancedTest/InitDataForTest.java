@@ -16,9 +16,20 @@ import fr.univartois.ili.sadoc.entities.Degree;
 import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
 import fr.univartois.ili.sadoc.entities.Resume;
+import fr.univartois.ili.sadoc.entities.Resume;
 
 public class InitDataForTest {
 
+	
+	private OwnerDAO ownerDao =new OwnerDAO();
+	private DocumentDAO documentDao =new DocumentDAO();
+	private CompetenceDAO competenceDao =new CompetenceDAO();
+	private AcquisitionDAO acquisitionDao =new AcquisitionDAO();
+	private DegreeDAO degreeDao =new DegreeDAO();
+	private ResumeDAO resumeDao =new ResumeDAO();
+	
+	
+	
 	public InitDataForTest() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -40,10 +51,10 @@ public class InitDataForTest {
 				"0404040404");
 		
 		// create user in database	
-		OwnerDAO.create(diane);
-		OwnerDAO.create(francois);
-		OwnerDAO.create(jimmy);
-		OwnerDAO.create(kevin);
+		ownerDao.create(diane);
+		ownerDao.create(francois);
+		ownerDao.create(jimmy);
+		ownerDao.create(kevin);
 		
 
 		// create competence
@@ -78,18 +89,18 @@ public class InitDataForTest {
 				"competence semestre 2 master", "deuxiéme competence du master");
 		
 		//create competence in database
-		CompetenceDAO.create(competence1);
-		CompetenceDAO.create(competence2);
-		CompetenceDAO.create(competence3);
-		CompetenceDAO.create(competence4);
-		CompetenceDAO.create(competence5);
-		CompetenceDAO.create(competence6);
-		CompetenceDAO.create(competence7);
-		CompetenceDAO.create(competence8);
-		CompetenceDAO.create(competence9);
-		CompetenceDAO.create(competence10);
-		CompetenceDAO.create(competence11);
-		CompetenceDAO.create(competence12);
+		competenceDao.create(competence1);
+		competenceDao.create(competence2);
+		competenceDao.create(competence3);
+		competenceDao.create(competence4);
+		competenceDao.create(competence5);
+		competenceDao.create(competence6);
+		competenceDao.create(competence7);
+		competenceDao.create(competence8);
+		competenceDao.create(competence9);
+		competenceDao.create(competence10);
+		competenceDao.create(competence11);
+		competenceDao.create(competence12);
 
 		// create degrees
 		Degree c2i1 = new Degree("C2I1", "diplôme du C2I 1");
@@ -98,10 +109,10 @@ public class InitDataForTest {
 		Degree master = new Degree("master", "diplôme du master");
 		
 		//create degree in database
-		DegreeDAO.create(c2i1);
-		DegreeDAO.create(c2i2);
-		DegreeDAO.create(licence);
-		DegreeDAO.create(master);
+		degreeDao.create(c2i1);
+		degreeDao.create(c2i2);
+		degreeDao.create(licence);
+		degreeDao.create(master);
 		
 		// board byte for file
 		byte[] pk7 = new byte[2];
@@ -127,14 +138,14 @@ public class InitDataForTest {
 				"www.document8.fr", pk7, new Date(2009, 4, 03));
 		
 		//create document in database
-		DocumentDAO.create(document1);
-		DocumentDAO.create(document2);
-		DocumentDAO.create(document3);
-		DocumentDAO.create(document4);
-		DocumentDAO.create(document5);
-		DocumentDAO.create(document6);
-		DocumentDAO.create(document7);
-		DocumentDAO.create(document8);
+		documentDao.create(document1);
+		documentDao.create(document2);
+		documentDao.create(document3);
+		documentDao.create(document4);
+		documentDao.create(document5);
+		documentDao.create(document6);
+		documentDao.create(document7);
+		documentDao.create(document8);
 		
 		// //link degree/////
 		// c2i1
@@ -147,7 +158,7 @@ public class InitDataForTest {
 
 		c2i1.setCompetences(listCompetenceC2I1);
 		
-		DegreeDAO.update(c2i1);
+		degreeDao.update(c2i1);
 
 		// c2i2
 		List<Competence> listCompetenceC2I2 = new ArrayList<Competence>();
@@ -159,7 +170,7 @@ public class InitDataForTest {
 
 		c2i2.setCompetences(listCompetenceC2I2);
 		
-		DegreeDAO.update(c2i2);
+		degreeDao.update(c2i2);
 
 		// licence
 		List<Competence> listCompetenceLicence = new ArrayList<Competence>();
@@ -170,7 +181,7 @@ public class InitDataForTest {
 
 		licence.setCompetences(listCompetenceLicence);
 		
-		DegreeDAO.update(licence);
+		degreeDao.update(licence);
 
 		// master
 		List<Competence> listCompetenceMaster = new ArrayList<Competence>();
@@ -180,7 +191,7 @@ public class InitDataForTest {
 
 		master.setCompetences(listCompetenceMaster);
 		
-		DegreeDAO.update(master);
+		degreeDao.update(master);
 
 		// // link competence ////
 		// competence 1
@@ -189,7 +200,7 @@ public class InitDataForTest {
 
 		competence1.setDegrees(listDegreeCompetence1);
 		
-		CompetenceDAO.update(competence1);
+		competenceDao.update(competence1);
 
 		// competence 2
 		List<Degree> listDegreeCompetence2 = new ArrayList<Degree>();
@@ -197,7 +208,7 @@ public class InitDataForTest {
 
 		competence2.setDegrees(listDegreeCompetence2);
 		
-		CompetenceDAO.update(competence2);
+		competenceDao.update(competence2);
 
 		// competence 3
 		List<Degree> listDegreeCompetence3 = new ArrayList<Degree>();
@@ -205,7 +216,7 @@ public class InitDataForTest {
 
 		competence3.setDegrees(listDegreeCompetence3);
 		
-		CompetenceDAO.update(competence3);
+		competenceDao.update(competence3);
 
 		// competence 4
 		List<Degree> listDegreeCompetence4 = new ArrayList<Degree>();
@@ -214,7 +225,7 @@ public class InitDataForTest {
 
 		competence4.setDegrees(listDegreeCompetence4);
 		
-		CompetenceDAO.update(competence4);
+		competenceDao.update(competence4);
 
 		// competence 5
 		List<Degree> listDegreeCompetence5 = new ArrayList<Degree>();
@@ -222,7 +233,7 @@ public class InitDataForTest {
 
 		competence5.setDegrees(listDegreeCompetence5);
 		
-		CompetenceDAO.update(competence5);
+		competenceDao.update(competence5);
 
 		// competence 6
 		List<Degree> listDegreeCompetence6 = new ArrayList<Degree>();
@@ -230,7 +241,7 @@ public class InitDataForTest {
 
 		competence6.setDegrees(listDegreeCompetence6);
 		
-		CompetenceDAO.update(competence6);
+		competenceDao.update(competence6);
 
 		// competence 7
 		List<Degree> listDegreeCompetence7 = new ArrayList<Degree>();
@@ -240,7 +251,7 @@ public class InitDataForTest {
 
 		competence7.setDegrees(listDegreeCompetence7);
 		
-		CompetenceDAO.update(competence7);
+		competenceDao.update(competence7);
 
 		// competence 8
 		List<Degree> listDegreeCompetence8 = new ArrayList<Degree>();
@@ -248,7 +259,7 @@ public class InitDataForTest {
 
 		competence8.setDegrees(listDegreeCompetence8);
 		
-		CompetenceDAO.update(competence8);
+		competenceDao.update(competence8);
 
 		// competence 9
 		List<Degree> listDegreeCompetence9 = new ArrayList<Degree>();
@@ -256,7 +267,7 @@ public class InitDataForTest {
 
 		competence9.setDegrees(listDegreeCompetence9);
 		
-		CompetenceDAO.update(competence9);
+		competenceDao.update(competence9);
 
 		// competence 10
 		List<Degree> listDegreeCompetence10 = new ArrayList<Degree>();
@@ -265,7 +276,7 @@ public class InitDataForTest {
 
 		competence10.setDegrees(listDegreeCompetence10);
 		
-		CompetenceDAO.update(competence10);
+		competenceDao.update(competence10);
 
 		// competence 11
 		List<Degree> listDegreeCompetence11 = new ArrayList<Degree>();
@@ -274,7 +285,7 @@ public class InitDataForTest {
 
 		competence11.setDegrees(listDegreeCompetence11);
 		
-		CompetenceDAO.update(competence11);
+		competenceDao.update(competence11);
 
 		// competence 12
 		List<Degree> listDegreeCompetence12 = new ArrayList<Degree>();
@@ -282,13 +293,13 @@ public class InitDataForTest {
 
 		competence12.setDegrees(listDegreeCompetence12);
 		
-		CompetenceDAO.update(competence12);
+		competenceDao.update(competence12);
 
 		// link resume
 		// resume diane
 		Resume resumeDiane = new Resume(diane, null);
 		
-		ResumeDAO.create(resumeDiane);
+		resumeDao.create(resumeDiane);
 
 		// resume francois
 		List<Competence> listCompetenceFrancois = new ArrayList<Competence>();
@@ -299,7 +310,7 @@ public class InitDataForTest {
 
 		Resume resumeFrancois = new Resume(francois, listCompetenceFrancois);
 		
-		ResumeDAO.create(resumeFrancois);
+		resumeDao.create(resumeFrancois);
 
 		// resume jimmy
 		List<Competence> listCompetenceJimmy = new ArrayList<Competence>();
@@ -312,7 +323,7 @@ public class InitDataForTest {
 
 		Resume resumeJimmy = new Resume(jimmy, listCompetenceJimmy);
 		
-		ResumeDAO.create(resumeJimmy);
+		resumeDao.create(resumeJimmy);
 
 		// resume kevin
 		List<Competence> listCompetenceKevin = new ArrayList<Competence>();
@@ -327,7 +338,7 @@ public class InitDataForTest {
 
 		Resume resumeKevin = new Resume(kevin, listCompetenceKevin);
 		
-		ResumeDAO.create(resumeKevin);
+		resumeDao.create(resumeKevin);
 
 		// resume kevin
 		List<Competence> listCompetenceKevin1 = new ArrayList<Competence>();
@@ -337,7 +348,7 @@ public class InitDataForTest {
 
 		Resume resumeKevin1 = new Resume(kevin, listCompetenceKevin1);
 		
-		ResumeDAO.create(resumeKevin1);
+		resumeDao.create(resumeKevin1);
 
 		// resume kevin
 		List<Competence> listCompetenceKevin2 = new ArrayList<Competence>();
@@ -351,14 +362,14 @@ public class InitDataForTest {
 
 		Resume resumeKevin2 = new Resume(kevin, listCompetenceKevin2);
 		
-		ResumeDAO.create(resumeKevin2);
+		resumeDao.create(resumeKevin2);
 
 		// link owner
 		// owner diane
 		diane.setDegrees(null);
 		diane.setResumes(null);
 		
-		OwnerDAO.update(diane);
+		ownerDao.update(diane);
 
 		// owner françois
 		francois.setDegrees(null);
@@ -366,7 +377,7 @@ public class InitDataForTest {
 		listResumeFrancoisList.add(resumeFrancois);
 		francois.setResumes(listResumeFrancoisList);
 		
-		OwnerDAO.update(francois);
+		ownerDao.update(francois);
 
 		// owner jimmy
 		List<Degree> listDegreesJimmy = new ArrayList<Degree>();
@@ -376,7 +387,7 @@ public class InitDataForTest {
 		listResumeJimmyList.add(resumeJimmy);
 		jimmy.setResumes(listResumeJimmyList);
 		
-		OwnerDAO.update(jimmy);
+		ownerDao.update(jimmy);
 
 		// owner Kevin
 		List<Degree> listDegreesKevin = new ArrayList<Degree>();
@@ -389,13 +400,13 @@ public class InitDataForTest {
 		listResumeKevinList.add(resumeKevin2);
 		kevin.setResumes(listResumeKevinList);
 		
-		OwnerDAO.update(kevin);
+		ownerDao.update(kevin);
 
 		// link Acquisition
 		// acquisition diane
 		Acquisition acquisition = new Acquisition(diane,null, null,new Date(2012,02,02));
 		
-		AcquisitionDAO.create(acquisition);
+		acquisitionDao.create(acquisition);
 		
 		// acquisition francois
 		Acquisition acquisition1 = new Acquisition(francois,document1, competence1,new Date(2012, 2, 10));
@@ -403,10 +414,10 @@ public class InitDataForTest {
 		Acquisition acquisition3 = new Acquisition(francois,document2, competence10,new Date(2012, 2, 10));
 		Acquisition acquisition4 = new Acquisition(francois,document1, competence12,new Date(2012, 2, 10));
 		
-		AcquisitionDAO.create(acquisition1);
-		AcquisitionDAO.create(acquisition2);
-		AcquisitionDAO.create(acquisition3);
-		AcquisitionDAO.create(acquisition4);
+		acquisitionDao.create(acquisition1);
+		acquisitionDao.create(acquisition2);
+		acquisitionDao.create(acquisition3);
+		acquisitionDao.create(acquisition4);
 		
 		// acquisition jimmy
 		Acquisition acquisition5 = new Acquisition(jimmy,document3, competence7, new Date(2010, 8, 14));
@@ -416,12 +427,12 @@ public class InitDataForTest {
 		Acquisition acquisition9 = new Acquisition(jimmy,document5, competence10, new Date(2009, 7, 03));
 		Acquisition acquisition10 = new Acquisition(jimmy,document5, competence6, new Date(2009, 7, 03));
 		
-		AcquisitionDAO.create(acquisition5);
-		AcquisitionDAO.create(acquisition6);
-		AcquisitionDAO.create(acquisition7);
-		AcquisitionDAO.create(acquisition8);
-		AcquisitionDAO.create(acquisition9);
-		AcquisitionDAO.create(acquisition10);
+		acquisitionDao.create(acquisition5);
+		acquisitionDao.create(acquisition6);
+		acquisitionDao.create(acquisition7);
+		acquisitionDao.create(acquisition8);
+		acquisitionDao.create(acquisition9);
+		acquisitionDao.create(acquisition10);
 		
 		//acquisition Kevin
 		Acquisition acquisition11 = new Acquisition(kevin,document6, competence10, new Date(2009, 6, 03));
@@ -433,14 +444,14 @@ public class InitDataForTest {
 		Acquisition acquisition17 = new Acquisition(kevin,document8, competence8, new Date(2009, 4, 03));
 		Acquisition acquisition18 = new Acquisition(kevin,document8, competence7, new Date(2009, 4, 03));
 		
-		AcquisitionDAO.create(acquisition11);
-		AcquisitionDAO.create(acquisition12);
-		AcquisitionDAO.create(acquisition13);
-		AcquisitionDAO.create(acquisition14);
-		AcquisitionDAO.create(acquisition15);
-		AcquisitionDAO.create(acquisition16);
-		AcquisitionDAO.create(acquisition17);
-		AcquisitionDAO.create(acquisition18);
+		acquisitionDao.create(acquisition11);
+		acquisitionDao.create(acquisition12);
+		acquisitionDao.create(acquisition13);
+		acquisitionDao.create(acquisition14);
+		acquisitionDao.create(acquisition15);
+		acquisitionDao.create(acquisition16);
+		acquisitionDao.create(acquisition17);
+		acquisitionDao.create(acquisition18);
 		
 	}
 }
