@@ -11,7 +11,11 @@
 <title>SADoc</title>
 </head>
 <body>
-	<c:import url="../layouts/MenuNotConnected.jsp" />
+	<div  class="wrap">
+
+	<c:import url="../layouts/MenuNotConnected.jsp"/>
+	
+	<div class="wrap_body">
 
 	<div id="wrapper">
 		<section id="content">
@@ -38,7 +42,12 @@
 		</section>
 	</div>
 	
+	<div class="place_footer"></div>
+	</div>
 	
+	
+	</div>
+	<c:import url="../layouts/Footer.jsp" />
 
 </body>
 </html>

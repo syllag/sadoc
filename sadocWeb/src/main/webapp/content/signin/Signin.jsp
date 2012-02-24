@@ -9,14 +9,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description"
-	content="Système d'authentification de document." />
+	content="Système d'authentification de document" />
 <title>Votre gestionnaire de compétences en ligne</title>
 <link href="css/style.css" type="text/css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="img/favicon.png" />
+<script>
+		function check() {
+			var p1 = document.getElementById('password');
+			var p2 = document.getElementById('confirm_password');
+			if (p1.value != p2.value) {
+				p2.setCustomValidity("Passwords don't match");
+			} else {
+				p2.setCustomValidity('');
+			}
+			if 	(p1.value.length < 8 ) {
+				p1.setCustomValidity("Put a password with at least 8 caracters");
+			}
+			else {
+				p1.setCustomValidity("");
+			}
+		}
+</script>
 </head>
 
 <body>
+	<div  class="wrap">
+
 	<c:import url="../layouts/MenuNotConnected.jsp"/>
+	
+	<div class="wrap_body">
+	
 
 	<section class="inscription">
 		<form method="post" action="SignIn">
@@ -35,26 +57,12 @@
 			<button type=submit onclick="check();" class="button">SIGN IN</button>
 		</form>
 	</section>
-
-	<footer> </footer>
-
-
-	<script>
-		function check() {
-			var p1 = document.getElementById('password');
-			var p2 = document.getElementById('confirm_password');
-			if (p1.value != p2.value) {
-				p2.setCustomValidity("Passwords don't match");
-			} else {
-				p2.setCustomValidity('');
-			}
-			if 	(p1.value.length < 8 ) {
-				p1.setCustomValidity("Put a password with at least 8 caracters");
-			}
-			else {
-				p1.setCustomValidity("");
-			}
-		}
-	</script>
+	
+		<div class="place_footer"></div>
+	</div>
+	
+	
+	</div>
+	<c:import url="../layouts/Footer.jsp" />
 </body>
 </html>
