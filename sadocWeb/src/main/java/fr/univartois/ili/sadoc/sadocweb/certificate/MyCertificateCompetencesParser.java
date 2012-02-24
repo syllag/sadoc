@@ -105,9 +105,9 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 			trace("++ compteur de tag :", cptTag);
 			
 			trace(com.getAcronym() +" " + com.getName() +" " + com.getDescription() );
-//			
-//			CompetenceDAO cDao = new CompetenceDAO();
-//			cDao.create(com);
+			
+			CompetenceDAO cDao = new CompetenceDAO();
+			cDao.create(com);
 		}
 	}
 
