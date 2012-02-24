@@ -22,11 +22,13 @@ import fr.univartois.ili.sadoc.entities.Degree;
 public class DegreeTest {
 	    
 	
-	private CompetenceDAO competenceDao =new CompetenceDAO();
-	private DegreeDAO degreeDao =new DegreeDAO();
+	private CompetenceDAO competenceDao;
+	private DegreeDAO degreeDao ;
 	@Before
 	public void initTests(){
 		PersistenceProvider.setProvider("sadocjpatest");
+		competenceDao =new CompetenceDAO();
+		degreeDao =new DegreeDAO();
 	}
 	
     @Test

@@ -25,13 +25,16 @@ import fr.univartois.ili.sadoc.entities.Resume;
 public class ResumeTest {
 	   
 	
-	private OwnerDAO ownerDao =new OwnerDAO();
-	private ResumeDAO resumeDao =new ResumeDAO();
-	private CompetenceDAO competenceDao =new CompetenceDAO();
+	private OwnerDAO ownerDao ;
+	private ResumeDAO resumeDao;
+	private CompetenceDAO competenceDao ;
 	
 	@Before
 	public void initTests(){
 		PersistenceProvider.setProvider("sadocjpatest");
+		ownerDao =new OwnerDAO();
+		resumeDao =new ResumeDAO();
+		competenceDao =new CompetenceDAO();
 	}
 	
     @Test

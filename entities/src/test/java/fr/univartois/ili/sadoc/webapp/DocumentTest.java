@@ -19,11 +19,12 @@ import fr.univartois.ili.sadoc.entities.Document;
 public class DocumentTest {
 	    
 
-	private DocumentDAO documentDao =new DocumentDAO();
+	private DocumentDAO documentDao;
 	
 	@Before
 	public void initTests(){
 		PersistenceProvider.setProvider("sadocjpatest");
+		documentDao =new DocumentDAO();
 	}
 	
     @Test

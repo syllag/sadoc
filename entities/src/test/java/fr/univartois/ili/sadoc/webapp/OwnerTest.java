@@ -19,11 +19,12 @@ import fr.univartois.ili.sadoc.entities.Owner;
 public class OwnerTest {
 
 	
-	private OwnerDAO ownerDao =new OwnerDAO();
+	private OwnerDAO ownerDao ;
 	
 	@Before
 	public void initTests(){
 		PersistenceProvider.setProvider("sadocjpatest");
+		ownerDao =new OwnerDAO();
 	}
 	
     @Test

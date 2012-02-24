@@ -25,15 +25,19 @@ import fr.univartois.ili.sadoc.entities.Owner;
 public class AcquisitionTest {
     
 	
-	private OwnerDAO ownerDao =new OwnerDAO();
-	private DocumentDAO documentDao =new DocumentDAO();
-	private CompetenceDAO competenceDao =new CompetenceDAO();
-	private AcquisitionDAO acquisitionDao =new AcquisitionDAO();
+	private OwnerDAO ownerDao;
+	private DocumentDAO documentDao ;
+	private CompetenceDAO competenceDao ;
+	private AcquisitionDAO acquisitionDao ;
 	
 	
 	@Before
 	public void initTests(){
 		PersistenceProvider.setProvider("sadocjpatest");
+		ownerDao =new OwnerDAO();
+		documentDao =new DocumentDAO();
+		competenceDao =new CompetenceDAO();
+		acquisitionDao =new AcquisitionDAO();
 	}
 	
     @Test
