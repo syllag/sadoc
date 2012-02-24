@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +20,11 @@ import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 
 public class WSPrivateImpl implements WSPrivate {
 	
+	@Resource(name="documentDAO")
+	private DocumentDAO documentDAO ;
+	
+	@Resource(name="signatureDAO")
+	private SignatureDAO signatureDAO ;
 	
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public boolean verifyDocument(Byte[] doc, Document document,
@@ -29,16 +36,16 @@ public class WSPrivateImpl implements WSPrivate {
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public Map<Owner, List<Competence>> getDocumentInformations(int documentId) {
 		Map<Owner, List<Competence>> info = new HashMap<Owner, List<Competence>>();
-		Document document = DocumentDAO.findById(documentId);
-		Owner owner = SignatureDAO.findOwnerByDocument(document);
-		List<Competence> competences = SignatureDAO.findCompetenceByDocument(document);
+		Document document = documentDAO.findById(documentId);
+		Owner owner = signatureDAO.findOwnerByDocument(document);
+		List<Competence> competences = signatureDAO.findCompetenceByDocument(document);
 		info.put(owner, competences);
 		return info;
 	}
 
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public List<Document> importDocument(Owner owner) {
-		List<Document> documents = SignatureDAO.findDocumentByOwner(owner);
+		List<Document> documents = signatureDAO.findDocumentByOwner(owner);
 		Set<Document> docs=new HashSet<Document>(documents);
 		documents= new ArrayList<Document> (docs);
 		return documents;
@@ -46,13 +53,13 @@ public class WSPrivateImpl implements WSPrivate {
 
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public List<Competence> importCompetences(Document document) {
-		List<Competence> competences = SignatureDAO.findCompetenceByDocument(document);
+		List<Competence> competences = signatureDAO.findCompetenceByDocument(document);
 		return competences;
 	}
 
 
 	public Document getDocument(int id) {
-		Document document = DocumentDAO.findById(id);
+		Document document = documentDAO.findById(id);
 		return document;
 	}
 

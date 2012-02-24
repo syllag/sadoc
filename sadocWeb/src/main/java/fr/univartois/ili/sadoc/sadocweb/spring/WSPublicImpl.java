@@ -5,11 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
-
 import com.itextpdf.text.pdf.PdfReader;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
@@ -29,8 +24,16 @@ import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 public class WSPublicImpl implements WSPublic {
 	
 	@Resource(name="ownerDAO")
-	private OwnerDAO  ownerDAO ;
-
+	private OwnerDAO ownerDAO ;
+	
+	@Resource(name="documentDAO")
+	private DocumentDAO documentDAO;
+	
+	@Resource(name="signatureDAO")
+	private SignatureDAO signatureDAO;
+	
+	@Resource(name="certificateDAO")
+	private CertificateDAO certificateDAO;
 
 
 //	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -47,11 +50,11 @@ public class WSPublicImpl implements WSPublic {
 			Competence[] competence) {
 		Certificate certificate = getCertificate(owner).get(0);
 		Document document = new Document(name, "", null);
-		DocumentDAO.create(document);
+		documentDAO.create(document);
 		for (Competence comp : competence) {
 			Signature signature = new Signature(document,
 					certificate.getOwner(), comp, certificate);
-			SignatureDAO.create(signature);
+			signatureDAO.create(signature);
 		}
 		String url = Properties.URL + "/checkDocument?sa="
 				+ Crypt.createFalseID(document.getId());
@@ -65,7 +68,7 @@ public class WSPublicImpl implements WSPublic {
 			SignFile sf = new SignFile();
 			byte[] p7s = sf.signDocument(dest, owner);
 			document.setPk7(p7s);
-			DocumentDAO.update(document);
+			documentDAO.update(document);
 			fis.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,7 +92,7 @@ public class WSPublicImpl implements WSPublic {
 
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
-		return CertificateDAO.findByOwner(owner);
+		return certificateDAO.findByOwner(owner);
 	}
 
 //	public OwnerDAO getOwnerDAO() {

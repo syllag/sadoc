@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,8 @@ import fr.univartois.ili.sadoc.entities.classes.Owner;
 import fr.univartois.ili.sadoc.entities.classes.Signature;
 import fr.univartois.ili.sadoc.entities.configuration.Request;
 
+@Service("signatureDAO")
+@Transactional
 public class SignatureDAO {
 
 	protected EntityManager entityManager;
