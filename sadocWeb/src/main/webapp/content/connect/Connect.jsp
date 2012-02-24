@@ -15,7 +15,11 @@
 </head>
 
 <body>
-	<c:import url="../layouts/MenuNotConnected.jsp" />
+	<div  class="wrap">
+
+	<c:import url="../layouts/MenuNotConnected.jsp"/>
+	
+	<div class="wrap_body">
 
 	<section class="connection">
 		<form method="POST" action="ValidateConnect">
@@ -29,6 +33,11 @@
 		</form>
 	</section>
 
-	<footer> </footer>
+	<div class="place_footer"></div>
+	</div>
+	
+	
+	</div>
+	<c:import url="../layouts/Footer.jsp" />
 </body>
 </html>
