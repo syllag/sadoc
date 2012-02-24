@@ -1,0 +1,14 @@
+.settings/
+target/
+assembler/.settings/
+assembler/target/
+commons/.settings/
+commons/target/
+entities/.settings/
+entities/target/
+facade/.settings/
+facade/target/
+mockDB/.settings/
+mockDB/target/
+sadocWeb/.settings/
+sadocWeb/target/
