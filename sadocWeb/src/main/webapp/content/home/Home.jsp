@@ -21,8 +21,11 @@
 		<section id="content">
 			<table>
 				<tr>
-					<td><img src='img/univ_artois.png' alt="université d'artois"
-						class="icon" /></td>
+					<td>
+						<a href="http://www.univ-artois.fr">
+							<img src='img/univ_artois.png' alt="université d'artois" class="icon"/>
+						</a>
+					</td>
 					<td><span class="quotation">SADoc - Système d'authentification de documents</span></td>
 				</tr>
 			</table>
