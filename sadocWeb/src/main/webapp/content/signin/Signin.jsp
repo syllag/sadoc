@@ -16,33 +16,23 @@
 </head>
 
 <body>
-
-	<header class="header">
-		<a href="Home"><img src='img/logo.png' /></a>
-		<h1>Système d'authentification de documents</h1>
-	</header>
-	
 	<c:import url="../layouts/MenuNotConnected.jsp"/>
 
 	<section class="inscription">
 		<form method="post" action="SignIn">
-			<input type="text" name="form.firstname" id="prenom"
-				placeholder="Type your Firstname" required /> <input type="text"
-				name="form.name" id="nom" placeholder="Type your Lastname" required />
-			<input type="text" name="form.mail" id="email"
-				placeholder="Type your email"
+			<input type="text" name="form.firstname" id="prenom" placeholder="Type your Firstname" required /> 
+			<input type="text" name="form.name" id="nom" placeholder="Type your Lastname" required />
+			<input type="text" name="form.mail" id="email" placeholder="Type your email"
 				pattern="([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))"
-				required /> <input type="password" name="form.password"
-				id="password" placeholder="Type your password" required /> <input
-				type="password" name="form.password2" id="confirm_password" 
-				placeholder="Confirm your password" required
-				onblur="check();" />
+				required /> 
+			<input type="password" name="form.password" id="password" placeholder="Type your password" required /> 
+			<input type="password" name="form.password2" id="confirm_password" 
+				placeholder="Confirm your password" required onblur="check();" />
 			<div id="msg_erreur">
 				<s:actionerror />
 			</div>
 
-			<button type=submit onclick="check();" class="button">SIGN
-				IN</button>
+			<button type=submit onclick="check();" class="button">SIGN IN</button>
 		</form>
 	</section>
 
