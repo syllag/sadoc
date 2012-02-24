@@ -45,6 +45,8 @@
 
 		<div class="infoP7S">
 			<p>signature du fichier (fichier *.p7s) : ${document.pk7}</p>
+			<p>L'utilisation du fichier *.p7s requiert le logiciel 
+			<a href="http://www.adesium.com/index.php?option=com_quickfaq&view=items&cid=1%3Amysign&id=14">mySIGN</a></p>
 		</div>
 	</section>
 </div>
