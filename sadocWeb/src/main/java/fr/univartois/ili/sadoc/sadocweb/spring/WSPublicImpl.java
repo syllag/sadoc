@@ -33,7 +33,7 @@ public class WSPublicImpl implements WSPublic {
 	private SignatureDAO signatureDAO;
 	
 	@Resource(name="certificateDAO")
-	private CertificateDAO certificateDAO;
+	private CertificateDAO certificateDAO ;
 
 
 //	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -92,17 +92,18 @@ public class WSPublicImpl implements WSPublic {
 
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
+		certificateDAO = new CertificateDAO();
 		return certificateDAO.findByOwner(owner);
 	}
 
-//	public OwnerDAO getOwnerDAO() {
-//		return ownerDAO;
-//	}
-//
-//	@Autowired
-//	public void setOwnerDAO(OwnerDAO ownerDAO) {
-//		this.ownerDAO = ownerDAO;
-//	}
-	
+////	public OwnerDAO getOwnerDAO() {
+////		return ownerDAO;
+////	}
+////
+////	@Autowired
+////	public void setOwnerDAO(OwnerDAO ownerDAO) {
+////		this.ownerDAO = ownerDAO;
+////	}
+//	
 	
 }

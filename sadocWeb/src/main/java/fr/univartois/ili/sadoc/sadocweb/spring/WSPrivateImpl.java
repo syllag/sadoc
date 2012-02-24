@@ -36,6 +36,8 @@ public class WSPrivateImpl implements WSPrivate {
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public Map<Owner, List<Competence>> getDocumentInformations(int documentId) {
 		Map<Owner, List<Competence>> info = new HashMap<Owner, List<Competence>>();
+		documentDAO= new DocumentDAO();
+		signatureDAO = new SignatureDAO();
 		Document document = documentDAO.findById(documentId);
 		Owner owner = signatureDAO.findOwnerByDocument(document);
 		List<Competence> competences = signatureDAO.findCompetenceByDocument(document);
@@ -45,6 +47,7 @@ public class WSPrivateImpl implements WSPrivate {
 
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public List<Document> importDocument(Owner owner) {
+		signatureDAO = new SignatureDAO();
 		List<Document> documents = signatureDAO.findDocumentByOwner(owner);
 		Set<Document> docs=new HashSet<Document>(documents);
 		documents= new ArrayList<Document> (docs);
@@ -53,6 +56,7 @@ public class WSPrivateImpl implements WSPrivate {
 
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public List<Competence> importCompetences(Document document) {
+		signatureDAO = new SignatureDAO();
 		List<Competence> competences = signatureDAO.findCompetenceByDocument(document);
 		return competences;
 	}

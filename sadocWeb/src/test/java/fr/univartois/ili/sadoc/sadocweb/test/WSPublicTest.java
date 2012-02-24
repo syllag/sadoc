@@ -43,6 +43,8 @@ public class WSPublicTest {
 		final CertificateDAO certificateDAO = new CertificateDAO();
 		final EntityManager entityManager = PersistenceProvider.getEntityManager();
 		
+		
+		
 		Owner owner1 = new Owner("firstname1", "lastName1", "mail1");
 		Owner owner2 = new Owner("firstname2", "lastName2", "mail2");
 		KeyPairGenerator ke2 = null;
