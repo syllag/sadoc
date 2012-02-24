@@ -1,3 +1,9 @@
+<div class="wrap_header">
+<header class="header">
+	<a href="Home"><img src='img/logo.png' /></a>
+	<h1>Système d'authentification de documents</h1>
+</header>
+
 <menu label="main_menu" class="main_menu">
 	<li class="${ currentMenu == 'Home' ? 'menu_active' : ''}">
 		<a href="Home">Accueil</a>
@@ -9,3 +15,4 @@
 		<a href="ValidateConnect">Connexion</a>
 	</li>
 </menu>
+</div>

@@ -26,8 +26,8 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	public String execute () {
 		session = ActionContext.getContext().getSession();
 		String mail = (String) session.get("mail");
-		
-		Owner owner = OwnerDAO.findByMail(mail);
+		OwnerDAO odao=new OwnerDAO();
+		Owner owner = odao.findByMail(mail);
 		
 		owner.setFirstName(form.getFirstName());
 		owner.setLastName(form.getLastName());
@@ -40,7 +40,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 				owner.setPassword(form.getPassword());
 		}
 		
-		OwnerDAO.update(owner);
+		odao.update(owner);
 		
 		return SUCCESS;
 	}

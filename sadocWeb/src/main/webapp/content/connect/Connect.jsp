@@ -15,12 +15,11 @@
 </head>
 
 <body>
-	<header class="header">
-		<a href="Home"><img src='img/logo.png' /></a>
-		<h1>Système d'authentification de documents</h1>
-	</header>
+	<div  class="wrap">
 
-	<c:import url="../layouts/MenuNotConnected.jsp" />
+	<c:import url="../layouts/MenuNotConnected.jsp"/>
+	
+	<div class="wrap_body">
 
 	<section class="connection">
 		<form method="POST" action="ValidateConnect">
@@ -34,6 +33,11 @@
 		</form>
 	</section>
 
-	<footer> </footer>
+	<div class="place_footer"></div>
+	</div>
+	
+	
+	</div>
+	<c:import url="../layouts/Footer.jsp" />
 </body>
 </html>
