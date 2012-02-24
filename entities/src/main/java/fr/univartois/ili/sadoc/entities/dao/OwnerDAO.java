@@ -18,7 +18,6 @@ public class OwnerDAO {
 	
 	protected EntityManager entityManager;
 
-
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
@@ -34,20 +33,15 @@ public class OwnerDAO {
 	
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void create(Owner owner) {
-		System.out.println();
-		System.out.println("la création de Owner ça marche: " + owner.getMail());
-		System.out.println();
 		entityManager.persist(owner);
-		System.out.println();
-		System.out.println("la persistence a été effectuée : "+owner.getId());
-		System.out.println();
-
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner findById(int id) {
 		return entityManager.find(Owner.class, id);
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner findByMail(String mail) {
 		final TypedQuery<Owner> query;
 		query = entityManager.createQuery(Request.FIND_OWNER_BY_MAIL, Owner.class);
@@ -55,13 +49,13 @@ public class OwnerDAO {
 		return query.getSingleResult(); 
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void update(Owner user) {
 		entityManager.merge(user);
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void delete(Owner user) {
-
 		entityManager.remove(user);
-
 	}
 }

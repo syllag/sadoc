@@ -1,34 +1,47 @@
 package fr.univartois.ili.sadoc.entities.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.entities.classes.Document;
 
 public class DocumentDAO {
 
-	private static final EntityManager em = PersistenceProvider.getEntityManager();
-	
-	private DocumentDAO(){}
-	
-	public static void create(Document document) {
-		em.getTransaction().begin();
-		em.persist(document);
-		em.getTransaction().commit();
+	protected EntityManager entityManager;
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
-	public static Document findById(int id) {
-		return em.find(Document.class, id);
+	@PersistenceContext(unitName = "sadocjpa")
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
-	public static void update(Document document) {
-		em.getTransaction().begin();
-		em.merge(document);
-		em.getTransaction().commit();
+	public DocumentDAO() {
+		entityManager = PersistenceProvider.getEntityManager();
 	}
 
-	public static void delete(Document document) {
-		em.getTransaction().begin();
-		em.remove(document);
-		em.getTransaction().commit();
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void create(Document document) {
+		entityManager.persist(document);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Document findById(int id) {
+		return entityManager.find(Document.class, id);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void update(Document document) {
+		entityManager.merge(document);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void delete(Document document) {
+		entityManager.remove(document);
 	}
 }

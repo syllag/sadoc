@@ -1,45 +1,59 @@
 package fr.univartois.ili.sadoc.entities.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.entities.classes.Competence;
 import fr.univartois.ili.sadoc.entities.configuration.Request;
 
 public class CompetenceDAO {
 
-	private static final EntityManager em = PersistenceProvider.getEntityManager();
-	
-	private CompetenceDAO(){}
-	
-	public static void create(Competence competence) {
-		em.getTransaction().begin();
-		em.persist(competence);
-		em.getTransaction().commit();
+	protected EntityManager entityManager;
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
-	public static Competence findById(int id) {
-        return em.find(Competence.class, id);
+	@PersistenceContext(unitName = "sadocjpa")
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
-	
-	public static Competence findByAcronym(String acronym) {
+
+	public CompetenceDAO() {
+		entityManager = PersistenceProvider.getEntityManager();
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void create(Competence competence) {
+		entityManager.persist(competence);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Competence findById(int id) {
+		return entityManager.find(Competence.class, id);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Competence findByAcronym(String acronym) {
 		final TypedQuery<Competence> query;
-		query = em.createQuery(Request.FIND_COMPETENCE_BY_ACRONYM,
+		query = entityManager.createQuery(Request.FIND_COMPETENCE_BY_ACRONYM,
 				Competence.class);
 		query.setParameter("acronym", acronym);
 		Competence competence = query.getSingleResult();
 		return competence;
 	}
 
-	public static void update(Competence competence) {
-		em.getTransaction().begin();
-		em.merge(competence);
-		em.getTransaction().commit();
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void update(Competence competence) {
+		entityManager.merge(competence);
 	}
 
-	public static void delete(Competence competence) {
-		em.getTransaction().begin();
-		em.remove(competence);
-		em.getTransaction().commit();
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void delete(Competence competence) {
+		entityManager.remove(competence);
 	}
 }

@@ -3,7 +3,11 @@ package fr.univartois.ili.sadoc.entities.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
@@ -11,38 +15,47 @@ import fr.univartois.ili.sadoc.entities.configuration.Request;
 
 public class CertificateDAO {
 
-	private static final EntityManager em = PersistenceProvider
-			.getEntityManager();
+	protected EntityManager entityManager;
 
-	private CertificateDAO(){}
-	
-	public static void create(Certificate certificate) {
-		em.getTransaction().begin();
-		em.persist(certificate);
-		em.getTransaction().commit();
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
-	public static Certificate findById(int id) {
-		return em.find(Certificate.class, id);
+	@PersistenceContext(unitName = "sadocjpa")
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
-	public static List<Certificate> findByOwner(Owner owner) {
+	public CertificateDAO() {
+		entityManager = PersistenceProvider.getEntityManager();
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void create(Certificate certificate) {
+		entityManager.persist(certificate);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Certificate findById(int id) {
+		return entityManager.find(Certificate.class, id);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public List<Certificate> findByOwner(Owner owner) {
 		final TypedQuery<Certificate> query;
-		query = em.createQuery(Request.FIND_IN_CERTIFICATE_BY_OWNER,
+		query = entityManager.createQuery(Request.FIND_IN_CERTIFICATE_BY_OWNER,
 				Certificate.class);
 		query.setParameter("owner", owner);
 		return query.getResultList();
 	}
 
-	public static void update(Certificate certificate) {
-		em.getTransaction().begin();
-		em.merge(certificate);
-		em.getTransaction().commit();
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void update(Certificate certificate) {
+		entityManager.merge(certificate);
 	}
 
-	public static void delete(Certificate certificate) {
-		em.getTransaction().begin();
-		em.remove(certificate);
-		em.getTransaction().commit();
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void delete(Certificate certificate) {
+		entityManager.remove(certificate);
 	}
 }

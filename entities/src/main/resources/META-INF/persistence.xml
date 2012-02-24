@@ -14,7 +14,7 @@
 
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation" value="create-tables" />
 			<property name="eclipselink.ddl-generation.output-mode"
 				value="database" />
 			<property name="eclipselink.weaving" value="static" />
@@ -24,12 +24,11 @@
 
 	<persistence-unit name="sadocjpatest">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>fr.univartois.ili.sadoc.entities.classes.Owner</class>
-<!-- 		<class>fr.univartois.ili.sadoc.entities.classes.Acquisition</class> -->
+		<class>fr.univartois.ili.sadoc.entities.classes.Certificate</class>
 		<class>fr.univartois.ili.sadoc.entities.classes.Competence</class>
-<!-- 		<class>fr.univartois.ili.sadoc.entities.Degree</class> -->
+		<class>fr.univartois.ili.sadoc.entities.classes.Signature</class>
+		<class>fr.univartois.ili.sadoc.entities.classes.Owner</class>
 		<class>fr.univartois.ili.sadoc.entities.classes.Document</class>
-<!-- 		<class>fr.univartois.ili.sadoc.entities.Resume</class> -->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />

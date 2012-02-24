@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Competence;
@@ -18,86 +22,110 @@ import fr.univartois.ili.sadoc.entities.configuration.Request;
 
 public class SignatureDAO {
 
-	private static final EntityManager em = PersistenceProvider.getEntityManager();
-	
-	private SignatureDAO(){}
-	
-	public static void create(Signature signature) {
-		em.getTransaction().begin();
-		em.persist(signature);
-		em.getTransaction().commit();
+	protected EntityManager entityManager;
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
-	public static Signature findById(int id) {
-		return em.find(Signature.class, id);
+	@PersistenceContext(unitName = "sadocjpa")
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
-	
-	public static List<Signature> findByOwner(Owner owner) {
+
+	public SignatureDAO() {
+		entityManager = PersistenceProvider.getEntityManager();
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void create(Signature signature) {
+		entityManager.persist(signature);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Signature findById(int id) {
+		return entityManager.find(Signature.class, id);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public List<Signature> findByOwner(Owner owner) {
 		final TypedQuery<Signature> query;
-        query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_OWNER, Signature.class);
-        query.setParameter("owner", owner);
-        return query.getResultList();
+		query = entityManager.createQuery(Request.FIND_IN_SIGNATURE_BY_OWNER,
+				Signature.class);
+		query.setParameter("owner", owner);
+		return query.getResultList();
 	}
-	
-	public static List<Signature> findByDocument(Document document) {
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public List<Signature> findByDocument(Document document) {
 		final TypedQuery<Signature> query;
-        query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_DOCUMENT, Signature.class);
-        query.setParameter("owner", document);
-        return query.getResultList();
+		query = entityManager.createQuery(
+				Request.FIND_IN_SIGNATURE_BY_DOCUMENT, Signature.class);
+		query.setParameter("owner", document);
+		return query.getResultList();
 	}
-	
-	public static List<Signature> findByCompetence(Competence competence) {
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public List<Signature> findByCompetence(Competence competence) {
 		final TypedQuery<Signature> query;
-        query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_COMPETENCE, Signature.class);
-        query.setParameter("owner", competence);
-        return query.getResultList();
+		query = entityManager.createQuery(
+				Request.FIND_IN_SIGNATURE_BY_COMPETENCE, Signature.class);
+		query.setParameter("owner", competence);
+		return query.getResultList();
 	}
-	
-	public static List<Signature> findByCertificate(Certificate certificate) {
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public List<Signature> findByCertificate(Certificate certificate) {
 		final TypedQuery<Signature> query;
-        query = em.createQuery(Request.FIND_IN_SIGNATURE_BY_CERTIFICATE, Signature.class);
-        query.setParameter("owner", certificate);
-        return query.getResultList();
+		query = entityManager.createQuery(
+				Request.FIND_IN_SIGNATURE_BY_CERTIFICATE, Signature.class);
+		query.setParameter("certificate", certificate);
+		return query.getResultList();
 	}
-	
-	public static List<Document> findDocumentByOwner(Owner owner) {
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public List<Document> findDocumentByOwner(Owner owner) {
 		final TypedQuery<Document> query;
-        query = em.createQuery(Request.FIND_DOCUMENT_IN_SIGNATURE_BY_OWNER, Document.class);
-        query.setParameter("owner", owner);
-        List<Document> documents = query.getResultList();
-        Set<Document> docs = new HashSet<Document>(documents);
-        documents = new ArrayList<Document> (docs);
-        Collections.sort(documents);
+		query = entityManager.createQuery(
+				Request.FIND_DOCUMENT_IN_SIGNATURE_BY_OWNER, Document.class);
+		query.setParameter("owner", owner);
+		List<Document> documents = query.getResultList();
+		Set<Document> docs = new HashSet<Document>(documents);
+		documents = new ArrayList<Document>(docs);
+		Collections.sort(documents);
 		return documents;
 	}
-	
-	public static Owner findOwnerByDocument(Document document) {
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Owner findOwnerByDocument(Document document) {
 		final TypedQuery<Owner> query;
-        query = em.createQuery(Request.FIND_OWNER_IN_SIGNATURE_BY_DOCUMENT, Owner.class);
-        query.setParameter("document", document);
-        return query.getSingleResult();
+		query = entityManager.createQuery(
+				Request.FIND_OWNER_IN_SIGNATURE_BY_DOCUMENT, Owner.class);
+		query.setParameter("document", document);
+		return query.getSingleResult();
 	}
-	
-	public static List<Competence> findCompetenceByDocument(Document document) {
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public List<Competence> findCompetenceByDocument(Document document) {
 		final TypedQuery<Competence> query;
-        query = em.createQuery(Request.FIND_COMPETENCE_IN_SIGNATURE_BY_DOCUMENT, Competence.class);
-        query.setParameter("document", document);
-        List<Competence> competences = query.getResultList();
-        Set<Competence> docs = new HashSet<Competence>(competences);
-        competences = new ArrayList<Competence> (docs);
-        Collections.sort(competences);
+		query = entityManager.createQuery(
+				Request.FIND_COMPETENCE_IN_SIGNATURE_BY_DOCUMENT,
+				Competence.class);
+		query.setParameter("document", document);
+		List<Competence> competences = query.getResultList();
+		Set<Competence> docs = new HashSet<Competence>(competences);
+		competences = new ArrayList<Competence>(docs);
+		Collections.sort(competences);
 		return competences;
 	}
 
-	public static void update(Signature signature) {
-		em.getTransaction().begin();
-		em.merge(signature);
-		em.getTransaction().commit();
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void update(Signature signature) {
+		entityManager.merge(signature);
 	}
 
-	public static void delete(Signature signature) {
-		em.getTransaction().begin();
-		em.remove(signature);
-		em.getTransaction().commit();
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void delete(Signature signature) {
+		entityManager.remove(signature);
 	}
 }

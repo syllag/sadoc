@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="owner")
+@Table(name="OWNER")
 public class Owner implements Serializable, Comparable<Object> {
 	/**
 	 * 
