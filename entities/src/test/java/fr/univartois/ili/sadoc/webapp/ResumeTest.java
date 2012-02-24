@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.CompetenceDAO;
+import fr.univartois.ili.sadoc.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.dao.ResumeDAO;
@@ -23,6 +24,11 @@ import fr.univartois.ili.sadoc.entities.Resume;
  */
 public class ResumeTest {
 	   
+	
+	private OwnerDAO ownerDao =new OwnerDAO();
+	private ResumeDAO resumeDao =new ResumeDAO();
+	private CompetenceDAO competenceDao =new CompetenceDAO();
+	
 	@Before
 	public void initTests(){
 		PersistenceProvider.setProvider("sadocjpatest");
@@ -39,12 +45,12 @@ public class ResumeTest {
     	liste.add(competence);
     	resume.setCompetences(liste);
     	
-    	CompetenceDAO.create(competence);
-    	OwnerDAO.create(user);
-    	ResumeDAO.create(resume);
-    	Owner userTest = OwnerDAO.findById(user.getId());
-    	Competence competenceTest = CompetenceDAO.findById(competence.getId());
-    	Resume resumeTest = ResumeDAO.findById(resume.getId());
+    	competenceDao.create(competence);
+    	ownerDao.create(user);
+    	resumeDao.create(resume);
+    	Owner userTest = ownerDao.findById(user.getId());
+    	Competence competenceTest = competenceDao.findById(competence.getId());
+    	Resume resumeTest = resumeDao.findById(resume.getId());
     	
         assertEquals(resume.getCompetences(), resumeTest.getCompetences());
         assertEquals(resume.getOwner(), resumeTest.getOwner());

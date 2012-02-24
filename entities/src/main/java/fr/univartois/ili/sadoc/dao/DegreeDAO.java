@@ -1,35 +1,49 @@
 package fr.univartois.ili.sadoc.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import fr.univartois.ili.sadoc.entities.Degree;
 
-public abstract class DegreeDAO {
+public class DegreeDAO {
 
-	private static final EntityManager em = PersistenceProvider.getEntityManager();
-	
-	
-	
-	public static void create(Degree degree) {
-		em.getTransaction().begin();
-		em.persist(degree);
-		em.getTransaction().commit();
+	protected EntityManager entityManager;
+
+	public EntityManager getentityManager() {
+		return entityManager;
 	}
 
-	public static Degree findById(int id) {
-		Degree degree = em.find(Degree.class, id);
+	@PersistenceContext(unitName = "sadocjpa")
+	public void setentityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	
+	
+	public DegreeDAO(){
+		entityManager = PersistenceProvider.getEntityManager();
+
+	}
+	
+	public  void create(Degree degree) {
+		entityManager.getTransaction().begin();
+		entityManager.persist(degree);
+		entityManager.getTransaction().commit();
+	}
+
+	public  Degree findById(int id) {
+		Degree degree = entityManager.find(Degree.class, id);
 		return degree;
 	}
 
-	public static void update(Degree degree) {
-		em.getTransaction().begin();
-		em.merge(degree);
-		em.getTransaction().commit();
+	public  void update(Degree degree) {
+		entityManager.getTransaction().begin();
+		entityManager.merge(degree);
+		entityManager.getTransaction().commit();
 	}
 
-	public static void delete(Degree degree) {
-		em.getTransaction().begin();
-		em.remove(degree);
-		em.getTransaction().commit();
+	public  void delete(Degree degree) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(degree);
+		entityManager.getTransaction().commit();
 	}
 }

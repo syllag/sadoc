@@ -21,6 +21,9 @@ import fr.univartois.ili.sadoc.entities.Degree;
  */
 public class DegreeTest {
 	    
+	
+	private CompetenceDAO competenceDao =new CompetenceDAO();
+	private DegreeDAO degreeDao =new DegreeDAO();
 	@Before
 	public void initTests(){
 		PersistenceProvider.setProvider("sadocjpatest");
@@ -35,10 +38,10 @@ public class DegreeTest {
     	liste.add(competence);
     	degree.setCompetences(liste);    	
     	
-    	CompetenceDAO.create(competence);
-    	DegreeDAO.create(degree);
-    	Competence competenceTest = CompetenceDAO.findById(competence.getId());
-    	Degree degreeTest = DegreeDAO.findById(degree.getId());
+    	competenceDao.create(competence);
+    	degreeDao.create(degree);
+    	Competence competenceTest = competenceDao.findById(competence.getId());
+    	Degree degreeTest = degreeDao.findById(degree.getId());
     	
         assertEquals(degree.getCompetences(),degreeTest.getCompetences());
         assertEquals(degree.getDescription(), degreeTest.getDescription());
