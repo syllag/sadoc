@@ -44,20 +44,20 @@ public class CheckDocument extends ActionSupport {
 	}
 
 	public String execute() {
-		if (TestID.trueFalseID(sa)) {
-			long realID = TestID.findRealID(sa);
-			ClientWebServiceImpl clientWS = new ClientWebServiceImpl();
-			document = clientWS.getDocument(realID);
-
-			Map<Owner, List<Competence>> competences = clientWS
-					.getCompetences(realID);
-
-			for (Owner user : competences.keySet()) {
-				owner = user;
-				listCompetences = competences.get(owner);
-			}
-			return SUCCESS;
-		}
+//		if (TestID.trueFalseID(sa)) {
+//			long realID = TestID.findRealID(sa);
+//			ClientWebServiceImpl clientWS = new ClientWebServiceImpl();
+//			document = clientWS.getDocument(realID);
+//
+//			Map<Owner, List<Competence>> competences = clientWS
+//					.getCompetences(realID);
+//
+//			for (Owner user : competences.keySet()) {
+//				owner = user;
+//				listCompetences = competences.get(owner);
+//			}
+//			return SUCCESS;
+//		}
 
 		return INPUT;
 	}
