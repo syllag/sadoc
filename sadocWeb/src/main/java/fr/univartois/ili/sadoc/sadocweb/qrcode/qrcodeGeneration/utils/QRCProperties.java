@@ -11,10 +11,12 @@ public final class QRCProperties {
 	public static final String PATH_KEY = "pathRW";
 	public static final String FORMAT_KEY = "format";
 	public static final String SIZE_KEY = "size";
+	public static final String PREFIX_URL_KEY = "prefixURL";
 	
 	private String path;
 	private String format;
 	private int size;
+	private String prefixURL;
 	
 	/**
 	 * Constructor
@@ -80,6 +82,20 @@ public final class QRCProperties {
 	 */
 	public void setSize(int size) {
 		this.size = size;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getPrefixURL() {
+		return prefixURL;
+	}
+
+	/**
+	 * @param prefixURL
+	 */
+	public void setPrefixURL(String prefixURL) {
+		this.prefixURL = prefixURL;
 	}
 
 }
