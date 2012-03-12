@@ -27,8 +27,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 */
 	private ManageSignInForm form;
 	private Map<String, Object> session;
-	private OwnerDAO odao=new OwnerDAO();
-	
+	private OwnerDAO odao;
 	/************************************************/
 	/* (non-Javadoc)
 	 * @see com.opensymphony.xwork2.ActionSupport#execute()
@@ -60,6 +59,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 * @see com.opensymphony.xwork2.ActionSupport#validate()
 	 */
 	public void validate() {
+		odao=new OwnerDAO();
 		try {
 			if (odao.findByMail(form.getMail()) != null) {
 				addActionMessage("A user already exist with this mail adress");
