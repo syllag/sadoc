@@ -61,8 +61,8 @@ public class ClientWebServiceImpl implements IClientWebService {
 			createOwnerRequest.setFirstName("client1");
 			createOwnerRequest.setLastName("habib");
 			createOwnerRequest.setMail("habib.bhs@gmail.com");
-			CreateOwnerReponse response = (CreateOwnerReponse) webServiceTemplate.marshalSendAndReceive(createOwnerRequest);
-			System.out.println("rep :"+response.getOwner().getId());
+			Owner response = (Owner) webServiceTemplate.marshalSendAndReceive(createOwnerRequest);
+			System.out.println("rep :"+response.getId());
 			
 		}catch (Exception sfce) {
 		       
