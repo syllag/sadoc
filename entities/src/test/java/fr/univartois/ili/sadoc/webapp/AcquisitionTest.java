@@ -25,9 +25,19 @@ import fr.univartois.ili.sadoc.entities.Owner;
 public class AcquisitionTest {
     
 	
+	private OwnerDAO ownerDao;
+	private DocumentDAO documentDao ;
+	private CompetenceDAO competenceDao ;
+	private AcquisitionDAO acquisitionDao ;
+	
+	
 	@Before
 	public void initTests(){
 		PersistenceProvider.setProvider("sadocjpatest");
+		ownerDao =new OwnerDAO();
+		documentDao =new DocumentDAO();
+		competenceDao =new CompetenceDAO();
+		acquisitionDao =new AcquisitionDAO();
 	}
 	
     @Test
@@ -41,14 +51,14 @@ public class AcquisitionTest {
     	acquisition.setDocument(document);
     	acquisition.setCompetence(competence);
     	
-    	OwnerDAO.create(user);
-    	DocumentDAO.create(document);
-    	CompetenceDAO.create(competence);
-    	AcquisitionDAO.create(acquisition);
-    	Owner userTest = OwnerDAO.findById(user.getId());
-    	Document documentTest = DocumentDAO.findById(document.getId());
-    	Competence compenteceTest = CompetenceDAO.findById(competence.getId());
-    	Acquisition acquisitionTest = AcquisitionDAO.findById(acquisition.getId());
+    	ownerDao.create(user);
+    	documentDao.create(document);
+    	competenceDao.create(competence);
+    	acquisitionDao.create(acquisition);
+    	Owner userTest = ownerDao.findById(user.getId());
+    	Document documentTest = documentDao.findById(document.getId());
+    	Competence compenteceTest = competenceDao.findById(competence.getId());
+    	Acquisition acquisitionTest = acquisitionDao.findById(acquisition.getId());
     	
         assertEquals(acquisition.getCompetence(), acquisitionTest.getCompetence());
         assertEquals(acquisition.getDocument(), acquisitionTest.getDocument());

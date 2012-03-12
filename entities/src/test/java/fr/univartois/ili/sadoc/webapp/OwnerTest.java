@@ -18,9 +18,13 @@ import fr.univartois.ili.sadoc.entities.Owner;
  */
 public class OwnerTest {
 
+	
+	private OwnerDAO ownerDao ;
+	
 	@Before
 	public void initTests(){
 		PersistenceProvider.setProvider("sadocjpatest");
+		ownerDao =new OwnerDAO();
 	}
 	
     @Test
@@ -36,8 +40,8 @@ public class OwnerTest {
     	user.setPhone("0669696969");
     	
     	
-    	OwnerDAO.create(user);
-    	Owner userTest = OwnerDAO.findById(user.getId());
+    	ownerDao.create(user);
+    	Owner userTest = ownerDao.findById(user.getId());
     	
         assertEquals(user.getId(), userTest.getId());
         assertEquals(user.getFirstName(), userTest.getFirstName());

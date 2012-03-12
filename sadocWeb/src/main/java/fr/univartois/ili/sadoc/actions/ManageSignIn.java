@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.Form.ManageSignInForm;
@@ -27,15 +26,19 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 */
 	private ManageSignInForm form;
 	private Map<String, Object> session;
-	
+	private OwnerDAO odao;
+
 	/************************************************/
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.opensymphony.xwork2.ActionSupport#execute()
 	 */
 	public String execute() {
-		
-		if (form == null) return INPUT;
-		
+
+		if (form == null)
+			return INPUT;
+
 		Owner personne = new Owner();
 		personne.setFirstName(form.getFirstname());
 		personne.setLastName(form.getName());
@@ -44,7 +47,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		// TODO : cryptage password
 		try {
 			personne.setPassword(form.getPassword());
-			OwnerDAO.create(personne);
+			odao.create(personne);
 			// TODO : connecter la personne
 		} catch (Exception e) {
 			addActionMessage("Momentary problem... Please try agin later.");
@@ -59,20 +62,18 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 * @see com.opensymphony.xwork2.ActionSupport#validate()
 	 */
 	public void validate() {
+		odao = new OwnerDAO();
 		try {
-			if (OwnerDAO.findByMail(form.getMail()) != null) {
-				addActionMessage("A user already exist with this mail adress");
+			if (odao.findByMail(form.getMail()) != null) {
+				addFieldError("password","A user already exist with this mail adress");
 			}
 		} catch (Exception e) {
-			addActionMessage("Momentary problem... Please try agin later.");
+			addFieldError("password","Momentary problem... Please try agin later.");
 		}
 	}
 
-	
-	
-
 	/************************************************/
-	
+
 	/**
 	 * getter du formulaire de creation d'evenement
 	 * 
@@ -92,7 +93,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	}
 
 	public void setSession(Map<String, Object> arg0) {
-		this.session=arg0;
+		this.session = arg0;
 	}
 
 }

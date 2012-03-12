@@ -1,3 +1,4 @@
+<div class="wrap_header">
 <header class="header">
 	<a href="Home"><img src='img/logo.png' /></a>
 	<h1>Système d'authentification de documents</h1>
@@ -14,3 +15,4 @@
 		<a href="ValidateConnect">Connexion</a>
 	</li>
 </menu>
+</div>
