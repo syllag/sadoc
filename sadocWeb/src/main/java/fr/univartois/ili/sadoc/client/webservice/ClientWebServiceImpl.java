@@ -10,6 +10,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import fr.univartois.ili.sadoc.client.webservice.tools.CreateOwnerRequest;
+import fr.univartois.ili.sadoc.client.webservice.tools.GetOwnerRequest;
+import fr.univartois.ili.sadoc.client.webservice.tools.Owner;
 
 public class ClientWebServiceImpl implements IClientWebService {
 
@@ -62,7 +64,36 @@ public class ClientWebServiceImpl implements IClientWebService {
 			createOwnerRequest.setMail(mail);
 			response = (fr.univartois.ili.sadoc.client.webservice.tools.Owner) webServiceTemplate
 					.marshalSendAndReceive(createOwnerRequest);
-			System.out.println("response:created client  :" + response.getId()+" name: "+response.getLastName());
+			System.out.println("response:created client  :" + response.getId()
+					+ " name: " + response.getLastName());
+
+		} catch (Exception sfce) {
+
+			System.out.println("We sent an invalid message" + sfce);
+
+			sfce.printStackTrace();
+		}
+
+		return response;
+	}
+
+	public Owner getOwner(String mail) {
+		// TODO Auto-generated method stub
+		fr.univartois.ili.sadoc.client.webservice.tools.Owner response = null;
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+
+		WebServiceTemplate webServiceTemplate = applicationContext
+				.getBean(WebServiceTemplate.class);
+		try {
+
+			GetOwnerRequest getOwnerRequest = new GetOwnerRequest();
+
+			getOwnerRequest.setMail(mail);
+			response = (fr.univartois.ili.sadoc.client.webservice.tools.Owner) webServiceTemplate
+					.marshalSendAndReceive(getOwnerRequest);
+			System.out.println("response:created client  :" + response.getId()
+					+ " name: " + response.getLastName());
 
 		} catch (Exception sfce) {
 
