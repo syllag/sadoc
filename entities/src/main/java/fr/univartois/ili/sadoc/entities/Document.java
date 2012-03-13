@@ -3,8 +3,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -24,12 +22,11 @@ public class Document implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String name;
 	private String checkSum;
-	private byte[] pk7;
+	private byte[] p7s;
 	private String url;
 	
 	@Temporal(TemporalType.DATE)
@@ -39,11 +36,11 @@ public class Document implements Serializable {
 	
 	public Document(){}
 	
-	public Document(String name, String checkSum,String url,byte[] pk7,Date creationDate){
+	public Document(String name, String checkSum,String url,byte[] p7s,Date creationDate){
 		this.name=name;
 		this.checkSum=checkSum;
 		this.url=url;
-		this.pk7=pk7;
+		this.p7s=p7s;
 		this.creationDate=creationDate;
 	}
 	
@@ -83,6 +80,22 @@ public class Document implements Serializable {
 	
 	public boolean equals(Document document) {
 		return this.id == document.getId();
+	}
+
+	public byte[] getP7s() {
+		return p7s;
+	}
+
+	public void setP7s(byte[] p7s) {
+		this.p7s = p7s;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }
