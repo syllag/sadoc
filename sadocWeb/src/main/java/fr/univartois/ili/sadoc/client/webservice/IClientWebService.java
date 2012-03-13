@@ -3,12 +3,10 @@ package fr.univartois.ili.sadoc.client.webservice;
 import java.util.List;
 import java.util.Map;
 
-import fr.univartois.ili.sadoc.entities.Competence;
-import fr.univartois.ili.sadoc.entities.Document;
-import fr.univartois.ili.sadoc.entities.Owner;
-
 public interface IClientWebService {
 
-	public Document getDocument(long idDoc);
-	public Map<Owner,List<Competence>> getCompetences(long idDoc);
+	public fr.univartois.ili.sadoc.client.webservice.tools.Document getDocument(long idDoc);
+	public Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> getCompetences(long idDoc);
+	public fr.univartois.ili.sadoc.client.webservice.tools.Owner createOwner(String firstName ,String lastName, String mail);
+	public fr.univartois.ili.sadoc.client.webservice.tools.Owner getOwner(String mail);
 }

@@ -42,22 +42,21 @@ public class AcquisitionTest {
 	
     @Test
     public void testPersist() throws ParseException {
-    	final Owner user = new Owner();
+    	final Owner owner = new Owner();
     	final Document document = new Document();
     	final Competence competence = new Competence();
     	final Acquisition acquisition = new Acquisition();
-    	
-    	acquisition.setOwner(user);
+    	owner.setId(1);
+    	document.setId(1);
+    	competence.setId(1);
+    	acquisition.setOwner(owner);
     	acquisition.setDocument(document);
     	acquisition.setCompetence(competence);
     	
-    	ownerDao.create(user);
+    	ownerDao.create(owner);
     	documentDao.create(document);
     	competenceDao.create(competence);
     	acquisitionDao.create(acquisition);
-    	Owner userTest = ownerDao.findById(user.getId());
-    	Document documentTest = documentDao.findById(document.getId());
-    	Competence compenteceTest = competenceDao.findById(competence.getId());
     	Acquisition acquisitionTest = acquisitionDao.findById(acquisition.getId());
     	
         assertEquals(acquisition.getCompetence(), acquisitionTest.getCompetence());

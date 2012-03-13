@@ -6,10 +6,17 @@ import java.util.Map;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
+import fr.univartois.ili.sadoc.client.webservice.IClientWebService;
+import fr.univartois.ili.sadoc.dao.AcquisitionDAO;
+import fr.univartois.ili.sadoc.dao.CompetenceDAO;
+import fr.univartois.ili.sadoc.dao.DocumentDAO;
+import fr.univartois.ili.sadoc.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.entities.Acquisition;
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
 import fr.univartois.ili.sadoc.utils.TestID;
+import fr.univartois.ili.sadoc.webapp.AvancedTest.InitDataForTest;
 
 public class CheckDocument extends ActionSupport {
 
@@ -44,22 +51,72 @@ public class CheckDocument extends ActionSupport {
 	}
 
 	public String execute() {
-		if (TestID.trueFalseID(sa)) {
-			long realID = TestID.findRealID(sa);
-			ClientWebServiceImpl clientWS = new ClientWebServiceImpl();
-			document = clientWS.getDocument(realID);
+		fr.univartois.ili.sadoc.actions.InitDataForTest bd=new fr.univartois.ili.sadoc.actions.InitDataForTest();
+		bd.createDataForTest();
+		if (sa!=null /*&& TestID.trueFalseID(sa)*/) {
+			//long realID = TestID.findRealID(sa);
+			long realID = Long.valueOf(sa);
+			DocumentDAO ddao = new DocumentDAO();
+			AcquisitionDAO adao = new AcquisitionDAO();
+			OwnerDAO odao = new OwnerDAO();
+			CompetenceDAO cdao = new CompetenceDAO();
 
-			Map<Owner, List<Competence>> competences = clientWS
-					.getCompetences(realID);
+			Document doc = ddao.findById((int) realID);
 
-			for (Owner user : competences.keySet()) {
-				owner = user;
-				listCompetences = competences.get(owner);
+			if (doc == null) {
+				IClientWebService clientWebService = new ClientWebServiceImpl();
+
+				fr.univartois.ili.sadoc.client.webservice.tools.Document docws = clientWebService
+						.getDocument(realID);
+				if (docws != null) {
+					Document doctoregister = new Document(docws.getName(),
+							docws.getCheckSum(), "", docws.getPk7(), null);
+					doctoregister.setId(docws.getId().intValue());
+					ddao.create(doctoregister);
+					document = doctoregister;
+
+					clientWebService.getCompetences(docws.getId().longValue());
+					Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> comp = clientWebService
+							.getCompetences(docws.getId().longValue());
+					fr.univartois.ili.sadoc.client.webservice.tools.Owner incowner = comp
+							.keySet().iterator().next();
+
+					Owner owntoregister = new Owner();
+					owntoregister.setFirstName(incowner.getFirstName());
+					owntoregister.setLastName(incowner.getLastName());
+					owntoregister.setMail(incowner.getMail());
+					owntoregister.setId(incowner.getId().intValue());
+					odao.create(owntoregister);
+					owner = owntoregister;
+
+					for (fr.univartois.ili.sadoc.client.webservice.tools.Competence competence : comp
+							.get(incowner)) {
+						Competence c = new Competence(competence.getName(),
+								competence.getDescription());
+						c.setId(competence.getId().intValue());
+						cdao.create(c);
+						Acquisition a = new Acquisition();
+						a.setCompetence(c);
+						a.setDocument(doctoregister);
+						a.setOwner(owntoregister);
+						adao.create(a);
+						listCompetences.add(c);
+					}
+				} else {
+					return INPUT;
+				}
+
+			} else {
+				List<Acquisition> acq = adao.findByDocument(doc);
+				owner = acq.get(0).getOwner();
+				for (Acquisition a : acq) {
+					listCompetences.add(a.getCompetence());
+				}
 			}
+
 			return SUCCESS;
 		}
 
 		return INPUT;
 	}
-
 }

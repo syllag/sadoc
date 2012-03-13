@@ -7,8 +7,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.AcquisitionDAO;
@@ -25,10 +25,10 @@ import fr.univartois.ili.sadoc.entities.Owner;
  */
 public class AvancedTest {
 
-	private AcquisitionDAO acquisitionDAO;
+	private static AcquisitionDAO acquisitionDAO;
 	
-	@Before
-	public void initTests() {
+	@BeforeClass
+	public static void initTests() {
 		PersistenceProvider.setProvider("sadocjpatest");
 		acquisitionDAO =new AcquisitionDAO();
 		// create data
@@ -254,8 +254,8 @@ public class AvancedTest {
 				.getFirstName());
 	}
 
-	@After
-	public void endTests() {
+	@AfterClass
+	public static void endTests() {
 		PersistenceProvider.removeProvider();
 	}
 

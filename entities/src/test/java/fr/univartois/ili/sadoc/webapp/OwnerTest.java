@@ -30,6 +30,7 @@ public class OwnerTest {
     @Test
     public void testPersist() throws ParseException {
     	final Owner user = new Owner();
+    	user.setId(2);
     	user.setFirstName("Jean");
     	user.setLastName("Dupont");
     	user.setMail("jean.dupont@jaimal.com");
