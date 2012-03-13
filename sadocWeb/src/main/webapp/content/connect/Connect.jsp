@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	session.setAttribute("currentMenu", "Connect");
 %>
@@ -31,6 +32,9 @@
 			<a href="SignIn"><button class="buttonSignin">SIGN IN</button></a>
   <div class="spacer"> </div>
 		</form>
+		<s:if test="#session.incorrect == 'ok'">
+			<span class="errorMessage">password ou mail incorrect</span>
+		</s:if>
 	</section>
 
 	<div class="place_footer"></div>

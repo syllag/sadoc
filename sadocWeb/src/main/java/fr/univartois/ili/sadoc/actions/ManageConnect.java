@@ -11,6 +11,10 @@ import fr.univartois.ili.sadoc.Form.ManageConnectForm;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.Owner;
 
+/**
+ * @author Damien Wattiez <Damien Wattiez at gmail.com>
+ * 
+ */
 public class ManageConnect extends ActionSupport implements SessionAware {
 
 	/**
@@ -23,16 +27,26 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	 */
 	private ManageConnectForm connect;
 	private Map<String, Object> session;
-	
+
 	public String execute() {
+		// Create session
+		session = ActionContext.getContext().getSession();
 		
-		if (connect == null) return INPUT;
-		OwnerDAO odao=new OwnerDAO();
-		Owner owner = odao.findOwner(connect.getEmail(),
-				connect.getPassword());
+		if (connect == null) {
+			session.put("incorrect", "Nok");
+			return INPUT;
+		}
+		
+		if (connect == null) {
+			session.put("incorrect", "ok");
+			return INPUT;
+		}
+		OwnerDAO odao = new OwnerDAO();
+		Owner owner = odao.findOwner(connect.getEmail(), connect.getPassword());
 
 		// if empty
 		if (owner == null) {
+			session.put("incorrect", "ok");
 			return INPUT;
 		}
 
@@ -50,7 +64,11 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	}
 
 	public void setSession(Map<String, Object> arg0) {
-		this.session=arg0;
+		this.session = arg0;
+	}
+
+	public Map<String, Object> getSession() {
+		return session;
 	}
 
 }

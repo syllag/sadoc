@@ -1,6 +1,7 @@
 package fr.univartois.ili.sadoc.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -49,7 +50,12 @@ public class OwnerDAO {
 				Owner.class);
 		query.setParameter("mail", mail);
 		query.setParameter("password", password);
-		return query.getSingleResult();
+		Owner result = null;
+		try{
+			result = query.getSingleResult();
+		}
+		catch(NoResultException e){}
+		return result;
 	}
 
 	public void update(Owner user) {
