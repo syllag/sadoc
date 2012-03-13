@@ -38,11 +38,10 @@ public class CompetenceTest {
     	final Competence competence = new Competence();
     	final Degree degree = new Degree();
     	ArrayList<Degree> liste = new ArrayList<Degree>();
-    	
+    	competence.setId(2);
     	competence.setDescription("blablabla");
     	competence.setName("toto");
     	
-    
     	competenceDao.create(competence);
     	degreeDao.create(degree);
     	
@@ -56,7 +55,6 @@ public class CompetenceTest {
     	degreeDao.update(degree);
     	
     	Competence competenceTest = competenceDao.findById(competence.getId());
-    	Degree degreeTest = degreeDao.findById(degree.getId());
     	
         assertEquals(competence.getDegrees(),competenceTest.getDegrees());
         assertEquals(competence.getDescription(), competenceTest.getDescription());

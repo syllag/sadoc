@@ -14,8 +14,8 @@ public class Main {
 		
 		
 		IClientWebService clientWebService =new ClientWebServiceImpl();
-		
-		clientWebService.createOwner("habib","belhadj","habib.bhs@gmail.com");
+		clientWebService.getOwner("dfgvdfgvdf@gmail.com");
+		//clientWebService.createOwner("habib","belhadj","habib.bhs@gmail.com");
 
 	}
 

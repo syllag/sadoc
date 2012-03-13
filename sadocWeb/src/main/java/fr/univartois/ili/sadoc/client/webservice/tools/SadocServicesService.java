@@ -23,13 +23,13 @@ public class SadocServicesService
 {
 
     private final static URL SADOCSERVICESSERVICE_WSDL_LOCATION;
-    private final static Logger logger = Logger.getLogger(SadocServicesService.class.getName());
+    private final static Logger logger = Logger.getLogger(fr.univartois.ili.sadoc.client.webservice.tools.SadocServicesService.class.getName());
 
     static {
         URL url = null;
         try {
             URL baseUrl;
-            baseUrl = SadocServicesService.class.getResource(".");
+            baseUrl = fr.univartois.ili.sadoc.client.webservice.tools.SadocServicesService.class.getResource(".");
             url = new URL(baseUrl, "http://localhost:8080/sadocWeb/services/sadoc.wsdl");
         } catch (MalformedURLException e) {
             logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:8080/sadocWeb/services/sadoc.wsdl', retrying as a local file");

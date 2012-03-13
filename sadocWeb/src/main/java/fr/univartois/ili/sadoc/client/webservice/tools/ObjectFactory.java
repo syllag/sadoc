@@ -48,14 +48,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetDocumentInformationsRequest }
-     * 
-     */
-    public GetDocumentInformationsRequest createGetDocumentInformationsRequest() {
-        return new GetDocumentInformationsRequest();
-    }
-
-    /**
      * Create an instance of {@link ImportCompetencesResponse }
      * 
      */
@@ -64,19 +56,59 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetDocumentResponse }
+     * Create an instance of {@link SignDocumentReponse }
      * 
      */
-    public GetDocumentResponse createGetDocumentResponse() {
-        return new GetDocumentResponse();
+    public SignDocumentReponse createSignDocumentReponse() {
+        return new SignDocumentReponse();
     }
 
     /**
-     * Create an instance of {@link CreateCertificateResponse }
+     * Create an instance of {@link SignDocumentRequest }
      * 
      */
-    public CreateCertificateResponse createCreateCertificateResponse() {
-        return new CreateCertificateResponse();
+    public SignDocumentRequest createSignDocumentRequest() {
+        return new SignDocumentRequest();
+    }
+
+    /**
+     * Create an instance of {@link Owner }
+     * 
+     */
+    public Owner createOwner() {
+        return new Owner();
+    }
+
+    /**
+     * Create an instance of {@link ImportDocumentResponse }
+     * 
+     */
+    public ImportDocumentResponse createImportDocumentResponse() {
+        return new ImportDocumentResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetOwnerRequest }
+     * 
+     */
+    public GetOwnerRequest createGetOwnerRequest() {
+        return new GetOwnerRequest();
+    }
+
+    /**
+     * Create an instance of {@link Document }
+     * 
+     */
+    public Document createDocument() {
+        return new Document();
+    }
+
+    /**
+     * Create an instance of {@link GetDocumentInformationsRequest }
+     * 
+     */
+    public GetDocumentInformationsRequest createGetDocumentInformationsRequest() {
+        return new GetDocumentInformationsRequest();
     }
 
     /**
@@ -96,30 +128,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ImportDocumentRequest }
-     * 
-     */
-    public ImportDocumentRequest createImportDocumentRequest() {
-        return new ImportDocumentRequest();
-    }
-
-    /**
-     * Create an instance of {@link VerifyDocumentResponse }
-     * 
-     */
-    public VerifyDocumentResponse createVerifyDocumentResponse() {
-        return new VerifyDocumentResponse();
-    }
-
-    /**
-     * Create an instance of {@link Owner }
-     * 
-     */
-    public Owner createOwner() {
-        return new Owner();
-    }
-
-    /**
      * Create an instance of {@link GetDocumentInformationsResponse }
      * 
      */
@@ -128,35 +136,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ImportDocumentResponse }
+     * Create an instance of {@link GetDocumentRequest }
      * 
      */
-    public ImportDocumentResponse createImportDocumentResponse() {
-        return new ImportDocumentResponse();
+    public GetDocumentRequest createGetDocumentRequest() {
+        return new GetDocumentRequest();
     }
 
     /**
-     * Create an instance of {@link SignDocumentReponse }
+     * Create an instance of {@link GetDocumentResponse }
      * 
      */
-    public SignDocumentReponse createSignDocumentReponse() {
-        return new SignDocumentReponse();
-    }
-
-    /**
-     * Create an instance of {@link Document }
-     * 
-     */
-    public Document createDocument() {
-        return new Document();
-    }
-
-    /**
-     * Create an instance of {@link ImportCompetencesRequest }
-     * 
-     */
-    public ImportCompetencesRequest createImportCompetencesRequest() {
-        return new ImportCompetencesRequest();
+    public GetDocumentResponse createGetDocumentResponse() {
+        return new GetDocumentResponse();
     }
 
     /**
@@ -176,19 +168,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SignDocumentRequest }
+     * Create an instance of {@link ImportDocumentRequest }
      * 
      */
-    public SignDocumentRequest createSignDocumentRequest() {
-        return new SignDocumentRequest();
+    public ImportDocumentRequest createImportDocumentRequest() {
+        return new ImportDocumentRequest();
     }
 
     /**
-     * Create an instance of {@link GetDocumentRequest }
+     * Create an instance of {@link VerifyDocumentResponse }
      * 
      */
-    public GetDocumentRequest createGetDocumentRequest() {
-        return new GetDocumentRequest();
+    public VerifyDocumentResponse createVerifyDocumentResponse() {
+        return new VerifyDocumentResponse();
     }
 
     /**
@@ -197,6 +189,22 @@ public class ObjectFactory {
      */
     public CreateOwnerRequest createCreateOwnerRequest() {
         return new CreateOwnerRequest();
+    }
+
+    /**
+     * Create an instance of {@link CreateCertificateResponse }
+     * 
+     */
+    public CreateCertificateResponse createCreateCertificateResponse() {
+        return new CreateCertificateResponse();
+    }
+
+    /**
+     * Create an instance of {@link ImportCompetencesRequest }
+     * 
+     */
+    public ImportCompetencesRequest createImportCompetencesRequest() {
+        return new ImportCompetencesRequest();
     }
 
     /**

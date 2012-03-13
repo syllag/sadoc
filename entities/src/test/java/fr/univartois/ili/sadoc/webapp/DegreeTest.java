@@ -35,14 +35,13 @@ public class DegreeTest {
     public void testPersist() throws ParseException {
     	final Competence competence = new Competence();
     	final Degree degree = new Degree();
-    	
+    	competence.setId(3);
     	ArrayList<Competence> liste = new ArrayList<Competence>();
     	liste.add(competence);
     	degree.setCompetences(liste);    	
     	
     	competenceDao.create(competence);
     	degreeDao.create(degree);
-    	Competence competenceTest = competenceDao.findById(competence.getId());
     	Degree degreeTest = degreeDao.findById(degree.getId());
     	
         assertEquals(degree.getCompetences(),degreeTest.getCompetences());

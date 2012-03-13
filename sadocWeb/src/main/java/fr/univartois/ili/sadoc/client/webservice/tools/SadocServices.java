@@ -36,6 +36,16 @@ public interface SadocServices {
 
     /**
      * 
+     * @param getOwnerRequest
+     */
+    @WebMethod
+    @Oneway
+    public void getOwner(
+        @WebParam(name = "getOwnerRequest", targetNamespace = "http://sadoc.com/ac/schemas", partName = "getOwnerRequest")
+        GetOwnerRequest getOwnerRequest);
+
+    /**
+     * 
      * @param getDocumentInformationsRequest
      * @return
      *     returns com.sadoc.ac.schemas.GetDocumentInformationsResponse
@@ -72,16 +82,6 @@ public interface SadocServices {
 
     /**
      * 
-     * @param createOwnerRequest
-     */
-    @WebMethod
-    @Oneway
-    public void createOwner(
-        @WebParam(name = "createOwnerRequest", targetNamespace = "http://sadoc.com/ac/schemas", partName = "createOwnerRequest")
-        CreateOwnerRequest createOwnerRequest);
-
-    /**
-     * 
      * @param getDocumentRequest
      * @return
      *     returns com.sadoc.ac.schemas.GetDocumentResponse
@@ -91,6 +91,16 @@ public interface SadocServices {
     public GetDocumentResponse getDocument(
         @WebParam(name = "getDocumentRequest", targetNamespace = "http://sadoc.com/ac/schemas", partName = "getDocumentRequest")
         GetDocumentRequest getDocumentRequest);
+
+    /**
+     * 
+     * @param createOwnerRequest
+     */
+    @WebMethod
+    @Oneway
+    public void createOwner(
+        @WebParam(name = "createOwnerRequest", targetNamespace = "http://sadoc.com/ac/schemas", partName = "createOwnerRequest")
+        CreateOwnerRequest createOwnerRequest);
 
     /**
      * 

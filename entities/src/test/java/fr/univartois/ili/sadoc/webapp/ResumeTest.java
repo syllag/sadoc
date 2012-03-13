@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.CompetenceDAO;
-import fr.univartois.ili.sadoc.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.dao.ResumeDAO;
@@ -42,8 +41,9 @@ public class ResumeTest {
     	final Resume resume = new Resume();
     	final Competence competence = new Competence();
     	final Owner user = new Owner();
-    	
     	resume.setOwner(user);
+    	competence.setId(4);
+    	user.setId(3);
     	ArrayList<Competence> liste = new ArrayList<Competence>();
     	liste.add(competence);
     	resume.setCompetences(liste);
@@ -51,8 +51,6 @@ public class ResumeTest {
     	competenceDao.create(competence);
     	ownerDao.create(user);
     	resumeDao.create(resume);
-    	Owner userTest = ownerDao.findById(user.getId());
-    	Competence competenceTest = competenceDao.findById(competence.getId());
     	Resume resumeTest = resumeDao.findById(resume.getId());
     	
         assertEquals(resume.getCompetences(), resumeTest.getCompetences());
