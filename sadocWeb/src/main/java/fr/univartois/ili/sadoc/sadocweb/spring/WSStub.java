@@ -36,7 +36,15 @@ public class WSStub {
 		//System.out.println("Debug createOwner : "+request.getLastName()+request.getFirstName()+request.getMail());
 		return wsPublic.createOwner(request.getLastName(), request.getFirstName(), request.getMail());
 	}
-
+	
+	@PayloadRoot(localPart = "getOwnerRequest", namespace = "http://sadoc.com/ac/schemas")
+	@ResponsePayload
+	public Owner getOwner(@RequestPayload GetOwnerRequest request)
+			throws Exception {
+			return wsPublic.getOwner(request.getMail());
+	}
+	
+	
 	@PayloadRoot(localPart = "signDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
 	public byte[] signDocument(@RequestPayload SignDocumentRequest request) {

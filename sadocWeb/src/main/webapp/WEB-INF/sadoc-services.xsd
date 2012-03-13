@@ -10,6 +10,13 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+		<xs:element name="getOwnerRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:mail" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="createOwnerReponse">
 		<xs:complexType>
 			<xs:sequence>

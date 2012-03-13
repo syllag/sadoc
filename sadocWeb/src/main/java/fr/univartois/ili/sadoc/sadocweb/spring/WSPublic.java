@@ -23,5 +23,6 @@ public interface WSPublic {
 	public void createCertificate(Owner utilisateur);
 
 	public List<Certificate> getCertificate(Owner utilisateur);
+	public Owner getOwner(String mail);
 
 }
