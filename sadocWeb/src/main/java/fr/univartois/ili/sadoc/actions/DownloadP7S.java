@@ -40,10 +40,10 @@ public class DownloadP7S extends ActionSupport {
 		if (doc == null) {
 			return ERROR;
 		}
-		FileOutputStream envfos = new FileOutputStream("/home/guillaume/testDownload.p7s");
+		FileOutputStream envfos = new FileOutputStream("/tmp/authenticate.p7s");
 		envfos.write(doc.getP7s());
 		envfos.close();
-	    fileInputStream = new FileInputStream(new File("/home/guillaume/testDownload.p7s"));
+	    fileInputStream = new FileInputStream(new File("/tmp/authenticate.p7s"));
 		return SUCCESS;
 	}
 
