@@ -77,9 +77,23 @@ public class WSStub {
 
 	@PayloadRoot(localPart = "getDocumentInformationsRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public Map<Owner, List<Competence>> getDocumentInformations(
-			@RequestPayload int documentId) {
-		return wsPrivate.getDocumentInformations(documentId);
+	public GetDocumentInformationsResponse getDocumentInformations(
+			@RequestPayload GetDocumentInformationsRequest request) {
+		GetDocumentInformationsResponse getDocumentInformationsResponse =new GetDocumentInformationsResponse();
+		System.out.println("requete idDoc:"+request.getIdDocument());
+		Map<Owner, List<Competence>> lites =wsPrivate.getDocumentInformations(request.getIdDocument());
+		lites.keySet();
+		if (! lites.isEmpty()) {
+            Map.Entry<Owner, List<Competence>> entry = lites.entrySet().iterator().next();
+            
+            getDocumentInformationsResponse.setOwner(entry.getKey());
+            getDocumentInformationsResponse.setCompetences((Competence[])entry.getValue().toArray());
+        }
+		System.out.println("requete idDoc:5");
+		return getDocumentInformationsResponse;
+
+		
+		
 	}
 
 	@PayloadRoot(localPart = "importDocumentRequest", namespace = "http://sadoc.com/ac/schemas")

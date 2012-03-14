@@ -35,6 +35,7 @@ public class WSPrivateImpl implements WSPrivate {
 	
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public Map<Owner, List<Competence>> getDocumentInformations(int documentId) {
+		System.out.println("requete idDoc:1");
 		Map<Owner, List<Competence>> info = new HashMap<Owner, List<Competence>>();
 		documentDAO= new DocumentDAO();
 		signatureDAO = new SignatureDAO();
@@ -42,6 +43,7 @@ public class WSPrivateImpl implements WSPrivate {
 		Owner owner = signatureDAO.findOwnerByDocument(document);
 		List<Competence> competences = signatureDAO.findCompetenceByDocument(document);
 		info.put(owner, competences);
+		System.out.println("requete idDoc:4");
 		return info;
 	}
 
