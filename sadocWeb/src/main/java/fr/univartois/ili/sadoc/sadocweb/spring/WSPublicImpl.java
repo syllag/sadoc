@@ -108,6 +108,11 @@ public class WSPublicImpl implements WSPublic {
 		 return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
 	}
 
+	public Owner getOwner(String mail) {
+		// TODO Auto-generated method stub
+		return ownerDAO.findByMail(mail);
+	}
+
 ////	public OwnerDAO getOwnerDAO() {
 ////		return ownerDAO;
 ////	}

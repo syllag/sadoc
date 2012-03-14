@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	elementFormDefault="qualified" targetNamespace="http://sadoc.com/ac/schemas" xmlns:schemas="http://sadoc.com/ac/schemas">
+	elementFormDefault="qualified" targetNamespace="http://sadoc.com/ac/schemas"
+	xmlns:schemas="http://sadoc.com/ac/schemas">
 	<xs:element name="createOwnerRequest">
 		<xs:complexType>
 			<xs:sequence>
@@ -10,7 +11,16 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="getOwnerRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:mail" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
 	<xs:element name="createOwnerResponse">
+
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="schemas:owner" />
@@ -64,7 +74,7 @@
 	<xs:element name="getDocumentInformationsRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="schemas:id" />
+				<xs:element ref="schemas:idDocument" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -72,7 +82,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="schemas:owner" />
-				<xs:element ref="schemas:competence" maxOccurs="unbounded" />
+				<xs:element ref="schemas:competence"  maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -159,5 +169,6 @@
 	<xs:element name="pk7" type="xs:base64Binary" />
 	<xs:element name="creationDate" type="xs:date" />
 	<xs:element name="id" type="xs:integer" />
+	<xs:element name="idDocument" type="xs:integer" />
 	<xs:element name="acronym" type="xs:string" />
 </xs:schema>
