@@ -118,7 +118,7 @@
 	<xs:element name="getDocumentRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="schemas:id" />
+				<xs:element ref="schemas:idDocument" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -151,6 +151,7 @@
 				<xs:element ref="schemas:name" />
 				<xs:element ref="schemas:description" />
 				<xs:element ref="schemas:acronym" />
+				<xs:element ref="schemas:creationDate" />				
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
