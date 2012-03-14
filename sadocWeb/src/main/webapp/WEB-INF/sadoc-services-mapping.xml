@@ -51,6 +51,9 @@
 		<field name="acronym" type="string">
 			<bind-xml name="acronym" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
+		<field name="creationDate" type="timestamp">
+			<bind-xml name="creationDate" node="element" xmlns="http://sadoc.com/ac/schemas" />
+		</field>
 	</class>
 
 	<!-- Mapping for Order -->
