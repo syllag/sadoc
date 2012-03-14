@@ -27,19 +27,19 @@ import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
 public class WSPublicImpl implements WSPublic {
 	
-	
+	@Resource(name="ownerDAO")
 	private OwnerDAO ownerDAO ;
 	
-	
+	@Resource(name="documentDAO")
 	private DocumentDAO documentDAO;
 	
-	
+	@Resource(name="signatureDAO")
 	private SignatureDAO signatureDAO;
 	
-	
+	@Resource(name="certificateDAO")
 	private CertificateDAO certificateDAO ;
 	
-
+	@Resource(name="competenceDAO")
 	private CompetenceDAO competenceDAO ;
 
 
@@ -105,7 +105,6 @@ public class WSPublicImpl implements WSPublic {
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
 		ownerDAO = new OwnerDAO();
-		certificateDAO = new CertificateDAO();
 		 return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
 	}
 

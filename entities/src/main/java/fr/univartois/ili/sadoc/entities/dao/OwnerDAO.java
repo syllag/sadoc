@@ -14,15 +14,14 @@ import fr.univartois.ili.sadoc.entities.configuration.Request;
 @Service("ownerDAO")
 @Transactional
 public class OwnerDAO {
-	
-	
+
 	protected EntityManager entityManager;
 
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	@PersistenceContext(unitName="sadocjpa")
+	@PersistenceContext(unitName = "sadocjpa")
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
@@ -30,7 +29,7 @@ public class OwnerDAO {
 	public OwnerDAO() {
 		entityManager = PersistenceProvider.getEntityManager();
 	}
-	
+
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void create(Owner owner) {
 		entityManager.persist(owner);
@@ -44,10 +43,11 @@ public class OwnerDAO {
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner findByMail(String mail) {
 		final TypedQuery<Owner> query;
-		query = entityManager.createQuery(Request.FIND_OWNER_BY_MAIL, Owner.class);
+		query = entityManager.createQuery(Request.FIND_OWNER_BY_MAIL,
+				Owner.class);
 		query.setParameter("mail", mail);
-		
-		return query.getSingleResult(); 
+
+		return query.getSingleResult();
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)

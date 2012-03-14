@@ -37,7 +37,7 @@ public class WSPublicTest {
 		wspublic = (WSPublic) APPLICATION_CONTEXT.getBean("wsPublic");
 	}
 	
-	@Test
+	
 	public void getCertificateTest(){
 		final OwnerDAO ownerDAO = new OwnerDAO();
 		final CertificateDAO certificateDAO = new CertificateDAO();
