@@ -28,13 +28,13 @@
 				placeholder="Your email" required /> <input type="password"
 				name="connect.password" id="password" placeholder="Your password"
 				required />
+				<s:if test="#session.incorrect == 'ok'">
+					<div class="errorMessage">Password ou mail incorrect</div>
+				</s:if>
 			<button type=submit class="buttonLogin">LOG IN</button>
 			<a href="SignIn"><button class="buttonSignin">SIGN IN</button></a>
   <div class="spacer"> </div>
 		</form>
-		<s:if test="#session.incorrect == 'ok'">
-			<span class="errorMessage">password ou mail incorrect</span>
-		</s:if>
 	</section>
 
 	<div class="place_footer"></div>

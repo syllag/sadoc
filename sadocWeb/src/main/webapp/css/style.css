@@ -383,3 +383,8 @@ p.lien_competence a {
 .spacer {
 	clear: both;
 }
+
+.errorMessage {
+	color:#B22222;
+	text-align:center;
+}

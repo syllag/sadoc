@@ -15,8 +15,6 @@ import fr.univartois.ili.sadoc.entities.Acquisition;
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
-import fr.univartois.ili.sadoc.utils.TestID;
-import fr.univartois.ili.sadoc.webapp.AvancedTest.InitDataForTest;
 
 public class CheckDocument extends ActionSupport {
 
