@@ -1,5 +1,6 @@
 package fr.univartois.ili.sadoc.actions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class CheckDocument extends ActionSupport {
 	private String sa = null;
 	private Document document = null;
 	private Owner owner = null;
-	private List<Competence> listCompetences = null;
+	private List<Competence> listCompetences = new ArrayList<Competence>();
 
 	public String getSa() {
 		return sa;
@@ -49,8 +50,6 @@ public class CheckDocument extends ActionSupport {
 	}
 
 	public String execute() {
-		fr.univartois.ili.sadoc.actions.InitDataForTest bd=new fr.univartois.ili.sadoc.actions.InitDataForTest();
-		bd.createDataForTest();
 		if (sa!=null /*&& TestID.trueFalseID(sa)*/) {
 			//long realID = TestID.findRealID(sa);
 			long realID = Long.valueOf(sa);
