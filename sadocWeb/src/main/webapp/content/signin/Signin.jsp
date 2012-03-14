@@ -1,18 +1,9 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	session.setAttribute("currentMenu", "SignIn");
 %>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description"
-	content="Système d'authentification de document" />
-<title>Votre gestionnaire de compétences en ligne</title>
-<link href="css/style.css" type="text/css" rel="stylesheet" />
-<link rel="icon" type="image/png" href="img/favicon.png" />
 <script>
 		function check() {
 			var p1 = document.getElementById('password');
@@ -30,22 +21,7 @@
 			}
 		}
 </script>
-</head>
-
-<body>
-	<div  class="wrap">
-
-	<c:if test="${ empty mail }">
-		<c:import url="../layouts/Menu.jsp"/>
-	</c:if>
-	<c:if test="${ not empty mail }">
-		<c:import url="../layouts/MenuNotConnected.jsp"/>
-	</c:if>
-
-	<div class="wrap_body">
-
-	<div id="wrapper">
-	
+<c:import url="../layouts/Header.jsp" />	
 
 	<section class="inscription">
 		<form method="post" action="SignIn">
@@ -65,13 +41,4 @@
 		</form>
 	</section>
 	
-		</div>
-	
-	<div class="place_footer"></div>
-	</div>
-	
-	
-	</div>
-	<c:import url="../layouts/Footer.jsp" />
-</body>
-</html>
+<c:import url="../layouts/Footer.jsp" />

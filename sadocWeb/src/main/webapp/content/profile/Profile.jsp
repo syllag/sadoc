@@ -3,29 +3,7 @@
 <%
 	session.setAttribute("currentMenu", "Profile");
 %>
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="description" content="Système d'authentification de document." />
-		<title>Votre gestionnaire de compétence en ligne</title>
-		<link href="css/style.css" type="text/css" rel="stylesheet" />
-		<link rel="icon" type="image/png" href="img/favicon.png" />
-	</head>
-
-	<body>
-		<div  class="wrap">
-		
-		<c:if test="${  empty mail }">
-			<c:import url="../layouts/Menu.jsp"/>
-		</c:if>
-		<c:if test="${ not empty mail }">
-			<c:import url="../layouts/MenuNotConnected.jsp"/>
-		</c:if>
-		
-		<div class="wrap_body">
-
-		<div id="wrapper">
+<c:import url="../layouts/Header.jsp" />
 				
 			<section id="content">
 				<form method="post" action="ModifyProfile">
@@ -38,13 +16,5 @@
 					<input type="text" name="phone" id="phone" placeholder="03/03/03/03/03" value="${ phone }" />
 				</form>
 			</section>
-		</div>
 
-		<div class="place_footer"></div>
-		</div>
-	
-	
-		</div>
-		<c:import url="../layouts/Footer.jsp" />
-	</body>
-</html>
+<c:import url="../layouts/Footer.jsp" />
