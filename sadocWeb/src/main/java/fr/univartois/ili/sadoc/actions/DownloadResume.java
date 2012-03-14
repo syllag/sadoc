@@ -30,7 +30,7 @@ public class DownloadResume  extends ActionSupport{
 	}
  
 	public String execute() throws Exception {
-	    fileInputStream = new FileInputStream(new File("/home/releng/tempCV/cv.pdf"));
+	    fileInputStream = new FileInputStream(new File("/tmp/cv.pdf"));
 	    
 	    System.out.println("id cv : "+cv);
 	    

@@ -35,10 +35,17 @@
 <body>
 	<div class="wrap">
 
-		<c:import url="../layouts/MenuNotConnected.jsp" />
+	<c:if test="${ empty mail }">
+		<c:import url="../layouts/Menu.jsp"/>
+	</c:if>
+	<c:if test="${ not empty mail }">
+		<c:import url="../layouts/MenuNotConnected.jsp"/>
+	</c:if>
+
+	<div class="wrap_body" id="wrapper">
+
 
 		<div class="wrap_body">
-
 
 			<section class="inscription">
 				<form method="post" action="SignIn">
@@ -66,10 +73,11 @@
 				</form>
 			</section>
 
-			<div class="place_footer"></div>
 		</div>
-
-
+	
+	<div class="place_footer"></div>
+	</div>
+	
 	</div>
 	<c:import url="../layouts/Footer.jsp" />
 </body>

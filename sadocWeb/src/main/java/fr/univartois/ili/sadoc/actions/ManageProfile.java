@@ -25,20 +25,34 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 
 	public String execute () {
 		session = ActionContext.getContext().getSession();
+		
+		if (form == null) {
+			return INPUT;
+		}
+		
 		String mail = (String) session.get("mail");
 		OwnerDAO odao=new OwnerDAO();
 		Owner owner = odao.findByMail(mail);
 		
-		owner.setFirstName(form.getFirstName());
-		owner.setLastName(form.getLastName());
+		//owner.setFirstName(form.getFirstName());
+		//owner.setLastName(form.getLastName());
 		owner.setAddress(form.getAdress());
 		owner.setZipCode(form.getZipCode());
 		owner.setTown(form.getTown());
 		owner.setPhone(form.getPhone());
-		if ( !(form.getPassword().isEmpty() && form.getPassword2().isEmpty()) ) {
-			if (form.getPassword().equals(form.getPassword2()))
-				owner.setPassword(form.getPassword());
+		if ( !(form.getPassword().isEmpty() 
+				&& form.getPassword2().isEmpty()) 
+				&& (form.getPassword().equals(form.getPassword2()))) {
+					owner.setPassword(form.getPassword());
 		}
+		else 
+			return INPUT;
+		
+		session.put("adress",owner.getAddress());
+		session.put("zipCode", owner.getZipCode());
+		session.put("town", owner.getTown());
+		session.put("phone", owner.getPhone());
+		ActionContext.getContext().setSession(session);
 		
 		odao.update(owner);
 		
@@ -46,7 +60,8 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	}
 	
 	public void validate () {
-		if ( !(form.getPassword().isEmpty() && form.getPassword2().isEmpty()) ) {
+		
+		if ( (form != null) && !(form.getPassword().isEmpty() && form.getPassword2().isEmpty()) ) {
 			if (form.getPassword().equals(form.getPassword2())) {
 				addFieldError( "password2", "Les mots de passe sont différents.");
 			}

@@ -11,7 +11,16 @@
 </head>
 
 <body>
-	<c:import url="../layouts/Menu.jsp" />
+	<div  class="wrap">
+
+	<c:if test="${ empty mail }">
+		<c:import url="../layouts/Menu.jsp"/>
+	</c:if>
+	<c:if test="${ not empty mail }">
+		<c:import url="../layouts/MenuNotConnected.jsp"/>
+	</c:if>
+
+	<div class="wrap_body">
 
 	<div id="wrapper">
 
@@ -44,7 +53,10 @@
 			</div>
 
 			<div class="infoP7S">
-				<p>signature du fichier (fichier *.p7s) : ${document.pk7}</p>
+				<p>
+					signature du fichier (fichier *.p7s) : <a
+						href="downloadP7S?sa=${sa}"><button>Télécharger</button></a>
+				</p>
 				<p>
 					L'utilisation du fichier *.p7s requiert le logiciel <a
 						href="http://www.adesium.com/index.php?option=com_quickfaq&view=items&cid=1%3Amysign&id=14">mySIGN</a>
@@ -55,6 +67,11 @@
 
 
 
+	<div class="place_footer"></div>
+	</div>
+	
+	
+	</div>
 	<c:import url="../layouts/Footer.jsp" />
 </body>
 </html>
