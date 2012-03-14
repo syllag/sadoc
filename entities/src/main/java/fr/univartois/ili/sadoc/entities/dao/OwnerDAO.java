@@ -46,6 +46,7 @@ public class OwnerDAO {
 		final TypedQuery<Owner> query;
 		query = entityManager.createQuery(Request.FIND_OWNER_BY_MAIL, Owner.class);
 		query.setParameter("mail", mail);
+		
 		return query.getSingleResult(); 
 	}
 

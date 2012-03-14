@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.itextpdf.text.pdf.PdfReader;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
@@ -24,19 +27,19 @@ import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
 public class WSPublicImpl implements WSPublic {
 	
-	@Resource(name="ownerDAO")
+	
 	private OwnerDAO ownerDAO ;
 	
-	@Resource(name="documentDAO")
+	
 	private DocumentDAO documentDAO;
 	
-	@Resource(name="signatureDAO")
+	
 	private SignatureDAO signatureDAO;
 	
-	@Resource(name="certificateDAO")
+	
 	private CertificateDAO certificateDAO ;
 	
-	@Resource(name="competenceDAO")
+
 	private CompetenceDAO competenceDAO ;
 
 
@@ -101,8 +104,9 @@ public class WSPublicImpl implements WSPublic {
 
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
+		ownerDAO = new OwnerDAO();
 		certificateDAO = new CertificateDAO();
-		return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
+		 return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
 	}
 
 ////	public OwnerDAO getOwnerDAO() {

@@ -38,19 +38,6 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 		nomFichierXML = nfx;
 	}
 
-	/** Methodes d'affichage */
-	static protected void trace(String s) {
-		System.out.println(s);
-	}
-
-	static protected void trace(String Comment, String s) {
-		System.out.println(Comment + " : " + s);
-	}
-
-	static protected void trace(String s, int i) {
-		System.out.println(s + " : " + i);
-	}
-
 	/** Methodes du ContentHandler */
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
@@ -148,6 +135,19 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 		if ("domain".equals(qName)) {
 			nameCom= null; 			
 		}
+	}
+
+	/** Methodes d'affichage */
+	static protected void trace(String s) {
+		System.out.println(s);
+	}
+
+	static protected void trace(String Comment, String s) {
+		System.out.println(Comment + " : " + s);
+	}
+
+	static protected void trace(String s, int i) {
+		System.out.println(s + " : " + i);
 	}
 
 }
