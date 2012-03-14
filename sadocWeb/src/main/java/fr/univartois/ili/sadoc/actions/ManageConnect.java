@@ -36,12 +36,17 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 			session.put("incorrect", "Nok");
 			return INPUT;
 		}
-		
-		if (connect == null) {
-			session.put("incorrect", "ok");
-			return INPUT;
-		}
 		OwnerDAO odao = new OwnerDAO();
+		/*Owner owner = null;
+		MessageDigest messageDigest;
+		try {
+			messageDigest = MessageDigest.getInstance("MD5" );
+			byte[] p = messageDigest.digest(connect.getPassword().getBytes());  
+			connect.setPassword(p.toString());		
+			owner = odao.findOwner(connect.getEmail(), p.toString());
+
+		} catch (NoSuchAlgorithmException e) {}
+		*/
 		Owner owner = odao.findOwner(connect.getEmail(), connect.getPassword());
 
 		// if empty
@@ -49,8 +54,8 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 			session.put("incorrect", "ok");
 			return INPUT;
 		}
-
-		// take information profile
+		
+		session.put("firstName",owner.getFirstName());
 
 		return SUCCESS;
 	}

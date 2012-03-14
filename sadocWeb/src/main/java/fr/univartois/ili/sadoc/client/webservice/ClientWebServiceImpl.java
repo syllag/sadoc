@@ -1,8 +1,6 @@
 package fr.univartois.ili.sadoc.client.webservice;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +9,7 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 
 import fr.univartois.ili.sadoc.client.webservice.tools.CreateOwnerRequest;
 import fr.univartois.ili.sadoc.client.webservice.tools.Document;
+import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentRequest;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetOwnerRequest;
 import fr.univartois.ili.sadoc.client.webservice.tools.Owner;
 
@@ -18,12 +17,20 @@ public class ClientWebServiceImpl implements IClientWebService {
 
 	public fr.univartois.ili.sadoc.client.webservice.tools.Document getDocument(
 			long id) {
+		fr.univartois.ili.sadoc.client.webservice.tools.Document response = null;
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
 
-		Calendar calendar = GregorianCalendar.getInstance();
-		byte[] b = { 1, 0, 0, 1 };
-		calendar.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
-		Date date = calendar.getTime();
-		return null;
+		WebServiceTemplate webServiceTemplate = applicationContext
+				.getBean(WebServiceTemplate.class);
+		GetDocumentRequest createDocumentRequest = new GetDocumentRequest();
+		createDocumentRequest.setId(BigInteger.valueOf(id));
+
+		response = (fr.univartois.ili.sadoc.client.webservice.tools.Document) webServiceTemplate
+				.marshalSendAndReceive(createDocumentRequest);
+		System.out.println("response:created client  :" + response.getId()
+				+ " name: " + response.getName());
+		return response;
 	}
 
 	public Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> getCompetences(

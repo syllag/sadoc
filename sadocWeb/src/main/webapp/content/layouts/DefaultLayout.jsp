@@ -10,7 +10,29 @@
 		<link rel="icon" type="image/png" href="img/favicon.png" />
 </head>
 <body>
-	<c:import url="Menu.jsp"/>
+	<div  class="wrap">
+
+	<c:if test="${ empty mail }">
+		<c:import url="../layouts/Menu.jsp"/>
+	</c:if>
+	<c:if test="${ not empty mail }">
+		<c:import url="../layouts/MenuNotConnected.jsp"/>
+	</c:if>
+
+	<div class="wrap_body">
+
+	<div id="wrapper">
+	
+					<%--  METTRE LE CODE ICI !!! --%>
+	
+	</div>
+	
+	<div class="place_footer"></div>
+	</div>
+	
+	
+	</div>
+	<c:import url="../layouts/Footer.jsp" />
 	
 </body>
 </html>
