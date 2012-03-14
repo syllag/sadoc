@@ -42,9 +42,11 @@ public class WSPublicImpl implements WSPublic {
 //	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner createOwner(String lastName, String firstName, String mail)
 			throws Exception {
-		Owner owner = new Owner(firstName, lastName, mail);
+		Owner owner =ownerDAO.findByMail(mail);
+		if(owner==null){
+		 owner = new Owner(firstName, lastName, mail);
 		ownerDAO.create(owner);
-
+		}
 		return owner;
 	}
 
@@ -98,8 +100,8 @@ public class WSPublicImpl implements WSPublic {
 
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
-		certificateDAO = new CertificateDAO();
-		return certificateDAO.findByOwner(owner);
+		ownerDAO = new OwnerDAO();
+		 return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
 	}
 
 ////	public OwnerDAO getOwnerDAO() {
