@@ -13,6 +13,7 @@ import fr.univartois.ili.sadoc.entities.classes.Document;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
 import fr.univartois.ili.sadoc.entities.classes.Signature;
 import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.entities.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
@@ -34,6 +35,9 @@ public class WSPublicImpl implements WSPublic {
 	
 	@Resource(name="certificateDAO")
 	private CertificateDAO certificateDAO ;
+	
+	@Resource(name="competenceDAO")
+	private CompetenceDAO competenceDAO ;
 
 
 //	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -48,12 +52,15 @@ public class WSPublicImpl implements WSPublic {
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
 			Competence[] competence) {
-		Certificate certificate = getCertificate(owner).get(0);
+		Owner ownOwner= ownerDAO.findByMail(owner.getMail());
+		Certificate certificate = getCertificate(ownOwner).get(0);
 		Document document = new Document(name, "", null);
 		documentDAO.create(document);
+		Competence compTmp=null;
 		for (Competence comp : competence) {
+			compTmp=competenceDAO.findByAcronym(comp.getAcronym());
 			Signature signature = new Signature(document,
-					certificate.getOwner(), comp, certificate);
+					certificate.getOwner(), compTmp, certificate);
 			signatureDAO.create(signature);
 		}
 		String url = Properties.URL + "/checkDocument?sa="
@@ -66,7 +73,7 @@ public class WSPublicImpl implements WSPublic {
 			byte[] b = new byte[(int) file.length()];
 			fis.read(b);
 			SignFile sf = new SignFile();
-			byte[] p7s = sf.signDocument(dest, owner);
+			byte[] p7s = sf.signDocument(dest, ownOwner);
 			document.setPk7(p7s);
 			documentDAO.update(document);
 			fis.close();
@@ -93,7 +100,7 @@ public class WSPublicImpl implements WSPublic {
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
 		certificateDAO = new CertificateDAO();
-		return certificateDAO.findByOwner(owner);
+		return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
 	}
 
 ////	public OwnerDAO getOwnerDAO() {
