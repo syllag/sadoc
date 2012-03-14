@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import fr.univartois.ili.sadoc.client.webservice.tools.CreateOwnerRequest;
+import fr.univartois.ili.sadoc.client.webservice.tools.Document;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetOwnerRequest;
 import fr.univartois.ili.sadoc.client.webservice.tools.Owner;
 
@@ -103,6 +104,11 @@ public class ClientWebServiceImpl implements IClientWebService {
 		}
 
 		return response;
+	}
+
+	public List<Document> getAllDocument(long idOwner) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
