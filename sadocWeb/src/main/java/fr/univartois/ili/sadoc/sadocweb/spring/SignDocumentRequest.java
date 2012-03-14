@@ -39,11 +39,11 @@ public class SignDocumentRequest {
 	}
 
 	public Competence[] getCompetence() {
-		return competence.clone();
+		return competence;
 	}
 
 	public void setCompetence(Competence[] competence) {
-		this.competence = competence.clone();
+		this.competence = competence;
 	}
 	
 }

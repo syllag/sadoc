@@ -97,7 +97,31 @@
 		<field name="mail" type="string">
 			<bind-xml name="mail" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
-	</class>
+  </class>
+  
+  <class name="fr.univartois.ili.sadoc.sadocweb.spring.CreateOwnerResponse">
+    <map-to xml="createOwnerResponse" />
+  </class>
+	
+  <class name="fr.univartois.ili.sadoc.sadocweb.spring.SignDocumentRequest">
+    <map-to xml="signDocumentRequest" ns-uri="http://sadoc.com/ac/schemas" />
+		<field name="doc" type="bytes" >
+			<bind-xml name="doc" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+		</field>
+		<field name="name" type="string">
+			<bind-xml name="name" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+		</field>
+    <field name="owner" type="fr.univartois.ili.sadoc.entities.classes.Owner">
+      <bind-xml name="owner" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+    </field>
+    <field name="competence" type="fr.univartois.ili.sadoc.entities.classes.Competence" collection="array">
+      <bind-xml name="competence" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+    </field>
+  </class>
+  
+    <class name="fr.univartois.ili.sadoc.sadocweb.spring.SignDocumentResponse">
+    <map-to xml="signDocumentResponse" />
+  </class>
 
 	<class name="fr.univartois.ili.sadoc.sadocweb.spring.GetOwnerRequest">
 		<map-to xml="getOwnerRequest" ns-uri="http://sadoc.com/ac/schemas" />
@@ -106,11 +130,13 @@
 		</field>
 	</class>
 
+
 	<class name="fr.univartois.ili.sadoc.sadocweb.spring.CreateOwnerResponse">
 		<map-to xml="createOwnerResponse" />
 	</class>
-	<class
-		name="fr.univartois.ili.sadoc.sadocweb.spring.GetDocumentInformationsRequest">
+	
+
+	<class name="fr.univartois.ili.sadoc.sadocweb.spring.GetDocumentInformationsRequest">
 		<map-to xml="getDocumentInformationsRequest" ns-uri="http://sadoc.com/ac/schemas" />
 		<field name="idDocument" type="integer">
 			<bind-xml name="idDocument" node="element"
@@ -163,4 +189,11 @@
 		</field>		
 	</class>
 
+  <class name="fr.univartois.ili.sadoc.sadocweb.spring.CreateCertificateRequest">
+    <map-to xml="createCertificateRequest" ns-uri="http://sadoc.com/ac/schemas" />
+   	<field name="owner" type="fr.univartois.ili.sadoc.entities.classes.Owner">
+    	<bind-xml name="owner" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+    </field>
+  </class>
+  
 </mapping>

@@ -106,7 +106,11 @@ public class SignatureDAO {
 		query = entityManager.createQuery(
 				Request.FIND_OWNER_IN_SIGNATURE_BY_DOCUMENT, Owner.class);
 		query.setParameter("document", document);
-		return query.getSingleResult();
+		List<Owner> owners = query.getResultList();
+		Set<Owner> docs = new HashSet<Owner>(owners);
+		owners = new ArrayList<Owner>(docs);
+		Collections.sort(owners);
+		return owners.get(0);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
