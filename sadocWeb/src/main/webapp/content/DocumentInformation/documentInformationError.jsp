@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,6 +14,7 @@
 	<a href="#"><img src='img/logo.png' /></a><h1>Système d'authentification de document</h1>
 </header>
 
+<c:import url="../layouts/Menu.jsp" />
 <div id="wrapper">
 	
 	
@@ -22,8 +24,6 @@
 </div>
 
 
-
-<footer>
-</footer>
+<c:import url="../layouts/Footer.jsp" />
 </body>
 </html>

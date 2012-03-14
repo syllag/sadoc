@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 	session.setAttribute("currentMenu", "Profil");
 %>
@@ -8,9 +9,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/style.css" type="text/css" rel="stylesheet" />
-<title>Insert title here</title>
+<title>page de profil</title>
 </head>
 <body>
-	<h1>PROFILE</h1>
+	<c:import url="../layouts/Menu.jsp" />
+	
+		<div class="profile">
+				<p><s:property value="#session.firstName" /></p>
+				
+		</div>
+	<c:import url="../layouts/Footer.jsp" />
 </body>
 </html>

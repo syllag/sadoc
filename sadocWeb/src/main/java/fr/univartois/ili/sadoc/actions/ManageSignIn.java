@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.Form.ManageSignInForm;
@@ -26,7 +27,6 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 */
 	private ManageSignInForm form;
 	private Map<String, Object> session;
-	private OwnerDAO odao;
 
 	/************************************************/
 	/*
@@ -35,42 +35,54 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 * @see com.opensymphony.xwork2.ActionSupport#execute()
 	 */
 	public String execute() {
-
-		if (form == null)
+		session = ActionContext.getContext().getSession();
+		
+		if (form == null) {
+			session.put("incorrectMail", "Ok");
+			session.put("error", "Ok");	
+			session.put("inexistante", "Ok");
 			return INPUT;
-
+		}
+		OwnerDAO odao = new OwnerDAO();
+		if (odao.findByMail(form.getMail()) != null) {
+			session.put("incorrectMail", "nok");
+			return INPUT;
+		}
+		
+		/*	ClientWebServiceImpl webService = new  ClientWebServiceImpl();
+		fr.univartois.ili.sadoc.client.webservice.tools.Owner personneWS = webService.getOwner(form.getMail());
+		if (personneWS == null) {
+			session.put("inexistante", "nok");
+			return INPUT;			
+		}
+		
+		
+		Owner personne = new Owner();
+		personne.setFirstName(personneWS.getFirstName());
+		personne.setLastName(personneWS.getLastName());
+		personne.setId(personneWS.getId().intValue());
+		personne.setMail(form.getMail());*/
+		
 		Owner personne = new Owner();
 		personne.setFirstName(form.getFirstname());
 		personne.setLastName(form.getName());
 		personne.setMail(form.getMail());
-		// enregistrement dans la base de donnée !
 		// TODO : cryptage password
 		try {
+			/*MessageDigest messageDigest = MessageDigest.getInstance("MD5" );
+			byte[] p = messageDigest.digest(form.getPassword().getBytes());  
+			personne.setPassword(p.toString());*/
 			personne.setPassword(form.getPassword());
 			odao.create(personne);
 			// TODO : connecter la personne
 		} catch (Exception e) {
-			addActionMessage("Momentary problem... Please try agin later.");
+			e.printStackTrace();
+			session.put("error", "nok");
 			return INPUT;
 		}
 		return SUCCESS;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.opensymphony.xwork2.ActionSupport#validate()
-	 */
-	public void validate() {
-		odao = new OwnerDAO();
-		try {
-			if (odao.findByMail(form.getMail()) != null) {
-				addFieldError("password","A user already exist with this mail adress");
-			}
-		} catch (Exception e) {
-			addFieldError("password","Momentary problem... Please try agin later.");
-		}
-	}
 
 	/************************************************/
 
