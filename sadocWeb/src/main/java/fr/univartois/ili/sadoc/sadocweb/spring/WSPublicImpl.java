@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.itextpdf.text.pdf.PdfReader;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
@@ -13,6 +16,7 @@ import fr.univartois.ili.sadoc.entities.classes.Document;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
 import fr.univartois.ili.sadoc.entities.classes.Signature;
 import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.entities.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
@@ -23,37 +27,45 @@ import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
 public class WSPublicImpl implements WSPublic {
 	
-	@Resource(name="ownerDAO")
+	
 	private OwnerDAO ownerDAO ;
 	
-	@Resource(name="documentDAO")
+	
 	private DocumentDAO documentDAO;
 	
-	@Resource(name="signatureDAO")
+	
 	private SignatureDAO signatureDAO;
 	
-	@Resource(name="certificateDAO")
+	
 	private CertificateDAO certificateDAO ;
+	
+
+	private CompetenceDAO competenceDAO ;
 
 
 //	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner createOwner(String lastName, String firstName, String mail)
 			throws Exception {
-		Owner owner = new Owner(firstName, lastName, mail);
+		Owner owner =ownerDAO.findByMail(mail);
+		if(owner==null){
+		 owner = new Owner(firstName, lastName, mail);
 		ownerDAO.create(owner);
-
+		}
 		return owner;
 	}
 
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
 			Competence[] competence) {
-		Certificate certificate = getCertificate(owner).get(0);
+		Owner ownOwner= ownerDAO.findByMail(owner.getMail());
+		Certificate certificate = getCertificate(ownOwner).get(0);
 		Document document = new Document(name, "", null);
 		documentDAO.create(document);
+		Competence compTmp=null;
 		for (Competence comp : competence) {
+			compTmp=competenceDAO.findByAcronym(comp.getAcronym());
 			Signature signature = new Signature(document,
-					certificate.getOwner(), comp, certificate);
+					certificate.getOwner(), compTmp, certificate);
 			signatureDAO.create(signature);
 		}
 		String url = Properties.URL + "/checkDocument?sa="
@@ -66,7 +78,7 @@ public class WSPublicImpl implements WSPublic {
 			byte[] b = new byte[(int) file.length()];
 			fis.read(b);
 			SignFile sf = new SignFile();
-			byte[] p7s = sf.signDocument(dest, owner);
+			byte[] p7s = sf.signDocument(dest, ownOwner);
 			document.setPk7(p7s);
 			documentDAO.update(document);
 			fis.close();
@@ -92,8 +104,9 @@ public class WSPublicImpl implements WSPublic {
 
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
+		ownerDAO = new OwnerDAO();
 		certificateDAO = new CertificateDAO();
-		return certificateDAO.findByOwner(owner);
+		 return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
 	}
 
 	public Owner getOwner(String mail) {

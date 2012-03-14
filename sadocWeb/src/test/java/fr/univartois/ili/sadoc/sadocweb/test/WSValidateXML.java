@@ -34,7 +34,7 @@ public class WSValidateXML {
 
 	}
 
-	/**
+	/**+
 	 * Verify validation xml
 	 */
 	@Test
@@ -50,8 +50,7 @@ public class WSValidateXML {
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			MyXMLParserErrorHandler mxpeh = new MyXMLParserErrorHandler();
 			db.setErrorHandler(mxpeh);
-			db.parse(new File("src/test/resources/testCertificate.xml"));
-
+			db.parse(new File("src/test/resources/c2i2.xml"));
 			assertTrue(mxpeh.isValidate());
 		} catch (SAXException e) {
 			e.printStackTrace();
