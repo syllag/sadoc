@@ -130,12 +130,6 @@
 		</field>
 	</class>
 
-
-	<class name="fr.univartois.ili.sadoc.sadocweb.spring.CreateOwnerResponse">
-		<map-to xml="createOwnerResponse" />
-	</class>
-	
-
 	<class name="fr.univartois.ili.sadoc.sadocweb.spring.GetDocumentInformationsRequest">
 		<map-to xml="getDocumentInformationsRequest" ns-uri="http://sadoc.com/ac/schemas" />
 		<field name="idDocument" type="integer">
