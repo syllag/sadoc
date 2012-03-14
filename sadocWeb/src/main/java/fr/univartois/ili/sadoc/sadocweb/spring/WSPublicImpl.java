@@ -1,25 +1,26 @@
 package fr.univartois.ili.sadoc.sadocweb.spring;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.util.List;
 
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.annotation.Resource;
-
-import com.itextpdf.text.pdf.PdfReader;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Competence;
-import fr.univartois.ili.sadoc.entities.classes.Document;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
-import fr.univartois.ili.sadoc.entities.classes.Signature;
 import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
 import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
-import fr.univartois.ili.sadoc.sadocweb.pdf.ManageQRCImpl;
-import fr.univartois.ili.sadoc.sadocweb.sign.integrationsign.SignFile;
-import fr.univartois.ili.sadoc.sadocweb.utils.Crypt;
-import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
 public class WSPublicImpl implements WSPublic {
 	
@@ -48,32 +49,22 @@ public class WSPublicImpl implements WSPublic {
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
 			Competence[] competence) {
-		Certificate certificate = getCertificate(owner).get(0);
-		Document document = new Document(name, "", null);
-		documentDAO.create(document);
-		for (Competence comp : competence) {
-			Signature signature = new Signature(document,
-					certificate.getOwner(), comp, certificate);
-			signatureDAO.create(signature);
-		}
-		String url = Properties.URL + "/checkDocument?sa="
-				+ Crypt.createFalseID(document.getId());
-		ManageQRCImpl qrc = new ManageQRCImpl();
-		byte[] dest = null;
+		byte[] handler = null;
+		byte[] pdfRequest=doc;
 		try {
-			String file = qrc.generatePdfWithQrCode(new PdfReader(doc), url);
-			FileInputStream fis = new FileInputStream(file);
-			byte[] b = new byte[(int) file.length()];
-			fis.read(b);
-			SignFile sf = new SignFile();
-			byte[] p7s = sf.signDocument(dest, owner);
-			document.setPk7(p7s);
-			documentDAO.update(document);
-			fis.close();
-		} catch (Exception e) {
+		FileOutputStream pdfFile=new FileOutputStream("C:/Users/hoss/Desktop/"+name+".pdf");
+		
+		pdfFile.write(pdfRequest);
+		pdfFile.close();
+		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		return dest;
+		try {
+			handler = loadFile("C:/olap.pdf");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return handler;
 	}
 
 	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -106,4 +97,33 @@ public class WSPublicImpl implements WSPublic {
 ////	}
 //	
 	
+	public static byte[] loadFile(String sourcePath) throws IOException
+	{
+	    InputStream inputStream = null;
+	    try 
+	    {
+	        inputStream = new FileInputStream(sourcePath);
+	        return readFully(inputStream);
+	    } 
+	    finally
+	    {
+	        if (inputStream != null)
+	        {
+	            inputStream.close();
+	        }
+	    }
+	}
+	
+	public static byte[] readFully(InputStream stream) throws IOException
+	{
+	    byte[] buffer = new byte[10000];
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+	    int bytesRead;
+	    while ((bytesRead = stream.read(buffer)) != -1)
+	    {
+	        baos.write(buffer, 0, bytesRead);
+	    }
+	    return baos.toByteArray();
+	}
 }
