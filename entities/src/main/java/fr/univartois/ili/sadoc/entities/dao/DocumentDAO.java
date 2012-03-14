@@ -35,6 +35,7 @@ public class DocumentDAO {
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Document findById(int id) {
+		System.out.println("requete idDoc:2"+id);
 		return entityManager.find(Document.class, id);
 	}
 

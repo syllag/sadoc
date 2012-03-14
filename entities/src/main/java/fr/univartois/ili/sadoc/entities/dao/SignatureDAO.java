@@ -101,6 +101,7 @@ public class SignatureDAO {
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner findOwnerByDocument(Document document) {
+		System.out.println("requete idDoc:3"+document.getId());
 		final TypedQuery<Owner> query;
 		query = entityManager.createQuery(
 				Request.FIND_OWNER_IN_SIGNATURE_BY_DOCUMENT, Owner.class);
@@ -110,6 +111,7 @@ public class SignatureDAO {
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public List<Competence> findCompetenceByDocument(Document document) {
+		System.out.println("requete idDoc:4"+document.getId());
 		final TypedQuery<Competence> query;
 		query = entityManager.createQuery(
 				Request.FIND_COMPETENCE_IN_SIGNATURE_BY_DOCUMENT,
