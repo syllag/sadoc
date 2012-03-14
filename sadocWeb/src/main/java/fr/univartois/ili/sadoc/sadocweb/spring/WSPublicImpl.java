@@ -111,5 +111,8 @@ public class WSPublicImpl implements WSPublic {
 ////		this.ownerDAO = ownerDAO;
 ////	}
 //	
-	
+	public Owner getOwner(String mail) {
+		// TODO Auto-generated method stub
+		return ownerDAO.findByMail(mail);
+	}
 }
