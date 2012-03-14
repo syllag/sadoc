@@ -10,7 +10,11 @@
 </head>
 <body>
 
-
+	<%-- 
+		A REFAIRE !!!!!!!!
+		PAS DE BALISES STRUTS DANS LES PAGES JSP !!!!!
+		REGARDER LA PAGE layouts/DefaultLayout.jsp
+	 --%>
 	
 	<s:url id="fileDownload" namespace="/" action="downloadResume?cv=1" ></s:url>
 	
