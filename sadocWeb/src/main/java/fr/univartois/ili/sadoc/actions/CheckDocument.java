@@ -66,9 +66,11 @@ public class CheckDocument extends ActionSupport {
 				fr.univartois.ili.sadoc.client.webservice.tools.Document docws = clientWebService
 						.getDocument(realID);
 				if (docws != null) {
-					Document doctoregister = new Document(docws.getName(),
-							docws.getCheckSum(), "", docws.getPk7(), null);
-					doctoregister.setId(docws.getId().intValue());
+					/*
+					 * à modifier il faut convertir  vers byte[], il faut l(adapter 
+					 */
+					Document doctoregister =null;//= //new Document(docws.getName(),docws.getCheckSum(), "", docws.getPk7(), null);
+					//doctoregister.setId(docws.getId().intValue());
 					ddao.create(doctoregister);
 					document = doctoregister;
 

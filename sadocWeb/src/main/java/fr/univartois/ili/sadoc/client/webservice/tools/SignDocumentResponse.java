@@ -1,9 +1,11 @@
 
 package fr.univartois.ili.sadoc.client.webservice.tools;
 
+import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -18,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}bytes"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}doc"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,34 +31,37 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "bytes"
+    "doc"
 })
-@XmlRootElement(name = "signDocumentReponse")
-public class SignDocumentReponse {
+@XmlRootElement(name = "signDocumentResponse")
+public class SignDocumentResponse {
 
     @XmlElement(required = true)
-    protected byte[] bytes;
+    @XmlMimeType("*/*")
+    protected DataHandler doc;
 
     /**
-     * Gets the value of the bytes property.
+     * Gets the value of the doc property.
      * 
      * @return
      *     possible object is
-     *     byte[]
+     *     {@link DataHandler }
+     *     
      */
-    public byte[] getBytes() {
-        return bytes;
+    public DataHandler getDoc() {
+        return doc;
     }
 
     /**
-     * Sets the value of the bytes property.
+     * Sets the value of the doc property.
      * 
      * @param value
      *     allowed object is
-     *     byte[]
+     *     {@link DataHandler }
+     *     
      */
-    public void setBytes(byte[] value) {
-        this.bytes = ((byte[]) value);
+    public void setDoc(DataHandler value) {
+        this.doc = value;
     }
 
 }

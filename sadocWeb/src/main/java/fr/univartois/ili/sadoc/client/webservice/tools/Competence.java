@@ -6,7 +6,9 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -23,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{http://sadoc.com/ac/schemas}name"/>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}description"/>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}acronym"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}creationDate"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,7 +39,8 @@ import javax.xml.bind.annotation.XmlType;
     "id",
     "name",
     "description",
-    "acronym"
+    "acronym",
+    "creationDate"
 })
 @XmlRootElement(name = "competence")
 public class Competence {
@@ -49,6 +53,9 @@ public class Competence {
     protected String description;
     @XmlElement(required = true)
     protected String acronym;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar creationDate;
 
     /**
      * Gets the value of the id property.
@@ -144,6 +151,30 @@ public class Competence {
      */
     public void setAcronym(String value) {
         this.acronym = value;
+    }
+
+    /**
+     * Gets the value of the creationDate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getCreationDate() {
+        return creationDate;
+    }
+
+    /**
+     * Sets the value of the creationDate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setCreationDate(XMLGregorianCalendar value) {
+        this.creationDate = value;
     }
 
 }

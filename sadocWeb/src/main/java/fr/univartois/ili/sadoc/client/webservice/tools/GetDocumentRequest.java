@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}id"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}idDocument"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,36 +30,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "id"
+    "idDocument"
 })
 @XmlRootElement(name = "getDocumentRequest")
 public class GetDocumentRequest {
 
     @XmlElement(required = true)
-    protected BigInteger id;
+    protected BigInteger idDocument;
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the idDocument property.
      * 
      * @return
      *     possible object is
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getId() {
-        return id;
+    public BigInteger getIdDocument() {
+        return idDocument;
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the idDocument property.
      * 
      * @param value
      *     allowed object is
      *     {@link BigInteger }
      *     
      */
-    public void setId(BigInteger value) {
-        this.id = value;
+    public void setIdDocument(BigInteger value) {
+        this.idDocument = value;
     }
 
 }
