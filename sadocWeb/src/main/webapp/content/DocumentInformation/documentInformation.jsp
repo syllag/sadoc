@@ -42,5 +42,4 @@
 			</div>
 		</section>
 		
-		
 <c:import url="../layouts/Footer.jsp" />

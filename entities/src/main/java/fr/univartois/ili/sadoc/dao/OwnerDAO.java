@@ -41,7 +41,13 @@ public class OwnerDAO {
 		query = entityManager.createQuery(Request.FIND_OWNER_BY_MAIL,
 				Owner.class);
 		query.setParameter("mail", mail);
-		return query.getSingleResult();
+		Owner result = null;
+		try {
+			result = query.getSingleResult();
+		} catch (NoResultException e) {
+		}
+		return result;
+
 	}
 
 	public Owner findOwner(String mail, String password) {
@@ -51,10 +57,10 @@ public class OwnerDAO {
 		query.setParameter("mail", mail);
 		query.setParameter("password", password);
 		Owner result = null;
-		try{
+		try {
 			result = query.getSingleResult();
+		} catch (NoResultException e) {
 		}
-		catch(NoResultException e){}
 		return result;
 	}
 
