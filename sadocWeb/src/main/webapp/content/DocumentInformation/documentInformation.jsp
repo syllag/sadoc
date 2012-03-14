@@ -11,12 +11,16 @@
 </head>
 
 <body>
-	<header class="header">
-		<a href="#"><img src='img/logo.png' /> </a>
-		<h1>Système d'authentification de document</h1>
-	</header>
+	<div  class="wrap">
 
-	<c:import url="../layouts/Menu.jsp" />
+	<c:if test="${ empty mail }">
+		<c:import url="../layouts/Menu.jsp"/>
+	</c:if>
+	<c:if test="${ not empty mail }">
+		<c:import url="../layouts/MenuNotConnected.jsp"/>
+	</c:if>
+
+	<div class="wrap_body">
 
 	<div id="wrapper">
 
@@ -58,9 +62,12 @@
 		</section>
 	</div>
 
-
-
-	<footer> </footer>
+	<div class="place_footer"></div>
+	</div>
+	
+	
+	</div>
+	<c:import url="../layouts/Footer.jsp" />
 </body>
 </html>
 
