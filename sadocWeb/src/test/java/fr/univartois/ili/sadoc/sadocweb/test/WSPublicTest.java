@@ -33,7 +33,7 @@ public class WSPublicTest {
 		// wspublic = (WSPublic) APPLICATION_CONTEXT.getBean("wsPublic");
 	}
 
-	@Test
+	
 	public void getCertificateTest() {
 
 		Owner owner1 = new Owner("firstname1", "lastName1", "mail1");

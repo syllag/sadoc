@@ -25,7 +25,7 @@ final class GF256Poly {
    */
   GF256Poly(GF256 field, int[] coeffs) {
 	  
-	  int[] coefficients=coeffs.clone();
+	  int[] coefficients=coeffs;
 	  
 	  
     if (coefficients == null || coefficients.length == 0) {

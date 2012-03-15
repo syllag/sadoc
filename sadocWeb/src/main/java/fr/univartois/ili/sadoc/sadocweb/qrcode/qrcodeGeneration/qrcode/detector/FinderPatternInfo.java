@@ -15,7 +15,7 @@ public final class FinderPatternInfo {
 	private final FinderPattern topRight;
 
 	public FinderPatternInfo(FinderPattern[] patternCenters) {
-		FinderPattern[] patternC = patternCenters.clone();
+		FinderPattern[] patternC = patternCenters;
 
 		this.bottomLeft = patternC[0];
 		this.topLeft = patternC[1];
