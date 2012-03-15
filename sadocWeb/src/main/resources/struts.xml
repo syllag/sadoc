@@ -27,7 +27,7 @@
 			<result name="success">content/home/Home.jsp</result>
 		</action>
 
-		<action name="ModifyProfile">
+		<action name="ModifyProfile" class="fr.univartois.ili.sadoc.actions.TestManageProfile">
 			<result name="input">content/profile/Profile.jsp</result>
 			<result name="success">content/profile/EditProfile.jsp</result>
 			<result name="astalavista">content/home/Home.jsp</result>
