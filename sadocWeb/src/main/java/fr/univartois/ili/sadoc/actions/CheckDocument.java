@@ -1,13 +1,14 @@
 package fr.univartois.ili.sadoc.actions;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.activation.DataHandler;
+
+import com.ibm.wsdl.util.IOUtils;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
@@ -62,21 +63,45 @@ public class CheckDocument extends ActionSupport {
 			OwnerDAO odao = new OwnerDAO();
 			CompetenceDAO cdao = new CompetenceDAO();
 			Document doc = ddao.findById((int) realID);
-
+			System.out.println("Recup WA");
 			if (doc == null) {
+				System.out.println("Pas sur WA");
 				IClientWebService clientWebService = new ClientWebServiceImpl();
 
 				fr.univartois.ili.sadoc.client.webservice.tools.Document docws = clientWebService
 						.getDocument(realID);
+				System.out.println("Requete sur WS");
 				if (docws != null) {
 					/*
 					 * à modifier il faut convertir  vers byte[], il faut l(adapter 
 					 */
-					Document doctoregister =null;//= //new Document(docws.getName(),docws.getCheckSum(), "", docws.getPk7(), null);
-					//doctoregister.setId(docws.getId().intValue());
+					//DataHandler h=new DataHandler();
+					
+					
+					/*DataHandler b=docws.getPk7().get(3);
+					System.out.println("taille de la liste;"+docws.getPk7().size());
+					InputStream in;
+					byte[] fakearray = null;
+					try {
+						in = b.getInputStream();
+				
+						
+	
+						fakearray =org.apache.commons.io.IOUtils.toByteArray(in);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
+					Byte[] fakearray = docws.getPk7();
+				
+					System.out.println("BYTE : "+fakearray[0]+fakearray[1]+fakearray[2]);
+					//here HABIB !!!
+					Document doctoregister =new Document(docws.getName(),docws.getCheckSum(), "", null, null);
+					doctoregister.setId(docws.getId().intValue());
 					ddao.create(doctoregister);
+					
 					document = doctoregister;
-
+					System.out.println("mis du null dedans!!");
 					clientWebService.getCompetences(docws.getId().longValue());
 					Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> comp = clientWebService
 							.getCompetences(docws.getId().longValue());
@@ -104,7 +129,9 @@ public class CheckDocument extends ActionSupport {
 						adao.create(a);
 						listCompetences.add(c);
 					}
+					System.out.println("Tout ajouté dans la BD!");
 				} else {
+					System.out.println("pas sur ws ou retour null");
 					return INPUT;
 				}
 

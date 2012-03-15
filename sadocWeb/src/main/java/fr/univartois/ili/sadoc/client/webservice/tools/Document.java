@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlInlineBinaryData;
 
 
 /**
@@ -52,8 +53,8 @@ public class Document {
     @XmlElement(required = true)
     protected String checkSum;
     @XmlElement(required = true)
-    @XmlMimeType("*/*")
-    protected List<DataHandler> pk7;
+    @XmlInlineBinaryData
+    protected Byte[] pk7;
 
     /**
      * Gets the value of the id property.
@@ -149,9 +150,9 @@ public class Document {
      * 
      * 
      */
-    public List<DataHandler> getPk7() {
+    public Byte[] getPk7() {
         if (pk7 == null) {
-            pk7 = new ArrayList<DataHandler>();
+            pk7 =new  Byte[1];
         }
         return this.pk7;
     }
