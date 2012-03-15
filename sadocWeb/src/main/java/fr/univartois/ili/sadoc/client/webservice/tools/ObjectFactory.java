@@ -2,8 +2,10 @@
 package fr.univartois.ili.sadoc.client.webservice.tools;
 
 import java.math.BigInteger;
+import javax.activation.DataHandler;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
+import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
@@ -26,6 +28,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _IdDocument_QNAME = new QName("http://sadoc.com/ac/schemas", "idDocument");
     private final static QName _Pk7_QNAME = new QName("http://sadoc.com/ac/schemas", "pk7");
     private final static QName _FirstName_QNAME = new QName("http://sadoc.com/ac/schemas", "firstName");
     private final static QName _Doc_QNAME = new QName("http://sadoc.com/ac/schemas", "doc");
@@ -36,7 +39,6 @@ public class ObjectFactory {
     private final static QName _CheckSum_QNAME = new QName("http://sadoc.com/ac/schemas", "checkSum");
     private final static QName _Validation_QNAME = new QName("http://sadoc.com/ac/schemas", "validation");
     private final static QName _Acronym_QNAME = new QName("http://sadoc.com/ac/schemas", "acronym");
-    private final static QName _Bytes_QNAME = new QName("http://sadoc.com/ac/schemas", "bytes");
     private final static QName _LastName_QNAME = new QName("http://sadoc.com/ac/schemas", "lastName");
     private final static QName _Mail_QNAME = new QName("http://sadoc.com/ac/schemas", "mail");
 
@@ -48,27 +50,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ImportCompetencesResponse }
+     * Create an instance of {@link ImportCompetencesRequest }
      * 
      */
-    public ImportCompetencesResponse createImportCompetencesResponse() {
-        return new ImportCompetencesResponse();
-    }
-
-    /**
-     * Create an instance of {@link SignDocumentReponse }
-     * 
-     */
-    public SignDocumentReponse createSignDocumentReponse() {
-        return new SignDocumentReponse();
-    }
-
-    /**
-     * Create an instance of {@link SignDocumentRequest }
-     * 
-     */
-    public SignDocumentRequest createSignDocumentRequest() {
-        return new SignDocumentRequest();
+    public ImportCompetencesRequest createImportCompetencesRequest() {
+        return new ImportCompetencesRequest();
     }
 
     /**
@@ -80,91 +66,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ImportDocumentResponse }
-     * 
-     */
-    public ImportDocumentResponse createImportDocumentResponse() {
-        return new ImportDocumentResponse();
-    }
-
-    /**
      * Create an instance of {@link GetOwnerRequest }
      * 
      */
     public GetOwnerRequest createGetOwnerRequest() {
         return new GetOwnerRequest();
-    }
-
-    /**
-     * Create an instance of {@link Document }
-     * 
-     */
-    public Document createDocument() {
-        return new Document();
-    }
-
-    /**
-     * Create an instance of {@link GetDocumentInformationsRequest }
-     * 
-     */
-    public GetDocumentInformationsRequest createGetDocumentInformationsRequest() {
-        return new GetDocumentInformationsRequest();
-    }
-
-    /**
-     * Create an instance of {@link Competence }
-     * 
-     */
-    public Competence createCompetence() {
-        return new Competence();
-    }
-
-    /**
-     * Create an instance of {@link CreateCertificateRequest }
-     * 
-     */
-    public CreateCertificateRequest createCreateCertificateRequest() {
-        return new CreateCertificateRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetDocumentInformationsResponse }
-     * 
-     */
-    public GetDocumentInformationsResponse createGetDocumentInformationsResponse() {
-        return new GetDocumentInformationsResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetDocumentRequest }
-     * 
-     */
-    public GetDocumentRequest createGetDocumentRequest() {
-        return new GetDocumentRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetDocumentResponse }
-     * 
-     */
-    public GetDocumentResponse createGetDocumentResponse() {
-        return new GetDocumentResponse();
-    }
-
-    /**
-     * Create an instance of {@link VerifyDocumentRequest }
-     * 
-     */
-    public VerifyDocumentRequest createVerifyDocumentRequest() {
-        return new VerifyDocumentRequest();
-    }
-
-    /**
-     * Create an instance of {@link CreateOwnerReponse }
-     * 
-     */
-    public CreateOwnerReponse createCreateOwnerReponse() {
-        return new CreateOwnerReponse();
     }
 
     /**
@@ -176,19 +82,59 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link VerifyDocumentResponse }
-     * 
-     */
-    public VerifyDocumentResponse createVerifyDocumentResponse() {
-        return new VerifyDocumentResponse();
-    }
-
-    /**
      * Create an instance of {@link CreateOwnerRequest }
      * 
      */
     public CreateOwnerRequest createCreateOwnerRequest() {
         return new CreateOwnerRequest();
+    }
+
+    /**
+     * Create an instance of {@link CreateOwnerResponse }
+     * 
+     */
+    public CreateOwnerResponse createCreateOwnerResponse() {
+        return new CreateOwnerResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetDocumentInformationsRequest }
+     * 
+     */
+    public GetDocumentInformationsRequest createGetDocumentInformationsRequest() {
+        return new GetDocumentInformationsRequest();
+    }
+
+    /**
+     * Create an instance of {@link CreateCertificateRequest }
+     * 
+     */
+    public CreateCertificateRequest createCreateCertificateRequest() {
+        return new CreateCertificateRequest();
+    }
+
+    /**
+     * Create an instance of {@link SignDocumentResponse }
+     * 
+     */
+    public SignDocumentResponse createSignDocumentResponse() {
+        return new SignDocumentResponse();
+    }
+
+    /**
+     * Create an instance of {@link VerifyDocumentRequest }
+     * 
+     */
+    public VerifyDocumentRequest createVerifyDocumentRequest() {
+        return new VerifyDocumentRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetDocumentRequest }
+     * 
+     */
+    public GetDocumentRequest createGetDocumentRequest() {
+        return new GetDocumentRequest();
     }
 
     /**
@@ -200,20 +146,86 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ImportCompetencesRequest }
+     * Create an instance of {@link GetDocumentResponse }
      * 
      */
-    public ImportCompetencesRequest createImportCompetencesRequest() {
-        return new ImportCompetencesRequest();
+    public GetDocumentResponse createGetDocumentResponse() {
+        return new GetDocumentResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
+     * Create an instance of {@link ImportDocumentResponse }
+     * 
+     */
+    public ImportDocumentResponse createImportDocumentResponse() {
+        return new ImportDocumentResponse();
+    }
+
+    /**
+     * Create an instance of {@link Document }
+     * 
+     */
+    public Document createDocument() {
+        return new Document();
+    }
+
+    /**
+     * Create an instance of {@link GetDocumentInformationsResponse }
+     * 
+     */
+    public GetDocumentInformationsResponse createGetDocumentInformationsResponse() {
+        return new GetDocumentInformationsResponse();
+    }
+
+    /**
+     * Create an instance of {@link VerifyDocumentResponse }
+     * 
+     */
+    public VerifyDocumentResponse createVerifyDocumentResponse() {
+        return new VerifyDocumentResponse();
+    }
+
+    /**
+     * Create an instance of {@link ImportCompetencesResponse }
+     * 
+     */
+    public ImportCompetencesResponse createImportCompetencesResponse() {
+        return new ImportCompetencesResponse();
+    }
+
+    /**
+     * Create an instance of {@link Competence }
+     * 
+     */
+    public Competence createCompetence() {
+        return new Competence();
+    }
+
+    /**
+     * Create an instance of {@link SignDocumentRequest }
+     * 
+     */
+    public SignDocumentRequest createSignDocumentRequest() {
+        return new SignDocumentRequest();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link BigInteger }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "idDocument")
+    public JAXBElement<BigInteger> createIdDocument(BigInteger value) {
+        return new JAXBElement<BigInteger>(_IdDocument_QNAME, BigInteger.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DataHandler }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "pk7")
-    public JAXBElement<byte[]> createPk7(byte[] value) {
-        return new JAXBElement<byte[]>(_Pk7_QNAME, byte[].class, null, ((byte[]) value));
+    @XmlMimeType("*/*")
+    public JAXBElement<DataHandler> createPk7(DataHandler value) {
+        return new JAXBElement<DataHandler>(_Pk7_QNAME, DataHandler.class, null, value);
     }
 
     /**
@@ -226,12 +238,13 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DataHandler }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "doc")
-    public JAXBElement<byte[]> createDoc(byte[] value) {
-        return new JAXBElement<byte[]>(_Doc_QNAME, byte[].class, null, ((byte[]) value));
+    @XmlMimeType("*/*")
+    public JAXBElement<DataHandler> createDoc(DataHandler value) {
+        return new JAXBElement<DataHandler>(_Doc_QNAME, DataHandler.class, null, value);
     }
 
     /**
@@ -295,15 +308,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "acronym")
     public JAXBElement<String> createAcronym(String value) {
         return new JAXBElement<String>(_Acronym_QNAME, String.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "bytes")
-    public JAXBElement<byte[]> createBytes(byte[] value) {
-        return new JAXBElement<byte[]>(_Bytes_QNAME, byte[].class, null, ((byte[]) value));
     }
 
     /**

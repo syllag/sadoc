@@ -2,9 +2,13 @@
 package fr.univartois.ili.sadoc.client.webservice.tools;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -22,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{http://sadoc.com/ac/schemas}id"/>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}name"/>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}checkSum"/>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}pk7"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}pk7" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,7 +52,8 @@ public class Document {
     @XmlElement(required = true)
     protected String checkSum;
     @XmlElement(required = true)
-    protected byte[] pk7;
+    @XmlMimeType("*/*")
+    protected List<DataHandler> pk7;
 
     /**
      * Gets the value of the id property.
@@ -125,23 +130,30 @@ public class Document {
     /**
      * Gets the value of the pk7 property.
      * 
-     * @return
-     *     possible object is
-     *     byte[]
-     */
-    public byte[] getPk7() {
-        return pk7;
-    }
-
-    /**
-     * Sets the value of the pk7 property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the pk7 property.
      * 
-     * @param value
-     *     allowed object is
-     *     byte[]
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPk7().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DataHandler }
+     * 
+     * 
      */
-    public void setPk7(byte[] value) {
-        this.pk7 = ((byte[]) value);
+    public List<DataHandler> getPk7() {
+        if (pk7 == null) {
+            pk7 = new ArrayList<DataHandler>();
+        }
+        return this.pk7;
     }
 
 }

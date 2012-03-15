@@ -28,7 +28,7 @@
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<version>2.3.2</version>
-			
+
 		</dependency>
 
 		<dependency>
@@ -178,6 +178,16 @@
 			<artifactId>spring-ws-core</artifactId>
 			<version>2.0.3.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>1.46</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcmail-jdk16</artifactId>
+			<version>1.46</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.ws</groupId>
@@ -195,6 +205,20 @@
 			<version>3.1</version>
 			<type>jar</type>
 			<scope>compile</scope>
+		</dependency>
+		
+	    <dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.2.0</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.itextpdf.tool</groupId>
+			<artifactId>xmlworker</artifactId>
+			<version>1.1.1</version>
+			<type>jar</type>
 		</dependency>
 
 	</dependencies>

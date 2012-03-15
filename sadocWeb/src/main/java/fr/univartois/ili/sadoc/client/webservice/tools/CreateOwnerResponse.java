@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "owner"
 })
-@XmlRootElement(name = "createOwnerReponse")
-public class CreateOwnerReponse {
+@XmlRootElement(name = "createOwnerResponse")
+public class CreateOwnerResponse {
 
     @XmlElement(required = true)
     protected Owner owner;

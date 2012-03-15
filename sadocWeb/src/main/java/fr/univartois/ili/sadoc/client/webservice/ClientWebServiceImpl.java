@@ -1,51 +1,93 @@
 package fr.univartois.ili.sadoc.client.webservice;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import fr.univartois.ili.sadoc.client.webservice.tools.CreateOwnerRequest;
+import fr.univartois.ili.sadoc.client.webservice.tools.Document;
+import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentInformationsRequest;
+import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentInformationsResponse;
+import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentRequest;
+import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentResponse;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetOwnerRequest;
+import fr.univartois.ili.sadoc.client.webservice.tools.ImportDocumentRequest;
+import fr.univartois.ili.sadoc.client.webservice.tools.ImportDocumentResponse;
 import fr.univartois.ili.sadoc.client.webservice.tools.Owner;
-
+/**
+ * manage client web service
+ * @author habib
+ *
+ */
 public class ClientWebServiceImpl implements IClientWebService {
 
 	public fr.univartois.ili.sadoc.client.webservice.tools.Document getDocument(
 			long id) {
 
-		Calendar calendar = GregorianCalendar.getInstance();
-		byte[] b = { 1, 0, 0, 1 };
-		calendar.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
-		Date date = calendar.getTime();
-		return null;
+		fr.univartois.ili.sadoc.client.webservice.tools.Document response = null;
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+
+		WebServiceTemplate webServiceTemplate = applicationContext
+				.getBean(WebServiceTemplate.class);
+		try {
+
+			GetDocumentRequest getDocumentRequest = new GetDocumentRequest();
+			getDocumentRequest.setIdDocument(BigInteger.valueOf(id));
+
+			GetDocumentResponse responses = (GetDocumentResponse) webServiceTemplate
+					.marshalSendAndReceive(getDocumentRequest);
+			System.out.println("response:document  :"
+					+ responses.getDocument().getId());
+			response = responses.getDocument();
+		} catch (Exception sfce) {
+
+			System.out.println("We sent an invalid message" + sfce);
+
+			sfce.printStackTrace();
+		}
+
+		return response;
 	}
 
 	public Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> getCompetences(
 			long idDoc) {
-		// TODO Auto-generated method stub
 
-		// Map<Owner,List<Competence>> mappy= new
-		// HashMap<Owner,List<Competence>>();
-		// //String firstName,String lastName,String mail, String password,
-		// String address,String zipCode,String town, String phone)
-		// Owner own = new
-		// Owner("Rococo","Nico","a@a.aa","bouloulou","123 rue moncul","69696","mabite","6969696969"
-		// );
-		//
-		// List<Competence> list= new ArrayList<Competence>();
-		//
-		// list.add(new Competence("branleur", "30 Kleenex par jours"));
-		// list.add(new Competence("geek", "30h de starWars en 2 jours"));
-		//
-		//
-		// mappy.put(own, list);
-		//
-		return null;
+		Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> responses = null;
+
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+
+		WebServiceTemplate webServiceTemplate = applicationContext
+				.getBean(WebServiceTemplate.class);
+		try {
+			GetDocumentInformationsRequest getDocumentInformationsRequest = new GetDocumentInformationsRequest();
+			getDocumentInformationsRequest.setIdDocument(BigInteger
+					.valueOf(idDoc));
+
+			GetDocumentInformationsResponse response = (GetDocumentInformationsResponse) webServiceTemplate
+					.marshalSendAndReceive(getDocumentInformationsRequest);
+			responses = new HashedMap();
+			responses.put(response.getOwner(), response.getCompetence());
+
+			System.out.println("response:list competence for owner -->  :"
+					+ response.getOwner().getId() + " name:"
+					+ response.getOwner().getMail() + " competence size: "
+					+ response.getCompetence().size());
+
+		} catch (Exception sfce) {
+
+			System.out.println("We sent an invalid message" + sfce);
+
+			sfce.printStackTrace();
+		}
+
+		return responses;
+
 	}
 
 	public fr.univartois.ili.sadoc.client.webservice.tools.Owner createOwner(
@@ -81,7 +123,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 		// TODO Auto-generated method stub
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner response = null;
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+				"service-client.xml");
 
 		WebServiceTemplate webServiceTemplate = applicationContext
 				.getBean(WebServiceTemplate.class);
@@ -103,6 +145,48 @@ public class ClientWebServiceImpl implements IClientWebService {
 		}
 
 		return response;
+	}
+
+	public List<Document> getAllDocument(long idOwner) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Document> getAllDocument(
+			fr.univartois.ili.sadoc.entities.Owner owner) {
+
+		// TODO Auto-generated method stub
+		List<fr.univartois.ili.sadoc.client.webservice.tools.Document> responses = null;
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+
+		WebServiceTemplate webServiceTemplate = applicationContext
+				.getBean(WebServiceTemplate.class);
+		try {
+
+			ImportDocumentRequest importDocumentRequest = new ImportDocumentRequest();
+			fr.univartois.ili.sadoc.client.webservice.tools.Owner owner2 = new fr.univartois.ili.sadoc.client.webservice.tools.Owner();
+			owner2.setId(BigInteger.valueOf(owner.getId()));
+			owner2.setFirstName(owner.getFirstName());
+			owner2.setLastName(owner.getLastName());
+			owner2.setMail(owner.getMail());
+			importDocumentRequest.setOwner(owner2);
+
+			ImportDocumentResponse responsess = (ImportDocumentResponse) webServiceTemplate
+					.marshalSendAndReceive(importDocumentRequest);
+			System.out.println("ImportDocumentResponse :"
+					+ responsess.getDocument().size());
+			responses = responsess.getDocument();
+
+		} catch (Exception sfce) {
+
+			System.out.println("We sent an invalid message" + sfce);
+
+			sfce.printStackTrace();
+		}
+
+		return responses;
+
 	}
 
 }

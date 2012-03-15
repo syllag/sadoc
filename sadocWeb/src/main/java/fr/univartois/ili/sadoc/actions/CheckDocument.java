@@ -1,5 +1,9 @@
 package fr.univartois.ili.sadoc.actions;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +61,6 @@ public class CheckDocument extends ActionSupport {
 			AcquisitionDAO adao = new AcquisitionDAO();
 			OwnerDAO odao = new OwnerDAO();
 			CompetenceDAO cdao = new CompetenceDAO();
-
 			Document doc = ddao.findById((int) realID);
 
 			if (doc == null) {
@@ -66,9 +69,11 @@ public class CheckDocument extends ActionSupport {
 				fr.univartois.ili.sadoc.client.webservice.tools.Document docws = clientWebService
 						.getDocument(realID);
 				if (docws != null) {
-					Document doctoregister = new Document(docws.getName(),
-							docws.getCheckSum(), "", docws.getPk7(), null);
-					doctoregister.setId(docws.getId().intValue());
+					/*
+					 * à modifier il faut convertir  vers byte[], il faut l(adapter 
+					 */
+					Document doctoregister =null;//= //new Document(docws.getName(),docws.getCheckSum(), "", docws.getPk7(), null);
+					//doctoregister.setId(docws.getId().intValue());
 					ddao.create(doctoregister);
 					document = doctoregister;
 
@@ -104,13 +109,14 @@ public class CheckDocument extends ActionSupport {
 				}
 
 			} else {
+				document=doc;
 				List<Acquisition> acq = adao.findByDocument(doc);
 				owner = acq.get(0).getOwner();
 				for (Acquisition a : acq) {
 					listCompetences.add(a.getCompetence());
 				}
 			}
-
+			
 			return SUCCESS;
 		}
 

@@ -1,9 +1,11 @@
 
 package fr.univartois.ili.sadoc.client.webservice.tools;
 
+import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -39,7 +41,8 @@ import javax.xml.bind.annotation.XmlType;
 public class VerifyDocumentRequest {
 
     @XmlElement(required = true)
-    protected byte[] doc;
+    @XmlMimeType("*/*")
+    protected DataHandler doc;
     @XmlElement(required = true)
     protected Document document;
     @XmlElement(required = true)
@@ -50,9 +53,10 @@ public class VerifyDocumentRequest {
      * 
      * @return
      *     possible object is
-     *     byte[]
+     *     {@link DataHandler }
+     *     
      */
-    public byte[] getDoc() {
+    public DataHandler getDoc() {
         return doc;
     }
 
@@ -61,10 +65,11 @@ public class VerifyDocumentRequest {
      * 
      * @param value
      *     allowed object is
-     *     byte[]
+     *     {@link DataHandler }
+     *     
      */
-    public void setDoc(byte[] value) {
-        this.doc = ((byte[]) value);
+    public void setDoc(DataHandler value) {
+        this.doc = value;
     }
 
     /**

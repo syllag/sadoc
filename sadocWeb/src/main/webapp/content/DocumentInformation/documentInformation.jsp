@@ -1,24 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset=utf-8 />
-<meta name="description"
-	content="Systeme d'authentification de document." />
-<title>Votre gestionnaire de compétence en ligne</title>
-<link href="css/style.css" type="text/css" rel="stylesheet" />
-<link rel="icon" type="image/png" href="img/favicon.png" />
-</head>
-
-<body>
-	<header class="header">
-		<a href="#"><img src='img/logo.png' /> </a>
-		<h1>Système d'authentification de document</h1>
-	</header>
-
-	<c:import url="../layouts/Menu.jsp" />
-
-	<div id="wrapper">
+<c:import url="../layouts/Header.jsp" />
 
 
 		<section id="content2">
@@ -30,16 +12,16 @@
 
 			</div>
 			<hr />
-			<p class="auth">Le document a été certifié par SADOC , le
+			<p class="auth">Le document a ï¿½tï¿½ certifiï¿½ par SADOC , le
 				${document.creationDate}
 			<p>
 			<hr />
 
 			<div class="infoCompetence">
 				<c:forEach var="competence" items="${listCompetences}">
-					<p>compétence : ${competence.name}
+					<p>compï¿½tence : ${competence.name}
 					<p>
-					<p>description compétence : ${competence.description}</p>
+					<p>description compï¿½tence : ${competence.description}</p>
 				</c:forEach>
 			</div>
 
@@ -49,19 +31,15 @@
 			</div>
 
 			<div class="infoP7S">
-				<p>signature du fichier (fichier *.p7s) : ${document.pk7}</p>
+				<p>
+					signature du fichier (fichier *.p7s) : <a
+						href="downloadP7S?sa=${sa}"><button>Tï¿½lï¿½charger</button></a>
+				</p>
 				<p>
 					L'utilisation du fichier *.p7s requiert le logiciel <a
 						href="http://www.adesium.com/index.php?option=com_quickfaq&view=items&cid=1%3Amysign&id=14">mySIGN</a>
 				</p>
 			</div>
 		</section>
-	</div>
-
-
-
-	<footer> </footer>
-</body>
-</html>
-
-
+		
+<c:import url="../layouts/Footer.jsp" />
