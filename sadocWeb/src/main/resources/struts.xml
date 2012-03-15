@@ -7,8 +7,12 @@
         <package name="sadocWeb" namespace="/" extends="struts-default">
         
 
-		<default-action-ref name="index" />
-
+		<default-action-ref name="Home" />
+		
+		<action name="Home">
+			<result>/WEB-INF/content/home/Home.jsp</result>
+		</action>
+			
 		<action name="ValidateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect"
 			method="execute">
 			<result name="success">content/home/Home.jsp</result>
@@ -42,11 +46,6 @@
 			<result name="success">content/profile/Profile.jsp</result>
 			<result name="input">content/profile/EditProfile.jsp</result>
 			<result name="astalavista">content/home/Home.jsp</result>
-		</action>
-
-		<action name="Home" class="fr.univartois.ili.sadoc.actions.ManageHome"
-			method="execute">
-			<result>content/home/Home.jsp</result>
 		</action>
 		
 		<action name="checkDocument" class="fr.univartois.ili.sadoc.actions.CheckDocument"
