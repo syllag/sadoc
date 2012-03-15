@@ -21,5 +21,8 @@
 	<li class="${ currentMenu == 'EditProfile' ? 'menu_active' : ''}"> 
 		<a href="ModifyProfile">Modifier le profil</a>
 	</li>
+	<li> 
+		<a href="Deconnection">Deconnexion</a>
+	</li>
 </menu>
 </div>
