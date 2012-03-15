@@ -11,9 +11,9 @@
 				placeholder="Your email" required /> <input type="password"
 				name="connect.password" id="password" placeholder="Your password"
 				required />
-				<c:if test="${ incorrect == 'ok' }">
-					<div class="errorMessage">Password ou mail incorrect</div>
-				</c:if>
+				
+					<div class="errorMessage">${ incorrect }</div>
+				
 			<button type=submit class="buttonLogin">LOG IN</button>
 			<a href="SignIn"><button class="buttonSignin">SIGN IN</button></a>
   <div class="spacer"> </div>

@@ -38,21 +38,19 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		session = ActionContext.getContext().getSession();
 		
 		if (form == null) {
-			session.put("incorrectMail", "Ok");
-			session.put("error", "Ok");	
-			session.put("inexistante", "Ok");
+			session.put("error", "");	
 			return INPUT;
 		}
 		OwnerDAO odao = new OwnerDAO();
 		if (odao.findByMail(form.getMail()) != null) {
-			session.put("incorrectMail", "nok");
+			session.put("error", "Mail déjà utilisé");
 			return INPUT;
 		}
 		
 		/*	ClientWebServiceImpl webService = new  ClientWebServiceImpl();
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner personneWS = webService.getOwner(form.getMail());
 		if (personneWS == null) {
-			session.put("inexistante", "nok");
+			session.put("error", "Vous n'avez pas de compte.");
 			return INPUT;			
 		}
 		
@@ -77,7 +75,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			// TODO : connecter la personne
 		} catch (Exception e) {
 			e.printStackTrace();
-			session.put("error", "nok");
+			session.put("error", "Problème temporaire... Essayez plus tard.");
 			return INPUT;
 		}
 		return SUCCESS;

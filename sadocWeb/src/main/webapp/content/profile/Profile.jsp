@@ -1,21 +1,47 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	session.setAttribute("currentMenu", "Profile");
 %>
 <c:import url="../layouts/Header.jsp" />
-				
-			<section id="content">
-				<form method="post" action="ModifyProfile">
-					<input type="text" name="firstName" id="firstName" placeholder="Prénom" value="${ firstname }" required /> 
-					<input type="text" name="lastName" id="lastName" placeholder="Nom" value="${ name }" required /> 
-					<input type="text" name="mail" id="mail" placeholder="email" value="${ mail }" required /> 
-					<input type="text" name="adress" id="adress" placeholder="Adresse" value="${ adress }" />
-					<input type="text" name="zipCode" id="zipCode" placeholder="Code postal" value="${ zipCode }" />   
-					<input type="text" name="town" id="town" placeholder="Ville" value="${ town }" /> 
-					<input type="text" name="phone" id="phone" placeholder="03/03/03/03/03" value="${ phone }" />
-				</form>
-			</section>
+
+<section id="content">
+	<div class="user">
+		<p>${firstname} ${name}</p>
+		<p>${ adress }</p>
+		<p>
+			${ zipCode }
+			<c:if test="not empty ${ zipCode }  && not empty ${ town } ">
+				,
+				</c:if>
+			${ town }
+		</p>
+		<p>${ phone }</p>
+		<p>${ mail }</p>
+	</div>
+	<hr />
+	<div class="competence">
+		<h3>Compétences</h3>
+		
+		 <c:forEach var="entry" items="${mapCompetence}" >
+		<fieldset>
+		<legend>${entry.key.name }</legend>
+		
+				<p>Niveau : ${entry.key.acronym }</p>
+				<c:forEach var="document" items="${entry.value }">
+					<p>${document.name } <button>Telecharger</button></p>
+				</c:forEach>
+		</fieldset>
+		</c:forEach>
+	</div>
+	<hr/>
+	<div class="curriculum">
+		<h3 class="profileCV">Curriculum vitae</h3>
+		<span class="genererCv"><a href="#">+ generer CV</a></span>
+		<c:forEach var="resume" items="${listResume}">
+			<p>CV_${name}_${resume.id} <button>Telecharger</button><button>Supprimer</button><button>Modifier</button></p>
+		</c:forEach>
+	</div>
+</section>
 
 <c:import url="../layouts/Footer.jsp" />
