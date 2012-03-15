@@ -20,24 +20,24 @@
 
 	<!-- Mapping for Document -->
 	<class name="fr.univartois.ili.sadoc.entities.classes.Document">
-		<map-to xml="document" />
+		<map-to xml="document" ns-uri="http://sadoc.com/ac/schemas" />
 		<field name="id" type="integer">
-			<bind-xml name="id" node="element" />
+			<bind-xml name="id" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 		<field name="name" type="string">
-			<bind-xml name="name" node="element" />
+			<bind-xml name="name" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 		<field name="checkSum" type="string">
-			<bind-xml name="checkSum" node="element" />
+			<bind-xml name="checkSum" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 		<field name="pk7" type="byte" collection="array">
-			<bind-xml name="pk7" node="element" />
+			<bind-xml name="pk7" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 	</class>
 
 	<!-- Mapping for Competence -->
 	<class name="fr.univartois.ili.sadoc.entities.classes.Competence">
-		<map-to xml="competence" ns-uri="http://sadoc.com/ac/schemas"/>
+		<map-to xml="competence" ns-uri="http://sadoc.com/ac/schemas" />
 		<field name="id" type="integer">
 			<bind-xml name="id" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
@@ -45,10 +45,14 @@
 			<bind-xml name="name" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 		<field name="description" type="string">
-			<bind-xml name="description" node="element" xmlns="http://sadoc.com/ac/schemas" />
+			<bind-xml name="description" node="element"
+				xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 		<field name="acronym" type="string">
 			<bind-xml name="acronym" node="element" xmlns="http://sadoc.com/ac/schemas" />
+		</field>
+		<field name="creationDate" type="timestamp">
+			<bind-xml name="creationDate" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 	</class>
 
@@ -70,8 +74,8 @@
 		name="fr.univartois.ili.sadoc.sadocweb.wssample.AccountBalanceRequest">
 		<map-to xml="accountBalanceRequest" />
 		<field name="user" type="fr.univartois.ili.sadoc.sadocweb.wssample.User">
-	<bind-xml name="user" node="element" />
-</field>
+			<bind-xml name="user" node="element" />
+		</field>
 	</class>
 
 	<!-- Mapping for accountBalanceResponse -->
@@ -96,7 +100,31 @@
 		<field name="mail" type="string">
 			<bind-xml name="mail" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
-	</class>
+  </class>
+  
+  <class name="fr.univartois.ili.sadoc.sadocweb.spring.CreateOwnerResponse">
+    <map-to xml="createOwnerResponse" />
+  </class>
+	
+  <class name="fr.univartois.ili.sadoc.sadocweb.spring.SignDocumentRequest">
+    <map-to xml="signDocumentRequest" ns-uri="http://sadoc.com/ac/schemas" />
+		<field name="doc" type="bytes" >
+			<bind-xml name="doc" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+		</field>
+		<field name="name" type="string">
+			<bind-xml name="name" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+		</field>
+    <field name="owner" type="fr.univartois.ili.sadoc.entities.classes.Owner">
+      <bind-xml name="owner" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+    </field>
+    <field name="competence" type="fr.univartois.ili.sadoc.entities.classes.Competence" collection="array">
+      <bind-xml name="competence" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+    </field>
+  </class>
+  
+    <class name="fr.univartois.ili.sadoc.sadocweb.spring.SignDocumentResponse">
+    <map-to xml="signDocumentResponse" />
+  </class>
 
 	<class name="fr.univartois.ili.sadoc.sadocweb.spring.GetOwnerRequest">
 		<map-to xml="getOwnerRequest" ns-uri="http://sadoc.com/ac/schemas" />
@@ -105,23 +133,64 @@
 		</field>
 	</class>
 
-	<class name="fr.univartois.ili.sadoc.sadocweb.spring.CreateOwnerResponse">
-		<map-to xml="createOwnerResponse" />
-	</class>
 	<class name="fr.univartois.ili.sadoc.sadocweb.spring.GetDocumentInformationsRequest">
 		<map-to xml="getDocumentInformationsRequest" ns-uri="http://sadoc.com/ac/schemas" />
 		<field name="idDocument" type="integer">
-			<bind-xml name="idDocument" node="element" xmlns="http://sadoc.com/ac/schemas" />
+			<bind-xml name="idDocument" node="element"
+				xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 	</class>
-	<class name="fr.univartois.ili.sadoc.sadocweb.spring.GetDocumentInformationsResponse">
+	<class
+		name="fr.univartois.ili.sadoc.sadocweb.spring.GetDocumentInformationsResponse">
 		<map-to xml="getDocumentInformationsResponse" ns-uri="http://sadoc.com/ac/schemas" />
 		<field name="owner" type="fr.univartois.ili.sadoc.entities.classes.Owner">
-			<bind-xml name="owner" node="element"  xmlns="http://sadoc.com/ac/schemas"/>
+			<bind-xml name="owner" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
-		<field name="competences" type="fr.univartois.ili.sadoc.entities.classes.Competence" collection="array">
-			<bind-xml name="competences" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+		<field name="competence"
+			type="fr.univartois.ili.sadoc.entities.classes.Competence"
+			collection="arraylist">
+			<bind-xml name="competence" node="element"
+				xmlns="http://sadoc.com/ac/schemas" />
+		</field>
+	</class>
+	<class name="fr.univartois.ili.sadoc.sadocweb.spring.ImportDocumentRequest">
+		<map-to xml="importDocumentRequest" ns-uri="http://sadoc.com/ac/schemas" />
+		<field name="owner" type="fr.univartois.ili.sadoc.entities.classes.Owner">
+			<bind-xml name="owner" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 	</class>
 
+	<class name="fr.univartois.ili.sadoc.sadocweb.spring.ImportDocumentResponse">
+		<map-to xml="importDocumentResponse" ns-uri="http://sadoc.com/ac/schemas" />
+		
+		<field name="document"
+			type="fr.univartois.ili.sadoc.entities.classes.Document"
+			collection="arraylist">
+			<bind-xml name="document" node="element"
+				xmlns="http://sadoc.com/ac/schemas" />
+		</field>
+	</class>
+	
+	<class name="fr.univartois.ili.sadoc.sadocweb.spring.GetDocumentRequest">
+		<map-to xml="getDocumentRequest" ns-uri="http://sadoc.com/ac/schemas" />
+		<field name="idDocument" type="integer">
+			<bind-xml name="idDocument" node="element"
+				xmlns="http://sadoc.com/ac/schemas" />
+		</field>
+	</class>
+
+	<class name="fr.univartois.ili.sadoc.sadocweb.spring.GetDocumentResponse">
+		<map-to xml="getDocumentResponse" ns-uri="http://sadoc.com/ac/schemas" />
+		<field name="document" type="fr.univartois.ili.sadoc.entities.classes.Document">
+			<bind-xml name="document" node="element" xmlns="http://sadoc.com/ac/schemas" />
+		</field>		
+	</class>
+
+  <class name="fr.univartois.ili.sadoc.sadocweb.spring.CreateCertificateRequest">
+    <map-to xml="createCertificateRequest" ns-uri="http://sadoc.com/ac/schemas" />
+   	<field name="owner" type="fr.univartois.ili.sadoc.entities.classes.Owner">
+    	<bind-xml name="owner" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+    </field>
+  </class>
+  
 </mapping>

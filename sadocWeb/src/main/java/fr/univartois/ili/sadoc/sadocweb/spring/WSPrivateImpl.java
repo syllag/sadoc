@@ -15,16 +15,28 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.univartois.ili.sadoc.entities.classes.Competence;
 import fr.univartois.ili.sadoc.entities.classes.Document;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.entities.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
+import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 
 public class WSPrivateImpl implements WSPrivate {
 	
+	@Resource(name="ownerDAO")
+	private OwnerDAO ownerDAO ;
+	
 	@Resource(name="documentDAO")
-	private DocumentDAO documentDAO ;
+	private DocumentDAO documentDAO;
 	
 	@Resource(name="signatureDAO")
-	private SignatureDAO signatureDAO ;
+	private SignatureDAO signatureDAO;
+	
+	@Resource(name="certificateDAO")
+	private CertificateDAO certificateDAO ;
+	
+	@Resource(name="competenceDAO")
+	private CompetenceDAO competenceDAO ;
 	
 	@Transactional (propagation=Propagation.REQUIRED, readOnly=true)
 	public boolean verifyDocument(Byte[] doc, Document document,
@@ -37,8 +49,8 @@ public class WSPrivateImpl implements WSPrivate {
 	public Map<Owner, List<Competence>> getDocumentInformations(int documentId) {
 		System.out.println("requete idDoc:1");
 		Map<Owner, List<Competence>> info = new HashMap<Owner, List<Competence>>();
-		documentDAO= new DocumentDAO();
-		signatureDAO = new SignatureDAO();
+		//documentDAO= new DocumentDAO();
+		//signatureDAO = new SignatureDAO();
 		Document document = documentDAO.findById(documentId);
 		Owner owner = signatureDAO.findOwnerByDocument(document);
 		List<Competence> competences = signatureDAO.findCompetenceByDocument(document);

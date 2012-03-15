@@ -1,27 +1,29 @@
 package fr.univartois.ili.sadoc.sadocweb.spring;
 
+import java.util.List;
+
 import fr.univartois.ili.sadoc.entities.classes.Competence;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
              
 public class GetDocumentInformationsResponse {
 
 	private Owner owner;
-	private Competence[] competences;
-
+	private List<Competence> competence;
 	public Owner getOwner() {
 		return owner;
 	}
-
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
-
-	public Competence[] getCompetences() {
-		return competences;
+	public List<Competence> getCompetence() {
+		return competence;
 	}
-
-	public void setCompetences(Competence[] competences) {
-		this.competences = competences;
+	public void setCompetence(List<Competence> competence) {
+		this.competence = competence;
 	}
+	
+
+	
+	
 
 }

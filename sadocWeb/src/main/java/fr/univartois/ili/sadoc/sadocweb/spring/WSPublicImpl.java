@@ -5,9 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.itextpdf.text.pdf.PdfReader;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
@@ -107,11 +104,6 @@ public class WSPublicImpl implements WSPublic {
 		return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
 	}
 
-	public Owner getOwner(String mail) {
-		// TODO Auto-generated method stub
-		return ownerDAO.findByMail(mail);
-	}
-
 	// // public OwnerDAO getOwnerDAO() {
 	// // return ownerDAO;
 	// // }
@@ -121,5 +113,8 @@ public class WSPublicImpl implements WSPublic {
 	// // this.ownerDAO = ownerDAO;
 	// // }
 	//
-
+	public Owner getOwner(String mail) {
+		// TODO Auto-generated method stub
+		return ownerDAO.findByMail(mail);
+	}
 }

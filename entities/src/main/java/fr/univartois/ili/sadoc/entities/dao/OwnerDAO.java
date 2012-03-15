@@ -1,6 +1,7 @@
 package fr.univartois.ili.sadoc.entities.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -42,12 +43,16 @@ public class OwnerDAO {
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner findByMail(String mail) {
-		final TypedQuery<Owner> query;
-		query = entityManager.createQuery(Request.FIND_OWNER_BY_MAIL,
-				Owner.class);
-		query.setParameter("mail", mail);
+		try {
+			final TypedQuery<Owner> query;
+			query = entityManager.createQuery(Request.FIND_OWNER_BY_MAIL,
+					Owner.class);
+			query.setParameter("mail", mail);
 
-		return query.getSingleResult();
+			return query.getSingleResult();
+		} catch(NoResultException e) {
+	        return null;
+	    }
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	elementFormDefault="qualified" targetNamespace="http://sadoc.com/ac/schemas"
-	xmlns:schemas="http://sadoc.com/ac/schemas">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	elementFormDefault="qualified" targetNamespace="http://sadoc.com/ac/schemas" xmlns:schemas="http://sadoc.com/ac/schemas">
 	<xs:element name="createOwnerRequest">
 		<xs:complexType>
 			<xs:sequence>
@@ -40,11 +39,10 @@
 	<xs:element name="signDocumentResponse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="schemas:bytes" />
+				<xs:element ref="schemas:doc" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="bytes" type="xs:base64Binary" />
 	<xs:element name="createCertificateRequest">
 		<xs:complexType>
 			<xs:sequence>
@@ -118,7 +116,7 @@
 	<xs:element name="getDocumentRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="schemas:id" />
+				<xs:element ref="schemas:idDocument" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -129,7 +127,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="doc" type="xs:base64Binary" />
+	<xs:element name="doc" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
 	<xs:element name="name" type="xs:string" />
 	<xs:element name="owner">
 		<xs:complexType>
@@ -151,6 +149,7 @@
 				<xs:element ref="schemas:name" />
 				<xs:element ref="schemas:description" />
 				<xs:element ref="schemas:acronym" />
+				<xs:element ref="schemas:creationDate" />				
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -161,12 +160,12 @@
 				<xs:element ref="schemas:id" />
 				<xs:element ref="schemas:name" />
 				<xs:element ref="schemas:checkSum" />
-				<xs:element ref="schemas:pk7" />
+				<xs:element ref="schemas:pk7"  maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="checkSum" type="xs:string" />
-	<xs:element name="pk7" type="xs:base64Binary" />
+	<xs:element name="pk7" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
 	<xs:element name="creationDate" type="xs:date" />
 	<xs:element name="id" type="xs:integer" />
 	<xs:element name="idDocument" type="xs:integer" />
