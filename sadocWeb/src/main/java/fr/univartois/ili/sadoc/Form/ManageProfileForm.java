@@ -30,6 +30,13 @@ public class ManageProfileForm {
 		this.setMail(mail);
 	}
 	
+	/**
+	 * 
+	 */
+	public ManageProfileForm() {
+		
+	}
+	
 	/************************************************/
 	
 	public String getFirstName() {

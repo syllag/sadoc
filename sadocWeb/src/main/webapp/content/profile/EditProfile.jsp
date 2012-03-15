@@ -7,13 +7,13 @@
 			
 	
 			<section id="content">
-				<form method="post" action="ModifyProfile">
-					<input type="password" name="password" id="password" placeholder="Nouveau mot de passe" /> 
-					<input type="password" name="password2" id="password2" placeholder="Confirmation password" />
-					<input type="text" name="adress" id="adress" placeholder="Mon adresse" value="${ adress }" required />
-					<input type="text" name="zipCode" id="zipCode" placeholder="Code postal" value="${ zipCode }" required />   
-					<input type="text" name="town" id="town" placeholder="Ville" value="${ town }" required /> 
-					<input type="text" name="phone" id="phone" placeholder="Téléphone" value="${ phone }" required />
+				<form method="post" action="ModifyProfile2">
+					<input type="password" name="form.password" id="password" placeholder="Nouveau mot de passe" /> 
+					<input type="password" name="form.password2" id="password2" placeholder="Confirmation password" />
+					<input type="text" name="form.adress" id="adress" placeholder="Mon adresse" value="${ adress }"  />
+					<input type="text" name="form.zipCode" id="zipCode" placeholder="Code postal" value="${ zipCode }"  />   
+					<input type="text" name="form.town" id="town" placeholder="Ville" value="${ town }"  /> 
+					<input type="text" name="form.phone" id="phone" placeholder="Téléphone" value="${ phone }"  />
 					<button type=submit class="button">Mettre à jour</button>
 				</form>
 			</section>

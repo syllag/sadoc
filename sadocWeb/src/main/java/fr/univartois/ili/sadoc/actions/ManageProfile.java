@@ -27,6 +27,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		session = ActionContext.getContext().getSession();
 		
 		if (form == null) {
+			System.out.println("A");
 			return INPUT;
 		}
 		
@@ -45,8 +46,6 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 				&& (form.getPassword().equals(form.getPassword2()))) {
 					owner.setPassword(form.getPassword());
 		}
-		else 
-			return INPUT;
 		
 		session.put("adress",owner.getAddress());
 		session.put("zipCode", owner.getZipCode());
@@ -55,6 +54,8 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		ActionContext.getContext().setSession(session);
 		
 		odao.update(owner);
+		
+		System.out.println(owner.getAddress());
 		
 		return SUCCESS;
 	}
