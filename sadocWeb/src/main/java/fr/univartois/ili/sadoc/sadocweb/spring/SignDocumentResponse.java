@@ -9,11 +9,11 @@ public class SignDocumentResponse {
 	}
 
 	public byte[] getDoc() {
-		return doc.clone();
+		return doc;
 	}
 
 	public void setDoc(byte[] doc) {
-		this.doc = doc.clone();
+		this.doc = doc;
 	}
 
 

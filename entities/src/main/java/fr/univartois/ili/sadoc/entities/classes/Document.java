@@ -45,7 +45,7 @@ public class Document implements Serializable, Comparable<Object> {
 	public Document(String name, String checksum, byte[] pk7) {
 		this.name = name;
 		this.checkSum = checksum;
-		this.pk7 = pk7.clone();
+		this.pk7 = pk7;
 	}
 
 	/************************************************/
@@ -95,11 +95,11 @@ public class Document implements Serializable, Comparable<Object> {
 	}
 
 	public Date getCreationDate() {
-		return (Date) creationDate.clone();
+		return (Date) creationDate;
 	}
 
 	public void setCreationDate(Date creationDate) {
-		this.creationDate = (Date) creationDate.clone();
+		this.creationDate = (Date) creationDate;
 	}
 
 	public byte[] getPk7() {
