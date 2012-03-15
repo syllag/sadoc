@@ -123,7 +123,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 		// TODO Auto-generated method stub
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner response = null;
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+				"service-client.xml");
 
 		WebServiceTemplate webServiceTemplate = applicationContext
 				.getBean(WebServiceTemplate.class);

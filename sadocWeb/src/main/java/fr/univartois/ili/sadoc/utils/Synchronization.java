@@ -36,13 +36,13 @@ public class Synchronization {
 		Owner own=odao.findByMail(mail);
 
 		List<fr.univartois.ili.sadoc.client.webservice.tools.Document> docwsList = clientWebService
-				.getAllDocument(own.getId());
+				.getAllDocument(own);
 		for (fr.univartois.ili.sadoc.client.webservice.tools.Document docws : docwsList) {
 			if (docws != null) {
-				Document doctoregister = new Document(docws.getName(),
-						docws.getCheckSum(), "", docws.getPk7(), null);
-				doctoregister.setId(docws.getId().intValue());
-				ddao.create(doctoregister);
+				//Document doctoregister = new Document(docws.getName(),
+					//	docws.getCheckSum(), "", docws.getPk7(), null);
+			//	doctoregister.setId(docws.getId().intValue());
+			//	ddao.create(doctoregister);
 				Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> comp = clientWebService
 						.getCompetences(docws.getId().longValue());
 				fr.univartois.ili.sadoc.client.webservice.tools.Owner incowner = comp
@@ -58,7 +58,7 @@ public class Synchronization {
 					cdao.create(c);
 					Acquisition a = new Acquisition();
 					a.setCompetence(c);
-					a.setDocument(doctoregister);
+					//a.setDocument(doctoregister);
 					a.setOwner(own);
 					adao.create(a);
 				}
