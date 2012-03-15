@@ -25,6 +25,12 @@
 			<result name="input">content/profile/Profile.jsp</result>
 			<result name="success">content/profile/EditProfile.jsp</result>
 		</action>
+		
+		<action name="Profile">
+			<result name="input">content/profile/Profile.jsp</result>
+			<result name="success">content/profile/Profile.jsp</result>
+		</action>
+		
 		<action name="ModifyProfile2" class="fr.univartois.ili.sadoc.actions.ManageProfile">
 			<result name="success">content/profile/Profile.jsp</result>
 			<result name="input">content/profile/EditProfile.jsp</result>
