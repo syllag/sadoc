@@ -22,25 +22,42 @@
 	<hr />
 	<div class="competence">
 		<h3>Compétences</h3>
-		
-		 <c:forEach var="entry" items="${mapCompetence}" >
-		<fieldset>
-		<legend>${entry.key.name }</legend>
-		
+
+		<c:forEach var="entry" items="${mapCompetence}">
+			<fieldset>
+				<legend>${entry.key.name }</legend>
+
 				<p>Niveau : ${entry.key.acronym }</p>
-				<c:forEach var="document" items="${entry.value }">
-					<p>${document.name } <button>Telecharger</button></p>
-				</c:forEach>
-		</fieldset>
+				<table>
+					<c:forEach var="document" items="${entry.value }">
+						<tr>
+							<td>${document.name }</td>
+							<td><a href="#" title="Télécharger le document"><img
+									src="img/download.png" /> </a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</fieldset>
 		</c:forEach>
 	</div>
-	<hr/>
+	<hr />
 	<div class="curriculum">
-		<h3 class="profileCV">Curriculum vitae</h3>
-		<span class="genererCv"><a href="#">+ generer CV</a></span>
-		<c:forEach var="resume" items="${listResume}">
-			<p>CV_${name}_${resume.id} <button>Telecharger</button><button>Supprimer</button><button>Modifier</button></p>
-		</c:forEach>
+		<h3>Curriculum vitae</h3> <span class="genererCv"><a
+			href="#">+ generer CV</a> </span>
+		<table>
+			<c:forEach var="resume" items="${listResume}">
+				<tr>
+					<td>CV_${name}_${resume.id}</td>
+					<td><a href="#" title="Télécharger le CV"><img
+							src="img/download.png" /> </a></td>
+					<td><a href="#" title="Supprimer le CV"><img
+							src="img/delete.png" /> </a></td>
+					<td><a href="#" title="Editer le CV"><img
+							src="img/edit.png" /> </a></td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
 </section>
 
