@@ -388,3 +388,9 @@ p.lien_competence a {
 	color:#B22222;
 	text-align:center;
 }
+
+.createResume ul li{
+	display:inline;
+	text-decoration:none;
+}
+
