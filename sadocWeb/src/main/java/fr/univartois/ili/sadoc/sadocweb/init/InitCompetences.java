@@ -5,6 +5,7 @@ package fr.univartois.ili.sadoc.sadocweb.init;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -23,8 +24,9 @@ import fr.univartois.ili.sadoc.sadocweb.repertory.MyScanRepertory;
  */
 public class InitCompetences implements ServletContextListener {
 
-	public static String repertory = "/opt/apache-tomcat-6.0.35/webapps/competences/";
-
+	private static final String NAME_FILE_PROPERTIES = "initComp";
+	private static final String PATH_COMP = "path";
+	
 	/** Methodes d'affichage */
 	static protected void trace(String s) {
 		System.out.println(s);
@@ -32,6 +34,9 @@ public class InitCompetences implements ServletContextListener {
 	
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
+		ResourceBundle bundle = ResourceBundle.getBundle(NAME_FILE_PROPERTIES);
+		String repertory = bundle.getString(PATH_COMP);
+				
 		MyScanRepertory scanRepo = new MyScanRepertory();
 		String[] tabFiles = scanRepo.getListFiles(repertory);
 
