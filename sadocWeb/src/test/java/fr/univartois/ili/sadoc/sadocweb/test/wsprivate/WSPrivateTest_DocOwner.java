@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.sadocweb.test;
+package fr.univartois.ili.sadoc.sadocweb.test.wsprivate;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -30,7 +31,6 @@ public class WSPrivateTest_DocOwner{
 
 	private static final ApplicationContext APPLICATION_CONTEXT = new ClassPathXmlApplicationContext(
 			"spring-config.xml");
-
 	private WSPrivate wsprivate;
 
 	@Before
@@ -39,12 +39,10 @@ public class WSPrivateTest_DocOwner{
 		wsprivate = (WSPrivate) APPLICATION_CONTEXT.getBean("wsPrivate");
 	}
 
-	@Test
+	@Ignore
 	public void verifyDocumentTest() {
 
 	}
-
-	
 
 	@Test
 	public void importDocumentByOwnerTest() {
@@ -107,17 +105,11 @@ public class WSPrivateTest_DocOwner{
 		assertFalse(documents2.contains(doc1));
 		assertFalse(documents2.contains(doc2));
 		assertTrue(documents2.contains(doc3));
-		
 	}
-
-	
 
 	@After
 	public void endTests() {
 		PersistenceProvider.removeProvider();
-		
-		
-		
 	}
 
 }

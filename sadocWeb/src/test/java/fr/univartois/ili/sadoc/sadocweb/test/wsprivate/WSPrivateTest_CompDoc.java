@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.sadocweb.test;
+package fr.univartois.ili.sadoc.sadocweb.test.wsprivate;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -26,11 +27,10 @@ import fr.univartois.ili.sadoc.entities.dao.PersistenceProvider;
 import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.sadocweb.spring.WSPrivate;
 
-public class WSPrivateTest_CompDoc{
+public class WSPrivateTest_CompDoc {
 
 	private static final ApplicationContext APPLICATION_CONTEXT = new ClassPathXmlApplicationContext(
 			"spring-config.xml");
-
 	private WSPrivate wsprivate;
 
 	@Before
@@ -39,14 +39,10 @@ public class WSPrivateTest_CompDoc{
 		wsprivate = (WSPrivate) APPLICATION_CONTEXT.getBean("wsPrivate");
 	}
 
-	@Test
+	@Ignore
 	public void verifyDocumentTest() {
 
 	}
-
-	
-
-	
 
 	@Test
 	public void importCompetencesByDocumentTest() {
@@ -113,15 +109,11 @@ public class WSPrivateTest_CompDoc{
 		assertFalse(competences3.contains(comp1));
 		assertTrue(competences3.contains(comp2));
 		assertTrue(competences3.contains(comp3));
-		
 	}
 
 	@After
 	public void endTests() {
 		PersistenceProvider.removeProvider();
-		
-		
-		
 	}
 
 }

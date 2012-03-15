@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.sadocweb.test;
+package fr.univartois.ili.sadoc.sadocweb.test.wspublic;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,7 +9,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
@@ -20,19 +24,19 @@ import fr.univartois.ili.sadoc.sadocweb.spring.WSPublic;
 
 public class WSPublicTest {
 
-	// private static final ApplicationContext APPLICATION_CONTEXT = new
-	// ClassPathXmlApplicationContext(
-	// "spring-config.xml");
+	 private static final ApplicationContext APPLICATION_CONTEXT = new
+	 ClassPathXmlApplicationContext(
+	 "spring-config.xml");
 
 	private WSPublic wspublic;
 
 	@Before
 	public void initTest() {
 		PersistenceProvider.setProvider("sadocjpatest");
-		// wspublic = (WSPublic) APPLICATION_CONTEXT.getBean("wsPublic");
+		wspublic = (WSPublic) APPLICATION_CONTEXT.getBean("wsPublic");
 	}
 
-	
+	@Ignore
 	public void getCertificateTest() {
 
 		Owner owner1 = new Owner("firstname1", "lastName1", "mail1");
@@ -47,6 +51,7 @@ public class WSPublicTest {
 		ke2.initialize(1024, new SecureRandom());
 
 		KeyPair k2 = ke2.generateKeyPair();
+		
 		Certificate certif1 = new Certificate(k2.getPublic(), k2.getPrivate(),
 				owner1);
 		Certificate certif2 = new Certificate(k2.getPublic(), k2.getPrivate(),
@@ -69,16 +74,12 @@ public class WSPublicTest {
 		final OwnerDAO ownerDAO = new OwnerDAO();
 		final CertificateDAO certificateDAO = new CertificateDAO();
 
-		//ownerDAO.getEntityManager().getTransaction().begin();
 		ownerDAO.create(owner1);
 		ownerDAO.create(owner2);
-		//ownerDAO.getEntityManager().getTransaction().commit();
 
-		//certificateDAO.getEntityManager().getTransaction().begin();
 		certificateDAO.create(certif1);
 		certificateDAO.create(certif2);
 		certificateDAO.create(certif3);
-		//certificateDAO.getEntityManager().getTransaction().commit();
 
 		List<Certificate> certificates1 = certificateDAO.findByOwner(owner1);
 		List<Certificate> certificates2 = certificateDAO.findByOwner(owner2);
@@ -95,7 +96,7 @@ public class WSPublicTest {
 		assertTrue(certificates2.contains(certif3));
 	}
 
-//	@After
+	@After
 	public void endTests() {
 		PersistenceProvider.removeProvider();
 	}
