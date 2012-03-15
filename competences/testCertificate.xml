@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<certificate name="C2I" date="2012-02-22">
+	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
+	<!-- xsi:noNamespaceSchemaLocation="src/main/ressources/certificate.xsd" -->
+	<domain id="D1"
+		name="Problématique et enjeux liés aux aspects juridiques en contexte professionnel">
+		<competence id="C2I:2012-02-22:D1:1">
+			Description1
+		</competence>
+		<competence id="C2I:2012-02-22:D1:2">
+			Description2
+		</competence>
+		<competence id="C2I:2012-02-22:D1:3">
+			Description3
+		</competence>
+		<competence id="C2I:2012-02-22:D1:4">
+			Description4
+		</competence>
+		<competence id="C2I:2012-02-22:D1:5">
+			Description5
+		</competence>
+	</domain>
+	<domain id="D2"
+		name="Sécurité de l'information et des systèmes d'information">
+		<competence id="C2I:2012-02-22:D2:1">
+			Description1
+		</competence>
+		<competence id="C2I:2012-02-22:D2:2">
+			Description2
+		</competence>
+		<competence id="C2I:2012-02-22:D2:3">
+			Description3
+		</competence>
+		<competence id="C2I:2012-02-22:D2:4">
+			Description4
+		</competence>
+		<competence id="C2I:2012-02-22:D2:5">
+			Description5
+		</competence>
+	</domain>
+	<domain id="D3" name="Maîtrise d'ouvrage des systèmes d'information">
+		<competence id="C2I:2012-02-22:D3:1">
+			Description1
+		</competence>
+		<competence id="C2I:2012-02-22:D3:2">
+			Description2
+		</competence>
+		<competence id="C2I:2012-02-22:D3:3">
+			Description3
+		</competence>
+		<competence id="C2I:2012-02-22:D3:4">
+			Description4
+		</competence>
+		<competence id="C2I:2012-02-22:D3:5">
+			Description5
+		</competence>
+	</domain>
+	<domain id="D4" name="Environnement numérique et ingénierie collaborative">
+		<competence id="C2I:2012-02-22:D4:1">
+			Description1
+		</competence>
+		<competence id="C2I:2012-02-22:D4:2">
+			Description2
+		</competence>
+		<competence id="C2I:2012-02-22:D4:3">
+			Description3
+		</competence>
+		<competence id="C2I:2012-02-22:D4:4">
+			Description4
+		</competence>
+		<competence id="C2I:2012-02-22:D4:5">
+			Description5
+		</competence>
+	</domain>
+	<domain id="D5" name="Maîtrise de l'information">
+		<competence id="C2I:2012-02-22:D5:1">
+			Description1
+		</competence>
+		<competence id="C2I:2012-02-22:D5:2">
+			Description2
+		</competence>
+		<competence id="C2I:2012-02-22:D5:3">
+			Description3
+		</competence>
+		<competence id="C2I:2012-02-22:D5:4">
+			Description4
+		</competence>
+		<competence id="C2I:2012-02-22:D5:5">
+			Description5
+		</competence>
+	</domain>
+	
+</certificate>
