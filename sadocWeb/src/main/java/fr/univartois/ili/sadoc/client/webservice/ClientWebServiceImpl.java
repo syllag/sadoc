@@ -43,7 +43,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 					.marshalSendAndReceive(getDocumentRequest);
 			System.out.println("response:document  :"
 					+ responses.getDocument().getId());
-
+			response = responses.getDocument();
 		} catch (Exception sfce) {
 
 			System.out.println("We sent an invalid message" + sfce);
