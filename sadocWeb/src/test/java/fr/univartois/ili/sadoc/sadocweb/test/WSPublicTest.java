@@ -10,7 +10,6 @@ import java.security.SecureRandom;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Test;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
