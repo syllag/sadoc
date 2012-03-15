@@ -6,12 +6,12 @@ public final class QRCProperties {
 	
 	private static QRCProperties instance;
 	
-	public static final String NAME_FILE_PROPERTIES = "qrc";
+	private static final String NAME_FILE_PROPERTIES = "qrc";
 	
-	public static final String PATH_KEY = "pathRW";
-	public static final String FORMAT_KEY = "format";
-	public static final String SIZE_KEY = "size";
-	public static final String PREFIX_URL_KEY = "prefixURL";
+	private static final String PATH_KEY = "pathRW";
+	private static final String FORMAT_KEY = "format";
+	private static final String SIZE_KEY = "size";
+	private static final String PREFIX_URL_KEY = "prefixURL";
 	
 	private String path;
 	private String format;
@@ -26,6 +26,7 @@ public final class QRCProperties {
 		this.path = bundle.getString(PATH_KEY);
 		this.format = bundle.getString(FORMAT_KEY);
 		this.size = Integer.valueOf(bundle.getString(SIZE_KEY));
+		this.prefixURL = bundle.getString(PREFIX_URL_KEY);
 		
 		instance = this;
 	}
