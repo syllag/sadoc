@@ -21,6 +21,11 @@
 			<result name="input">content/signin/Signin.jsp</result>
 		</action>
 
+		<action name="Deconnection" class="fr.univartois.ili.sadoc.actions.Deconnection">
+			<result name="input">content/home/Home.jsp</result>
+			<result name="success">content/home/Home.jsp</result>
+		</action>
+
 		<action name="ModifyProfile">
 			<result name="input">content/profile/Profile.jsp</result>
 			<result name="success">content/profile/EditProfile.jsp</result>
