@@ -24,10 +24,10 @@ public class ManageQRCImpl implements ManageQRC {
 	/* (non-Javadoc)
 	 * @see fr.univartois.ili.sadoc.sadocweb.qrcode.ManageQRC#generatePdfWithQrCode(com.itextpdf.text.pdf.PdfReader, java.lang.String)
 	 */
-	public String generatePdfWithQrCode(PdfReader reader, String url) {
+	public byte[] generatePdfWithQrCode(PdfReader reader, String url) {
 		Image imglQrCode = QRCodeWriterManager.getInstance().encode(url)
 				.getImage();
 		PdfGen pdfGen = new PdfGen(reader, imglQrCode, url);
-		return "test : le fichier de sortie : " + pdfGen.generatePdf();
+		return pdfGen.generatePdf().getBytes();
 	}
 }

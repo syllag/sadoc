@@ -4,6 +4,6 @@ import com.itextpdf.text.pdf.PdfReader;
 
 public interface ManageQRC {
 
-	public String generatePdfWithQrCode(PdfReader reader, String url);
+	public byte[] generatePdfWithQrCode(PdfReader reader, String url);
 	
 }

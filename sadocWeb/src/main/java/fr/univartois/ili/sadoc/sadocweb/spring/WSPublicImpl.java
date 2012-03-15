@@ -52,37 +52,47 @@ public class WSPublicImpl implements WSPublic {
 
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
-			Competence[] competence) {
-		Owner ownOwner = ownerDAO.findByMail(owner.getMail());
-		Certificate certificate = getCertificate(ownOwner).get(0);
-		Document document = new Document(name, "", null);
-		documentDAO.create(document);
-		Competence compTmp = null;
-		for (Competence comp : competence) {
-			compTmp = competenceDAO.findByAcronym(comp.getAcronym());
-			Signature signature = new Signature(document,
-					certificate.getOwner(), compTmp, certificate);
-			signatureDAO.create(signature);
-		}
-		String url = Properties.URL + "/checkDocument?sa="
-				+ Crypt.createFalseID(document.getId());
-		ManageQRCImpl qrc = new ManageQRCImpl();
-		byte[] dest = null;
-		try {
-			String file = qrc.generatePdfWithQrCode(new PdfReader(doc), url);
-			FileInputStream fis = new FileInputStream(file);
-			byte[] b = new byte[(int) file.length()];
-			fis.read(b);
-			SignFile sf = new SignFile();
-			byte[] p7s = sf.signDocument(dest, ownOwner);
-			document.setPk7(p7s);
-			documentDAO.update(document);
-			fis.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return dest;
-	}
+            Competence[] competence) {
+//		System.out.println("SIGNDOCUMENT OK !");
+//        Owner ownOwner= ownerDAO.findByMail(owner.getMail());
+//        Certificate certificate = getCertificate(ownOwner).get(0);
+//        System.out.println("GET CERTIF OK !");
+//        Document document = new Document(name, "", null);
+//        documentDAO.create(document);
+//        System.out.println("CREATE DOC OK !");
+//        Competence compTmp=null;
+//        for (Competence comp : competence) {
+//            compTmp=competenceDAO.findByAcronym(comp.getAcronym());
+//            Signature signature = new Signature(document,
+//                    certificate.getOwner(), compTmp, certificate);
+//            signatureDAO.create(signature);
+//        }
+//        String url = Properties.URL + "/checkDocument?sa="
+//                + Crypt.createFalseID(document.getId());
+//        ManageQRCImpl qrc = new ManageQRCImpl();
+//        byte[] dest = null;
+//        System.out.println("DAO OK !");
+//        try {
+//            dest = qrc.generatePdfWithQrCode(new PdfReader(doc), url);
+//            FileInputStream fis = new FileInputStream(dest);
+//            byte[] b = new byte[(int) dest.length()];
+//            fis.read(b);
+//            SignFile sf = new SignFile();
+//            byte[] p7s = sf.signDocument(dest, ownOwner);
+//           
+//            document.setPk7(p7s);
+//            documentDAO.update(document);
+//            
+//            System.out.println("PDF + QRCODE OK !");
+//            
+//            fis.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return dest;
+		return doc;
+           
+    }
 
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name,
