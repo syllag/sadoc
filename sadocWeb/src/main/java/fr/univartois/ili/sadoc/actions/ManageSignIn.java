@@ -38,7 +38,10 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 */
 	public String execute() {
 		session = ActionContext.getContext().getSession();
-
+		if (session.get("mail")!=null) {
+			return "astalavista";
+		}
+		
 		if (form == null) {
 			session.put("error", "");
 			return INPUT;
@@ -114,5 +117,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;
 	}
-
+	public Map<String, Object> getSession(){
+		return session;
+	}
 }

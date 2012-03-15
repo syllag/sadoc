@@ -6,6 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 
 
@@ -13,10 +16,11 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 
-public class DownloadResume  extends ActionSupport{
+public class DownloadResume  extends ActionSupport implements SessionAware {
 	
 	/**
 	 * 
@@ -24,6 +28,7 @@ public class DownloadResume  extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	
 	private int cv;
+	private Map<String, Object> session;
 	
 	public int getCv(){
 		return cv;
@@ -40,6 +45,10 @@ public class DownloadResume  extends ActionSupport{
 	}
  
 	public String execute() {
+		session = ActionContext.getContext().getSession();
+		if (session.get("mail")==null) {
+			return "astalavista";
+		}
 		
 		Document document=new Document();
 		FileOutputStream fo;
@@ -70,4 +79,10 @@ public class DownloadResume  extends ActionSupport{
 		}
 	}
 	
+	public void setSession(Map<String, Object> session){
+		  session = this.getSession();
+	}
+	public Map<String, Object> getSession(){
+		return session;
+	}
 }

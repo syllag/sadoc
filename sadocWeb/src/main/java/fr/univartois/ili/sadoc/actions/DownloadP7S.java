@@ -4,13 +4,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.entities.Document;
 
-public class DownloadP7S extends ActionSupport {
+public class DownloadP7S extends ActionSupport implements SessionAware {
 
 	/**
 	 * 
@@ -19,6 +23,7 @@ public class DownloadP7S extends ActionSupport {
 
 	private String sa = null;
 	private InputStream fileInputStream;
+	private Map<String, Object> session;
 
 	public String getSa() {
 		return sa;
@@ -33,6 +38,11 @@ public class DownloadP7S extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
+		session = ActionContext.getContext().getSession();
+		if (session.get("mail")==null) {
+			return "astalavista";
+		}
+		
 		//long realID = TestID.findRealID(sa);
 		long realID = Long.valueOf(sa);
 		DocumentDAO ddao = new DocumentDAO();
@@ -46,5 +56,11 @@ public class DownloadP7S extends ActionSupport {
 	    fileInputStream = new FileInputStream(new File("/tmp/authenticate.p7s"));
 		return SUCCESS;
 	}
-
+	
+	public void setSession(Map<String, Object> session){
+		  session = this.getSession();
+	}
+	public Map<String, Object> getSession(){
+		return session;
+	}
 }

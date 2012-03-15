@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
@@ -21,7 +24,7 @@ import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
 
-public class CheckDocument extends ActionSupport {
+public class CheckDocument extends ActionSupport implements SessionAware {
 
 	/**
 	 * 
@@ -32,6 +35,7 @@ public class CheckDocument extends ActionSupport {
 	private Document document = null;
 	private Owner owner = null;
 	private List<Competence> listCompetences = new ArrayList<Competence>();
+	private Map<String, Object> session;
 
 	public String getSa() {
 		return sa;
@@ -54,6 +58,11 @@ public class CheckDocument extends ActionSupport {
 	}
 
 	public String execute() {
+		session = ActionContext.getContext().getSession();
+		if (session.get("mail")==null) {
+			return "astalavista";
+		}
+		
 		if (sa!=null /*&& TestID.trueFalseID(sa)*/) {
 			//long realID = TestID.findRealID(sa);
 			long realID = Long.valueOf(sa);
@@ -121,5 +130,12 @@ public class CheckDocument extends ActionSupport {
 		}
 
 		return INPUT;
+	}
+	
+	public void setSession(Map<String, Object> session){
+		  session = this.getSession();
+	}
+	public Map<String, Object> getSession(){
+		return session;
 	}
 }

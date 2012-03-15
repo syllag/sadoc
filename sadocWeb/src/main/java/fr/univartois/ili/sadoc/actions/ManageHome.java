@@ -21,12 +21,20 @@ public class ManageHome extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	
 	public String execute() {
+		session = ActionContext.getContext().getSession();
+		if (session.get("mail")==null) {
+			return "astalavista";
+		}
+		
 		return SUCCESS;
 	}
 
 
-	public void setSession(Map<String, Object> arg0) {
-		this.session=arg0;
+	public void setSession(Map<String, Object> session){
+		  session = this.getSession();
+	}
+	public Map<String, Object> getSession(){
+		return session;
 	}
 
 }

@@ -14,6 +14,7 @@ public class Deconnection extends ActionSupport implements SessionAware {
 
 	public String execute () {
 		session = ActionContext.getContext().getSession();
+		
 		session.clear();
 		return SUCCESS;
 	}

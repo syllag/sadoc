@@ -25,9 +25,10 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 
 	public String execute () {
 		session = ActionContext.getContext().getSession();
-		
+		if (session.get("mail")==null) {
+			return "astalavista";
+		}
 		if (form == null) {
-			System.out.println("A");
 			return INPUT;
 		}
 		
