@@ -74,18 +74,21 @@ public class WSPublicImpl implements WSPublic {
         System.out.println("DAO OK !");
         try {
             dest = qrc.generatePdfWithQrCode(new PdfReader(doc), url);
+            System.out.println("Generate PDFQRCODE OK !");
             FileInputStream fis = new FileInputStream(name);
             byte[] b = new byte[(int) dest.length];
             fis.read(b);
             SignFile sf = new SignFile();
+            System.out.println("SIGNFILE OK !");
             byte[] p7s = sf.signDocument(dest, ownOwner);
-           
+            System.out.println("SIGNDOC OK !");
             document.setPk7(p7s);
             documentDAO.update(document);
             
             System.out.println("PDF + QRCODE OK !");
             
             fis.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
