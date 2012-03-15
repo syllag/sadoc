@@ -26,44 +26,43 @@ import fr.univartois.ili.sadoc.sadocweb.utils.Crypt;
 import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
 public class WSPublicImpl implements WSPublic {
-	
-	@Resource(name="ownerDAO")
-	private OwnerDAO ownerDAO ;
-	
-	@Resource(name="documentDAO")
+
+	@Resource(name = "ownerDAO")
+	private OwnerDAO ownerDAO;
+
+	@Resource(name = "documentDAO")
 	private DocumentDAO documentDAO;
-	
-	@Resource(name="signatureDAO")
+
+	@Resource(name = "signatureDAO")
 	private SignatureDAO signatureDAO;
-	
-	@Resource(name="certificateDAO")
-	private CertificateDAO certificateDAO ;
-	
-	@Resource(name="competenceDAO")
-	private CompetenceDAO competenceDAO ;
 
+	@Resource(name = "certificateDAO")
+	private CertificateDAO certificateDAO;
 
-//	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Resource(name = "competenceDAO")
+	private CompetenceDAO competenceDAO;
+
+	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner createOwner(String lastName, String firstName, String mail)
 			throws Exception {
-		Owner owner =ownerDAO.findByMail(mail);
-		if(owner==null){
-		 owner = new Owner(firstName, lastName, mail);
-		ownerDAO.create(owner);
+		Owner owner = ownerDAO.findByMail(mail);
+		if (owner == null) {
+			owner = new Owner(firstName, lastName, mail);
+			ownerDAO.create(owner);
 		}
 		return owner;
 	}
 
-	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
 			Competence[] competence) {
-		Owner ownOwner= ownerDAO.findByMail(owner.getMail());
+		Owner ownOwner = ownerDAO.findByMail(owner.getMail());
 		Certificate certificate = getCertificate(ownOwner).get(0);
 		Document document = new Document(name, "", null);
 		documentDAO.create(document);
-		Competence compTmp=null;
+		Competence compTmp = null;
 		for (Competence comp : competence) {
-			compTmp=competenceDAO.findByAcronym(comp.getAcronym());
+			compTmp = competenceDAO.findByAcronym(comp.getAcronym());
 			Signature signature = new Signature(document,
 					certificate.getOwner(), compTmp, certificate);
 			signatureDAO.create(signature);
@@ -88,13 +87,13 @@ public class WSPublicImpl implements WSPublic {
 		return dest;
 	}
 
-	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name,
 			Certificate certificate, Competence[] competence) {
 		return null;
 	}
 
-	//@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void createCertificate(Owner owner) {
 		// Generation clefs publiques & prives
 		// Certificate certificate = new Certificate("publicKey", "privateKey",
@@ -102,10 +101,10 @@ public class WSPublicImpl implements WSPublic {
 		// CertificateDAO.create(certificate);
 	}
 
-	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	// @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
-		ownerDAO = new OwnerDAO();
-		 return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
+
+		return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
 	}
 
 	public Owner getOwner(String mail) {
@@ -113,14 +112,14 @@ public class WSPublicImpl implements WSPublic {
 		return ownerDAO.findByMail(mail);
 	}
 
-////	public OwnerDAO getOwnerDAO() {
-////		return ownerDAO;
-////	}
-////
-////	@Autowired
-////	public void setOwnerDAO(OwnerDAO ownerDAO) {
-////		this.ownerDAO = ownerDAO;
-////	}
-//	
-	
+	// // public OwnerDAO getOwnerDAO() {
+	// // return ownerDAO;
+	// // }
+	// //
+	// // @Autowired
+	// // public void setOwnerDAO(OwnerDAO ownerDAO) {
+	// // this.ownerDAO = ownerDAO;
+	// // }
+	//
+
 }
