@@ -16,7 +16,7 @@ public final class DetectorResult {
 
   public DetectorResult(BitMatrix bits, ResultPoint[] points) {
     this.bits = bits;
-    this.points = points.clone();
+    this.points = points;
   }
 
   public BitMatrix getBits() {
@@ -24,7 +24,7 @@ public final class DetectorResult {
   }
 
   public ResultPoint[] getPoints() {
-    return points.clone();
+    return points;
   }
 
 }

@@ -21,7 +21,7 @@ public final class QRCodeWriterManager2 {
 
 	private static QRCodeWriterManager2 instance;
 
-	private static final int MAX_SIZE_DATA = 35;
+	private static final int MAX_SIZE_DATA = 60;
 	private static final int ZOOM_MAX = 10;
 	private int zoom = 1;
 	/*
@@ -92,15 +92,14 @@ public final class QRCodeWriterManager2 {
 	 * @param data
 	 */
 	private void processData(String data) {
-		this.data = this.props.getPrefixURL();
+		this.data = this.props.getPrefixURL() + data;
 		
 		if (data.length() < MAX_SIZE_DATA) {
-			this.data += data;
 			for (int i = 0; i < (MAX_SIZE_DATA - data.length()); i++){
 				this.data += " ";
 			}
 		} else {
-			this.data += data.substring(0, MAX_SIZE_DATA);
+			this.data = data.substring(0, MAX_SIZE_DATA);
 		}
 	}
 
