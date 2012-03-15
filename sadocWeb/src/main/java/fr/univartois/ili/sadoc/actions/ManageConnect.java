@@ -21,6 +21,7 @@ import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Degree;
 import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.entities.Resume;
 
 /**
  * @author Damien Wattiez <Damien Wattiez at gmail.com>
@@ -73,10 +74,66 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		session.put("phone", owner.getPhone());
 		session.put("mail", owner.getMail());
 		session.put("listResume", owner.getResumes());
+	//	session.put("listResume", getFakeResumes(owner));
 
 		session.put("mapCompetence", getMapCompetence(owner));
+//		session.put("mapCompetence", getFakeMapCompetence(owner));
 
 		return SUCCESS;
+	}
+	private Map<Competence, List<Document>> getFakeMapCompetence(Owner owner) {
+		Set<Competence> setCompetence = new HashSet<Competence>();
+		Competence comp1 = new Competence("nomCompetence1", "descCompetence1");
+		comp1.setId(0);
+		comp1.setAcronym("CMP1");
+		setCompetence.add(comp1);
+		Competence comp2 = new Competence("nomCompetence2", "descCompetence2");
+		comp2.setId(1);
+		comp2.setAcronym("CMP2");
+		setCompetence.add(comp2);
+		
+		Map<Competence, List<Document>> map = new HashMap<Competence, List<Document>>();
+
+		Document doc1 = new Document("doc1","","", null, null);
+		doc1.setId(0);
+		Document doc2 = new Document("doc2","","", null, null);
+		doc1.setId(1);
+		Document doc3 = new Document("doc3","","", null, null);
+		doc1.setId(2);
+		Acquisition acquis1 = new Acquisition(owner, doc1, comp1,null);
+		List<Acquisition> acquis = new ArrayList<Acquisition>();
+		acquis.add(new Acquisition(owner, doc1, comp1, null));
+		acquis.add(new Acquisition(owner, doc2, comp1, null));
+		acquis.add(new Acquisition(owner, doc3, comp2, null));
+		acquis.add(new Acquisition(owner, doc3, comp1, null));
+
+		Iterator<Competence> item = setCompetence.iterator();
+		while (item.hasNext()) {
+			map.put(item.next(), new ArrayList<Document>());
+		}
+
+		for (int h = 0; h < acquis.size(); h++) {
+			List<Document> listDocument= map.get(acquis.get(h).getCompetence());
+			listDocument.add(acquis.get(h).getDocument());
+			map.put(acquis.get(h).getCompetence(),listDocument);
+		}
+		
+		return map;
+	}
+
+	
+	private List<Resume> getFakeResumes(Owner owner) {
+		List<Resume> listResume = new ArrayList<Resume>();
+		Resume tmp = new Resume(owner, null);
+		tmp.setId(0);
+		Resume tmp2 = new Resume(owner, null);
+		tmp2.setId(1);
+		Resume tmp3 = new Resume(owner, null);
+		tmp3.setId(2);
+		listResume.add(tmp);
+		listResume.add(tmp2);
+		listResume.add(tmp3);
+		return listResume;
 	}
 
 	private Map<Competence, List<Document>> getMapCompetence(Owner owner) {
