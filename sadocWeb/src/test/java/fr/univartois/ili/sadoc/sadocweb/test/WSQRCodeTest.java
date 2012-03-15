@@ -14,7 +14,7 @@ public class WSQRCodeTest {
 	/**
 	 * Test encoding  and decoding data
 	 */
-	@Test
+	
 	public void testEncodeAndDecode() {
 		String data = "id=AZERTY0123456789";
 		
