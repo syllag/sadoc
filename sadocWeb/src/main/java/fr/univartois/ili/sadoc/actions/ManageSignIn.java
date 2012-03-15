@@ -1,5 +1,6 @@
 package fr.univartois.ili.sadoc.actions;
 
+import java.security.MessageDigest;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -61,24 +62,25 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		personne.setLastName(personneWS.getLastName());
 		personne.setId(personneWS.getId().intValue());
 		personne.setMail(form.getMail());
-		System.out.println(personne.getId());
-		System.out.println(personne.getFirstName());
-		System.out.println(personne.getLastName());
-		System.out.println(personne.getMail());
-		/*
-		 * Owner personne = new Owner();
-		 * personne.setFirstName(form.getFirstname());
-		 * personne.setLastName(form.getName());
-		 * personne.setMail(form.getMail());
-		 */
+
 		// TODO : cryptage password
 		try {
-			/*
-			 * MessageDigest messageDigest = MessageDigest.getInstance("MD5" );
-			 * byte[] p = messageDigest.digest(form.getPassword().getBytes());
-			 * personne.setPassword(p.toString());
-			 */
-			personne.setPassword(form.getPassword());
+
+			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+			byte[] p = messageDigest.digest(form.getPassword().getBytes());
+			StringBuilder hashString = new StringBuilder();
+			for (int i = 0; i < p.length; ++i) {
+				String hex;
+				hex = Integer.toHexString(p[i]);
+				if (hex.length() == 1) {
+					hashString.append('0');
+					hashString.append(hex.charAt(hex.length() - 1));
+				} else {
+					hashString.append(hex.substring(hex.length() - 2));
+				}
+			}
+			personne.setPassword(hashString.toString());
+
 			odao.create(personne);
 			// TODO : connecter la personne
 		} catch (Exception e) {

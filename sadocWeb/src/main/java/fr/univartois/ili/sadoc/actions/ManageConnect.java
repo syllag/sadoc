@@ -1,5 +1,7 @@
 package fr.univartois.ili.sadoc.actions;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -49,16 +51,27 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 			return INPUT;
 		}
 		OwnerDAO odao = new OwnerDAO();
-		/*
-		 * Owner owner = null; MessageDigest messageDigest; try { messageDigest
-		 * = MessageDigest.getInstance("MD5" ); byte[] p =
-		 * messageDigest.digest(connect.getPassword().getBytes());
-		 * connect.setPassword(p.toString()); owner =
-		 * odao.findOwner(connect.getEmail(), p.toString());
-		 * 
-		 * } catch (NoSuchAlgorithmException e) {}
-		 */
-		Owner owner = odao.findOwner(connect.getEmail(), connect.getPassword());
+
+		Owner owner = null;
+		try {
+			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+			byte[] p = messageDigest.digest(connect.getPassword().getBytes());
+			StringBuilder hashString = new StringBuilder();
+			for (int i = 0; i < p.length; ++i) {
+				String hex;
+				hex = Integer.toHexString(p[i]);
+				if (hex.length() == 1) {
+					hashString.append('0');
+					hashString.append(hex.charAt(hex.length() - 1));
+				} else {
+					hashString.append(hex.substring(hex.length() - 2));
+				}
+			}
+			
+			owner = odao.findOwner(connect.getEmail(), hashString.toString());
+
+		} catch (NoSuchAlgorithmException e) {
+		}
 
 		// if empty
 		if (owner == null) {
@@ -74,13 +87,14 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		session.put("phone", owner.getPhone());
 		session.put("mail", owner.getMail());
 		session.put("listResume", owner.getResumes());
-	//	session.put("listResume", getFakeResumes(owner));
+		// session.put("listResume", getFakeResumes(owner));
 
 		session.put("mapCompetence", getMapCompetence(owner));
-//		session.put("mapCompetence", getFakeMapCompetence(owner));
+		// session.put("mapCompetence", getFakeMapCompetence(owner));
 
 		return SUCCESS;
 	}
+
 	private Map<Competence, List<Document>> getFakeMapCompetence(Owner owner) {
 		Set<Competence> setCompetence = new HashSet<Competence>();
 		Competence comp1 = new Competence("nomCompetence1", "descCompetence1");
@@ -91,16 +105,16 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		comp2.setId(1);
 		comp2.setAcronym("CMP2");
 		setCompetence.add(comp2);
-		
+
 		Map<Competence, List<Document>> map = new HashMap<Competence, List<Document>>();
 
-		Document doc1 = new Document("doc1","","", null, null);
+		Document doc1 = new Document("doc1", "", "", null, null);
 		doc1.setId(0);
-		Document doc2 = new Document("doc2","","", null, null);
+		Document doc2 = new Document("doc2", "", "", null, null);
 		doc1.setId(1);
-		Document doc3 = new Document("doc3","","", null, null);
+		Document doc3 = new Document("doc3", "", "", null, null);
 		doc1.setId(2);
-		Acquisition acquis1 = new Acquisition(owner, doc1, comp1,null);
+		Acquisition acquis1 = new Acquisition(owner, doc1, comp1, null);
 		List<Acquisition> acquis = new ArrayList<Acquisition>();
 		acquis.add(new Acquisition(owner, doc1, comp1, null));
 		acquis.add(new Acquisition(owner, doc2, comp1, null));
@@ -113,15 +127,15 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		}
 
 		for (int h = 0; h < acquis.size(); h++) {
-			List<Document> listDocument= map.get(acquis.get(h).getCompetence());
+			List<Document> listDocument = map
+					.get(acquis.get(h).getCompetence());
 			listDocument.add(acquis.get(h).getDocument());
-			map.put(acquis.get(h).getCompetence(),listDocument);
+			map.put(acquis.get(h).getCompetence(), listDocument);
 		}
-		
+
 		return map;
 	}
 
-	
 	private List<Resume> getFakeResumes(Owner owner) {
 		List<Resume> listResume = new ArrayList<Resume>();
 		Resume tmp = new Resume(owner, null);
@@ -155,11 +169,12 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		}
 
 		for (int h = 0; h < acquis.size(); h++) {
-			List<Document> listDocument= map.get(acquis.get(h).getCompetence());
+			List<Document> listDocument = map
+					.get(acquis.get(h).getCompetence());
 			listDocument.add(acquis.get(h).getDocument());
-			map.put(acquis.get(h).getCompetence(),listDocument);
+			map.put(acquis.get(h).getCompetence(), listDocument);
 		}
-		
+
 		return map;
 	}
 
