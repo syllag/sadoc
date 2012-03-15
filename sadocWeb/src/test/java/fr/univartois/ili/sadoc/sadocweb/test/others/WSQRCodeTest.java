@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.sadocweb.test;
+package fr.univartois.ili.sadoc.sadocweb.test.others;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,4 +1,4 @@
-package fr.univartois.ili.sadoc.sadocweb.test;
+package fr.univartois.ili.sadoc.sadocweb.test.wspublic;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -11,33 +11,32 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Ignore;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
 import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
-import fr.univartois.ili.sadoc.entities.dao.CompetenceDAO;
-import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.dao.PersistenceProvider;
-import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.sadocweb.spring.WSPublic;
 
 public class WSPublicTest {
 
-	// private static final ApplicationContext APPLICATION_CONTEXT = new
-	// ClassPathXmlApplicationContext(
-	// "spring-config.xml");
+	 private static final ApplicationContext APPLICATION_CONTEXT = new
+	 ClassPathXmlApplicationContext(
+	 "spring-config.xml");
 
 	private WSPublic wspublic;
 
 	@Before
 	public void initTest() {
 		PersistenceProvider.setProvider("sadocjpatest");
-		// wspublic = (WSPublic) APPLICATION_CONTEXT.getBean("wsPublic");
+		wspublic = (WSPublic) APPLICATION_CONTEXT.getBean("wsPublic");
 	}
 
-	
+	@Ignore
 	public void getCertificateTest() {
 
 		Owner owner1 = new Owner("firstname1", "lastName1", "mail1");
@@ -52,6 +51,7 @@ public class WSPublicTest {
 		ke2.initialize(1024, new SecureRandom());
 
 		KeyPair k2 = ke2.generateKeyPair();
+		
 		Certificate certif1 = new Certificate(k2.getPublic(), k2.getPrivate(),
 				owner1);
 		Certificate certif2 = new Certificate(k2.getPublic(), k2.getPrivate(),
@@ -59,6 +59,10 @@ public class WSPublicTest {
 		Certificate certif3 = new Certificate(k2.getPublic(), k2.getPrivate(),
 				owner2);
 
+//		assertTrue(owner2.equals(certif3.getOwner()));
+//		assertTrue(owner1.equals(certif2.getOwner()));
+//		assertTrue(owner1.equals(certif1.getOwner()));
+		
 		// try {
 		// wspublic.createOwner("firstname1", "lastName1", "mail1");
 		// wspublic.createOwner("firstname2", "lastName2", "mail2");
