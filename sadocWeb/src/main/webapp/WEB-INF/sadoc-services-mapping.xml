@@ -124,6 +124,9 @@
   
     <class name="fr.univartois.ili.sadoc.sadocweb.spring.SignDocumentResponse">
     <map-to xml="signDocumentResponse" />
+    	<field name="doc" type="bytes" >
+			<bind-xml name="doc" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+		</field>
   </class>
 
 	<class name="fr.univartois.ili.sadoc.sadocweb.spring.GetOwnerRequest">

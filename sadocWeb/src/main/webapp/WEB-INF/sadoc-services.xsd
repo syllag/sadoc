@@ -149,7 +149,7 @@
 				<xs:element ref="schemas:name" />
 				<xs:element ref="schemas:description" />
 				<xs:element ref="schemas:acronym" />
-				<xs:element ref="schemas:creationDate" />				
+				<xs:element ref="schemas:creationDate" minOccurs="0"/>				
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

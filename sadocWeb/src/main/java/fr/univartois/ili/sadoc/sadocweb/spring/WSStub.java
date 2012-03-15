@@ -1,9 +1,15 @@
 package fr.univartois.ili.sadoc.sadocweb.spring;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
 
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -14,6 +20,13 @@ import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Competence;
 import fr.univartois.ili.sadoc.entities.classes.Document;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
+import fr.univartois.ili.sadoc.entities.classes.Signature;
+import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.entities.dao.CompetenceDAO;
+import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
+import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
+import fr.univartois.ili.sadoc.entities.dao.PersistenceProvider;
+import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 
 @Endpoint
 public class WSStub {
@@ -30,6 +43,7 @@ public class WSStub {
 			throws Exception {
 		// Utilisation d'un logger à la place
 		// System.out.println("Debug createOwner : "+request.getLastName()+request.getFirstName()+request.getMail());
+
 		return wsPublic.createOwner(request.getLastName(),
 				request.getFirstName(), request.getMail());
 	}
@@ -43,9 +57,12 @@ public class WSStub {
 
 	@PayloadRoot(localPart = "signDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public byte[] signDocument(@RequestPayload SignDocumentRequest request) {
-		return wsPublic.signDocument(request.getDoc(), request.getName(),
+	public SignDocumentResponse signDocument(@RequestPayload SignDocumentRequest request) {
+		byte[] byteDoc = wsPublic.signDocument(request.getDoc(), request.getName(),
 				request.getOwner(), request.getCompetence());
+		SignDocumentResponse resp = new SignDocumentResponse();
+		resp.setDoc(byteDoc);
+		return resp;
 	}
 
 	public byte[] signDocument(byte[] doc, String name, Certificate certificat,
@@ -124,5 +141,4 @@ public class WSStub {
 		get.setDocument(d);
 		return get;
 	}
-
 }
