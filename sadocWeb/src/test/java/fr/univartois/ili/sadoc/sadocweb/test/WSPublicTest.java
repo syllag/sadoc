@@ -9,18 +9,14 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.entities.classes.Certificate;
 import fr.univartois.ili.sadoc.entities.classes.Owner;
 import fr.univartois.ili.sadoc.entities.dao.CertificateDAO;
-import fr.univartois.ili.sadoc.entities.dao.CompetenceDAO;
-import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.dao.PersistenceProvider;
-import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.sadocweb.spring.WSPublic;
 
 public class WSPublicTest {
@@ -59,6 +55,10 @@ public class WSPublicTest {
 		Certificate certif3 = new Certificate(k2.getPublic(), k2.getPrivate(),
 				owner2);
 
+//		assertTrue(owner2.equals(certif3.getOwner()));
+//		assertTrue(owner1.equals(certif2.getOwner()));
+//		assertTrue(owner1.equals(certif1.getOwner()));
+		
 		// try {
 		// wspublic.createOwner("firstname1", "lastName1", "mail1");
 		// wspublic.createOwner("firstname2", "lastName2", "mail2");
@@ -70,12 +70,16 @@ public class WSPublicTest {
 		final OwnerDAO ownerDAO = new OwnerDAO();
 		final CertificateDAO certificateDAO = new CertificateDAO();
 
+		//ownerDAO.getEntityManager().getTransaction().begin();
 		ownerDAO.create(owner1);
 		ownerDAO.create(owner2);
+		//ownerDAO.getEntityManager().getTransaction().commit();
 
+		//certificateDAO.getEntityManager().getTransaction().begin();
 		certificateDAO.create(certif1);
 		certificateDAO.create(certif2);
 		certificateDAO.create(certif3);
+		//certificateDAO.getEntityManager().getTransaction().commit();
 
 		List<Certificate> certificates1 = certificateDAO.findByOwner(owner1);
 		List<Certificate> certificates2 = certificateDAO.findByOwner(owner2);
@@ -92,7 +96,7 @@ public class WSPublicTest {
 		assertTrue(certificates2.contains(certif3));
 	}
 
-	@After
+//	@After
 	public void endTests() {
 		PersistenceProvider.removeProvider();
 	}
