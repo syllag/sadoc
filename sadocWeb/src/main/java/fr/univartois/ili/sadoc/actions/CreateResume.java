@@ -56,17 +56,10 @@ public class CreateResume extends ActionSupport implements SessionAware{
 		
 		assert(competences.length != 0);
 		
-		if(competences[0].equals("all")){
-			AcquisitionDAO adao = new AcquisitionDAO();
-			for(Acquisition a : adao.findByOwner(owner)){
-				listCompetences.add(a.getCompetence());
-			}
-		}
-		else{
-			for(String competence : form.getListCompetences()){
-				listCompetences.add(cdao.findById(Integer.parseInt(competence)));
-			}
-		}
+		for(String competence : form.getListCompetences())
+			listCompetences.add(cdao.findById(Integer.parseInt(competence)));
+		
+
 		
 		resume.setCompetences(listCompetences);
 		resume.setOwner(owner);
