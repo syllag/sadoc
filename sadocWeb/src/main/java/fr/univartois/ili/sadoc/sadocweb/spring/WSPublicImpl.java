@@ -18,7 +18,7 @@ import fr.univartois.ili.sadoc.entities.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.entities.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.sadocweb.pdf.ManageQRCImpl;
-import fr.univartois.ili.sadoc.sadocweb.sign.integrationsign.SignFile;
+import fr.univartois.ili.sadoc.sadocweb.sign.integrationsign.*;
 import fr.univartois.ili.sadoc.sadocweb.utils.Crypt;
 import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
@@ -53,9 +53,21 @@ public class WSPublicImpl implements WSPublic {
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
             Competence[] competence) {
+		 SignFile sf = new SignFile();
 		System.out.println("SIGNDOCUMENT OK !");
         Owner ownOwner= ownerDAO.findByMail(owner.getMail());
-        Certificate certificate = getCertificate(ownOwner).get(0);
+        Certificate certificate=null;
+		try {
+			certificate = sf.GiveCertificateForUser(ownOwner);
+			List<Certificate> ltmp =ownOwner.getCertificates();
+			ltmp.add(certificate);
+			owner.setCertificates(ltmp);
+			certificateDAO.create(certificate);
+			
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
         System.out.println("GET CERTIF OK !");
         Document document = new Document(name, "", null);
         documentDAO.create(document);
@@ -78,7 +90,7 @@ public class WSPublicImpl implements WSPublic {
             FileInputStream fis = new FileInputStream(name);
             byte[] b = new byte[(int) dest.length];
             fis.read(b);
-            SignFile sf = new SignFile();
+           
             System.out.println("SIGNFILE OK !");
             byte[] p7s = sf.signDocument(dest, ownOwner);
             System.out.println("SIGNDOC OK !");

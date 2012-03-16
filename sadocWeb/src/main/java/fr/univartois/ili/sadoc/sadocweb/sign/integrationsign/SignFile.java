@@ -150,6 +150,25 @@ public class SignFile {
 		return certX509;
 	}
 	
+	public Certificate GiveCertificateForUser(Owner o) throws Exception {
+		
+		Security.addProvider(new BouncyCastleProvider());
+		
+		Certificate certif = null;
+		
+		if (o.getCertificates().isEmpty()) {
+			// Generate private and public keys
+			KeyPair userKeys = generateRSAKeyPair();
+			// recovery private key and certificate X509
+			PrivateKey  userPrivateKey = userKeys.getPrivate();
+			certif = new Certificate(userKeys.getPublic(),userPrivateKey,o);
+			o.getCertificates().add(certif);
+	    }
+	    else certif = o.getCertificates().get(0);
+		
+		return certif;
+	}
+	
 	/**
 	 * Sign a document.
 	 * 
@@ -167,23 +186,9 @@ public class SignFile {
 		KeyPair rootKeys = generateRSAKeyPair();
 		X509Certificate rootCA = createRootCertificate(rootKeys);
 		
-		KeyPair userKeys;
-		PrivateKey userPrivateKey;
-		X509Certificate certX509;
-		
-		if (owner.getCertificates().isEmpty()) {
-		  // Generate private and public keys
-		  userKeys = generateRSAKeyPair();
-		  // recovery private key and certificate X509
-		  userPrivateKey = userKeys.getPrivate();
-		  certX509 = createCertificate(rootCA,rootKeys,userKeys,owner);
-		  owner.getCertificates().add(new Certificate(userKeys.getPublic(),userPrivateKey));
-		}
-		else {
-			userPrivateKey = owner.getCertificates().get(0).getPrivateKey();
-			userKeys = new KeyPair(owner.getCertificates().get(0).getPublicKey(),userPrivateKey);
-			certX509 = createCertificate(rootCA,rootKeys,userKeys,owner);			
-		}
+		PrivateKey userPrivateKey = owner.getCertificates().get(0).getPrivateKey();
+		KeyPair userKeys = new KeyPair(owner.getCertificates().get(0).getPublicKey(),userPrivateKey);
+		X509Certificate certX509 = createCertificate(rootCA,rootKeys,userKeys,owner);
 		
 		// declaration of certificates store
 		// for SAdoc, one certificate is used but declaration of
