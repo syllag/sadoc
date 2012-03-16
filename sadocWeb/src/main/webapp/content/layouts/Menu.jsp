@@ -12,8 +12,11 @@
 	<li class="${ currentMenu == 'Profile' ? 'menu_active' : ''}">
 		<a href="Profile">Profil</a>
 	</li>
+	<li class="${ currentMenu == 'Competence' ? 'menu_active' : ''}"> 
+		<a href="Competence">Competence</a>
+	</li>
 	<li class="${ currentMenu == 'CV' ? 'menu_active' : ''}"> 
-		<a href="manageResume">CV</a>
+		<a href="ShowCreateResume">CV</a>
 	</li>
 	<li class="${ currentMenu == 'EditProfile' ? 'menu_active' : ''}"> 
 		<a href="ModifyProfile">Modifier le profil</a>
