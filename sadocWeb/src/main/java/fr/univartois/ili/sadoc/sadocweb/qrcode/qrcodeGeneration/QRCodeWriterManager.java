@@ -21,7 +21,7 @@ public final class QRCodeWriterManager {
 
 	private static QRCodeWriterManager instance;
 
-	private static final int MAX_SIZE_DATA = 70;
+	private static final int MAX_SIZE_DATA = 75;
 
 	private QRCProperties props;
 

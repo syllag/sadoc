@@ -21,7 +21,7 @@ public final class QRCodeWriterManager2 {
 
 	private static QRCodeWriterManager2 instance;
 
-	private static final int MAX_SIZE_DATA = 60;
+	private static final int MAX_SIZE_DATA = 75;
 	private static final int ZOOM_MAX = 10;
 	private int zoom = 1;
 	/*
