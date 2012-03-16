@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" href="img/logo.png" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/style.css" type="text/css" rel="stylesheet" />
 <title>SADoc</title>
