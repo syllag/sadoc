@@ -98,7 +98,7 @@ public class WSPublicImpl implements WSPublic {
         byte[] dest = null;
         System.out.println("DAO OK !");
         try {
-            dest = qrc.generatePdfWithQrCode(new PdfReader(doc), url);
+            dest = qrc.generatePdfWithQrCode(new PdfReader(doc), String.valueOf(document.getId()));
             System.out.println("Generate PDFQRCODE OK !");
 
            
