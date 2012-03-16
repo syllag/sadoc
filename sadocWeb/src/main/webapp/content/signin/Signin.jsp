@@ -11,12 +11,12 @@
 		var p1 = document.getElementById('password');
 		var p2 = document.getElementById('confirm_password');
 		if (p1.value != p2.value) {
-			p2.setCustomValidity("Passwords don't match");
+			p2.setCustomValidity("Les mots de passe ne correspondent pas.");
 		} else {
 			p2.setCustomValidity('');
 		}
 		if (p1.value.length < 8) {
-			p1.setCustomValidity("Put a password with at least 8 caracters");
+			p1.setCustomValidity("Le mot de passe doit faire au minimum 8 caractères.");
 		} else {
 			p1.setCustomValidity("");
 		}
