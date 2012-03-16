@@ -3,7 +3,7 @@ package fr.univartois.ili.sadoc.entities.configuration;
 public abstract class Request {
 	
 	public static final String FIND_OWNER_BY_MAIL = "SELECT o FROM Owner o WHERE o.mail = :mail";
-	public static final String FIND_COMPETENCE_BY_ACRONYM = "SELECT s.competence FROM Signature s WHERE s.competence.acronym = :acronym";
+	public static final String FIND_COMPETENCE_BY_ACRONYM = "SELECT c FROM Competence c WHERE c.acronym = :acronym";
 	public static final String FIND_IN_SIGNATURE_BY_OWNER = "SELECT s FROM Signature s WHERE s.owner = :owner";
 	public static final String FIND_IN_SIGNATURE_BY_DOCUMENT = "SELECT s FROM Signature s WHERE s.document = :document";
 	public static final String FIND_IN_SIGNATURE_BY_COMPETENCE = "SELECT s FROM Signature s WHERE s.competence = :competence";
