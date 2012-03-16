@@ -152,6 +152,8 @@ public class SignFile {
 	
 	public Certificate GiveCertificateForUser(Owner o) throws Exception {
 		
+		Security.addProvider(new BouncyCastleProvider());
+		
 		Certificate certif = null;
 		
 		if (o.getCertificates().isEmpty()) {
@@ -159,7 +161,7 @@ public class SignFile {
 			KeyPair userKeys = generateRSAKeyPair();
 			// recovery private key and certificate X509
 			PrivateKey  userPrivateKey = userKeys.getPrivate();
-			certif = new Certificate(userKeys.getPublic(),userPrivateKey);
+			certif = new Certificate(userKeys.getPublic(),userPrivateKey,o);
 			o.getCertificates().add(certif);
 	    }
 	    else certif = o.getCertificates().get(0);
