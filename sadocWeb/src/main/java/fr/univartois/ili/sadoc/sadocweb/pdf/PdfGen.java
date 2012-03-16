@@ -30,9 +30,9 @@ import fr.univartois.ili.sadoc.sadocweb.pdf.utils.UtilsImgQrCod;
  */
 public class PdfGen {
 	
-	private String watermarkPath = "watermark.png";
-	private String logoPath = "logoSaDoc.png";
-	private String logoUnivPath = "logoUnivArtois.png";
+	private String watermarkPath = "img/watermark.png";
+	private String logoPath = "img/logoSaDoc.png";
+	private String logoUnivPath = "img/logoUnivArtois.png";
 	private String pdfSortie = "testExportCV.pdf";
 	private PdfReader reader;
 	private Image imgQrCode;
