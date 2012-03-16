@@ -12,9 +12,6 @@
 	<li class="${ currentMenu == 'Profile' ? 'menu_active' : ''}">
 		<a href="Profile">Profil</a>
 	</li>
-	<li class="${ currentMenu == 'Competence' ? 'menu_active' : ''}"> 
-		<a href="Competence">Competence</a>
-	</li>
 	<li class="${ currentMenu == 'CV' ? 'menu_active' : ''}"> 
 		<a href="ShowCreateResume">CV</a>
 	</li>
@@ -22,7 +19,7 @@
 		<a href="ModifyProfile">Modifier le profil</a>
 	</li>
 	<li> 
-		<a href="Deconnection">Deconnexion</a>
+		<a href="Deconnection">Déconnexion</a>
 	</li>
 </menu>
 </div>
