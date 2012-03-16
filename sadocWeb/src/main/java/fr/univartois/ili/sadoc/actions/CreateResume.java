@@ -9,7 +9,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.univartois.ili.sadoc.Form.ManageResumeForm;
+import fr.univartois.ili.sadoc.Form.CreateResumeForm;
 import fr.univartois.ili.sadoc.dao.AcquisitionDAO;
 import fr.univartois.ili.sadoc.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
@@ -20,14 +20,14 @@ import fr.univartois.ili.sadoc.entities.Owner;
 import fr.univartois.ili.sadoc.entities.Resume;
 
 
-public class ManageResume extends ActionSupport implements SessionAware{
+public class CreateResume extends ActionSupport implements SessionAware{
 
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ManageResumeForm form;
+	private CreateResumeForm form;
 	private Map<String, Object> session;
 	private ResumeDAO rdao;
 	/************************************************/
@@ -83,12 +83,12 @@ public class ManageResume extends ActionSupport implements SessionAware{
 	}
 
 
-	public ManageResumeForm getForm() {
+	public CreateResumeForm getForm() {
 		return form;
 	}
 
 
-	public void setForm(ManageResumeForm resumeform) {
+	public void setForm(CreateResumeForm resumeform) {
 		this.form = resumeform;
 	}
 
