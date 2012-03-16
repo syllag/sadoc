@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -31,31 +32,16 @@ public class ShowCreateResume extends ActionSupport implements SessionAware{
 	}
 	
 	public String execute() {
-//		InitDataForTest idft = new InitDataForTest();
-//		idft.createDataForTest();
-//		int idOwner = (Integer) session.get("id");
-//		OwnerDAO odao = new OwnerDAO();
-//		AcquisitionDAO adao = new AcquisitionDAO();
-//		Owner owner = odao.findById(idOwner);
-//		for(Acquisition a : adao.findByOwner(owner)){
-//			listCompetences.add(a.getCompetence());
-//		}
-		Competence competence1 = new Competence("competence 1 C2I1",
-				"premier competence du C2I1");
-		Competence competence2 = new Competence("competence 2 C2I1",
-				"deuxiéme competence du C2I1");
-		Competence competence3 = new Competence("competence 3 C2I1",
-				"troisiéme competence du C2I1");
+		session = ActionContext.getContext().getSession();
 		
-		competence1.setId(1);
-		competence2.setId(2);
-		competence3.setId(3);
 
-		listCompetences.add(competence1);
-		listCompetences.add(competence2);
-		listCompetences.add(competence3);
-		
-		
+		int idOwner = (Integer) session.get("id");
+		OwnerDAO odao = new OwnerDAO();
+		AcquisitionDAO adao = new AcquisitionDAO();
+		Owner owner = odao.findById(idOwner);
+		for(Acquisition a : adao.findByOwner(owner)){
+			listCompetences.add(a.getCompetence());
+		}
 		return SUCCESS;
 	}
 

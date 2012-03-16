@@ -37,7 +37,7 @@
 	<hr/>
 	<div class="curriculum">
 		<h3 class="profileCV">Curriculum vitae</h3>
-		<span class="genererCv"><a href="#">+ generer CV</a></span>
+		<span class="genererCv"><a href="ShowCreateResume">Ajouter CV</a></span>
 		<c:forEach var="resume" items="${listResume}">
 			<p>CV_${name}_${resume.id} <button>Telecharger</button><button>Supprimer</button><button>Modifier</button></p>
 		</c:forEach>

@@ -9,13 +9,13 @@ public class ManageResumeForm {
 	
 	private Map<String, Object> session;
 	
-    /************************************************/
-	
-	public ManageResumeForm (String[] listCompetences) {
-		this.listCompetences = listCompetences;
+	public ManageResumeForm() {
 	}
 	
-	/************************************************/
+	public ManageResumeForm (String[] listCompetences) {
+		super();
+		this.listCompetences = listCompetences;
+	}
 	
 	
 	public String[] getListCompetences() {
@@ -24,6 +24,9 @@ public class ManageResumeForm {
 	
 	public void setListCompetences(String[] listCompetences) {
 		this.listCompetences = listCompetences;
+		for(String competence: listCompetences){
+			System.out.println(competence);
+		}
 	}
 	
 	public void setSession(Map<String, Object> session) {

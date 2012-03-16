@@ -389,8 +389,11 @@ p.lien_competence a {
 	text-align:center;
 }
 
-.createResume ul li{
-	display:inline;
-	text-decoration:none;
+
+.competenceScroll {
+	overflow:auto;
+	width:400px;
+	height:200px;
 }
+
 
