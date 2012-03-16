@@ -112,6 +112,11 @@ public class Owner implements Serializable {
 	public void setResumes(List<Resume> resumes) {
 		this.resumes = resumes;
 	}
+	
+	public void addResume(Resume resume){
+		this.resumes.add(resume);
+	}
+	
 
 	public String getAddress() {
 		return address;

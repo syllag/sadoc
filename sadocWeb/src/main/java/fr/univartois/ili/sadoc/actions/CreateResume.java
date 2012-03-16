@@ -70,10 +70,11 @@ public class CreateResume extends ActionSupport implements SessionAware{
 		
 		resume.setCompetences(listCompetences);
 		resume.setOwner(owner);
-		  
-		
+
+		owner.addResume(resume);
 		try {
 			rdao.create(resume);
+			odao.update(owner);
 		} catch (Exception e) {
 			addActionMessage("Momentary problem... Please try again later.");
 			return INPUT;
