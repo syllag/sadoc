@@ -56,9 +56,10 @@ public class WSPublicImpl implements WSPublic {
 		 SignFile sf = new SignFile();
 		System.out.println("SIGNDOCUMENT OK !");
         Owner ownOwner= ownerDAO.findByMail(owner.getMail());
-        Certificate certificate=null;;
+        Certificate certificate=null;
 		try {
 			certificate = sf.GiveCertificateForUser(ownOwner);
+			certificateDAO.create(certificate);
 		} catch (Exception e1) {
 			
 			e1.printStackTrace();
