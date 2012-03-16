@@ -55,8 +55,8 @@ public class CheckDocument extends ActionSupport {
 	}
 
 	public String execute() {
-		if (sa!=null /*&& TestID.trueFalseID(sa)*/) {
-			//long realID = TestID.findRealID(sa);
+		if (sa != null /* && TestID.trueFalseID(sa) */) {
+			// long realID = TestID.findRealID(sa);
 			long realID = Long.valueOf(sa);
 			DocumentDAO ddao = new DocumentDAO();
 			AcquisitionDAO adao = new AcquisitionDAO();
@@ -73,33 +73,37 @@ public class CheckDocument extends ActionSupport {
 				System.out.println("Requete sur WS");
 				if (docws != null) {
 					/*
-					 * à modifier il faut convertir  vers byte[], il faut l(adapter 
+					 * à modifier il faut convertir vers byte[], il faut
+					 * l(adapter
 					 */
-					//DataHandler h=new DataHandler();
-					
-					
-					/*DataHandler b=docws.getPk7().get(3);
-					System.out.println("taille de la liste;"+docws.getPk7().size());
-					InputStream in;
-					byte[] fakearray = null;
-					try {
-						in = b.getInputStream();
-				
-						
-	
-						fakearray =org.apache.commons.io.IOUtils.toByteArray(in);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
-					Byte[] fakearray = docws.getPk7();
-				
-					System.out.println("BYTE : "+fakearray[0]+fakearray[1]+fakearray[2]);
-					//here HABIB !!!
-					Document doctoregister =new Document(docws.getName(),docws.getCheckSum(), "", null, null);
+					// DataHandler h=new DataHandler();
+
+					/*
+					 * DataHandler b=docws.getPk7().get(3);
+					 * System.out.println("taille de la liste;"
+					 * +docws.getPk7().size()); InputStream in; byte[] fakearray
+					 * = null; try { in = b.getInputStream();
+					 * 
+					 * 
+					 * 
+					 * fakearray =org.apache.commons.io.IOUtils.toByteArray(in);
+					 * } catch (IOException e) { // TODO Auto-generated catch
+					 * block e.printStackTrace(); }
+					 */
+					Byte[] fakearraytmp = docws.getPk7();
+					byte[] fakearray = new byte[fakearraytmp.length];
+					for (int i = 0; i < fakearraytmp.length; i++) {
+						fakearray[i] = fakearraytmp[i];
+					}
+
+					System.out.println("BYTE : " + fakearray[0] + fakearray[1]
+							+ fakearray[2]);
+					// here HABIB !!!
+					Document doctoregister = new Document(docws.getName(),
+							docws.getCheckSum(), "", fakearray, null);
 					doctoregister.setId(docws.getId().intValue());
 					ddao.create(doctoregister);
-					
+
 					document = doctoregister;
 					System.out.println("mis du null dedans!!");
 					clientWebService.getCompetences(docws.getId().longValue());
@@ -108,24 +112,32 @@ public class CheckDocument extends ActionSupport {
 					fr.univartois.ili.sadoc.client.webservice.tools.Owner incowner = comp
 							.keySet().iterator().next();
 
-					Owner owntoregister = new Owner();
-					owntoregister.setFirstName(incowner.getFirstName());
-					owntoregister.setLastName(incowner.getLastName());
-					owntoregister.setMail(incowner.getMail());
-					owntoregister.setId(incowner.getId().intValue());
-					odao.create(owntoregister);
-					owner = owntoregister;
+					owner = odao.findById(incowner.getId().intValue());
+					if (owner == null) {
+						Owner owntoregister = new Owner();
+						owntoregister.setFirstName(incowner.getFirstName());
+						owntoregister.setLastName(incowner.getLastName());
+						owntoregister.setMail(incowner.getMail());
+						owntoregister.setId(incowner.getId().intValue());
+						odao.create(owntoregister);
+						owner = owntoregister;
+					}
 
 					for (fr.univartois.ili.sadoc.client.webservice.tools.Competence competence : comp
 							.get(incowner)) {
-						Competence c = new Competence(competence.getName(),
-								competence.getDescription());
-						c.setId(competence.getId().intValue());
-						cdao.create(c);
+
+						Competence c = cdao.findById(competence.getId()
+								.intValue());
+						if (c == null) {
+							c = new Competence(competence.getName(),
+									competence.getDescription());
+							c.setId(competence.getId().intValue());
+							cdao.create(c);
+						}
 						Acquisition a = new Acquisition();
 						a.setCompetence(c);
 						a.setDocument(doctoregister);
-						a.setOwner(owntoregister);
+						a.setOwner(owner);
 						adao.create(a);
 						listCompetences.add(c);
 					}
@@ -136,14 +148,14 @@ public class CheckDocument extends ActionSupport {
 				}
 
 			} else {
-				document=doc;
+				document = doc;
 				List<Acquisition> acq = adao.findByDocument(doc);
 				owner = acq.get(0).getOwner();
 				for (Acquisition a : acq) {
 					listCompetences.add(a.getCompetence());
 				}
 			}
-			
+
 			return SUCCESS;
 		}
 

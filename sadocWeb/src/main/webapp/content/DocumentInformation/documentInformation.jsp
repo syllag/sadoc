@@ -12,16 +12,16 @@
 
 			</div>
 			<hr />
-			<p class="auth">Le document a �t� certifi� par SADOC , le
+			<p class="auth">Le document a été certifié par SADOC , le
 				${document.creationDate}
 			<p>
 			<hr />
 
 			<div class="infoCompetence">
 				<c:forEach var="competence" items="${listCompetences}">
-					<p>comp�tence : ${competence.name}
+					<p>compétence : ${competence.name}
 					<p>
-					<p>description comp�tence : ${competence.description}</p>
+					<p>description compétence : ${competence.description}</p>
 				</c:forEach>
 			</div>
 
@@ -33,7 +33,7 @@
 			<div class="infoP7S">
 				<p>
 					signature du fichier (fichier *.p7s) : <a
-						href="downloadP7S?sa=${sa}"><button>T�l�charger</button></a>
+						href="downloadP7S?sa=${sa}"><button>Télécharger</button></a>
 				</p>
 				<p>
 					L'utilisation du fichier *.p7s requiert le logiciel <a
