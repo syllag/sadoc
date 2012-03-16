@@ -44,7 +44,7 @@
 	<hr />
 	<div class="curriculum">
 		<h3>Curriculum vitae</h3> <span class="genererCv"><a
-			href="#">+ generer CV</a> </span>
+			href="ShowCreateResume">Ajouter CV</a> </span>
 		<table>
 			<c:forEach var="resume" items="${listResume}">
 				<tr>

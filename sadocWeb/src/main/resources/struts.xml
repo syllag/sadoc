@@ -5,7 +5,6 @@
         <constant name="struts.enable.DynamicMethodInvocation" value="false" />
         <constant name="struts.custom.i18n.resources" value="demo" />
         <package name="sadocWeb" namespace="/" extends="struts-default">
-        
 
 		<default-action-ref name="Home" />
 		
@@ -80,6 +79,16 @@
 			</result>
 			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
-
+		<action name="ShowCreateResume" class="fr.univartois.ili.sadoc.actions.ShowCreateResume"
+				method="execute" >
+				<result name="success">content/resume/createResume.jsp</result>
+		</action>
+				
+		<action name="CreateResume" class="fr.univartois.ili.sadoc.actions.ManageResume"
+				method="execute" >
+				<result name="success">content/resume/manageResume.jsp</result>
+		</action>
+		
 	</package>
 </struts>
+

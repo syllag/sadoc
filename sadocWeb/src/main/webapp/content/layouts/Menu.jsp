@@ -16,7 +16,7 @@
 		<a href="Competence">Competence</a>
 	</li>
 	<li class="${ currentMenu == 'CV' ? 'menu_active' : ''}"> 
-		<a href="CV">CV</a>
+		<a href="ShowCreateResume">CV</a>
 	</li>
 	<li class="${ currentMenu == 'EditProfile' ? 'menu_active' : ''}"> 
 		<a href="ModifyProfile">Modifier le profil</a>

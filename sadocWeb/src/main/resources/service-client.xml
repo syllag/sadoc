@@ -15,13 +15,21 @@
 
 
 
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:config.properties">  <!--reads config.properties file -->
+		</property>
+	</bean>
+
+
 	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate"
 		p:marshaller-ref="jaxbMarshaller" p:unmarshaller-ref="jaxbMarshaller"
-		p:defaultUri="http://192.168.64.223:8080/sadocWeb/services"
+		p:defaultUri="${webservice.ip}"
 		p:messageSender-ref="messageSender">
 		<constructor-arg ref="messageFactory" />
 
 	</bean>
+
 
 	<bean id="messageSender"
 		class="org.springframework.ws.transport.http.CommonsHttpMessageSender" />
