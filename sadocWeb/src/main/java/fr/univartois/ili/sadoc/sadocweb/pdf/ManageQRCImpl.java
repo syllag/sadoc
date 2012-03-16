@@ -28,6 +28,6 @@ public class ManageQRCImpl implements ManageQRC {
 		Image imglQrCode = QRCodeWriterManager.getInstance().encode(url)
 				.getImage();
 		PdfGen pdfGen = new PdfGen(reader, imglQrCode, url);
-		return pdfGen.generatePdf().getBytes();
+		return pdfGen.generatePdf();
 	}
 }

@@ -3,9 +3,14 @@ package fr.univartois.ili.sadoc.sadocweb.pdf;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutput;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
@@ -100,15 +105,17 @@ public class PdfGen {
 		this.urlQrCode = url;
 	}
 
-	public String generatePdf() {
+	public byte[] generatePdf() {
+		byte[] myDoc = null;
 		try {
 			logoConstruction();
 
 			// creation du document
 			Document doc = new Document(PageSize.A4);
+			//Creation d'un buffer pour le pdf de sortie
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 			// creation du pdf de sortie
-			PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(
-					pdfSortie));
+			PdfWriter writer = PdfWriter.getInstance(doc, buffer);
 
 			doc.open();
 			// recuperation du contenu de premier plan
@@ -146,10 +153,15 @@ public class PdfGen {
 			// fermeture du document
 			doc.close();
 
+			 byte[] bytes = buffer.toByteArray();
+			 myDoc = bytes;
+		
+			 
 		} catch (Exception de) {
 			de.printStackTrace();
 		}
-		return pdfSortie;
+		
+		return myDoc;
 	}
 
 	/**
@@ -329,4 +341,39 @@ public class PdfGen {
 	public void setLogo(String logo) {
 		this.logoPath = logo;
 	}
+	
+	public static byte[] readFully(InputStream stream) throws IOException
+	{
+	    byte[] buffer = new byte[8192];
+
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+	    int bytesRead;
+	    while ((bytesRead = stream.read(buffer)) != -1)
+	    {
+	        baos.write(buffer, 0, bytesRead);
+	    }
+	    return baos.toByteArray();
+	}
+
+
+	public static byte[] loadFile(String sourcePath) throws IOException
+	{
+	    InputStream inputStream = null;
+	    try 
+	    {
+	        inputStream = new FileInputStream(sourcePath);
+	        return readFully(inputStream);
+	    } 
+
+	    finally
+	    {
+	        if (inputStream != null)
+	        {
+	            inputStream.close();
+	        }
+	    }
+	}
+
+	
 }

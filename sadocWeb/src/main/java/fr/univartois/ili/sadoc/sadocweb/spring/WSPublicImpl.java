@@ -1,6 +1,10 @@
 package fr.univartois.ili.sadoc.sadocweb.spring;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -54,18 +58,24 @@ public class WSPublicImpl implements WSPublic {
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
             Competence[] competence) {
 		 SignFile sf = new SignFile();
+		if(ownerDAO.findByMail(owner.getMail())==null){
+			ownerDAO.create(owner);
+		}
 		System.out.println("SIGNDOCUMENT OK !");
         Owner ownOwner= ownerDAO.findByMail(owner.getMail());
+        System.out.println("findByMAIL OK ");
         Certificate certificate=null;
 		try {
 			certificate = sf.GiveCertificateForUser(ownOwner);
-			List<Certificate> ltmp =ownOwner.getCertificates();
-			ltmp.add(certificate);
-			owner.setCertificates(ltmp);
+			ownerDAO.update(ownOwner);
+			System.out.println("GiveCertificateForUser OK ");
+		
+			System.out.println("Size owner certif : "+ownOwner.getCertificates().size());
+			
 			certificateDAO.create(certificate);
-			
+			ownerDAO.update(ownOwner);
+			System.out.println("create certificate OK ");
 		} catch (Exception e1) {
-			
 			e1.printStackTrace();
 		}
         System.out.println("GET CERTIF OK !");
@@ -75,9 +85,12 @@ public class WSPublicImpl implements WSPublic {
         Competence compTmp=null;
         for (Competence comp : competence) {
             compTmp=competenceDAO.findByAcronym(comp.getAcronym());
+            System.out.println("COMP find By ACRO OK");
             Signature signature = new Signature(document,
                     certificate.getOwner(), compTmp, certificate);
+            System.out.println("NEW Signature OK");
             signatureDAO.create(signature);
+            System.out.println("CREATE Signature OK");
         }
         String url = Properties.URL + "/checkDocument?sa="
                 + Crypt.createFalseID(document.getId());
@@ -87,9 +100,7 @@ public class WSPublicImpl implements WSPublic {
         try {
             dest = qrc.generatePdfWithQrCode(new PdfReader(doc), url);
             System.out.println("Generate PDFQRCODE OK !");
-            FileInputStream fis = new FileInputStream(name);
-            byte[] b = new byte[(int) dest.length];
-            fis.read(b);
+
            
             System.out.println("SIGNFILE OK !");
             byte[] p7s = sf.signDocument(dest, ownOwner);
@@ -99,13 +110,12 @@ public class WSPublicImpl implements WSPublic {
             
             System.out.println("PDF + QRCODE OK !");
             
-            fis.close();
+
             
         } catch (Exception e) {
             e.printStackTrace();
         }
         return dest;
-//		return doc;
            
     }
 
@@ -141,5 +151,38 @@ public class WSPublicImpl implements WSPublic {
 	public Owner getOwner(String mail) {
 		// TODO Auto-generated method stub
 		return ownerDAO.findByMail(mail);
+	}
+	
+	public static byte[] readFully(InputStream stream) throws IOException
+	{
+	    byte[] buffer = new byte[8192];
+
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+	    int bytesRead;
+	    while ((bytesRead = stream.read(buffer)) != -1)
+	    {
+	        baos.write(buffer, 0, bytesRead);
+	    }
+	    return baos.toByteArray();
+	}
+
+
+	public static byte[] loadFile(String sourcePath) throws IOException
+	{
+	    InputStream inputStream = null;
+	    try 
+	    {
+	        inputStream = new FileInputStream(sourcePath);
+	        return readFully(inputStream);
+	    } 
+
+	    finally
+	    {
+	        if (inputStream != null)
+	        {
+	            inputStream.close();
+	        }
+	    }
 	}
 }
