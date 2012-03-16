@@ -27,7 +27,7 @@ final class TestPdfGeneration {
 		try {
 			PdfReader reader = new PdfReader("test.pdf");
 			//On ne laisse pas de s.o.p lorsque l'on commit
-			new ManageQRCImpl().generatePdfWithQrCode(reader,"http://www.cril.univ-artois.fr/master/master-pro.html");
+			new ManageQRCImpl().generatePdfWithQrCode(reader,"453");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
