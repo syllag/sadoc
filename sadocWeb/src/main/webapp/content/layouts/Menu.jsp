@@ -16,13 +16,13 @@
 		<a href="Competence">Competence</a>
 	</li>
 	<li class="${ currentMenu == 'CV' ? 'menu_active' : ''}"> 
-		<a href="manageResume">CV</a>
+		<a href="ShowCreateResume">CV</a>
 	</li>
 	<li class="${ currentMenu == 'EditProfile' ? 'menu_active' : ''}"> 
 		<a href="ModifyProfile">Modifier le profil</a>
 	</li>
 	<li> 
-		<a href="Deconnection">Deconnexion</a>
+		<a href="Deconnection">Déconnexion</a>
 	</li>
 </menu>
 </div>
