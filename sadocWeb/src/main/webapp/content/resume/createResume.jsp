@@ -10,7 +10,7 @@
 			<div class="competence">
 				<ul>
 					<c:forEach var="competence" items="${listCompetences}">
-						<li><input type="checkbox" name="form.listCompetences" class="mycheckbox" value="${competence.id}" /> ${competence.name}</li>
+						<li><input type="checkbox" name="form.listCompetences" class="mycheckbox" value="${competence.id}" checked/> ${competence.name}</li>
 					</c:forEach>
 				</ul>
 			</div>
