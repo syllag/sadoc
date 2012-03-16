@@ -42,7 +42,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 			GetDocumentResponse responses = (GetDocumentResponse) webServiceTemplate
 					.marshalSendAndReceive(getDocumentRequest);
 			System.out.println("response:document  :"
-					+ responses.getDocument().getId());
+					+responses.getDocument().getPk7()[0]+""+responses.getDocument().getPk7()[1]+""+responses.getDocument().getPk7()[2]);
 			response = responses.getDocument();
 		} catch (Exception sfce) {
 
