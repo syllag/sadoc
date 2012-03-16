@@ -11,12 +11,12 @@
 		var p1 = document.getElementById('password');
 		var p2 = document.getElementById('confirm_password');
 		if (p1.value != p2.value) {
-			p2.setCustomValidity("Passwords don't match");
+			p2.setCustomValidity("Les mots de passe ne correspondent pas.");
 		} else {
 			p2.setCustomValidity('');
 		}
 		if (p1.value.length < 8) {
-			p1.setCustomValidity("Put a password with at least 8 caracters");
+			p1.setCustomValidity("Le mot de passe doit faire au minimum 8 caractères.");
 		} else {
 			p1.setCustomValidity("");
 		}
@@ -25,20 +25,21 @@
 
 			<section class="inscription">
 				<form method="post" action="SignIn">
-					<input type="text" name="form.firstname" id="prenom"
-						placeholder="Type your Firstname" required /> <input type="text"
-						name="form.name" id="nom" placeholder="Type your Lastname"
-						required /> <input type="text" name="form.mail" id="email"
-						placeholder="Type your email"
+					Prénom<br/>
+					<input type="text" name="form.firstname" id="prenom" placeholder="Prénom" required /><br/>
+					Nom<br/> 
+					<input type="text" name="form.name" id="nom" placeholder="Nom" required /><br/>
+					Email<br/> 
+					<input type="text" name="form.mail" id="email" placeholder="Email" 
 						pattern="([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))"
-						required /> <input type="password" name="form.password"
-						id="password" placeholder="Type your password" required /> <input
-						type="password" name="form.password2" id="confirm_password"
-						placeholder="Confirm your password" required onblur="check();" />
-			
-						<div class="errorMessage">${ error }</div>
-					<button type=submit onclick="check();" class="button">SIGN
-						IN</button>
+						required /> <br/><br/>
+					Mot de passe<br/>
+					<input type="password" name="form.password"	id="password" placeholder="Mot de passe" required /><br/>
+					Confirmation mot de passe<br/>
+					<input type="password" name="form.password2" id="confirm_password" 
+						placeholder="Confirmation mot de passe" required onblur="check();" /><br/>
+					<div class="errorMessage">${ error }</div>
+					<button type=submit onclick="check();" class="button">Inscription</button>
 				</form>
 			</section>
 

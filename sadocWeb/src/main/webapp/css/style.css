@@ -148,7 +148,7 @@ body,html {
 #content {
 	padding: 15px 35px 10px 35px;
 	border: 1px solid #ccc;
-	width: 50%;
+	width: 500px;
 	margin: 0px auto 0px auto;
 	text-align: center;
 }
@@ -388,6 +388,14 @@ p.lien_competence a {
 	color:#B22222;
 	text-align:center;
 }
+
+
+.competenceScroll {
+	overflow:auto;
+	width:400px;
+	height:200px;
+}
+
 
 .competence img, .curriculum img{
 	width:28px;

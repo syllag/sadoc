@@ -45,7 +45,7 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	public String execute() {
 		// Create session
 		session = ActionContext.getContext().getSession();
-		if (session.get("mail")!=null) {
+		if (session.get("mail") != null) {
 			return SUCCESS;
 		}
 
@@ -70,7 +70,7 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 					hashString.append(hex.substring(hex.length() - 2));
 				}
 			}
-			
+
 			owner = odao.findOwner(connect.getEmail(), hashString.toString());
 
 		} catch (NoSuchAlgorithmException e) {
@@ -90,10 +90,10 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		session.put("phone", owner.getPhone());
 		session.put("mail", owner.getMail());
 		session.put("listResume", owner.getResumes());
-		//session.put("listResume", getFakeResumes(owner));
+		// session.put("listResume", getFakeResumes(owner));
 
 		session.put("mapCompetence", getMapCompetence(owner));
-		//session.put("mapCompetence", getFakeMapCompetence(owner));
+		// session.put("mapCompetence", getFakeMapCompetence(owner));
 
 		return SUCCESS;
 	}
@@ -170,10 +170,17 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		while (item.hasNext()) {
 			map.put(item.next(), new ArrayList<Document>());
 		}
-
+		System.out.println(acquis.size());
 		for (int h = 0; h < acquis.size(); h++) {
+			System.out.println(h);
+			System.out.println(acquis.get(h).getCompetence().getName());
+			System.out.println(acquis.get(h).getDocument().getName());
+
 			List<Document> listDocument = map
-					.get(acquis.get(h).getCompetence());
+					.get(acquis.get(h).getCompetence()) != null ? map
+					.get(acquis.get(h).getCompetence())
+					: new ArrayList<Document>();
+
 			listDocument.add(acquis.get(h).getDocument());
 			map.put(acquis.get(h).getCompetence(), listDocument);
 		}
