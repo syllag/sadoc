@@ -17,7 +17,7 @@
 
 	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate"
 		p:marshaller-ref="jaxbMarshaller" p:unmarshaller-ref="jaxbMarshaller"
-		p:defaultUri="http://192.168.64.214:8080/sadocWeb/services"
+		p:defaultUri="http://192.168.64.223:8080/sadocWeb/services"
 		p:messageSender-ref="messageSender">
 		<constructor-arg ref="messageFactory" />
 

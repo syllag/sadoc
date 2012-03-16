@@ -1,5 +1,6 @@
 package fr.univartois.ili.sadoc.actions;
 
+import java.security.MessageDigest;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -8,6 +9,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.Form.ManageSignInForm;
+import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.Owner;
 
@@ -36,53 +38,61 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 */
 	public String execute() {
 		session = ActionContext.getContext().getSession();
+		if (session.get("mail")!=null) {
+			return "astalavista";
+		}
 		
 		if (form == null) {
-			session.put("incorrectMail", "Ok");
-			session.put("error", "Ok");	
-			session.put("inexistante", "Ok");
+			session.put("error", "");
 			return INPUT;
 		}
 		OwnerDAO odao = new OwnerDAO();
 		if (odao.findByMail(form.getMail()) != null) {
-			session.put("incorrectMail", "nok");
+			session.put("error", "Mail déjà utilisé");
 			return INPUT;
 		}
-		
-		/*	ClientWebServiceImpl webService = new  ClientWebServiceImpl();
-		fr.univartois.ili.sadoc.client.webservice.tools.Owner personneWS = webService.getOwner(form.getMail());
+
+		ClientWebServiceImpl webService = new ClientWebServiceImpl();
+		fr.univartois.ili.sadoc.client.webservice.tools.Owner personneWS = webService
+				.getOwner(form.getMail());
 		if (personneWS == null) {
-			session.put("inexistante", "nok");
-			return INPUT;			
+			session.put("error", "Vous n'avez pas encore exporté de documents.");
+			return INPUT;
 		}
-		
-		
+
 		Owner personne = new Owner();
 		personne.setFirstName(personneWS.getFirstName());
 		personne.setLastName(personneWS.getLastName());
 		personne.setId(personneWS.getId().intValue());
-		personne.setMail(form.getMail());*/
-		
-		Owner personne = new Owner();
-		personne.setFirstName(form.getFirstname());
-		personne.setLastName(form.getName());
 		personne.setMail(form.getMail());
+
 		// TODO : cryptage password
 		try {
-			/*MessageDigest messageDigest = MessageDigest.getInstance("MD5" );
-			byte[] p = messageDigest.digest(form.getPassword().getBytes());  
-			personne.setPassword(p.toString());*/
-			personne.setPassword(form.getPassword());
+
+			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+			byte[] p = messageDigest.digest(form.getPassword().getBytes());
+			StringBuilder hashString = new StringBuilder();
+			for (int i = 0; i < p.length; ++i) {
+				String hex;
+				hex = Integer.toHexString(p[i]);
+				if (hex.length() == 1) {
+					hashString.append('0');
+					hashString.append(hex.charAt(hex.length() - 1));
+				} else {
+					hashString.append(hex.substring(hex.length() - 2));
+				}
+			}
+			personne.setPassword(hashString.toString());
+
 			odao.create(personne);
 			// TODO : connecter la personne
 		} catch (Exception e) {
 			e.printStackTrace();
-			session.put("error", "nok");
+			session.put("error", "Problème temporaire... Essayez plus tard.");
 			return INPUT;
 		}
 		return SUCCESS;
 	}
-
 
 	/************************************************/
 
@@ -107,5 +117,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;
 	}
-
+	public Map<String, Object> getSession(){
+		return session;
+	}
 }

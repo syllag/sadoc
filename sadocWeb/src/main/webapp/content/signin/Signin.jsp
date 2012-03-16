@@ -35,15 +35,8 @@
 						id="password" placeholder="Type your password" required /> <input
 						type="password" name="form.password2" id="confirm_password"
 						placeholder="Confirm your password" required onblur="check();" />
-					<s:if test="#session.error != 'Ok'">
-						<div class="errorMessage">Problème temporaire... Essayez plus tard.</div>
-					</s:if>
-					<s:if test="#session.inexistante != 'Ok'">
-						<div class="errorMessage">Vous n'avez pas de compte.</div>
-					</s:if>
-					<s:if test="#session.incorrectMail != 'Ok'">
-						<div class="errorMessage">Mail déjà utilisé</div>
-					</s:if>
+			
+						<div class="errorMessage">${ error }</div>
 					<button type=submit onclick="check();" class="button">SIGN
 						IN</button>
 				</form>
