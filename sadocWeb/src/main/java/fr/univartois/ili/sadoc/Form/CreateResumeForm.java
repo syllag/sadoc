@@ -3,16 +3,16 @@ package fr.univartois.ili.sadoc.Form;
 
 import java.util.Map;
 
-public class ManageResumeForm {
+public class CreateResumeForm {
 	
 	private String[] listCompetences;
 	
 	private Map<String, Object> session;
 	
-	public ManageResumeForm() {
+	public CreateResumeForm() {
 	}
 	
-	public ManageResumeForm (String[] listCompetences) {
+	public CreateResumeForm (String[] listCompetences) {
 		super();
 		this.listCompetences = listCompetences;
 	}
