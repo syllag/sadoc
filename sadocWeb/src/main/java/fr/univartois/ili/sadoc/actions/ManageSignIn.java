@@ -12,6 +12,7 @@ import fr.univartois.ili.sadoc.Form.ManageSignInForm;
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.utils.Synchronization;
 
 /**
  * @author Diane Dutartre <LiDaYuRan at gmail.com>
@@ -51,7 +52,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			session.put("error", "Mail déjà utilisé");
 			return INPUT;
 		}
-
+		
 		ClientWebServiceImpl webService = new ClientWebServiceImpl();
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner personneWS = webService
 				.getOwner(form.getMail());
@@ -59,13 +60,13 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			session.put("error", "Vous n'avez pas encore exporté de documents.");
 			return INPUT;
 		}
-
+		
 		Owner personne = new Owner();
 		personne.setFirstName(personneWS.getFirstName());
 		personne.setLastName(personneWS.getLastName());
 		personne.setId(personneWS.getId().intValue());
 		personne.setMail(form.getMail());
-
+		
 		// TODO : cryptage password
 		try {
 
@@ -83,16 +84,21 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 				}
 			}
 			personne.setPassword(hashString.toString());
-
+			
 			odao.create(personne);
+			
 			// TODO : connecter la personne
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.put("error", "Problème temporaire... Essayez plus tard.");
 			return INPUT;
 		}
+		
+		Synchronization s= new Synchronization();
+		s.SynchronizeWebAPPDatabase(personne.getMail());
 		return SUCCESS;
 	}
+	
 
 	/************************************************/
 

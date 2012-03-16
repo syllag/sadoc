@@ -58,10 +58,7 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 		if (sa != null /* && TestID.trueFalseID(sa) */) {
 			// long realID = TestID.findRealID(sa);
 
-			session = ActionContext.getContext().getSession();
-			if (session.get("mail") == null) {
-				return "astalavista";
-			}
+			
 
 			if (sa != null /* && TestID.trueFalseID(sa) */) {
 				// long realID = TestID.findRealID(sa);

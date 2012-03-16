@@ -60,7 +60,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 		Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> responses = null;
 
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+				"service-client.xml");
 
 		WebServiceTemplate webServiceTemplate = applicationContext
 				.getBean(WebServiceTemplate.class);
@@ -94,7 +94,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 			String firstName, String lastName, String mail) {
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner response = null;
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+				"service-client.xml");
 
 		WebServiceTemplate webServiceTemplate = applicationContext
 				.getBean(WebServiceTemplate.class);
@@ -158,7 +158,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 		// TODO Auto-generated method stub
 		List<fr.univartois.ili.sadoc.client.webservice.tools.Document> responses = null;
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+				"service-client.xml");
 
 		WebServiceTemplate webServiceTemplate = applicationContext
 				.getBean(WebServiceTemplate.class);
