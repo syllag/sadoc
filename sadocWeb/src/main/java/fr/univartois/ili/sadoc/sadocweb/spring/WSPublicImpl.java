@@ -59,7 +59,11 @@ public class WSPublicImpl implements WSPublic {
         Certificate certificate=null;
 		try {
 			certificate = sf.GiveCertificateForUser(ownOwner);
+			List<Certificate> ltmp =ownOwner.getCertificates();
+			ltmp.add(certificate);
+			owner.setCertificates(ltmp);
 			certificateDAO.create(certificate);
+			
 		} catch (Exception e1) {
 			
 			e1.printStackTrace();
