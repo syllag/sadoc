@@ -10,7 +10,7 @@
 		<default-action-ref name="Home" />
 		
 		<action name="Home">
-			<result>/WEB-INF/content/home/Home.jsp</result>
+			<result>content/home/Home.jsp</result>
 		</action>
 			
 		<action name="ValidateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect"
