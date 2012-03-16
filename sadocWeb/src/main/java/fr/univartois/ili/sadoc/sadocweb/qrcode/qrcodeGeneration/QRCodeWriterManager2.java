@@ -94,8 +94,8 @@ public final class QRCodeWriterManager2 {
 	private void processData(String data) {
 		this.data = this.props.getPrefixURL() + data;
 		
-		if (data.length() < MAX_SIZE_DATA) {
-			for (int i = 0; i < (MAX_SIZE_DATA - data.length()); i++){
+		if (this.data.length() < MAX_SIZE_DATA) {
+			for (int i = 0; i < (MAX_SIZE_DATA - this.data.length()); i++){
 				this.data += " ";
 			}
 		} else {
