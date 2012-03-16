@@ -17,14 +17,7 @@
 				</tr>
 			</table>
 			<p>
-				<h3>Qu'est-ce ?</h3>
-				SADoc est, comme son nom l'indique, un système d'authentification des documents
-				qui permet de vérifier l'authenticité de ceux-ci. Grâce au plug-in intégré
-				à un portfolio, on peut récupérer les fichiers hébergés dessus, les signer numériquement,
-				enregistrer leurs signatures dans notre base de données, et pouvoir vérifier
-				ultérieurement son authenticité grâce à un QRCode.<br />
-				Développé par les deuxième année de Master Informatique Ingénierie Logicielle pour
-				Internet, ce projet a principalement été développé en Java EE.
+				<img width="300px" src='img/logo_big.png' />
 			</p>
 		</section>
 
