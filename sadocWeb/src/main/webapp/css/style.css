@@ -148,7 +148,7 @@ body,html {
 #content {
 	padding: 15px 35px 10px 35px;
 	border: 1px solid #ccc;
-	width: 50%;
+	width: 500px;
 	margin: 0px auto 0px auto;
 	text-align: center;
 }
@@ -274,7 +274,7 @@ p.lien_competence a {
 	border-bottom: 1px solid #000;
 }
 
-.competence {
+.competence, .curriculum {
 	margin: 5px 20px;
 	padding: 10px;
 }
@@ -397,3 +397,40 @@ p.lien_competence a {
 }
 
 
+.competence img, .curriculum img{
+	width:28px;
+}
+
+.competence fieldset {
+	margin-top:10px;
+}
+
+.competence fieldset>p{
+	   margin-left: 100px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+
+ legend {
+	padding-left :5px;
+	padding-right:5px;
+	margin-left:10px;
+}
+
+.genererCv {
+	float:right;
+	margin-bottom:7px;
+}
+.genererCv a {
+	color: #0089bd;
+	outline: none;
+	text-shadow: none;
+	underline:none;
+	text-shadow: 1px 1px 1px #AAAAAA;
+}
+
+.competence table, .curriculum table{
+ margin: auto;
+ clear:both;
+}

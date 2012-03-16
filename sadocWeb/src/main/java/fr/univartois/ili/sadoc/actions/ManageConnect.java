@@ -45,6 +45,9 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	public String execute() {
 		// Create session
 		session = ActionContext.getContext().getSession();
+		if (session.get("mail")!=null) {
+			return SUCCESS;
+		}
 
 		if (connect == null) {
 			session.put("incorrect", "");
@@ -87,10 +90,10 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		session.put("phone", owner.getPhone());
 		session.put("mail", owner.getMail());
 		session.put("listResume", owner.getResumes());
-		// session.put("listResume", getFakeResumes(owner));
+		//session.put("listResume", getFakeResumes(owner));
 
 		session.put("mapCompetence", getMapCompetence(owner));
-		// session.put("mapCompetence", getFakeMapCompetence(owner));
+		//session.put("mapCompetence", getFakeMapCompetence(owner));
 
 		return SUCCESS;
 	}

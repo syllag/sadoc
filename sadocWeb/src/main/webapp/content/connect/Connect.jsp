@@ -7,15 +7,13 @@
 
 	<section class="connection">
 		<form method="POST" action="ValidateConnect">
-			<input type="email" name="connect.email" id="email"
-				placeholder="Your email" required /> <input type="password"
-				name="connect.password" id="password" placeholder="Your password"
-				required />
+			<input type="email" name="connect.email" id="email" placeholder="Email" required /> 
+			<input type="password" name="connect.password" id="password" placeholder="Mot de passe" required />
 				
 					<div class="errorMessage">${ incorrect }</div>
 				
-			<button type=submit class="buttonLogin">LOG IN</button>
-			<a href="SignIn"><button class="buttonSignin">SIGN IN</button></a>
+			<button type=submit class="buttonLogin">Connexion</button>
+			<a href="SignIn"><button class="buttonSignin">Inscription</button></a>
   <div class="spacer"> </div>
 		</form>
 	</section>

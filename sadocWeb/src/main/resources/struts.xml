@@ -5,11 +5,16 @@
         <constant name="struts.enable.DynamicMethodInvocation" value="false" />
         <constant name="struts.custom.i18n.resources" value="demo" />
         <package name="sadocWeb" namespace="/" extends="struts-default">
-		<default-action-ref name="index" />
 
+		<default-action-ref name="Home" />
+		
+		<action name="Home">
+			<result>content/home/Home.jsp</result>
+		</action>
+			
 		<action name="ValidateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect"
 			method="execute">
-			<result name="success">content/profile/Profile.jsp</result>
+			<result name="success">content/home/Home.jsp</result>
 			<result name="input">content/connect/Connect.jsp</result>
 		</action>
 
@@ -17,6 +22,7 @@
 			method="execute">
             <result name="success">content/connect/Connect.jsp</result>
 			<result name="input">content/signin/Signin.jsp</result>
+			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 
 		<action name="Deconnection" class="fr.univartois.ili.sadoc.actions.Deconnection">
@@ -24,9 +30,10 @@
 			<result name="success">content/home/Home.jsp</result>
 		</action>
 
-		<action name="ModifyProfile">
+		<action name="ModifyProfile" class="fr.univartois.ili.sadoc.actions.TestManageProfile">
 			<result name="input">content/profile/Profile.jsp</result>
 			<result name="success">content/profile/EditProfile.jsp</result>
+			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 		
 		<action name="Profile">
@@ -37,18 +44,16 @@
 		<action name="ModifyProfile2" class="fr.univartois.ili.sadoc.actions.ManageProfile">
 			<result name="success">content/profile/Profile.jsp</result>
 			<result name="input">content/profile/EditProfile.jsp</result>
+			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
-
-		<action name="Home" class="fr.univartois.ili.sadoc.actions.ManageHome"
-			method="execute">
-			<result>content/home/Home.jsp</result>
-		</action>
+		
 		<action name="checkDocument" class="fr.univartois.ili.sadoc.actions.CheckDocument"
 			method="execute">
 			<result name="success">content/DocumentInformation/documentInformation.jsp
 			</result>
 			<result name="input">content/DocumentInformation/documentInformationError.jsp
 			</result>
+			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 
 		<action name="downloadResume" class="fr.univartois.ili.sadoc.actions.DownloadResume"
@@ -59,6 +64,7 @@
 				<param name="contentDisposition">attachment;filename="cv.pdf"</param>
 				<param name="bufferSize">1024</param>
 			</result>
+			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 
 		<action name="downloadP7S" class="fr.univartois.ili.sadoc.actions.DownloadP7S"
@@ -71,6 +77,7 @@
 			</result>
 			<result name="error">content/DocumentInformation/documentInformationError.jsp
 			</result>
+			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 		<action name="ShowCreateResume" class="fr.univartois.ili.sadoc.actions.ShowCreateResume"
 				method="execute" >
