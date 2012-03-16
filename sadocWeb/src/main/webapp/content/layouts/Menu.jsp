@@ -13,7 +13,7 @@
 		<a href="Profile">Profil</a>
 	</li>
 	<li class="${ currentMenu == 'CV' ? 'menu_active' : ''}"> 
-		<a href="ShowCreateResume">CV</a>
+		<a href="manageResume">CV</a>
 	</li>
 	<li class="${ currentMenu == 'EditProfile' ? 'menu_active' : ''}"> 
 		<a href="ModifyProfile">Modifier le profil</a>

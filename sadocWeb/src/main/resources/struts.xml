@@ -65,6 +65,12 @@
 				<param name="bufferSize">1024</param>
 			</result>
 			<result name="astalavista">content/home/Home.jsp</result>
+			
+		</action>
+			<action name="manageResume" class="fr.univartois.ili.sadoc.actions.ManageResume"
+				method="execute">
+			<result name="success" >content/resume/manageResume.jsp</result>
+			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 
 		<action name="downloadP7S" class="fr.univartois.ili.sadoc.actions.DownloadP7S"

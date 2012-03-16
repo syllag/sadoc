@@ -43,21 +43,9 @@
 	</div>
 	<hr />
 	<div class="curriculum">
-		<h3>Curriculum vitae</h3> <span class="genererCv"><a
-			href="ShowCreateResume">Ajouter CV</a> </span>
-		<table>
-			<c:forEach var="resume" items="${listResume}">
-				<tr>
-					<td>CV_${name}_${resume.id}</td>
-					<td><a href="#" title="Télécharger le CV"><img
-							src="img/download.png" /> </a></td>
-					<td><a href="#" title="Supprimer le CV"><img
-							src="img/delete.png" /> </a></td>
-					<td><a href="#" title="Editer le CV"><img
-							src="img/edit.png" /> </a></td>
-				</tr>
-			</c:forEach>
-		</table>
+		<h3>Curriculum vitae</h3>
+		<span class="genererCv"><a href="manageResume" title="Gérer vos CV">Gérer vos CV</a></span>
+
 	</div>
 </section>
 
