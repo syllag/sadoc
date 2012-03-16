@@ -389,6 +389,14 @@ p.lien_competence a {
 	text-align:center;
 }
 
+
+.competenceScroll {
+	overflow:auto;
+	width:400px;
+	height:200px;
+}
+
+
 .competence img, .curriculum img{
 	width:28px;
 }
