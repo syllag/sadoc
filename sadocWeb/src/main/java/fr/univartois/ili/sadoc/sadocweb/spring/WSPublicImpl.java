@@ -60,54 +60,40 @@ public class WSPublicImpl implements WSPublic {
 		if(ownerDAO.findByMail(owner.getMail())==null){
 			ownerDAO.create(owner);
 		}
-		System.out.println("SIGNDOCUMENT OK !");
         Owner ownOwner= ownerDAO.findByMail(owner.getMail());
-        System.out.println("findByMAIL OK ");
         Certificate certificate=null;
 		try {
 			certificate = sf.GiveCertificateForUser(ownOwner);
 			ownerDAO.update(ownOwner);
-			System.out.println("GiveCertificateForUser OK ");
 		
-			System.out.println("Size owner certif : "+ownOwner.getCertificates().size());
 			
 			certificateDAO.create(certificate);
 			ownerDAO.update(ownOwner);
-			System.out.println("create certificate OK ");
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-        System.out.println("GET CERTIF OK !");
         Document document = new Document(name, "", null);
         documentDAO.create(document);
-        System.out.println("CREATE DOC OK !");
         Competence compTmp=null;
         for (Competence comp : competence) {
             compTmp=competenceDAO.findByAcronym(comp.getAcronym());
-            System.out.println("COMP find By ACRO OK");
             Signature signature = new Signature(document,
                     certificate.getOwner(), compTmp, certificate);
-            System.out.println("NEW Signature OK");
             signatureDAO.create(signature);
-            System.out.println("CREATE Signature OK");
         }
         String url = Properties.URL + "/checkDocument?sa="
                 + Crypt.createFalseID(document.getId());
         ManageQRCImpl qrc = new ManageQRCImpl();
         byte[] dest = null;
-        System.out.println("DAO OK !");
         try {
             dest = qrc.generatePdfWithQrCode(new PdfReader(doc), String.valueOf(document.getId()));
-            System.out.println("Generate PDFQRCODE OK !");
+         
 
            
-            System.out.println("SIGNFILE OK !");
             byte[] p7s = sf.signDocument(dest, ownOwner);
-            System.out.println("SIGNDOC OK !");
             document.setPk7(p7s);
             documentDAO.update(document);
             
-            System.out.println("PDF + QRCODE OK !");
             
 
             

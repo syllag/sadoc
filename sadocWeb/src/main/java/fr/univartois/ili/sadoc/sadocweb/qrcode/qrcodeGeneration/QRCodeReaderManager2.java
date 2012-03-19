@@ -132,7 +132,6 @@ public final class QRCodeReaderManager2 {
 		}
 
 		int sizeModule = cpt / 7;
-//		System.out.println(sizeModule);
 		boolean[][] matrice = new boolean[w / sizeModule][h / sizeModule];
 		cpt = 0;
 		int cpt2 = 0;
@@ -155,7 +154,6 @@ public final class QRCodeReaderManager2 {
 						cpt2 = 0;
 					}
 				}
-				System.out.println();
 				j2 = 0;
 				i2++;
 			}

@@ -129,8 +129,6 @@ public final class QRCodeReaderManager {
 		}
 
 		// Affichage des donnees
-//		System.out.println(new StringBuffer("Image QRC decodee : ")
-//				.append(this.name).append(" -> ").append(result.getText()));
 		return result.getText();
 	}
 

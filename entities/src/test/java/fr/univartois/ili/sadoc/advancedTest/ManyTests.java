@@ -61,18 +61,7 @@ public class ManyTests {
 		EntityManager em = PersistenceProvider.getEntityManager();
 		List<Document> documents = em.createQuery("SELECT d FROM Document d ORDER BY d.id",
 				Document.class).getResultList();
-		// Set<Document> docs = new HashSet<Document>(documents);
-		// documents = new ArrayList<Document> (docs);
-		// Collections.sort(documents);
 
-		System.out.println(documents.get(0).getName());
-		System.out.println(documents.get(1).getName());
-		System.out.println(documents.get(2).getName());
-		System.out.println(documents.get(3).getName());
-		System.out.println(documents.get(4).getName());
-		System.out.println(documents.get(5).getName());
-		System.out.println(documents.get(6).getName());
-		System.out.println(documents.get(7).getName());
 
 		List<Competence> competences1 = signatureDAO
 				.findCompetenceByDocument(documents.get(0));
