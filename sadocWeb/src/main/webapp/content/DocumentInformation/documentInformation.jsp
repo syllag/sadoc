@@ -3,43 +3,51 @@
 <c:import url="../layouts/Header.jsp" />
 
 
-		<section id="content2">
-			<div class="user">
-				<h3>${owner.lastName} ${owner.firstName}</h3>
-				<p>${owner.address}</p>
-				<p>${owner.town}, ${owner.zipCode}</p>
-				<p>${owner.phone}</p>
+<section id="content2">
+	<div class="user">
+		<h3>${owner.lastName} ${owner.firstName}</h3>
+		<p>${owner.address}</p>
+		<p>${owner.town}, ${owner.zipCode}</p>
+		<p>${owner.phone}</p>
 
-			</div>
-			<hr />
-			<p class="auth">Le document a été certifié par SADOC , le
-				${document.creationDate}
+	</div>
+	<hr />
+	<p class="auth">Le document a été certifié par SADOC , le
+		${document.creationDate}
+	<p>
+	<hr />
+
+	<div class="infoCompetence">
+		<c:forEach var="competence" items="${listCompetences}">
+			<p>compétence : ${competence.name}
 			<p>
-			<hr />
+			<p>description compétence : ${competence.description}</p>
+		</c:forEach>
+	</div>
 
-			<div class="infoCompetence">
-				<c:forEach var="competence" items="${listCompetences}">
-					<p>compétence : ${competence.name}
-					<p>
-					<p>description compétence : ${competence.description}</p>
-				</c:forEach>
-			</div>
+	<div class="infoDocument">
+		<p>Nom du document : ${document.name}</p>
+		<c:if test="not empty ${document.url}">
+			<p>
+				<a href="${document.url}">Télécharger le document</a>
+			</p>
+		</c:if>
+	</div>
+	<form method="post" action="ModifyUrl">
+		<input type="text" name="form.url" id="url"
+			placeholder="URL du document" value="${document.url}" /> <input
+			type="hidden" name="form.documentId" value="${document.id}" />
+		<button type=submit class="button">Modifier</button>
+	</form>
+	<div class="infoP7S">
+		<p>
+			signature du fichier (fichier *.p7s) : <a href="downloadP7S?sa=${sa}"><button>Télécharger</button></a>
+		</p>
+		<p>
+			L'utilisation du fichier *.p7s requiert le logiciel <a
+				href="http://www.adesium.com/index.php?option=com_quickfaq&view=items&cid=1%3Amysign&id=14">mySIGN</a>
+		</p>
+	</div>
+</section>
 
-			<div class="infoDocument">
-				<p>Nom du document : ${document.name}</p>
-				<p>url document : ${document.url}</p>
-			</div>
-
-			<div class="infoP7S">
-				<p>
-					signature du fichier (fichier *.p7s) : <a
-						href="downloadP7S?sa=${sa}"><button>Télécharger</button></a>
-				</p>
-				<p>
-					L'utilisation du fichier *.p7s requiert le logiciel <a
-						href="http://www.adesium.com/index.php?option=com_quickfaq&view=items&cid=1%3Amysign&id=14">mySIGN</a>
-				</p>
-			</div>
-		</section>
-		
 <c:import url="../layouts/Footer.jsp" />

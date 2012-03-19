@@ -32,8 +32,10 @@
 					<c:forEach var="document" items="${entry.value }">
 						<tr>
 							<td>${document.name }</td>
-							<td><a href="#" title="Télécharger le document"><img
+							
+							<td><a href="checkDocument?sa=${document.id}" title="Telecharger PK7"><img
 									src="img/download.png" /> </a>
+									
 							</td>
 						</tr>
 					</c:forEach>
