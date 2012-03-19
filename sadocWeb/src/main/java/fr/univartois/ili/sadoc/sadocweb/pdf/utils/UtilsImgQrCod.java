@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 
@@ -32,6 +33,7 @@ public class UtilsImgQrCod {
 	 */
 	public static BufferedImage addImage(BufferedImage image1, BufferedImage image2,
 			int x, int y) {
+		Logger.getAnonymousLogger().warning("REDIMENSIONNEMENT d'une image !! ");
 		Graphics2D g2d = image1.createGraphics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);

@@ -1,6 +1,7 @@
 package fr.univartois.ili.sadoc.sadocweb.repertory;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 public class MyScanRepertory {
 
@@ -12,7 +13,7 @@ public class MyScanRepertory {
 		File directoryToScan = new File(directoryPath);
 		if(directoryToScan.isDirectory()){
 			files = directoryToScan.list();
-			System.out.println("Nombre de fichiers competences a inserer :" + files.length);
+			Logger.getAnonymousLogger().warning("Nombre de fichiers competences a inserer :" + files.length);
 			return files;
 		}
 		files = new String[1];

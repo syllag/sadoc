@@ -1,8 +1,8 @@
 package fr.univartois.ili.sadoc.sadocweb.certificate;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Logger;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -16,10 +16,10 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 	protected String nomFichierXML;
 	int cptTag = 0;
 
-	private String nameCom= null; 
+	private String nameCom = null;
 	private Competence com = new Competence();
 	private static final String FORMAT_DATE = "yyyy-MM-dd";
-	
+
 	/** Cree une nouvelle instance de Sax_Parser */
 	public MyCertificateCompetencesParser() {
 		setNomFichierXML(null);
@@ -61,7 +61,7 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 
 		if ("competence".equals(qName)) {
 			com = new Competence();
-			
+
 			trace(" * Debut d'un element --> competence ");
 
 			cptTag++;
@@ -89,17 +89,19 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 				String strAccr[] = accronym.split(":");
 
 				com.setAcronym(accronym);
-				trace("Date de la competence "+ strAccr[1] + "et son nom" + nameCom);
-				
+				trace("Date de la competence " + strAccr[1] + "et son nom"
+						+ nameCom);
+
 				try {
 					SimpleDateFormat spDate = new SimpleDateFormat(FORMAT_DATE);
 					com.setCreationDate(spDate.parse(strAccr[1]));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					trace("Erreur Enregistrement creation date competence : " + e.toString());
-				}			
-				
+					trace("Erreur Enregistrement creation date competence : "
+							+ e.toString());
+				}
+
 				com.setName(nameCom);
 			}
 		}
@@ -110,44 +112,45 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 			if (nAttr == 0) {
 				return;
 			}
-			nameCom = attr.getValue(1);			
+			nameCom = attr.getValue(1);
 		}
 	}
-	
+
 	public void endElement(java.lang.String uri, java.lang.String localName,
 			java.lang.String qName) throws SAXException {
 		if ("competence".equals(qName)) {
 
 			trace(" * Fin de l'element " + qName);
-			trace(" * Fin de l'element : resumer de la competence : " + com.toString());
+			trace(" * Fin de l'element : resumer de la competence : "
+					+ com.toString());
 			cptTag++;
 			trace("++ compteur de tag :", cptTag);
 
 			trace(com.getAcronym() + " " + com.getName() + " "
 					+ com.getDescription());
-			
+
 			CompetenceDAO cDao = new CompetenceDAO();
-	
+
 			cDao.getEntityManager().getTransaction().begin();
 			cDao.create(com);
-			cDao.getEntityManager().getTransaction().commit();	
+			cDao.getEntityManager().getTransaction().commit();
 		}
 		if ("domain".equals(qName)) {
-			nameCom= null; 			
+			nameCom = null;
 		}
 	}
 
 	/** Methodes d'affichage */
 	static protected void trace(String s) {
-		System.out.println(s);
+		Logger.getAnonymousLogger().warning(s);
 	}
 
 	static protected void trace(String Comment, String s) {
-		System.out.println(Comment + " : " + s);
+		Logger.getAnonymousLogger().info(Comment + " : " + s);
 	}
 
 	static protected void trace(String s, int i) {
-		System.out.println(s + " : " + i);
+		Logger.getAnonymousLogger().warning(s + " : " + i);
 	}
 
 }

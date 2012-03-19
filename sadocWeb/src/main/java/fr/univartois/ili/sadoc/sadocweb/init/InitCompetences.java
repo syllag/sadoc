@@ -6,6 +6,7 @@ package fr.univartois.ili.sadoc.sadocweb.init;
 import java.io.File;
 import java.io.IOException;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -29,7 +30,7 @@ public class InitCompetences implements ServletContextListener {
 	
 	/** Methodes d'affichage */
 	static protected void trace(String s) {
-		System.out.println(s);
+		Logger.getAnonymousLogger().warning(s);
 	}
 	
 	public void contextInitialized(ServletContextEvent sce) {
