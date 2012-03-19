@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
@@ -37,6 +38,9 @@ public class PdfGen {
 	private PdfReader reader;
 	private Image imgQrCode;
 	private String urlQrCode;
+	
+	private static final String PREFIXE_URL = "prefixURL";
+	private static final String QRC = "qrc";
 
 	private static final String URL_LOGO = "http://code.google.com/p/sadoc";
 	private static final String URL_UNIV = "http://www.univ-artois.fr";
@@ -92,12 +96,12 @@ public class PdfGen {
 	 * 
 	 * @param reader
 	 * @param imgQrCode
-	 * @param url
+	 * @param id
 	 */
-	public PdfGen(PdfReader reader, Image imgQrCode, String url) {
+	public PdfGen(PdfReader reader, Image imgQrCode, String id) {
 		this.reader = reader;
 		this.imgQrCode = imgQrCode;
-		this.urlQrCode = url;
+		this.urlQrCode =ResourceBundle.getBundle(QRC).getString(PREFIXE_URL) + id;
 	}
 
 	public String generatePdf() {
