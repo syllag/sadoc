@@ -33,12 +33,19 @@
 			</p>
 		</c:if>
 	</div>
+	<form method="post" action="VerifyDocument"
+		enctype="multipart/form-data">
+		<input type="file" name="file" id="file" /> <input type="hidden"
+			name="id" value="${document.id}" /> <br/>
+		<button type=submit class="button">Vérifier le document</button>
+		<!-- <input type="submit" value="Vérifier le document"/> -->
+	</form>
 	<c:if test="${(null ne mail) && (mail eq owner.mail)}">
 		<form method="post" action="ModifyUrl">
 			<input type="text" name="form.url" id="url"
 				placeholder="URL du document" value="${document.url}" /> <input
 				type="hidden" name="form.documentId" value="${document.id}" />
-			<button type=submit class="button">Modifier</button>
+			<button type="submit" class="button">Modifier</button>
 		</form>
 	</c:if>
 	<div class="infoP7S">
