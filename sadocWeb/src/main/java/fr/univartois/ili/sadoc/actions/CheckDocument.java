@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
@@ -19,6 +18,7 @@ import fr.univartois.ili.sadoc.entities.Acquisition;
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Document;
 import fr.univartois.ili.sadoc.entities.Owner;
+import fr.univartois.ili.sadoc.utils.TestID;
 
 public class CheckDocument extends ActionSupport implements SessionAware {
 
@@ -60,10 +60,10 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 
 			
 
-			if (sa != null /* && TestID.trueFalseID(sa) */) {
-				// long realID = TestID.findRealID(sa);
+			if (sa != null  && TestID.trueFalseID(sa) ) {
+				 long realID = TestID.findRealID(sa);
 
-				long realID = Long.valueOf(sa);
+				
 				DocumentDAO ddao = new DocumentDAO();
 				AcquisitionDAO adao = new AcquisitionDAO();
 				OwnerDAO odao = new OwnerDAO();
@@ -78,41 +78,19 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 							.getDocument(realID);
 					System.out.println("Requete sur WS");
 					if (docws != null) {
-						/*
-						 * à modifier il faut convertir vers byte[], il faut
-						 * l(adapter
-						 */
-						// DataHandler h=new DataHandler();
 
-						/*
-						 * DataHandler b=docws.getPk7().get(3);
-						 * System.out.println("taille de la liste;"
-						 * +docws.getPk7().size()); InputStream in; byte[]
-						 * fakearray = null; try { in = b.getInputStream();
-						 * 
-						 * 
-						 * 
-						 * fakearray
-						 * =org.apache.commons.io.IOUtils.toByteArray(in); }
-						 * catch (IOException e) { // TODO Auto-generated catch
-						 * block e.printStackTrace(); }
-						 */
 						Byte[] fakearraytmp = docws.getPk7();
 						byte[] fakearray = new byte[fakearraytmp.length];
 						for (int i = 0; i < fakearraytmp.length; i++) {
 							fakearray[i] = fakearraytmp[i];
 						}
 
-						System.out.println("BYTE : " + fakearray[0]
-								+ fakearray[1] + fakearray[2]);
-						// here HABIB !!!
 						Document doctoregister = new Document(docws.getName(),
 								docws.getCheckSum(), "", fakearray, null);
 						doctoregister.setId(docws.getId().intValue());
 						ddao.create(doctoregister);
 
 						document = doctoregister;
-						System.out.println("mis du null dedans!!");
 						clientWebService.getCompetences(docws.getId()
 								.longValue());
 						Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> comp = clientWebService
@@ -149,9 +127,7 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 							adao.create(a);
 							listCompetences.add(c);
 						}
-						System.out.println("Tout ajouté dans la BD!");
 					} else {
-						System.out.println("pas sur ws ou retour null");
 						return INPUT;
 					}
 
