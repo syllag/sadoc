@@ -155,13 +155,8 @@ public final class QRCodeWriterManager2 {
 	 * @return
 	 */
 	public BufferedImage getImage() {
-//		System.out.println("TEST : \n QRC valide ? : " + qrc.isValid() + "\n"
-//				+ qrc.toString());
-
 		byte[][] matriceQRC = qrc.getMatrix().getArray();
 
-		System.out.println("Taille de la matrice : " + matriceQRC.length
-				+ " x " + matriceQRC.length);
 
 		BufferedImage imgQRC = new BufferedImage(matriceQRC.length * this.zoom,
 				matriceQRC.length * this.zoom, BufferedImage.TYPE_INT_RGB);
@@ -212,7 +207,6 @@ public final class QRCodeWriterManager2 {
 		try {
 			ImageIO.write(imgQRC, this.props.getFormat(), fileImgQRC);
 
-//			System.out.println("\nImage genere !!!");
 		} catch (IOException e) {
 //			System.err.println("Probleme d'ecriture !");
 			e.printStackTrace();
@@ -221,6 +215,5 @@ public final class QRCodeWriterManager2 {
 		// Pour voir les formats acceptes
 		// String formats[] = ImageIO.getWriterFormatNames();
 		// for (int l = 0; l < formats.length; l++)
-		// System.out.println(formats[l]);
 	}
 }

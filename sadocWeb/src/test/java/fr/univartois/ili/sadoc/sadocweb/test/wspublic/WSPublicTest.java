@@ -84,8 +84,6 @@ public class WSPublicTest {
 		List<Certificate> certificates1 = certificateDAO.findByOwner(owner1);
 		List<Certificate> certificates2 = certificateDAO.findByOwner(owner2);
 
-		System.out.println(certificates1.size());
-		System.out.println(certificates2.size());
 		
 		assertTrue(certificates1.contains(certif1));
 		assertTrue(certificates1.contains(certif2));

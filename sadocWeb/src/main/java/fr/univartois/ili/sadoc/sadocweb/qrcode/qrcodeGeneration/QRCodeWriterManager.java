@@ -146,11 +146,7 @@ public final class QRCodeWriterManager {
 					+ this.props.getFormat());
 			// Ecriture de l'image dans le fichier
 			ImageIO.write(imgQRC, this.props.getFormat(), fileImgQRC);
-			//On evite les s.o.p. si on veux ecrire un message on utlise un logger
-//			System.out.println(new StringBuffer(
-//					"Image QRC encodee et generee : ").append(this.name)
-//					.append(".").append(this.props.getFormat()).append(" -> ")
-//					.append(this.data));
+
 		} catch (NullPointerException e) {
 			//On evite les s.o.p. si on veux ecrire un message on utlise un logger
 //			System.err

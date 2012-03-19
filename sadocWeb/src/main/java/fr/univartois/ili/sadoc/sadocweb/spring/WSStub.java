@@ -42,7 +42,7 @@ public class WSStub {
 	public Owner createOwner(@RequestPayload CreateOwnerRequest request)
 			throws Exception {
 		// Utilisation d'un logger à la place
-		// System.out.println("Debug createOwner : "+request.getLastName()+request.getFirstName()+request.getMail());
+		
 
 		return wsPublic.createOwner(request.getLastName(),
 				request.getFirstName(), request.getMail());
@@ -94,7 +94,7 @@ public class WSStub {
 	public GetDocumentInformationsResponse getDocumentInformations(
 			@RequestPayload GetDocumentInformationsRequest request) {
 		GetDocumentInformationsResponse getDocumentInformationsResponse = new GetDocumentInformationsResponse();
-		System.out.println("requete idDoc:" + request.getIdDocument());
+		
 		Map<Owner, List<Competence>> lites = wsPrivate
 				.getDocumentInformations(request.getIdDocument());
 		lites.keySet();
@@ -107,7 +107,7 @@ public class WSStub {
 			getDocumentInformationsResponse.setCompetence(entry
 					.getValue());
 		}
-		System.out.println("requete idDoc:5");
+		
 		return getDocumentInformationsResponse;
 
 	}
@@ -116,8 +116,6 @@ public class WSStub {
 	@ResponsePayload
 	public ImportDocumentResponse importDocument(
 			@RequestPayload ImportDocumentRequest request) {
-		System.out.println("request import document ownerId :"
-				+ request.getOwner().getId());
 		List<Document> dd = wsPrivate.importDocument(request.getOwner());
 		ImportDocumentResponse importDocumentResponse = new ImportDocumentResponse();
 		importDocumentResponse.setDocument(dd);
@@ -134,8 +132,7 @@ public class WSStub {
 	@ResponsePayload
 	public GetDocumentResponse getDocument(
 			@RequestPayload GetDocumentRequest request) {
-		System.out.println("request import document ownerId :"
-				+ request.getIdDocument());
+		
 		Document d = wsPrivate.getDocument(request.getIdDocument());
 		GetDocumentResponse get = new GetDocumentResponse();
 		get.setDocument(d);

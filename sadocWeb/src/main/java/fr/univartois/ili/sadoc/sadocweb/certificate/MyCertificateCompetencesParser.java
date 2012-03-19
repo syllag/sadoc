@@ -139,15 +139,12 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 
 	/** Methodes d'affichage */
 	static protected void trace(String s) {
-		System.out.println(s);
 	}
 
 	static protected void trace(String Comment, String s) {
-		System.out.println(Comment + " : " + s);
 	}
 
 	static protected void trace(String s, int i) {
-		System.out.println(s + " : " + i);
 	}
 
 }

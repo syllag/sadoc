@@ -12,7 +12,6 @@ public class MyScanRepertory {
 		File directoryToScan = new File(directoryPath);
 		if(directoryToScan.isDirectory()){
 			files = directoryToScan.list();
-			System.out.println("Nombre de fichiers competences a inserer :" + files.length);
 			return files;
 		}
 		files = new String[1];

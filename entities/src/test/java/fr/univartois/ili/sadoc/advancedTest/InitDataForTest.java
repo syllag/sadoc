@@ -165,8 +165,6 @@ public abstract class InitDataForTest {
 		
 		entityManager.getTransaction().begin();
 		
-		// Persist
-		System.out.println("DOCUMENT");
 		documentDAO.create(document1);
 		documentDAO.create(document2);
 		documentDAO.create(document3);
@@ -175,7 +173,6 @@ public abstract class InitDataForTest {
 		documentDAO.create(document6);
 		documentDAO.create(document7);
 		documentDAO.create(document8);
-		System.out.println("CERTIFICAT");
 		certificateDAO.create(certificate1);
 		certificateDAO.create(certificate2);
 		certificateDAO.create(certificate3);

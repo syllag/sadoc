@@ -29,7 +29,6 @@ public class InitCompetences implements ServletContextListener {
 	
 	/** Methodes d'affichage */
 	static protected void trace(String s) {
-		System.out.println(s);
 	}
 	
 	public void contextInitialized(ServletContextEvent sce) {
