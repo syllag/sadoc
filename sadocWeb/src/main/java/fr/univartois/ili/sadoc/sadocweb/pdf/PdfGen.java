@@ -5,9 +5,9 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -33,59 +33,104 @@ import fr.univartois.ili.sadoc.sadocweb.pdf.utils.UtilsImgQrCod;
  */
 public class PdfGen {
 
-	private String watermarkPath = "img/watermark.png";
-	private String logoPath = "img/logoSaDoc.png";
-	private String logoUnivPath = "img/logoUnivArtois.png";
-	private String pdfSortie = "testExportCV.pdf";
-	private PdfReader reader;
-	private Image imgQrCode;
-	private String urlQrCode;
-
-	private static final String PREFIXE_URL = "prefixURL";
+	private static final String genPdfProperties = "genPDF";
 	private static final String QRC = "qrc";
+	private static final String PREFIXE_URL = "prefixURL";
 
-	private static final String URL_LOGO = "http://code.google.com/p/sadoc";
-	private static final String URL_UNIV = "http://www.univ-artois.fr";
+	private static final String URL_LOGO = ResourceBundle.getBundle(
+			genPdfProperties).getString("URL_LOGO");
+	private static final String URL_UNIV = ResourceBundle.getBundle(
+			genPdfProperties).getString("URL_UNIV");
 
-	private static final int QRCODE_POSITION_Y = 0;
-	private static final int QRCODE_POSITION_X = 513;
+	private String pdfTestDeSortie = ResourceBundle.getBundle(genPdfProperties)
+			.getString("pdfSortie");
 
-	private static final int LOGO_POSITION_Y = 765;
-	private static final int LOGO_POSITION_X = 0;
+	private static final String watermarkPath = "watermarkPath";
+	private static final String logoPath = "logoPath";
+	private static final String logoUnivPath = "logoUnivPath";
 
-	private static final int LOGO_UNIV_POSITION_Y = 10;
-	private static final int LOGO_UNIV_POSITION_X = 4;
+	private static final int QRCODE_POSITION_Y = Integer
+			.parseInt(ResourceBundle.getBundle(genPdfProperties).getString(
+					"QRCODE_POSITION_Y"));
+	private static final int QRCODE_POSITION_X = Integer
+			.parseInt(ResourceBundle.getBundle(genPdfProperties).getString(
+					"QRCODE_POSITION_X"));
 
-	private static final int WATERMARK_POSITION_X = 0;
-	private static final int WATERMARK_POSITION_Y = 0;
+	private static final int LOGO_POSITION_Y = Integer.parseInt(ResourceBundle
+			.getBundle(genPdfProperties).getString("LOGO_POSITION_Y"));
+	private static final int LOGO_POSITION_X = Integer.parseInt(ResourceBundle
+			.getBundle(genPdfProperties).getString("LOGO_POSITION_X"));
 
-	private static final double PDF_SCALE_HEIGHT = 0.9;
-	private static final double PDF_SCALE_WIDTH = 0.9;
+	private static final int LOGO_UNIV_POSITION_Y = Integer
+			.parseInt(ResourceBundle.getBundle(genPdfProperties).getString(
+					"LOGO_UNIV_POSITION_Y"));
+	private static final int LOGO_UNIV_POSITION_X = Integer
+			.parseInt(ResourceBundle.getBundle(genPdfProperties).getString(
+					"LOGO_UNIV_POSITION_X"));
 
-	private static final float PDF_SPACE_LEFT = 50;
-	private static final float PDF_SPACE_BOTTOM = 50;
+	private static final int WATERMARK_POSITION_X = Integer
+			.parseInt(ResourceBundle.getBundle(genPdfProperties).getString(
+					"WATERMARK_POSITION_X"));
+	private static final int WATERMARK_POSITION_Y = Integer
+			.parseInt(ResourceBundle.getBundle(genPdfProperties).getString(
+					"WATERMARK_POSITION_Y"));
 
-	private static final float TEXT_SADOC_LEFT_POSITION_X = 28;
-	private static final float TEXT_SADOC_LEFT_POSITION_Y = 350;
-	private static final float TEXT_SADOC_LEFT_ROTATE = 90;
+	private static final double PDF_SCALE_HEIGHT = Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"PDF_SCALE_HEIGHT"));
+	private static final double PDF_SCALE_WIDTH = Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"PDF_SCALE_WIDTH"));
 
-	private static final float TEXT_SADOC_BOTTOM_POSITION_X = 300;
-	private static final float TEXT_SADOC_BOTTOM_POSITION_Y = 21;
-	private static final float TEXT_SADOC_BOTTOM_ROTATE = 0;
+	private static final float PDF_SPACE_LEFT = (float) Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"PDF_SPACE_LEFT"));
+	private static final float PDF_SPACE_BOTTOM = (float) Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"PDF_SPACE_BOTTOM"));
 
-	private static final int r = 200/* 192 */;
-	private static final int g = 200;
-	private static final int b = 192;
+	private static final float TEXT_SADOC_LEFT_POSITION_X = (float) Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"TEXT_SADOC_LEFT_POSITION_X"));
+	private static final float TEXT_SADOC_LEFT_POSITION_Y = (float) Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"TEXT_SADOC_LEFT_POSITION_Y"));
+	private static final float TEXT_SADOC_LEFT_ROTATE = (float) Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"TEXT_SADOC_LEFT_ROTATE"));
+
+	private static final float TEXT_SADOC_BOTTOM_POSITION_X = (float) Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"TEXT_SADOC_BOTTOM_POSITION_X"));
+	private static final float TEXT_SADOC_BOTTOM_POSITION_Y = (float) Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"TEXT_SADOC_BOTTOM_POSITION_Y"));
+	private static final float TEXT_SADOC_BOTTOM_ROTATE = (float) Double
+			.parseDouble(ResourceBundle.getBundle(genPdfProperties).getString(
+					"TEXT_SADOC_BOTTOM_ROTATE"));
+
+	private static final int r = Integer.parseInt(ResourceBundle.getBundle(
+			genPdfProperties).getString("red"));
+	private static final int g = Integer.parseInt(ResourceBundle.getBundle(
+			genPdfProperties).getString("green"));
+	private static final int b = Integer.parseInt(ResourceBundle.getBundle(
+			genPdfProperties).getString("blue"));
 
 	// marges du pdf
-	private static final int MARGIN = 5;
+	private static final int MARGIN = Integer.parseInt(ResourceBundle
+			.getBundle(genPdfProperties).getString("MARGIN"));
 	// taille en pixel du logo
-	private static final int LOGO_SCALE = 75;
+	private static final int LOGO_SCALE = Integer.parseInt(ResourceBundle
+			.getBundle(genPdfProperties).getString("LOGO_SCALE"));
 
 	private com.itextpdf.text.Image watermark;
 	private com.itextpdf.text.Image qrCode;
 	private com.itextpdf.text.Image logo;
 	private com.itextpdf.text.Image logoUniv;
+
+	private PdfReader reader;
+	private Image imgQrCode;
+	private String urlQrCode;
 
 	/**
 	 * 
@@ -157,6 +202,11 @@ public class PdfGen {
 			byte[] bytes = buffer.toByteArray();
 			myDoc = bytes;
 
+			// Pour tester en local en generant le pdf
+//			 FileOutputStream fout = new FileOutputStream(pdfTestDeSortie);
+//			 fout.write(bytes);
+//			 fout.close();
+
 		} catch (Exception de) {
 			de.printStackTrace();
 		}
@@ -167,11 +217,23 @@ public class PdfGen {
 	/**
 	 * @throws BadElementException
 	 * @throws IOException
+	 * @throws URISyntaxException
 	 */
-	private void logoConstruction() throws BadElementException, IOException {
-		Image imgWatermark = ImageIO.read(new File(watermarkPath));
-		Image imglogo = ImageIO.read(new File(logoPath));
-		Image imgUniv = ImageIO.read(new File(logoUnivPath));
+	private void logoConstruction() throws BadElementException, IOException,
+			URISyntaxException {
+
+		ClassLoader loader = PdfGen.class.getClassLoader();
+	
+		URL watermUrl = loader.getResource(ResourceBundle
+				.getBundle(genPdfProperties).getString(watermarkPath));		
+		URL logoUrl = loader.getResource(ResourceBundle
+				.getBundle(genPdfProperties).getString(logoPath));		
+		URL univUrl = loader.getResource(ResourceBundle
+				.getBundle(genPdfProperties).getString(logoUnivPath));		
+		
+		Image imgWatermark = ImageIO.read(new File(watermUrl.getFile()));
+		Image imglogo = ImageIO.read(new File(logoUrl.getFile()));
+		Image imgUniv = ImageIO.read(new File(univUrl.getFile()));
 
 		BufferedImage bufImgWatermark = UtilsImgQrCod
 				.toBufferedImage(imgWatermark);
@@ -270,7 +332,7 @@ public class PdfGen {
 	 * @return the pdfSortie
 	 */
 	public String getPdfSortie() {
-		return pdfSortie;
+		return pdfTestDeSortie;
 	}
 
 	/**
@@ -278,7 +340,7 @@ public class PdfGen {
 	 *            the pdfSortie to set
 	 */
 	public void setPdfSortie(String pdfSortie) {
-		this.pdfSortie = pdfSortie;
+		this.pdfTestDeSortie = pdfSortie;
 	}
 
 	/**
@@ -310,61 +372,4 @@ public class PdfGen {
 	public void setImgQrCode(Image imgQrCode) {
 		this.imgQrCode = imgQrCode;
 	}
-
-	/**
-	 * @return the watermark
-	 */
-	public String getWatermark() {
-		return watermarkPath;
-	}
-
-	/**
-	 * @param watermark
-	 *            the watermark to set
-	 */
-	public void setWatermark(String watermark) {
-		this.watermarkPath = watermark;
-	}
-
-	/**
-	 * @return the logo
-	 */
-	public String getLogo() {
-		return logoPath;
-	}
-
-	/**
-	 * @param logo
-	 *            the logo to set
-	 */
-	public void setLogo(String logo) {
-		this.logoPath = logo;
-	}
-
-	public static byte[] readFully(InputStream stream) throws IOException {
-		byte[] buffer = new byte[8192];
-
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-		int bytesRead;
-		while ((bytesRead = stream.read(buffer)) != -1) {
-			baos.write(buffer, 0, bytesRead);
-		}
-		return baos.toByteArray();
-	}
-
-	public static byte[] loadFile(String sourcePath) throws IOException {
-		InputStream inputStream = null;
-		try {
-			inputStream = new FileInputStream(sourcePath);
-			return readFully(inputStream);
-		}
-
-		finally {
-			if (inputStream != null) {
-				inputStream.close();
-			}
-		}
-	}
-
 }
