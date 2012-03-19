@@ -27,18 +27,20 @@
 
 	<div class="infoDocument">
 		<p>Nom du document : ${document.name}</p>
-		<c:if test="not empty ${document.url}">
+		<c:if test="${null ne document.url}">
 			<p>
 				<a href="${document.url}">Télécharger le document</a>
 			</p>
 		</c:if>
 	</div>
-	<form method="post" action="ModifyUrl">
-		<input type="text" name="form.url" id="url"
-			placeholder="URL du document" value="${document.url}" /> <input
-			type="hidden" name="form.documentId" value="${document.id}" />
-		<button type=submit class="button">Modifier</button>
-	</form>
+	<c:if test="${(null ne mail) && (mail eq owner.mail)}">
+		<form method="post" action="ModifyUrl">
+			<input type="text" name="form.url" id="url"
+				placeholder="URL du document" value="${document.url}" /> <input
+				type="hidden" name="form.documentId" value="${document.id}" />
+			<button type=submit class="button">Modifier</button>
+		</form>
+	</c:if>
 	<div class="infoP7S">
 		<p>
 			signature du fichier (fichier *.p7s) : <a href="downloadP7S?sa=${sa}"><button>Télécharger</button></a>
