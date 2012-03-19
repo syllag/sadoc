@@ -22,14 +22,14 @@ public class ModifyUrl extends ActionSupport {
 	private String id;
 	
 	public String execute() {
-		System.out.println("TOTO FAIT DU VELO1");
+		
 		DocumentDAO ddao = new DocumentDAO();
-		System.out.println("TOTO FAIT DU VELO2");
+		
 		if (document != null) {
 			document.setUrl(form.getUrl());
-			System.out.println("TOTO FAIT DU VELO3");
+			
 			ddao.update(document);
-			System.out.println("TOTO FAIT DU VELO4");
+			
 			id = TestID.createFalseID(document.getId());
 			return SUCCESS;
 		}

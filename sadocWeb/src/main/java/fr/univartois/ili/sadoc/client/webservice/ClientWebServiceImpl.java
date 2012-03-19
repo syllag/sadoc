@@ -41,12 +41,11 @@ public class ClientWebServiceImpl implements IClientWebService {
 
 			GetDocumentResponse responses = (GetDocumentResponse) webServiceTemplate
 					.marshalSendAndReceive(getDocumentRequest);
-			System.out.println("response:document  :"
-					+responses.getDocument().getPk7()[0]+""+responses.getDocument().getPk7()[1]+""+responses.getDocument().getPk7()[2]);
+			
 			response = responses.getDocument();
 		} catch (Exception sfce) {
 
-			System.out.println("We sent an invalid message" + sfce);
+			
 
 			sfce.printStackTrace();
 		}
@@ -74,14 +73,10 @@ public class ClientWebServiceImpl implements IClientWebService {
 			responses = new HashedMap();
 			responses.put(response.getOwner(), response.getCompetence());
 
-			System.out.println("response:list competence for owner -->  :"
-					+ response.getOwner().getId() + " name:"
-					+ response.getOwner().getMail() + " competence size: "
-					+ response.getCompetence().size());
+	
 
 		} catch (Exception sfce) {
 
-			System.out.println("We sent an invalid message" + sfce);
 
 			sfce.printStackTrace();
 		}
@@ -106,12 +101,11 @@ public class ClientWebServiceImpl implements IClientWebService {
 			createOwnerRequest.setMail(mail);
 			response = (fr.univartois.ili.sadoc.client.webservice.tools.Owner) webServiceTemplate
 					.marshalSendAndReceive(createOwnerRequest);
-			System.out.println("response:created client  :" + response.getId()
-					+ " name: " + response.getLastName());
+			
 
 		} catch (Exception sfce) {
 
-			System.out.println("We sent an invalid message" + sfce);
+			
 
 			sfce.printStackTrace();
 		}
@@ -134,12 +128,11 @@ public class ClientWebServiceImpl implements IClientWebService {
 			getOwnerRequest.setMail(mail);
 			response = (fr.univartois.ili.sadoc.client.webservice.tools.Owner) webServiceTemplate
 					.marshalSendAndReceive(getOwnerRequest);
-			System.out.println("response:created client  :" + response.getId()
-					+ " name: " + response.getLastName());
+			
 
 		} catch (Exception sfce) {
 
-			System.out.println("We sent an invalid message" + sfce);
+			
 
 			sfce.printStackTrace();
 		}
@@ -174,13 +167,12 @@ public class ClientWebServiceImpl implements IClientWebService {
 
 			ImportDocumentResponse responsess = (ImportDocumentResponse) webServiceTemplate
 					.marshalSendAndReceive(importDocumentRequest);
-			System.out.println("ImportDocumentResponse :"
-					+ responsess.getDocument().size());
+			
 			responses = responsess.getDocument();
 
 		} catch (Exception sfce) {
 
-			System.out.println("We sent an invalid message" + sfce);
+			
 
 			sfce.printStackTrace();
 		}

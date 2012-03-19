@@ -170,11 +170,8 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		while (item.hasNext()) {
 			map.put(item.next(), new ArrayList<Document>());
 		}
-		System.out.println(acquis.size());
+		
 		for (int h = 0; h < acquis.size(); h++) {
-			System.out.println(h);
-			System.out.println(acquis.get(h).getCompetence().getName());
-			System.out.println(acquis.get(h).getDocument().getName());
 
 			List<Document> listDocument = map
 					.get(acquis.get(h).getCompetence()) != null ? map

@@ -69,14 +69,14 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 				OwnerDAO odao = new OwnerDAO();
 				CompetenceDAO cdao = new CompetenceDAO();
 				Document doc = ddao.findById((int) realID);
-				System.out.println("Recup WA");
+				
 				if (doc == null) {
-					System.out.println("Pas sur WA");
+					
 					IClientWebService clientWebService = new ClientWebServiceImpl();
 
 					fr.univartois.ili.sadoc.client.webservice.tools.Document docws = clientWebService
 							.getDocument(realID);
-					System.out.println("Requete sur WS");
+					
 					if (docws != null) {
 
 						Byte[] fakearraytmp = docws.getPk7();

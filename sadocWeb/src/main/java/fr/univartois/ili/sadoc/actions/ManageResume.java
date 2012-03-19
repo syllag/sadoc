@@ -33,9 +33,7 @@ public class ManageResume  extends ActionSupport implements SessionAware {
 		//res.setOwner(own);		
 		//rdao.create(res);
 		List<Resume> resums=(List<Resume>)session.get("listResume");
-		for(Resume r:resums){
-			System.out.println("CV"+r.getId());
-		}
+
 		ActionContext.getContext().setSession(session);
 		
 		return SUCCESS;

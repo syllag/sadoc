@@ -24,9 +24,7 @@ public class CreateResumeForm {
 	
 	public void setListCompetences(String[] listCompetences) {
 		this.listCompetences = listCompetences;
-		for(String competence: listCompetences){
-			System.out.println(competence);
-		}
+
 	}
 	
 	public void setSession(Map<String, Object> session) {

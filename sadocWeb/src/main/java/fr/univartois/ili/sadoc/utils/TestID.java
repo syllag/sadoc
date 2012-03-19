@@ -24,7 +24,7 @@ public class TestID {
 
 		if (temp.length() > 9) {
 			temp = temp.substring(0, 9);
-			System.out.println("longueur:" + temp.length());
+			
 			ID = Long.parseLong(temp);
 
 		} else {

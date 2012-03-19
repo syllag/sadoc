@@ -56,7 +56,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		
 		odao.update(owner);
 		
-		System.out.println(owner.getAddress());
+		
 		
 		return SUCCESS;
 	}
