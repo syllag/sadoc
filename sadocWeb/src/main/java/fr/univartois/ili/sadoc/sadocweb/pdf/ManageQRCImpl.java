@@ -27,7 +27,9 @@ public class ManageQRCImpl implements ManageQRC {
 	public byte[] generatePdfWithQrCode(PdfReader reader, String id) {
 		Image imglQrCode = QRCodeWriterManager.getInstance().encode(id)
 				.getImage();
+
 		PdfGen pdfGen = new PdfGen(reader, imglQrCode, id);
-		return pdfGen.generatePdf().getBytes();
+		return pdfGen.generatePdf();
+
 	}
 }

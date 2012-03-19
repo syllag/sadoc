@@ -3,9 +3,11 @@ package fr.univartois.ili.sadoc.sadocweb.pdf;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -27,10 +29,10 @@ import fr.univartois.ili.sadoc.sadocweb.pdf.utils.UtilsImgQrCod;
 
 /**
  * @author jimmy
- *
+ * 
  */
 public class PdfGen {
-	
+
 	private String watermarkPath = "img/watermark.png";
 	private String logoPath = "img/logoSaDoc.png";
 	private String logoUnivPath = "img/logoUnivArtois.png";
@@ -38,7 +40,7 @@ public class PdfGen {
 	private PdfReader reader;
 	private Image imgQrCode;
 	private String urlQrCode;
-	
+
 	private static final String PREFIXE_URL = "prefixURL";
 	private static final String QRC = "qrc";
 
@@ -91,7 +93,6 @@ public class PdfGen {
 	public PdfGen() {
 	}
 
-	
 	/**
 	 * 
 	 * @param reader
@@ -101,18 +102,21 @@ public class PdfGen {
 	public PdfGen(PdfReader reader, Image imgQrCode, String id) {
 		this.reader = reader;
 		this.imgQrCode = imgQrCode;
-		this.urlQrCode =ResourceBundle.getBundle(QRC).getString(PREFIXE_URL) + id;
+		this.urlQrCode = ResourceBundle.getBundle(QRC).getString(PREFIXE_URL)
+				+ id;
 	}
 
-	public String generatePdf() {
+	public byte[] generatePdf() {
+		byte[] myDoc = null;
 		try {
 			logoConstruction();
 
 			// creation du document
 			Document doc = new Document(PageSize.A4);
+			// Creation d'un buffer pour le pdf de sortie
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 			// creation du pdf de sortie
-			PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(
-					pdfSortie));
+			PdfWriter writer = PdfWriter.getInstance(doc, buffer);
 
 			doc.open();
 			// recuperation du contenu de premier plan
@@ -133,27 +137,31 @@ public class PdfGen {
 			for (int i = 1; i <= reader.getNumberOfPages(); i++) {
 				// nouvelle page
 				doc.newPage();
-				
+
 				// marge sur le document
 				doc.setMargins(MARGIN, MARGIN, MARGIN, MARGIN);
 				doc.addCreator("SADoc");
 				doc.addAuthor("SADoc");
-				
+
 				// generation de la page ( style de la premiere page pour toutes
 				// les pages )
 				generateFirstPage(doc, cb, under, writer, bf,
 						paramTextFiliColor, i);
-				
+
 				// fin du texte
 				cb.endText();
 			}
 			// fermeture du document
 			doc.close();
 
+			byte[] bytes = buffer.toByteArray();
+			myDoc = bytes;
+
 		} catch (Exception de) {
 			de.printStackTrace();
 		}
-		return pdfSortie;
+
+		return myDoc;
 	}
 
 	/**
@@ -211,7 +219,6 @@ public class PdfGen {
 		logoUniv.setAnnotation(annotationLogoUniv);
 	}
 
-	
 	/**
 	 * @param doc
 	 * @param cb
@@ -226,7 +233,7 @@ public class PdfGen {
 			PdfContentByte under, PdfWriter writer, BaseFont bf,
 			BaseColor paramTextFiliColor, int numOfPage)
 			throws DocumentException {
-		
+
 		// ajout du fond du pdf
 		under.addImage(watermark);
 
@@ -333,4 +340,31 @@ public class PdfGen {
 	public void setLogo(String logo) {
 		this.logoPath = logo;
 	}
+
+	public static byte[] readFully(InputStream stream) throws IOException {
+		byte[] buffer = new byte[8192];
+
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+		int bytesRead;
+		while ((bytesRead = stream.read(buffer)) != -1) {
+			baos.write(buffer, 0, bytesRead);
+		}
+		return baos.toByteArray();
+	}
+
+	public static byte[] loadFile(String sourcePath) throws IOException {
+		InputStream inputStream = null;
+		try {
+			inputStream = new FileInputStream(sourcePath);
+			return readFully(inputStream);
+		}
+
+		finally {
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
+	}
+
 }
