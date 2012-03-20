@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<referentiel>
+ <name>Certificat Informatique et Internet Niveau 1</name>
+ <code_referentiel>C2iN1</code_referentiel>
+ <description_referentiel>
+<text>Le référentiel national de 2008 comprend 44 items de compétences répartis en 9 compétences et 2 domaines.</text>
+</description_referentiel>
+ <url_referentiel></url_referentiel>
+ <seuil_certificat>0</seuil_certificat>
+ <timemodified>1284806053</timemodified>
+ <nb_domaines>2</nb_domaines>
+ <liste_codes_competence>A1-1/A1-2/A1-3/A1-4/A2-1/A2-2/A2-3/A2-4/A2-5/A2-6/A2-7/B1-1/B1-2/B1-3/B1-4/B1-5/B1-6/B1-7/B2-1/B2-2/B2-3/B3-1/B3-2/B3-3/B3-4/B3-5/B3-6/B4-1/B4-2/B4-3/B4-4/B4-5/B4-6/B5-1/B5-2/B5-3/B6-1/B6-2/B6-3/B6-4/B6-5/B7-1/B7-2/B7-3/</liste_codes_competence>
+ <liste_empreintes_competence>1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/</liste_empreintes_competence>
+ <domaine>
+  <code_domaine>A</code_domaine>
+  <description_domaine>
+<text>Aptitudes générales et transversales</text>
+</description_domaine>
+  <num_domaine>1</num_domaine>
+  <nb_competences>2</nb_competences>
+
+  <competence>
+   <code_competence>A1</code_competence>
+   <description_competence>
+<text>- Tenir compte du caractère évolutif des TIC</text>
+</description_competence>
+   <num_competence>1</num_competence>
+   <nb_item_competences>4</nb_item_competences>
+
+   <item>
+    <code>A1-1</code>
+    <description_item>
+<text>Être conscient de l’évolution constante des TIC et de la déontologie qui doit leur être associée et capable d’en tenir compte dans le cadre des apprentissages.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>1</num_item>
+   </item>
+
+   <item>
+    <code>A1-2</code>
+    <description_item>
+<text>Prendre conscience des nécessaires actualisations du référentiel du C2i® niveau 1.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>2</num_item>
+   </item>
+
+   <item>
+    <code>A1-3</code>
+    <description_item>
+<text>Travailler dans un esprit d’ouverture et d’adaptabilité (adaptabilité aux différents environnements de travail, échanges).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>3</num_item>
+   </item>
+
+   <item>
+    <code>A1-4</code>
+    <description_item>
+<text>Tenir compte des problèmes de compatibilité, de format de fichier, de norme et procédure de compression et d’échange.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>4</num_item>
+   </item>
+
+  </competence>
+
+  <competence>
+   <code_competence>A2</code_competence>
+   <description_competence>
+<text>- Intégrer la dimension éthique et le respect de la déontologie</text>
+</description_competence>
+   <num_competence>2</num_competence>
+   <nb_item_competences>7</nb_item_competences>
+
+   <item>
+    <code>A2-1</code>
+    <description_item>
+<text>Respecter les droits fondamentaux de l’homme, les normes internationales et les lois qui en découlent.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>1</num_item>
+   </item>
+
+   <item>
+    <code>A2-2</code>
+    <description_item>
+<text>Maîtriser son identité numérique.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>2</num_item>
+   </item>
+
+   <item>
+    <code>A2-3</code>
+    <description_item>
+<text>Sécuriser les informations sensibles - personnelles et professionnelles - contre les intrusions frauduleuses, les disparitions, les destructions volontaires ou involontaires.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>3</num_item>
+   </item>
+
+   <item>
+    <code>A2-4</code>
+    <description_item>
+<text>Assurer la protection de la confidentialité.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>4</num_item>
+   </item>
+
+   <item>
+    <code>A2-5</code>
+    <description_item>
+<text>Faire preuve d’esprit critique et être capable d’argumenter sur la validité des sources d’information.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>5</num_item>
+   </item>
+
+   <item>
+    <code>A2-6</code>
+    <description_item>
+<text>Mettre en œuvre des règles de bons comportements, de politesse et de civilité.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>6</num_item>
+   </item>
+
+   <item>
+    <code>A2-7</code>
+    <description_item>
+<text>Comprendre et s’approprier des chartes de comportement.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>7</num_item>
+   </item>
+
+  </competence>
+
+ </domaine>
+
+ <domaine>
+  <code_domaine>B</code_domaine>
+  <description_domaine>
+<text>Savoir-faire pratiques</text>
+</description_domaine>
+  <num_domaine>2</num_domaine>
+  <nb_competences>7</nb_competences>
+
+  <competence>
+   <code_competence>B1</code_competence>
+   <description_competence>
+<text>- S’approprier son environnement de travail</text>
+</description_competence>
+   <num_competence>1</num_competence>
+   <nb_item_competences>7</nb_item_competences>
+
+   <item>
+    <code>B1-1</code>
+    <description_item>
+<text>Organiser et personnaliser son bureau de travail.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>1</num_item>
+   </item>
+
+   <item>
+    <code>B1-2</code>
+    <description_item>
+<text>Être capable, constamment, de retrouver ses données.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>2</num_item>
+   </item>
+
+   <item>
+    <code>B1-3</code>
+    <description_item>
+<text>Structurer et gérer une arborescence de fichiers.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>3</num_item>
+   </item>
+
+   <item>
+    <code>B1-4</code>
+    <description_item>
+<text>Utiliser les outils adaptés (savoir choisir le logiciel qui convient aux objectifs poursuivis).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>4</num_item>
+   </item>
+
+   <item>
+    <code>B1-5</code>
+    <description_item>
+<text>Maintenir (mise à jour, nettoyage, défragmentation…).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>5</num_item>
+   </item>
+
+   <item>
+    <code>B1-6</code>
+    <description_item>
+<text>Organiser les liens (favoris - signets) dans des dossiers.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>6</num_item>
+   </item>
+
+   <item>
+    <code>B1-7</code>
+    <description_item>
+<text>Se connecter aux différents types de réseaux (filaires et sans fil).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>7</num_item>
+   </item>
+
+  </competence>
+
+  <competence>
+   <code_competence>B2</code_competence>
+   <description_competence>
+<text>- Rechercher l’information</text>
+</description_competence>
+   <num_competence>2</num_competence>
+   <nb_item_competences>3</nb_item_competences>
+
+   <item>
+    <code>B2-1</code>
+    <description_item>
+<text>Distinguer les différents types d’outils de recherche.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>1</num_item>
+   </item>
+
+   <item>
+    <code>B2-2</code>
+    <description_item>
+<text>Formaliser les requêtes de recherche.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>2</num_item>
+   </item>
+
+   <item>
+    <code>B2-3</code>
+    <description_item>
+<text>Récupérer et savoir utiliser les informations (texte, image, son, fichiers, pilote, applications, site…).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>3</num_item>
+   </item>
+
+  </competence>
+
+  <competence>
+   <code_competence>B3</code_competence>
+   <description_competence>
+<text>- Sauvegarder, sécuriser, archiver ses données en local et en réseau filaire ou sans fil</text>
+</description_competence>
+   <num_competence>3</num_competence>
+   <nb_item_competences>6</nb_item_competences>
+
+   <item>
+    <code>B3-1</code>
+    <description_item>
+<text>Rechercher un fichier (par nom, par date, par texte…).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>1</num_item>
+   </item>
+
+   <item>
+    <code>B3-2</code>
+    <description_item>
+<text>Assurer la protection contre les virus.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>2</num_item>
+   </item>
+
+   <item>
+    <code>B3-3</code>
+    <description_item>
+<text>Protéger ses fichiers et ses dossiers (en lecture/écriture).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>3</num_item>
+   </item>
+
+   <item>
+    <code>B3-4</code>
+    <description_item>
+<text>Assurer une sauvegarde (sur le réseau, support externe…).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>4</num_item>
+   </item>
+
+   <item>
+    <code>B3-5</code>
+    <description_item>
+<text>Compresser, décompresser un fichier ou un ensemble de fichiers/dossiers.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>5</num_item>
+   </item>
+
+   <item>
+    <code>B3-6</code>
+    <description_item>
+<text>Récupérer et transférer des données sur et à partir de terminaux mobiles.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>6</num_item>
+   </item>
+
+  </competence>
+
+  <competence>
+   <code_competence>B4</code_competence>
+   <description_competence>
+<text>Réaliser des documents destinés à être imprimés</text>
+</description_competence>
+   <num_competence>4</num_competence>
+   <nb_item_competences>6</nb_item_competences>
+
+   <item>
+    <code>B4-1</code>
+    <description_item>
+<text>Réaliser des documents courts (CV, lettre…).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>1</num_item>
+   </item>
+
+   <item>
+    <code>B4-2</code>
+    <description_item>
+<text>Élaborer un document complexe et structuré (compte rendu, rapport, mémoire, bibliographie...).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>2</num_item>
+   </item>
+
+   <item>
+    <code>B4-3</code>
+    <description_item>
+<text>Maîtriser les fonctionnalités nécessaires à la structuration de documents complexes (notes de bas de pages, sommaire, index, styles…).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>3</num_item>
+   </item>
+
+   <item>
+    <code>B4-4</code>
+    <description_item>
+<text>Intégrer les informations (images, fichiers, graphiques…).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>4</num_item>
+   </item>
+
+   <item>
+    <code>B4-5</code>
+    <description_item>
+<text>Traiter des données chiffrées dans un tableur (formules arithmétiques et fonctions simples comme la somme et la moyenne, notion et usage de la référence absolue), les présenter sous forme de tableau (mises en forme dont format de nombre et bordures) et sous forme graphique (graphique simple intégrant une ou plusieurs séries).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>5</num_item>
+   </item>
+
+   <item>
+    <code>B4-6</code>
+    <description_item>
+<text>Créer des schémas (formes géométriques avec texte, traits, flèches et connecteurs, disposition en profondeur, groupes d’objets, export sous forme d’image).</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>6</num_item>
+   </item>
+
+  </competence>
+
+  <competence>
+   <code_competence>B5</code_competence>
+   <description_competence>
+<text>Réaliser la présentation de ses travaux en présentiel et en ligne</text>
+</description_competence>
+   <num_competence>5</num_competence>
+   <nb_item_competences>3</nb_item_competences>
+
+   <item>
+    <code>B5-1</code>
+    <description_item>
+<text>Communiquer le résultat de ses travaux en s’appuyant sur un outil de présentation assistée par ordinateur.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>1</num_item>
+   </item>
+
+   <item>
+    <code>B5-2</code>
+    <description_item>
+<text>Adapter des documents initialement destinés à être imprimés pour une présentation sur écran.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>2</num_item>
+   </item>
+
+   <item>
+    <code>B5-3</code>
+    <description_item>
+<text>Réaliser des documents hypermédias intégrant textes, sons, images fixes et animées et liens internes et externes.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>3</num_item>
+   </item>
+
+  </competence>
+
+  <competence>
+   <code_competence>B6</code_competence>
+   <description_competence>
+<text>Échanger et communiquer à distance Utiliser à bon escient et selon les règles d’usage :</text>
+</description_competence>
+   <num_competence>6</num_competence>
+   <nb_item_competences>5</nb_item_competences>
+
+   <item>
+    <code>B6-1</code>
+    <description_item>
+<text>Utiliser à bon escient et selon les règles d’usage le courrier électronique (en-têtes, taille et format des fichiers, organisation des dossiers, filtrage) ;</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>1</num_item>
+   </item>
+
+   <item>
+    <code>B6-2</code>
+    <description_item>
+<text>Utiliser à bon escient et selon les règles d’usage les listes de diffusion (s’inscrire, se désabonner) ;</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>2</num_item>
+   </item>
+
+   <item>
+    <code>B6-3</code>
+    <description_item>
+<text>Utiliser à bon escient et selon les règles d’usage les forums de discussion (modéré, non modéré) ;</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>3</num_item>
+   </item>
+
+   <item>
+    <code>B6-4</code>
+    <description_item>
+<text>Utiliser à bon escient et selon les règles d’usage le dialogue en temps réel ;</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>4</num_item>
+   </item>
+
+   <item>
+    <code>B6-5</code>
+    <description_item>
+<text>Utiliser à bon escient et selon les règles d’usage les terminaux mobiles.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>5</num_item>
+   </item>
+
+  </competence>
+
+  <competence>
+   <code_competence>B7</code_competence>
+   <description_competence>
+<text>Mener des projets en travail collaboratif à distance</text>
+</description_competence>
+   <num_competence>7</num_competence>
+   <nb_item_competences>3</nb_item_competences>
+
+   <item>
+    <code>B7-1</code>
+    <description_item>
+<text>Travailler dans un environnement de travail collaboratif : utiliser les outils d’un espace de travail collaboratif (environnement numérique de travail) ;</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>1</num_item>
+   </item>
+
+   <item>
+    <code>B7-2</code>
+    <description_item>
+<text>Travailler dans un environnement de travail collaboratif : élaborer en commun un document de travail (assurer le suivi des corrections, ajouts et suppressions) ;</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>2</num_item>
+   </item>
+
+   <item>
+    <code>B7-3</code>
+    <description_item>
+<text>Travailler dans un environnement de travail collaboratif : gérer différentes versions de documents partagés.</text>
+</description_item>
+    <type_item></type_item>
+    <poids_item>1</poids_item>
+    <empreinte_item>1</empreinte_item>
+    <num_item>3</num_item>
+   </item>
+
+  </competence>
+
+ </domaine>
+
+
+</referentiel>
+
