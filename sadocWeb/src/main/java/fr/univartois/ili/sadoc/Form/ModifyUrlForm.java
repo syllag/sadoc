@@ -5,7 +5,7 @@ import fr.univartois.ili.sadoc.entities.Document;
 public class ModifyUrlForm {
 	
 	private String url;
-	private int documentId;
+	private String documentId;
 	
 	public ModifyUrlForm() {
 	}
@@ -23,11 +23,11 @@ public class ModifyUrlForm {
 		this.url = url;
 	}
 
-	public int getDocumentId() {
+	public String getDocumentId() {
 		return documentId;
 	}
 
-	public void setDocumentId(int documentId) {
+	public void setDocumentId(String documentId) {
 		this.documentId = documentId;
 	}
 	

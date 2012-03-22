@@ -30,7 +30,7 @@ public class DocumentDAO {
 		entityManager.getTransaction().commit();
 	}
 
-	public Document findById(int id) {
+	public Document findById(String id) {
 		Document document = entityManager.find(Document.class, id);
 		return document;
 	}

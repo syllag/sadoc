@@ -22,7 +22,7 @@ public class Document implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private int id;
+	private String id;
 	
 	private String name;
 	private String checkSum;
@@ -46,11 +46,11 @@ public class Document implements Serializable {
 	
 	/************************************************/
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

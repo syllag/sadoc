@@ -23,7 +23,7 @@ public class ModifyUrl extends ActionSupport {
 		if (document != null) {
 			document.setUrl(form.getUrl());
 			ddao.update(document);
-			id = TestID.createFalseID(document.getId());
+			id = document.getId();
 			return SUCCESS;
 		}
 		return ERROR;

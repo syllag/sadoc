@@ -22,7 +22,7 @@ public class VerifyDocument extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 
 	private File file;
-	private int id;
+	private String id;
 	
 	public String execute() {
 		DocumentDAO ddao = new DocumentDAO();
@@ -54,11 +54,11 @@ public class VerifyDocument extends ActionSupport {
         return baos.toByteArray();
     }
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

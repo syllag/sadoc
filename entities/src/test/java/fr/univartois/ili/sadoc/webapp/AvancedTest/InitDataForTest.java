@@ -146,14 +146,14 @@ public class InitDataForTest {
 				"www.document7.fr", pk7, new Date(2009, 5, 03));
 		Document document8 = new Document("document8", "rfvbgtyhn",
 				"www.document8.fr", pk7, new Date(2009, 4, 03));
-		document1.setId(3);
-		document2.setId(4);
-		document3.setId(5);
-		document4.setId(6);
-		document5.setId(7);
-		document6.setId(8);
-		document7.setId(9);
-		document8.setId(10);
+		document1.setId("3");
+		document2.setId("4");
+		document3.setId("5");
+		document4.setId("6");
+		document5.setId("7");
+		document6.setId("8");
+		document7.setId("9");
+		document8.setId("10");
 		// create document in database
 		documentDao.create(document1);
 		documentDao.create(document2);

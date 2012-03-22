@@ -38,7 +38,7 @@ public class Synchronization {
 		for (fr.univartois.ili.sadoc.client.webservice.tools.Document docws : docwsList) {
 			if (docws != null) {
 				Document doctoregister = ddao
-						.findById(docws.getId().intValue());
+						.findById(TestID.createFalseID(docws.getId().longValue()));
 				if (doctoregister == null) {
 					Byte[] fakearraytmp = docws.getPk7();
 					byte[] fakearray = new byte[fakearraytmp.length];
@@ -47,7 +47,7 @@ public class Synchronization {
 					}
 					doctoregister = new Document(docws.getName(),
 							docws.getCheckSum(), "", fakearray, null);
-					doctoregister.setId(docws.getId().intValue());
+					doctoregister.setId(TestID.createFalseID(docws.getId().longValue()));
 					ddao.create(doctoregister);
 				}
 				Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> comp = clientWebService

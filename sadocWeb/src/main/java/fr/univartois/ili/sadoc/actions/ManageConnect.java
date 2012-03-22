@@ -112,11 +112,11 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		Map<Competence, List<Document>> map = new HashMap<Competence, List<Document>>();
 
 		Document doc1 = new Document("doc1", "", "", null, null);
-		doc1.setId(0);
+		doc1.setId("0");
 		Document doc2 = new Document("doc2", "", "", null, null);
-		doc1.setId(1);
+		doc1.setId("1");
 		Document doc3 = new Document("doc3", "", "", null, null);
-		doc1.setId(2);
+		doc1.setId("2");
 		Acquisition acquis1 = new Acquisition(owner, doc1, comp1, null);
 		List<Acquisition> acquis = new ArrayList<Acquisition>();
 		acquis.add(new Acquisition(owner, doc1, comp1, null));

@@ -30,7 +30,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 
 		fr.univartois.ili.sadoc.client.webservice.tools.Document response = null;
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"fr/univartois/ili/sadoc/client/webservice/service-client.xml");
+				"service-client.xml");
 
 		WebServiceTemplate webServiceTemplate = applicationContext
 				.getBean(WebServiceTemplate.class);

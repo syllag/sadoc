@@ -47,7 +47,7 @@ public class AcquisitionTest {
     	final Competence competence = new Competence();
     	final Acquisition acquisition = new Acquisition();
     	owner.setId(1);
-    	document.setId(1);
+    	document.setId("1");
     	competence.setId(1);
     	acquisition.setOwner(owner);
     	acquisition.setDocument(document);
