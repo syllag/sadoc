@@ -162,9 +162,9 @@ public class SignFile {
 			// recovery private key and certificate X509
 			PrivateKey  userPrivateKey = userKeys.getPrivate();
 			certif = new Certificate(userKeys.getPublic(),userPrivateKey,o);
-			o.getCertificates().add(certif);
+	    } else {
+	    	certif = o.getCertificates().get(0);
 	    }
-	    else certif = o.getCertificates().get(0);
 		
 		return certif;
 	}

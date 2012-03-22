@@ -34,8 +34,7 @@ public class Certificate implements Serializable {
 	private PublicKey publicKey;
 	private PrivateKey privateKey;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH })
+	@ManyToOne
 	private Owner owner;
 	
 	/************************************************/

@@ -56,50 +56,51 @@ public class WSPublicImpl implements WSPublic {
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
             Competence[] competence) {
-		 SignFile sf = new SignFile();
-		if(ownerDAO.findByMail(owner.getMail())==null){
-			ownerDAO.create(owner);
-		}
-        Owner ownOwner= ownerDAO.findByMail(owner.getMail());
-        Certificate certificate=null;
+		byte[] dest = null;
 		try {
-			certificate = sf.GiveCertificateForUser(ownOwner);
-			ownerDAO.update(ownOwner);
-		
+			 SignFile sf = new SignFile();
+				if(ownerDAO.findByMail(owner.getMail())==null){
+					ownerDAO.create(owner);
+				}
+		        Owner ownOwner= ownerDAO.findByMail(owner.getMail());
+
+		        
+		        
+		    Certificate certificate = sf.GiveCertificateForUser(ownOwner);
+			certificate.setOwner(ownOwner);
 			
-			certificateDAO.create(certificate);
+			ownOwner.getCertificates().add(certificate);
+
 			ownerDAO.update(ownOwner);
+	        Document document = new Document(name, "", null);
+	        documentDAO.create(document);
+	        Competence compTmp=null;
+	        for (Competence comp : competence) {
+	            compTmp=competenceDAO.findByAcronym(comp.getAcronym());
+	            Signature signature = new Signature(document,
+	            		ownOwner, compTmp, certificateDAO.findByOwner(ownOwner).get(0));
+	            signatureDAO.create(signature);
+	        }
+	        String url = Properties.URL + "/checkDocument?sa="
+	                + Crypt.createFalseID(document.getId());
+	        ManageQRCImpl qrc = new ManageQRCImpl();
+	        
+	        try {
+	            dest = qrc.generatePdfWithQrCode(new PdfReader(doc), String.valueOf(document.getId()));
+	         
+
+	           
+	            byte[] p7s = sf.signDocument(dest, ownOwner);
+	            document.setPk7(p7s);
+	            documentDAO.update(document);
+	            
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-        Document document = new Document(name, "", null);
-        documentDAO.create(document);
-        Competence compTmp=null;
-        for (Competence comp : competence) {
-            compTmp=competenceDAO.findByAcronym(comp.getAcronym());
-            Signature signature = new Signature(document,
-                    certificate.getOwner(), compTmp, certificate);
-            signatureDAO.create(signature);
-        }
-        String url = Properties.URL + "/checkDocument?sa="
-                + Crypt.createFalseID(document.getId());
-        ManageQRCImpl qrc = new ManageQRCImpl();
-        byte[] dest = null;
-        try {
-            dest = qrc.generatePdfWithQrCode(new PdfReader(doc), String.valueOf(document.getId()));
-         
 
-           
-            byte[] p7s = sf.signDocument(dest, ownOwner);
-            document.setPk7(p7s);
-            documentDAO.update(document);
-            
-            
-
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return dest;
            
     }
