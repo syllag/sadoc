@@ -1,8 +1,10 @@
 package fr.univartois.ili.sadoc.actions;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -10,11 +12,9 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.Form.CreateResumeForm;
-import fr.univartois.ili.sadoc.dao.AcquisitionDAO;
 import fr.univartois.ili.sadoc.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.dao.ResumeDAO;
-import fr.univartois.ili.sadoc.entities.Acquisition;
 import fr.univartois.ili.sadoc.entities.Competence;
 import fr.univartois.ili.sadoc.entities.Owner;
 import fr.univartois.ili.sadoc.entities.Resume;
@@ -51,7 +51,7 @@ public class CreateResume extends ActionSupport implements SessionAware{
 		ResumeDAO rdao = new ResumeDAO();
 		owner = odao.findById(idOwner); 
 		
-		List<Competence> listCompetences = new ArrayList<Competence>();
+		Set<Competence> listCompetences = new HashSet<Competence>();
 		String[] competences =  form.getListCompetences();
 		
 		assert(competences.length != 0);
@@ -59,9 +59,11 @@ public class CreateResume extends ActionSupport implements SessionAware{
 		for(String competence : form.getListCompetences())
 			listCompetences.add(cdao.findById(Integer.parseInt(competence)));
 		
-
-		
-		resume.setCompetences(listCompetences);
+		List<Competence> listCompetencesTmp= new ArrayList<Competence>();
+		for (Competence c : listCompetences){
+			listCompetencesTmp.add(c);
+		}
+		resume.setCompetences(listCompetencesTmp);
 		resume.setOwner(owner);
 
 		owner.addResume(resume);
