@@ -5,9 +5,11 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -23,6 +25,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfImportedPage;
 import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import fr.univartois.ili.sadoc.sadocweb.pdf.utils.UtilsImgQrCod;
@@ -203,9 +206,9 @@ public class PdfGen {
 			myDoc = bytes;
 
 			// Pour tester en local en generant le pdf
-//			 FileOutputStream fout = new FileOutputStream(pdfTestDeSortie);
-//			 fout.write(bytes);
-//			 fout.close();
+			 FileOutputStream fout = new FileOutputStream(pdfTestDeSortie);
+			 fout.write(bytes);
+			 fout.close();
 
 		} catch (Exception de) {
 			de.printStackTrace();
@@ -223,14 +226,14 @@ public class PdfGen {
 			URISyntaxException {
 
 		ClassLoader loader = PdfGen.class.getClassLoader();
-	
-		URL watermUrl = loader.getResource(ResourceBundle
-				.getBundle(genPdfProperties).getString(watermarkPath));		
-		URL logoUrl = loader.getResource(ResourceBundle
-				.getBundle(genPdfProperties).getString(logoPath));		
-		URL univUrl = loader.getResource(ResourceBundle
-				.getBundle(genPdfProperties).getString(logoUnivPath));		
-		
+
+		URL watermUrl = loader.getResource(ResourceBundle.getBundle(
+				genPdfProperties).getString(watermarkPath));
+		URL logoUrl = loader.getResource(ResourceBundle.getBundle(
+				genPdfProperties).getString(logoPath));
+		URL univUrl = loader.getResource(ResourceBundle.getBundle(
+				genPdfProperties).getString(logoUnivPath));
+
 		Image imgWatermark = ImageIO.read(new File(watermUrl.getFile()));
 		Image imglogo = ImageIO.read(new File(logoUrl.getFile()));
 		Image imgUniv = ImageIO.read(new File(univUrl.getFile()));

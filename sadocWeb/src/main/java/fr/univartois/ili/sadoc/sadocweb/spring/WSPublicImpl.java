@@ -2,6 +2,7 @@ package fr.univartois.ili.sadoc.sadocweb.spring;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -55,54 +56,53 @@ public class WSPublicImpl implements WSPublic {
 
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
-            Competence[] competence) {
-		 SignFile sf = new SignFile();
-		if(ownerDAO.findByMail(owner.getMail())==null){
+			Competence[] competence) {
+		SignFile sf = new SignFile();
+		if (ownerDAO.findByMail(owner.getMail()) == null) {
 			ownerDAO.create(owner);
 		}
-        Owner ownOwner= ownerDAO.findByMail(owner.getMail());
-        Certificate certificate=null;
+		Owner ownOwner = ownerDAO.findByMail(owner.getMail());
+		Certificate certificate = null;
 		try {
 			certificate = sf.GiveCertificateForUser(ownOwner);
 			ownerDAO.update(ownOwner);
-		
-			
+
 			certificateDAO.create(certificate);
 			ownerDAO.update(ownOwner);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-        Document document = new Document(name, "", null);
-        documentDAO.create(document);
-        Competence compTmp=null;
-        for (Competence comp : competence) {
-            compTmp=competenceDAO.findByAcronym(comp.getAcronym());
-            Signature signature = new Signature(document,
-                    certificate.getOwner(), compTmp, certificate);
-            signatureDAO.create(signature);
-        }
-        String url = Properties.URL + "/checkDocument?sa="
-                + Crypt.createFalseID(document.getId());
-        ManageQRCImpl qrc = new ManageQRCImpl();
-        byte[] dest = null;
-        try {
-            dest = qrc.generatePdfWithQrCode(new PdfReader(doc), String.valueOf(document.getId()));
-         
+		Document document = new Document(name, "", null);
+		documentDAO.create(document);
+		Competence compTmp = null;
+		for (Competence comp : competence) {
+			compTmp = competenceDAO.findByAcronym(comp.getAcronym());
+			Signature signature = new Signature(document,
+					certificate.getOwner(), compTmp, certificate);
+			signatureDAO.create(signature);
+		}
+		String url = Properties.URL + "/checkDocument?sa="
+				+ Crypt.createFalseID(document.getId());
+		ManageQRCImpl qrc = new ManageQRCImpl();
+		byte[] dest = null;
+		try {
+			dest = qrc.generatePdfWithQrCode(new PdfReader(doc),
+					Crypt.createFalseID(document.getId()));
 
-           
-            byte[] p7s = sf.signDocument(dest, ownOwner);
-            document.setPk7(p7s);
-            documentDAO.update(document);
-            
-            
+			byte[] p7s = sf.signDocument(dest, ownOwner);
+			document.setPk7(p7s);
+			documentDAO.update(document);
 
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return dest;
-           
-    }
+			FileOutputStream envfos = new FileOutputStream("exemple.p7s");
+			envfos.write(p7s);
+			envfos.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dest;
+
+	}
 
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name,
@@ -137,37 +137,30 @@ public class WSPublicImpl implements WSPublic {
 		// TODO Auto-generated method stub
 		return ownerDAO.findByMail(mail);
 	}
-	
-	public static byte[] readFully(InputStream stream) throws IOException
-	{
-	    byte[] buffer = new byte[8192];
 
-	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	public static byte[] readFully(InputStream stream) throws IOException {
+		byte[] buffer = new byte[8192];
 
-	    int bytesRead;
-	    while ((bytesRead = stream.read(buffer)) != -1)
-	    {
-	        baos.write(buffer, 0, bytesRead);
-	    }
-	    return baos.toByteArray();
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+		int bytesRead;
+		while ((bytesRead = stream.read(buffer)) != -1) {
+			baos.write(buffer, 0, bytesRead);
+		}
+		return baos.toByteArray();
 	}
 
+	public static byte[] loadFile(String sourcePath) throws IOException {
+		InputStream inputStream = null;
+		try {
+			inputStream = new FileInputStream(sourcePath);
+			return readFully(inputStream);
+		}
 
-	public static byte[] loadFile(String sourcePath) throws IOException
-	{
-	    InputStream inputStream = null;
-	    try 
-	    {
-	        inputStream = new FileInputStream(sourcePath);
-	        return readFully(inputStream);
-	    } 
-
-	    finally
-	    {
-	        if (inputStream != null)
-	        {
-	            inputStream.close();
-	        }
-	    }
+		finally {
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
 	}
 }
