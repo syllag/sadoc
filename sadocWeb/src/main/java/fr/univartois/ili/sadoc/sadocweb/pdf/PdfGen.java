@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -25,7 +24,6 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfImportedPage;
 import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import fr.univartois.ili.sadoc.sadocweb.pdf.utils.UtilsImgQrCod;
