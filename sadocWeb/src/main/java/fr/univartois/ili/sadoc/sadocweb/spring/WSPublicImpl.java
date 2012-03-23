@@ -2,7 +2,6 @@ package fr.univartois.ili.sadoc.sadocweb.spring;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -24,7 +23,6 @@ import fr.univartois.ili.sadoc.entities.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.sadocweb.pdf.ManageQRCImpl;
 import fr.univartois.ili.sadoc.sadocweb.sign.integrationsign.SignFile;
 import fr.univartois.ili.sadoc.sadocweb.utils.Crypt;
-import fr.univartois.ili.sadoc.sadocweb.utils.Properties;
 
 public class WSPublicImpl implements WSPublic {
 
@@ -57,51 +55,46 @@ public class WSPublicImpl implements WSPublic {
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
 			Competence[] competence) {
-		SignFile sf = new SignFile();
-		if (ownerDAO.findByMail(owner.getMail()) == null) {
-			ownerDAO.create(owner);
-		}
-		Owner ownOwner = ownerDAO.findByMail(owner.getMail());
-		Certificate certificate = null;
+		byte[] dest = null;
 		try {
-			certificate = sf.GiveCertificateForUser(ownOwner);
-			ownerDAO.update(ownOwner);
+			SignFile sf = new SignFile();
+			if (ownerDAO.findByMail(owner.getMail()) == null) {
+				ownerDAO.create(owner);
+			}
+			Owner ownOwner = ownerDAO.findByMail(owner.getMail());
 
-			certificateDAO.create(certificate);
+			Certificate certificate = sf.GiveCertificateForUser(ownOwner);
+			certificate.setOwner(ownOwner);
+
+			ownOwner.getCertificates().add(certificate);
+
 			ownerDAO.update(ownOwner);
+			Document document = new Document(name, "", null);
+			documentDAO.create(document);
+			Competence compTmp = null;
+			for (Competence comp : competence) {
+				compTmp = competenceDAO.findByAcronym(comp.getAcronym());
+				Signature signature = new Signature(document, ownOwner,
+						compTmp, certificateDAO.findByOwner(ownOwner).get(0));
+				signatureDAO.create(signature);
+			}
+			ManageQRCImpl qrc = new ManageQRCImpl();
+
+			try {
+				dest = qrc.generatePdfWithQrCode(new PdfReader(doc),
+						String.valueOf(Crypt.createFalseID(document.getId())));
+
+				byte[] p7s = sf.signDocument(dest, ownOwner);
+				document.setPk7(p7s);
+				documentDAO.update(document);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		Document document = new Document(name, "", null);
-		documentDAO.create(document);
-		Competence compTmp = null;
-		for (Competence comp : competence) {
-			compTmp = competenceDAO.findByAcronym(comp.getAcronym());
-			Signature signature = new Signature(document,
-					certificate.getOwner(), compTmp, certificate);
-			signatureDAO.create(signature);
-		}
-		String url = Properties.URL + "/checkDocument?sa="
-				+ Crypt.createFalseID(document.getId());
-		ManageQRCImpl qrc = new ManageQRCImpl();
-		byte[] dest = null;
-		try {
-			dest = qrc.generatePdfWithQrCode(new PdfReader(doc),
-					Crypt.createFalseID(document.getId()));
-
-			byte[] p7s = sf.signDocument(dest, ownOwner);
-			document.setPk7(p7s);
-			documentDAO.update(document);
-
-			FileOutputStream envfos = new FileOutputStream("exemple.p7s");
-			envfos.write(p7s);
-			envfos.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return dest;
-
 	}
 
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)

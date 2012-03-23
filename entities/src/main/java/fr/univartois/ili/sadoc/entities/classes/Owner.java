@@ -2,6 +2,7 @@ package fr.univartois.ili.sadoc.entities.classes;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +35,7 @@ public class Owner implements Serializable, Comparable<Object> {
 	private String lastName;
 	private String mail;
 	
-	@OneToMany
+	@OneToMany(mappedBy="owner", cascade = CascadeType.PERSIST)
 	private List<Certificate> certificates;
 	
 	/************************************************/
