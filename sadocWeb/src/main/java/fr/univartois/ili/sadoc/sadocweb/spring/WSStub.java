@@ -39,13 +39,13 @@ public class WSStub {
 
 	@PayloadRoot(localPart = "createOwnerRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public Owner createOwner(@RequestPayload CreateOwnerRequest request)
+	public CreateOwnerResponse createOwner(@RequestPayload CreateOwnerRequest request)
 			throws Exception {
-		// Utilisation d'un logger à la place
-		
-
-		return wsPublic.createOwner(request.getLastName(),
+		CreateOwnerResponse resp = new CreateOwnerResponse();
+		Owner o = wsPublic.createOwner(request.getLastName(),
 				request.getFirstName(), request.getMail());
+		resp.setOwner(o);
+		return resp;
 	}
 
 	@PayloadRoot(localPart = "getOwnerRequest", namespace = "http://sadoc.com/ac/schemas")

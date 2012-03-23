@@ -89,9 +89,6 @@
 			@PayloadRoot annotations.</description>
 	</bean>
 
-	<bean id="AccountService"
-		class="fr.univartois.ili.sadoc.sadocweb.wssample.AccountServiceImpl" />
-
 	<bean id="marshaller" class="org.springframework.oxm.castor.CastorMarshaller">
 		<property name="mappingLocation" value="/WEB-INF/sadoc-services-mapping.xml" />
 	</bean>
