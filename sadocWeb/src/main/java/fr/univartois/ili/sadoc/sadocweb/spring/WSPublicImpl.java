@@ -2,6 +2,7 @@ package fr.univartois.ili.sadoc.sadocweb.spring;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -87,6 +88,10 @@ public class WSPublicImpl implements WSPublic {
 				byte[] p7s = sf.signDocument(dest, ownOwner);
 				document.setPk7(p7s);
 				documentDAO.update(document);
+				FileOutputStream envfos = new FileOutputStream(
+						"signatureP7S.p7s");
+				envfos.write(p7s);
+				envfos.close();
 
 			} catch (Exception e) {
 				e.printStackTrace();

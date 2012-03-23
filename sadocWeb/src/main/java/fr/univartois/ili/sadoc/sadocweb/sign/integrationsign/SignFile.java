@@ -72,8 +72,9 @@ public class SignFile {
 	private static final String TYPEOFCERTIFICATE = "X.509";
 	private static final String CYPHER = "Blowfish";
 	private static final String CYPHERPARAMETERS = "Blowfish/CBC/PKCS5Padding";
-	private static final String REPERTORY = ResourceBundle.getBundle(
-			PROPERTIE_INIT).getString(PATH_CERTIF);
+	/*private static final String REPERTORY = ResourceBundle.getBundle(
+			PROPERTIE_INIT).getString(PATH_CERTIF);*/
+	private static final String REPERTORY = "/usr/local/tomcat/certificates/";
 	private static final String CACNRSROOT = "CNRS2.crt";
 	private static final String CACNRSSTANDARD = "CNRS2-Standard.crt";
 	private static final String CASADOC = "sadoc.pem";
@@ -99,16 +100,11 @@ public class SignFile {
 	 * 
 	 * @return Decrypted PK8 file.
 	 */
-	private byte[] decryptPK8File(String filenameToDecrypt, String password)
-			throws IOException, NoSuchAlgorithmException,
-			NoSuchProviderException, NoSuchPaddingException,
-			InvalidKeyException, InvalidAlgorithmParameterException,
-			IllegalBlockSizeException, BadPaddingException {
+	private byte[] decryptPK8File(String filenameToDecrypt, String password) throws IOException, NoSuchAlgorithmException,NoSuchProviderException, NoSuchPaddingException,InvalidKeyException,InvalidAlgorithmParameterException,IllegalBlockSizeException, BadPaddingException {
 
 		File file = new File(filenameToDecrypt);
 		byte[] inputBuffer = new byte[(int) file.length()];
-		DataInputStream inputFile = new DataInputStream(new FileInputStream(
-				file));
+		DataInputStream inputFile = new DataInputStream(new FileInputStream(file));
 		inputFile.readFully(inputBuffer);
 		inputFile.close();
 
@@ -136,13 +132,11 @@ public class SignFile {
 	 * 
 	 * @return X509 certificate.
 	 */
-	private X509Certificate ReadCertificateFile(String filename)
-			throws IOException, CertificateException {
+	private X509Certificate ReadCertificateFile(String filename) throws IOException, CertificateException {
+		System.out.println("certificat " + filename);
 		InputStream inputX509 = new FileInputStream(filename);
-		CertificateFactory cfX509 = CertificateFactory
-				.getInstance(TYPEOFCERTIFICATE);
-		X509Certificate certX509 = (X509Certificate) cfX509
-				.generateCertificate(inputX509);
+		CertificateFactory cfX509 = CertificateFactory.getInstance(TYPEOFCERTIFICATE);
+		X509Certificate certX509 = (X509Certificate) cfX509.generateCertificate(inputX509);
 		inputX509.close();
 		return certX509;
 	}
@@ -156,8 +150,7 @@ public class SignFile {
 	 * 
 	 * @return private key.
 	 */
-	private PrivateKey readPK8File(byte[] pk8File) throws IOException,
-			NoSuchAlgorithmException, InvalidKeySpecException {
+	private PrivateKey readPK8File(byte[] pk8File) throws IOException,NoSuchAlgorithmException, InvalidKeySpecException {
 		PKCS8EncodedKeySpec pkcs8 = new PKCS8EncodedKeySpec(pk8File);
 		KeyFactory kf = KeyFactory.getInstance(ALGORITHM);
 		return kf.generatePrivate(pkcs8);
@@ -181,9 +174,7 @@ public class SignFile {
 	 * 
 	 * @return X509 certificate.
 	 */
-	private X509Certificate createCertificate(X509Certificate facCA,
-			PrivateKey facPK, KeyPair keyUser, Owner user, Date notBefore,
-			Date notAfter) throws Exception {
+	private X509Certificate createCertificate(X509Certificate facCA,PrivateKey facPK, KeyPair keyUser, Owner user, Date notBefore,Date notAfter) throws Exception {
 		// Use of Bouncy Castle library
 		Security.addProvider(new BouncyCastleProvider());
 
@@ -192,30 +183,20 @@ public class SignFile {
 		certifBuilder.addRDN(BCStyle.C, "FR");
 		certifBuilder.addRDN(BCStyle.ST, "France");
 		certifBuilder.addRDN(BCStyle.L, "LENS");
-		certifBuilder.addRDN(BCStyle.O,
-				user.getFirstName() + " " + user.getLastName());
-		certifBuilder.addRDN(BCStyle.OU,
-				user.getFirstName() + " " + user.getLastName());
-		certifBuilder.addRDN(BCStyle.CN,
-				user.getFirstName() + " " + user.getLastName());
+		certifBuilder.addRDN(BCStyle.O,user.getFirstName() + " " + user.getLastName());
+		certifBuilder.addRDN(BCStyle.OU,user.getFirstName() + " " + user.getLastName());
+		certifBuilder.addRDN(BCStyle.CN,user.getFirstName() + " " + user.getLastName());
 
 		BigInteger serial = BigInteger.valueOf(System.currentTimeMillis());
 
 		// Generate certificate
-		X509v3CertificateBuilder certifGen = new JcaX509v3CertificateBuilder(
-				new X509CertificateHolder(facCA.getEncoded()).getSubject(),
-				serial, notBefore, notAfter, certifBuilder.build(),
-				keyUser.getPublic());
+		X509v3CertificateBuilder certifGen = new JcaX509v3CertificateBuilder(new X509CertificateHolder(facCA.getEncoded()).getSubject(),serial, notBefore, notAfter, certifBuilder.build(),keyUser.getPublic());
 
-		certifGen.addExtension(X509Extension.subjectKeyIdentifier, false,
-				new SubjectKeyIdentifierStructure(keyUser.getPublic()));
-		certifGen.addExtension(X509Extension.basicConstraints, false,
-				new BasicConstraints(false));
+		certifGen.addExtension(X509Extension.subjectKeyIdentifier, false,new SubjectKeyIdentifierStructure(keyUser.getPublic()));
+		certifGen.addExtension(X509Extension.basicConstraints, false,new BasicConstraints(false));
 
-		ContentSigner sigGen = new JcaContentSignerBuilder(
-				"SHA1WithRSAEncryption").setProvider("BC").build(facPK);
-		X509Certificate certX509 = new JcaX509CertificateConverter()
-				.setProvider("BC").getCertificate(certifGen.build(sigGen));
+		ContentSigner sigGen = new JcaContentSignerBuilder("SHA1WithRSAEncryption").setProvider("BC").build(facPK);
+		X509Certificate certX509 = new JcaX509CertificateConverter().setProvider("BC").getCertificate(certifGen.build(sigGen));
 
 		return certX509;
 	}
@@ -262,8 +243,7 @@ public class SignFile {
 		Security.addProvider(new BouncyCastleProvider());
 
 		// Read the private key and the different certificates
-		byte[] pk8File = decryptPK8File(REPERTORY + SADOCPRIVAYEKEY, this
-				.getClass().getSimpleName());
+		byte[] pk8File = decryptPK8File(REPERTORY + SADOCPRIVAYEKEY, this.getClass().getSimpleName());
 		PrivateKey facPK = readPK8File(pk8File);
 		X509Certificate root = ReadCertificateFile(REPERTORY + CACNRSROOT);
 		X509Certificate cnrsCA = ReadCertificateFile(REPERTORY + CACNRSSTANDARD);
@@ -271,8 +251,7 @@ public class SignFile {
 
 		// Generate private and public keys
 		KeyPair userKeys = generateRSAKeyPair();
-		X509Certificate certX509 = createCertificate(facCA, facPK, userKeys,
-				owner, facCA.getNotBefore(), facCA.getNotAfter());
+		X509Certificate certX509 = createCertificate(facCA, facPK, userKeys,owner, facCA.getNotBefore(), facCA.getNotAfter());
 
 		// Declaration of certificates store
 		// This store must contain all certificates (CNRS2, CNRS2-Standard,
@@ -290,13 +269,10 @@ public class SignFile {
 		// Initialize p7s file
 		CMSSignedDataGenerator fileP7S = new CMSSignedDataGenerator();
 		// calculate hash of user's file
-		ContentSigner sha1Signature = new JcaContentSignerBuilder("SHA1withRSA")
-				.setProvider("BC").build(userKeys.getPrivate());
+		ContentSigner sha1Signature = new JcaContentSignerBuilder("SHA1withRSA").setProvider("BC").build(userKeys.getPrivate());
 
 		// add several informations (sha1 hash and certificate X509) in p7s file
-		fileP7S.addSignerInfoGenerator(new JcaSignerInfoGeneratorBuilder(
-				new JcaDigestCalculatorProviderBuilder().setProvider("BC")
-						.build()).build(sha1Signature, certX509));
+		fileP7S.addSignerInfoGenerator(new JcaSignerInfoGeneratorBuilder(new JcaDigestCalculatorProviderBuilder().setProvider("BC").build()).build(sha1Signature, certX509));
 		fileP7S.addCertificates(certifs);
 
 		// create the p7s file
@@ -319,32 +295,25 @@ public class SignFile {
 	 * @return true or false true : the file to verify has not been modified
 	 *         false : the file to verify has been modified
 	 */
-	public boolean verifSignatureDocument(byte[] fileToSign, byte[] signature)
-			throws CMSException, IOException, OperatorCreationException,
-			CertificateException {
+	public boolean verifSignatureDocument(byte[] fileToSign, byte[] signature) throws CMSException, IOException, OperatorCreationException,CertificateException {
 
 		boolean signatureStatus;
 
 		// sign the file to verify
 		InputStream userFile = new ByteArrayInputStream(fileToSign);
-		CMSSignedDataParser signedFile = new CMSSignedDataParser(
-				new CMSTypedStream(userFile), signature);
+		CMSSignedDataParser signedFile = new CMSSignedDataParser(new CMSTypedStream(userFile), signature);
 		CMSTypedStream signedContent = signedFile.getSignedContent();
 		signedContent.drain();
 
 		// recovery certificate X509 and SHA1 hash
 		Store certStore = signedFile.getCertificates();
 		SignerInformationStore signers = signedFile.getSignerInfos();
-		SignerInformation signer = (SignerInformation) signers.getSigners()
-				.iterator().next();
-		X509CertificateHolder certHolder = (X509CertificateHolder) certStore
-				.getMatches(signer.getSID()).iterator().next();
+		SignerInformation signer = (SignerInformation) signers.getSigners().iterator().next();
+		X509CertificateHolder certHolder = (X509CertificateHolder) certStore.getMatches(signer.getSID()).iterator().next();
 
 		// verify the hash
 		try {
-			signatureStatus = signer
-					.verify(new JcaSimpleSignerInfoVerifierBuilder()
-							.setProvider("BC").build(certHolder));
+			signatureStatus = signer.verify(new JcaSimpleSignerInfoVerifierBuilder().setProvider("BC").build(certHolder));
 		} catch (CMSException e) {
 			signatureStatus = false;
 		}
