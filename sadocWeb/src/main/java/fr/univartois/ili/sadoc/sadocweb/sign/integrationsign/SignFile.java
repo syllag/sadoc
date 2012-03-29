@@ -72,9 +72,7 @@ public class SignFile {
 	private static final String TYPEOFCERTIFICATE = "X.509";
 	private static final String CYPHER = "Blowfish";
 	private static final String CYPHERPARAMETERS = "Blowfish/CBC/PKCS5Padding";
-	/*private static final String REPERTORY = ResourceBundle.getBundle(
-			PROPERTIE_INIT).getString(PATH_CERTIF);*/
-	private static final String REPERTORY = "/usr/local/tomcat/certificates/";
+	private static final String FOLDER = ResourceBundle.getBundle(PROPERTIE_INIT).getString(PATH_CERTIF);
 	private static final String CACNRSROOT = "CNRS2.crt";
 	private static final String CACNRSSTANDARD = "CNRS2-Standard.crt";
 	private static final String CASADOC = "sadoc.pem";
@@ -109,8 +107,7 @@ public class SignFile {
 		inputFile.close();
 
 		// Initialization vector (useful for CBC)
-		byte[] iv = { (byte) 0xc9, (byte) 0x36, (byte) 0x78, (byte) 0x99,
-				(byte) 0x52, (byte) 0x3e, (byte) 0xea, (byte) 0xf2 };
+		byte[] iv = { (byte) 0xc9, (byte) 0x36, (byte) 0x78, (byte) 0x99,(byte) 0x52, (byte) 0x3e, (byte) 0xea, (byte) 0xf2 };
 
 		// Create a new initialization vector spec
 		IvParameterSpec ivps = new IvParameterSpec(iv);
@@ -243,11 +240,11 @@ public class SignFile {
 		Security.addProvider(new BouncyCastleProvider());
 
 		// Read the private key and the different certificates
-		byte[] pk8File = decryptPK8File(REPERTORY + SADOCPRIVAYEKEY, this.getClass().getSimpleName());
+		byte[] pk8File = decryptPK8File(FOLDER + SADOCPRIVAYEKEY, this.getClass().getSimpleName());
 		PrivateKey facPK = readPK8File(pk8File);
-		X509Certificate root = ReadCertificateFile(REPERTORY + CACNRSROOT);
-		X509Certificate cnrsCA = ReadCertificateFile(REPERTORY + CACNRSSTANDARD);
-		X509Certificate facCA = ReadCertificateFile(REPERTORY + CASADOC);
+		X509Certificate root = ReadCertificateFile(FOLDER + CACNRSROOT);
+		X509Certificate cnrsCA = ReadCertificateFile(FOLDER + CACNRSSTANDARD);
+		X509Certificate facCA = ReadCertificateFile(FOLDER + CASADOC);
 
 		// Generate private and public keys
 		KeyPair userKeys = generateRSAKeyPair();

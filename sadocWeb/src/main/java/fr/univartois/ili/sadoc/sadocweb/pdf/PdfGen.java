@@ -204,9 +204,9 @@ public class PdfGen {
 			myDoc = bytes;
 
 			// Pour tester en local en generant le pdf
-			FileOutputStream fout = new FileOutputStream(pdfTestDeSortie);
-			fout.write(bytes);
-			fout.close();
+			//FileOutputStream fout = new FileOutputStream(pdfTestDeSortie);
+			//fout.write(bytes);
+			//fout.close();
 
 		} catch (Exception de) {
 			de.printStackTrace();
