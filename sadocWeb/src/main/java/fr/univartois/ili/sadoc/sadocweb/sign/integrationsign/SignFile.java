@@ -73,7 +73,7 @@ public class SignFile {
 	private static final String CYPHER = "Blowfish";
 	private static final String CYPHERPARAMETERS = "Blowfish/CBC/PKCS5Padding";
 	private static final String FOLDER = ResourceBundle.getBundle(PROPERTIE_INIT).getString(PATH_CERTIF);
-	private static final String CACNRSROOT = "CNRS2.crt";
+//	private static final String CACNRSROOT = "CNRS2.crt";
 	private static final String CACNRSSTANDARD = "CNRS2-Standard.crt";
 	private static final String CASADOC = "sadoc.pem";
 	private static final String SADOCPRIVAYEKEY = "sadoc.pk8";
@@ -242,7 +242,7 @@ public class SignFile {
 		// Read the private key and the different certificates
 		byte[] pk8File = decryptPK8File(FOLDER + SADOCPRIVAYEKEY, this.getClass().getSimpleName());
 		PrivateKey facPK = readPK8File(pk8File);
-		X509Certificate root = ReadCertificateFile(FOLDER + CACNRSROOT);
+		//X509Certificate root = ReadCertificateFile(FOLDER + CACNRSROOT);
 		X509Certificate cnrsCA = ReadCertificateFile(FOLDER + CACNRSSTANDARD);
 		X509Certificate facCA = ReadCertificateFile(FOLDER + CASADOC);
 
@@ -258,7 +258,7 @@ public class SignFile {
 		certifList.add(certX509);
 		certifList.add(facCA);
 		certifList.add(cnrsCA);
-		certifList.add(root);
+	//	certifList.add(root);
 		Store certifs = new JcaCertStore(certifList);
 
 		// save the user's file in a CMSTypedData object
