@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd ">
+	<persistence-unit name="sadocjpa" transaction-type="RESOURCE_LOCAL">
+<!-- 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
+		<non-jta-data-source>java:/comp/env/ds/sadocwebserviceDS</non-jta-data-source>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Certificate</class>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Competence</class>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Signature</class>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Owner</class>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Document</class>
+
+
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode"
+				value="database" />
+			<property name="eclipselink.weaving" value="static" />
+			<property name="eclipselink.logging.level" value="WARNING" />
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="sadocjpatest">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Certificate</class>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Competence</class>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Signature</class>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Owner</class>
+		<class>fr.univartois.ili.sadoc.entitiesws.classes.Document</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:myDbWebServiceSADoc;create=true" />
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

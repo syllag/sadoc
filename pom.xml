@@ -14,10 +14,10 @@
 
 	<modules>
 		<module>commons</module>
-		<module>entities</module>
+		<module>entities-ws</module>
 		<module>facade</module>
 		<module>mockDB</module>
-		<module>sadocWeb</module>
+		<module>sadocWebService</module>
 		<module>assembler</module>
 	</modules>
 
