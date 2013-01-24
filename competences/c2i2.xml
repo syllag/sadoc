@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<certificate name="C2I" date="2012-03-14">
+	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
+	<!-- xsi:noNamespaceSchemaLocation="src/main/ressources/certificate.xsd" -->
+	<domain id="D1"
+		name="Problématique et enjeux liés aux aspects juridiques en contexte professionnel">
+		<competence id="C2I:2012-03-14:D1:1">
+			Description1 : Respecter et intégrer la législation relative à la protection des libertés individuelles.
+		</competence>
+		<competence id="C2I:2012-03-14:D1:2">
+			Description2 : Respecter et intégrer la législation sur les œuvres numériques liées au domaine professionnel.
+		</competence>
+		<competence id="C2I:2012-03-14:D1:3">
+			Description3 : Respecter et intégrer les aspects légaux liés à la protection et à l'accessibilité des données professionnelles.
+		</competence>
+	</domain>
+	<domain id="D2"
+		name="Connaître et respecter les droits et obligations liés aux activités numériques en contexte professionnel">
+		<competence id="C2I:2012-03-14:D2:1">
+			Description1 : Élaborer et mettre en œuvre une stratégie de recherche d'informations en contexte professionnel.
+		</competence>
+		<competence id="C2I:2012-03-14:D2:2">
+			Description2 : Élaborer et mettre en œuvre une stratégie de veille informationnelle en contexte professionnel.
+		</competence>
+		<competence id="C2I:2012-03-14:D2:3">
+			Description3 : Élaborer une stratégie de développement et de valorisation des compétences professionnelles.
+		</competence>
+	</domain>
+	<domain id="D3" name="Organiser des collaborations professionnelles avec le numérique">
+		<competence id="C2I:2012-03-14:D3:1">
+			Description1 : Organiser un travail collaboratif en utilisant les technologies numériques.
+		</competence>
+		<competence id="C2I:2012-03-14:D3:2">
+			Description2 : Coordonner et animer des activités collaboratives dans un environnement numérique.
+		</competence>
+		<competence id="C2I:2012-03-14:D3:3">
+			Description3 : Adapter, modifier et transmettre des données en respectant l'interopérabilité dans un contexte de travail collaboratif professionnel.
+		</competence>
+	</domain>
+	<domain id="D4" name="Maîtriser la sécurité de l'information et des systèmes d'information">
+		<competence id="C2I:2012-03-14:D4:1">
+			Description1  : Maîtriser les processus d'une politique de sécurité pour participer à sa mise en place.
+		</competence>
+		<competence id="C2I:2012-03-14:D4:2">
+			Description2 : Distinguer les acteurs de la mise en place de la politique de sécurité et identifier leurs responsabilités légales.
+		</competence>
+		<competence id="C2I:2012-03-14:D4:3">
+			Description3 : Identifier et hiérarchiser les informations afin de les exploiter de façon adéquate.
+		</competence>
+		<competence id="C2I:2012-03-14:D4:4">
+			Description4 : Évaluer la sûreté des procédures et connaître la limite des outils permettant de traiter l'information, selon le lieu et le mode d'accès.
+		</competence>
+		<competence id="C2I:2012-03-14:D4:5">
+			Description5 : Estimer les risques accidentels et intentionnels afin que soient prises les dispositions nécessaires.
+		</competence>
+	</domain>
+	<domain id="D5" name="Piloter la maîtrise d'ouvrage des systèmes d'information">
+		<competence id="C2I:2012-03-14:D5:1">
+			Description1 : Comprendre les enjeux du système d'information du point de vue de la maîtrise d'ouvrage.
+		</competence>
+		<competence id="C2I:2012-03-14:D5:2">
+			Description2 : Identifier les acteurs et les étapes d'un projet « système d'information » pour en assurer la conduite éclairée.
+		</competence>
+		<competence id="C2I:2012-03-14:D5:3">
+			Description3 : Exprimer son besoin dans toutes ses dimensions, et vérifier sa prise en compte par la maîtrise d'œuvre, tout au long du projet.
+		</competence>
+		<competence id="C2I:2012-03-14:D5:4">
+			Description4 : Respecter les exigences de l'interopérabilité et de l'accessibilité du point de vue de la maîtrise d'ouvrage.
+		</competence>
+		<competence id="C2I:2012-03-14:D5:5">
+			Description5 : Interpréter un document de modélisation de données ou de processus métiers.
+		</competence>
+	</domain>
+	
+</certificate>

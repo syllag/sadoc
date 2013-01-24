@@ -39,7 +39,7 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>entities</artifactId>
+			<artifactId>entities-ws</artifactId>
 			<version>0.1</version>
 		</dependency>
 		<dependency>
