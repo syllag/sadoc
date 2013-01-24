@@ -5,7 +5,7 @@
 	<artifactId>sadocWeb</artifactId>
 	<packaging>war</packaging>
 	<version>0.1</version>
-	<name>sadocWeb Maven Webapp</name>
+	<name>sadocWeb</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -28,9 +28,7 @@
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<version>2.3.2</version>
-
 		</dependency>
-
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
@@ -206,8 +204,8 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		
-	    <dependency>
+
+		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
 			<version>5.2.0</version>
@@ -222,7 +220,25 @@
 		</dependency>
 
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>EclipseLink</id>
+			<name>EclipseLink repository</name>
+			<url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
+		</repository>
+	</repositories>
 	<build>
 		<finalName>sadocWeb</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<compilerVersion>1.6</compilerVersion>
+					<fork>false</fork>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>

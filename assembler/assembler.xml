@@ -12,7 +12,7 @@
                 <dependencySet>
                         <includes>
                                 <include>fr.univartois.ili.sadoc:sadocWeb</include>
-                                <include>fr.univartois.ili.sadoc:webservice</include>
+                                <include>fr.univartois.ili.sadoc:sadocWebService</include>
                         </includes>
                         <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
                         <outputDirectory>wars/</outputDirectory>

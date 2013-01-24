@@ -5,34 +5,33 @@
 	<artifactId>sadocWebService</artifactId>
 	<packaging>war</packaging>
 	<version>0.1</version>
-	<name>sadocWebService Maven Webapp</name>
+	<name>sadocWebService</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
 			<groupId>fr.univartois.ili.sadoc</groupId>
 			<artifactId>entities-ws</artifactId>
 			<version>0.1</version>
-			
 		</dependency>
-		
-<!-- 		<dependency> -->
-<!-- 	<groupId>org.springframework</groupId> -->
-<!-- 	<artifactId>spring</artifactId> -->
-<!-- 	<version>2.5.6</version> -->
-<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring</artifactId> -->
+		<!-- <version>2.5.6</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-		
+
 		<dependency>
-	<groupId>cglib</groupId>
-	<artifactId>cglib</artifactId>
-	<version>2.2.2</version>
-</dependency>
-		
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -52,7 +51,7 @@
 			<scope>test</scope>
 		</dependency>
 
-            
+
 		<dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-core</artifactId>
@@ -77,7 +76,7 @@
 			<artifactId>castor</artifactId>
 			<version>1.2</version>
 		</dependency>
- 
+
 		<!-- Castor need this -->
 		<dependency>
 			<groupId>xerces</groupId>
@@ -230,12 +229,12 @@
 			<version>1.0.1</version>
 		</dependency>
 	</dependencies>
-	
-			<repositories>
+
+	<repositories>
 		<repository>
-			<id>EclipseLink Repo</id>
-			<url>http://www.eclipse.org/downloads/download.php?r=1&amp;nf=1&amp;file=/rt/eclipselink/maven.repo
-			</url>
+			<id>EclipseLink</id>
+			<name>EclipseLink repository</name>
+			<url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
 		</repository>
 		<repository>
 			<id>maven-repository.dev.java.net</id>
@@ -250,7 +249,7 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -260,6 +259,15 @@
 				<!-- <webXml>src/main/webService/WEB-INF/web.xml</webXml> -->
 				<!-- </configuration> -->
 			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<compilerVersion>1.6</compilerVersion>
+					<fork>false</fork>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
 		</plugins>
 		<resources>
 			<resource>
@@ -267,11 +275,10 @@
 				<filtering>true</filtering>
 			</resource>
 			<resource>
-				
 				<directory>${project.groupId}/entities/src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-		<finalName>sadocWeb</finalName>
+		<finalName>sadocWebService</finalName>
 	</build>
 </project>
