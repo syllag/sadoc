@@ -1,0 +1,10 @@
+*.project*
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.classpath*
+*.settings*
+*target/*
+*.class

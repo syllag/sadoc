@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>fr.univartois.ili.sadoc</groupId>
+    <artifactId>sadoc-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>fr.univartois.ili.sadoc</groupId>
+  <artifactId>sadoc-dao-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>sadoc-dao-parent</name>
+  <modules>
+  	<module>sadoc-dao-commun</module>
+  	<module>sadoc-dao-ws</module>
+  	<module>sadoc-dao-ui</module>
+  
+  </modules>
+  
+  <build>
+		<directory>target</directory>
+		
+		<finalName>${artifactId}-${version}</finalName>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<testResources>
+			<testResource><directory>src/test/resources</directory></testResource>
+		</testResources>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
