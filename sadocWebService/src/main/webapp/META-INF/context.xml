@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/sadocWeb">
-  <ResourceLink global="ds/sadocwebserviceDS" name="ds/sadocwebserviceDS" type="javax.sql.DataSource"/>
-  <ResourceLink global="ds/sadocwebappDS" name="ds/sadocwebappDS" type="javax.sql.DataSource"/>
-</Context>

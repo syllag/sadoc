@@ -1,1 +1,0 @@
-Les referentiels de cette archive sont obsoletes
