@@ -11,14 +11,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
 import fr.univartois.ili.sadoc.client.webservice.IClientWebService;
 
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
-import fr.univartois.ili.sadoc.ui.ui.dao.AcquisitionDAO;
-import fr.univartois.ili.sadoc.ui.ui.dao.CompetenceDAO;
-import fr.univartois.ili.sadoc.ui.ui.dao.DocumentDAO;
-import fr.univartois.ili.sadoc.ui.ui.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.ui.utils.TestID;
 
 public class CheckDocument extends ActionSupport implements SessionAware {
@@ -58,12 +55,17 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 // TODO : Changer les appels
 		if (sa != null && TestID.trueFalseID(sa)) {
 
-			DocumentDAO ddao = new DocumentDAO();
-			AcquisitionDAO adao = new AcquisitionDAO();
-			OwnerDAO odao = new OwnerDAO();
-			CompetenceDAO cdao = new CompetenceDAO();
-			Document doc = ddao.findById(sa);
-
+			//## TODO injection spring pour interface
+			IMetierUIServices metierUIServices = null;
+						
+//##			DocumentDAO ddao = new DocumentDAO();
+//##			AcquisitionDAO adao = new AcquisitionDAO();
+//##			OwnerDAO odao = new OwnerDAO();
+//##			CompetenceDAO cdao = new CompetenceDAO();
+			
+			//##Document doc = ddao.findById(sa);
+			Document doc = metierUIServices.findDocumentById(sa);
+			
 			if (doc == null) {
 
 				IClientWebService clientWebService = new ClientWebServiceImpl();
@@ -82,7 +84,10 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 					Document doctoregister = new Document(docws.getName(),
 							docws.getCheckSum(), "", fakearray, null);
 					doctoregister.setId(TestID.createFalseID((docws.getId().longValue())));
-					ddao.create(doctoregister);
+					
+					//##ddao.create(doctoregister);
+					metierUIServices.createDocument(doctoregister);
+					
 
 					document = doctoregister;
 					clientWebService.getCompetences(docws.getId().longValue());
@@ -91,33 +96,43 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 					fr.univartois.ili.sadoc.client.webservice.tools.Owner incowner = comp
 							.keySet().iterator().next();
 
-					owner = odao.findById(incowner.getId().intValue());
+					//##owner = odao.findById(incowner.getId().intValue());
+					metierUIServices.findOwnerById(incowner.getId().intValue());
+					
 					if (owner == null) {
 						Owner owntoregister = new Owner();
 						owntoregister.setFirstName(incowner.getFirstName());
 						owntoregister.setLastName(incowner.getLastName());
 						owntoregister.setMail(incowner.getMail());
 						owntoregister.setId(incowner.getId().intValue());
-						odao.create(owntoregister);
+						
+						//##odao.create(owntoregister);
+						metierUIServices.createOwner(owntoregister);
+						
 						owner = owntoregister;
 					}
 
 					for (fr.univartois.ili.sadoc.client.webservice.tools.Competence competence : comp
 							.get(incowner)) {
 
-						Competence c = cdao.findById(competence.getId()
-								.intValue());
+						//##Competence c = cdao.findById(competence.getId()
+							//	.intValue());
+						Competence c = metierUIServices.findCompetenceById(competence.getId().intValue());
 						if (c == null) {
 							c = new Competence(competence.getName(),
 									competence.getDescription());
 							c.setId(competence.getId().intValue());
-							cdao.create(c);
+							
+							//##cdao.create(c);
+							metierUIServices.createCompetence(c);
 						}
 						Acquisition a = new Acquisition();
 						a.setCompetence(c);
 						a.setDocument(doctoregister);
 						a.setOwner(owner);
-						adao.create(a);
+						
+						//## adao.create(a);
+						metierUIServices.createAcquisition(a);
 						listCompetences.add(c);
 					}
 				} else {
@@ -126,7 +141,8 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 
 			} else {
 				document = doc;
-				List<Acquisition> acq = adao.findByDocument(doc);
+				//##List<Acquisition> acq = adao.findByDocument(doc);
+				List<Acquisition> acq = metierUIServices.findAcquisitionByDocument(doc);
 				owner = acq.get(0).getOwner();
 				for (Acquisition a : acq) {
 					listCompetences.add(a.getCompetence());
