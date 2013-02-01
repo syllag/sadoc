@@ -99,8 +99,8 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			return INPUT;
 		}
 		
-		Synchronization s= new Synchronization();
-		s.SynchronizeWebAPPDatabase(personne.getMail());
+//		Synchronization s= new Synchronization();
+//		s.SynchronizeWebAPPDatabase(personne.getMail());
 		return SUCCESS;
 	}
 	

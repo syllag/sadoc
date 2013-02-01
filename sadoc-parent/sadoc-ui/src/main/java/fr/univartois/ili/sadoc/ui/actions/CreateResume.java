@@ -15,7 +15,7 @@ import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.form.CreateResumeForm;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.entities.Competence;
+import fr.univartois.ili.sadoc.ui.metier.ui.entities.Competence;
 
 
 public class CreateResume extends ActionSupport implements SessionAware{
@@ -54,6 +54,7 @@ public class CreateResume extends ActionSupport implements SessionAware{
 		//##owner = odao.findById(idOwner); 
 		metierUIServices.findOwnerById(idOwner);
 		
+		//TODO recupérer de dao commun 
 		Set<Competence> listCompetences = new HashSet<Competence>();
 		String[] competences =  form.getListCompetences();
 		
