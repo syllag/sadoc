@@ -15,6 +15,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Degree;
@@ -22,8 +23,6 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.form.ManageConnectForm;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.AcquisitionDAO;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.OwnerDAO;
 
 /**
  * @author Damien Wattiez <Damien Wattiez at gmail.com>
@@ -45,6 +44,10 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	public String execute() {
 		// Create session
 		session = ActionContext.getContext().getSession();
+		
+		//## TODO injection
+		IMetierUIServices metierUIServices = null ;
+		
 		if (session.get("mail") != null) {
 			return SUCCESS;
 		}
@@ -53,8 +56,10 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 			session.put("incorrect", "");
 			return INPUT;
 		}
-		OwnerDAO odao = new OwnerDAO();
-
+		
+//##		OwnerDAO odao = new OwnerDAO();
+		
+		
 		Owner owner = null;
 		try {
 			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
@@ -71,8 +76,9 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 				}
 			}
 
-			owner = odao.findOwner(connect.getEmail(), hashString.toString());
-
+//#			owner = odao.findOwner(connect.getEmail(), hashString.toString());
+			owner = metierUIServices.findOwnerByEmailAndPassword(connect.getEmail(), hashString.toString());
+			
 		} catch (NoSuchAlgorithmException e) {
 		}
 
@@ -163,9 +169,13 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 			setCompetence.addAll(listDegrees.get(i).getCompetences());
 		}
 
-		AcquisitionDAO acquisDao = new AcquisitionDAO();
-		List<Acquisition> acquis = acquisDao.findByOwner(owner);
-
+//##		AcquisitionDAO acquisDao = new AcquisitionDAO();
+//##		List<Acquisition> acquis = acquisDao.findByOwner(owner);
+		
+		//## TODO injection
+		IMetierUIServices metierUIServices = null ;
+		List<Acquisition> acquis = metierUIServices.findAcquisitionByOwner(owner);
+		
 		Iterator<Competence> item = setCompetence.iterator();
 		while (item.hasNext()) {
 			map.put(item.next(), new ArrayList<Document>());

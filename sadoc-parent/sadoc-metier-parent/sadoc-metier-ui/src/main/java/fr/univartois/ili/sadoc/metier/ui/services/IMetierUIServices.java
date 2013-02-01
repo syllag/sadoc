@@ -124,4 +124,13 @@ public interface IMetierUIServices {
 	 * @param document
 	 */
 	void updateDocument(Document document);
+	
+	/**
+	 * Ask the Resume to the DB
+	 * 
+	 * @param id
+	 * @return
+	 * 		
+	 */
+	Resume findResumeById(int id);
 }
