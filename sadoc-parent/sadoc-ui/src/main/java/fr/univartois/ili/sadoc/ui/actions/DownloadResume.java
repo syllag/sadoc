@@ -21,9 +21,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.ResumeDAO;
 
 public class DownloadResume extends ActionSupport implements SessionAware {
 
@@ -59,8 +59,10 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 		Document document = new Document();
 		FileOutputStream fo;
 
-		ResumeDAO resumeDao = new ResumeDAO();
-		Resume resume = resumeDao.findById(cv);
+//##		ResumeDAO resumeDao = new ResumeDAO();		
+//##		Resume resume = resumeDao.findById(cv);
+		IMetierUIServices metierUIServices = null ;
+		Resume resume =  metierUIServices.findResumeById(cv);
 		try {
 			session = ActionContext.getContext().getSession();
 			fo = new FileOutputStream("/tmp/" + session.get("id") + "_" + cv
@@ -135,6 +137,7 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 		if (session.get("mail") == null) {
 			return "astalavista";
 		}
+		
 		try {
 			createPdf();
 
