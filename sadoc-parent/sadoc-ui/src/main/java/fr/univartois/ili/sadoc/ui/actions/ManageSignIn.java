@@ -9,10 +9,9 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageSignInForm;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.OwnerDAO;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.utils.Synchronization;
 
 /**
  * @author Diane Dutartre <LiDaYuRan at gmail.com>
@@ -47,8 +46,13 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			session.put("error", "");
 			return INPUT;
 		}
-		OwnerDAO odao = new OwnerDAO();
-		if (odao.findByMail(form.getMail()) != null) {
+		
+		//## TODO injection 
+		IMetierUIServices metierUIServices = null ;
+		
+//##		OwnerDAO odao = new OwnerDAO();
+//##		if (odao.findByMail(form.getMail()) != null) {
+		if (metierUIServices.findOwnerByEmail(form.getMail()) != null){		
 			session.put("error", "Mail déjà utilisé");
 			return INPUT;
 		}
@@ -85,7 +89,8 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			}
 			personne.setPassword(hashString.toString());
 			
-			odao.create(personne);
+			//##odao.create(personne);
+			metierUIServices.createOwner(personne);
 			
 			// TODO : connecter la personne
 		} catch (Exception e) {

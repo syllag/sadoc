@@ -7,9 +7,9 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageProfileForm;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.OwnerDAO;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -32,9 +32,13 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 			return INPUT;
 		}
 		
+		//## TODO injection 
+		IMetierUIServices metierUIServices = null ;
+				
 		String mail = (String) session.get("mail");
-		OwnerDAO odao=new OwnerDAO();
-		Owner owner = odao.findByMail(mail);
+//##		OwnerDAO odao=new OwnerDAO();
+//##		Owner owner = odao.findByMail(mail);
+		Owner owner = metierUIServices.findOwnerByEmail(mail);
 		
 		//owner.setFirstName(form.getFirstName());
 		//owner.setLastName(form.getLastName());
@@ -54,8 +58,8 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		session.put("phone", owner.getPhone());
 		ActionContext.getContext().setSession(session);
 		
-		odao.update(owner);
-		
+//##		odao.update(owner);
+		metierUIServices.updateOwner(owner);
 		
 		
 		return SUCCESS;
