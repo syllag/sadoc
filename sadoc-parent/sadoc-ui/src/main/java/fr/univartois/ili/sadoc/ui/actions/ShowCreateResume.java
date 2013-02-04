@@ -10,11 +10,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.AcquisitionDAO;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.OwnerDAO;
 
 //TODO : Changer l'acquisition de la session
 public class ShowCreateResume extends ActionSupport implements SessionAware{
@@ -34,12 +33,16 @@ public class ShowCreateResume extends ActionSupport implements SessionAware{
 	public String execute() {
 		session = ActionContext.getContext().getSession();
 		
+		//## TODO injection 
+		IMetierUIServices metierUIServices = null ;
 
 		int idOwner = (Integer) session.get("id");
-		OwnerDAO odao = new OwnerDAO();
-		AcquisitionDAO adao = new AcquisitionDAO();
-		Owner owner = odao.findById(idOwner);
-		for(Acquisition a : adao.findByOwner(owner)){
+//##		OwnerDAO odao = new OwnerDAO();
+//##		AcquisitionDAO adao = new AcquisitionDAO();
+//##		Owner owner = odao.findById(idOwner);
+//##		for(Acquisition a : adao.findByOwner(owner)){
+		Owner owner = metierUIServices.findOwnerById(idOwner);
+		for (Acquisition a : metierUIServices.findAcquisitionByOwner(owner)){
 			listCompetences.add(a.getCompetence());
 		}
 		return SUCCESS;

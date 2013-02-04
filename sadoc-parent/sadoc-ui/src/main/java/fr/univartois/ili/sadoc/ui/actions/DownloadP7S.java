@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 
 public class DownloadP7S extends ActionSupport implements SessionAware {
@@ -42,10 +43,14 @@ public class DownloadP7S extends ActionSupport implements SessionAware {
 			return "astalavista";
 		}
 		
+		IMetierUIServices metierUIServices = null ;
+		
 		//long realID = TestID.findRealID(sa);
 		
-		DocumentDAO ddao = new DocumentDAO();
-		Document doc = ddao.findById(sa);
+		//##DocumentDAO ddao = new DocumentDAO();
+		//##Document doc = ddao.findById(sa);
+		Document doc = metierUIServices.findDocumentById(sa);
+		
 		if (doc == null) {
 			return ERROR;
 		}
