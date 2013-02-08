@@ -5,9 +5,9 @@
     <artifactId>sadoc-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>fr.univartois.ili.sadoc</groupId>
+
   <artifactId>sadoc-metier-parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+
   <packaging>pom</packaging>
   <name>sadoc parent metier</name>
   <description>parent metier</description>
