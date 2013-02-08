@@ -2,9 +2,9 @@ package fr.univartois.ili.sadoc.ui.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.ui.form.ModifyUrlForm;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.ui.utils.TestID;
 
 public class ModifyUrl extends ActionSupport {
@@ -18,11 +18,17 @@ public class ModifyUrl extends ActionSupport {
 	private String id;
 	
 	public String execute() {
-		DocumentDAO ddao = new DocumentDAO();
-		Document document = ddao.findById(form.getDocumentId());
+		//## TODO injection 
+		IMetierUIServices metierUIServices = null ;
+
+		//##DocumentDAO ddao = new DocumentDAO();
+		//##Document document = ddao.findById(form.getDocumentId());
+		Document document = metierUIServices.findDocumentById(form.getDocumentId());
+		
 		if (document != null) {
 			document.setUrl(form.getUrl());
-			ddao.update(document);
+			//##ddao.update(document);
+			metierUIServices.updateDocument(document);
 			id = document.getId();
 			return SUCCESS;
 		}

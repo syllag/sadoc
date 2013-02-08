@@ -9,10 +9,10 @@ import java.io.InputStream;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.ui.sign.IVerifSignFile;
 import fr.univartois.ili.sadoc.ui.sign.VerifSignFileImpl;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.DocumentDAO;
 
 public class VerifyDocument extends ActionSupport {
 
@@ -25,8 +25,12 @@ public class VerifyDocument extends ActionSupport {
 	private String id;
 	
 	public String execute() {
-		DocumentDAO ddao = new DocumentDAO();
-		Document document = ddao.findById(id);
+		//## TODO injection 
+		IMetierUIServices metierUIServices = null ;
+		
+		//##DocumentDAO ddao = new DocumentDAO();
+		//##Document document = ddao.findById(id);
+		Document document = metierUIServices.findDocumentById(id);
 		if (document != null) {
 			try {				
 				InputStream input= new FileInputStream(file);

@@ -11,13 +11,11 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.form.CreateResumeForm;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.CompetenceDAO;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.OwnerDAO;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.dao.ResumeDAO;
-import fr.univartois.ili.sadoc.ui.ui.metier.ui.entities.Competence;
+import fr.univartois.ili.sadoc.ui.metier.ui.entities.Competence;
 
 
 public class CreateResume extends ActionSupport implements SessionAware{
@@ -29,7 +27,7 @@ public class CreateResume extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
 	private CreateResumeForm form;
 	private Map<String, Object> session;
-	private ResumeDAO rdao;
+//##	private ResumeDAO rdao;
 	/************************************************/
 	/*
 	 * (non-Javadoc)
@@ -39,26 +37,33 @@ public class CreateResume extends ActionSupport implements SessionAware{
 	public String execute(){
 		session = ActionContext.getContext().getSession();
 		
+		//## TODO injection 
+		IMetierUIServices metierUIServices = null ;
+		
 		if (form == null)
 			return INPUT;
 		
-		rdao = new ResumeDAO();
+//##	rdao = new ResumeDAO();
 		int idOwner = (Integer) session.get("id");
 		Resume resume = new Resume();
 		Owner owner = new Owner();
-		OwnerDAO odao = new OwnerDAO();
-		CompetenceDAO cdao = new CompetenceDAO();
-		ResumeDAO rdao = new ResumeDAO();
-		owner = odao.findById(idOwner); 
+//##		OwnerDAO odao = new OwnerDAO();
+//##		CompetenceDAO cdao = new CompetenceDAO();
+//##		ResumeDAO rdao = new ResumeDAO();
 		
+		//##owner = odao.findById(idOwner); 
+		metierUIServices.findOwnerById(idOwner);
+		
+		//TODO recupérer de dao commun 
 		Set<Competence> listCompetences = new HashSet<Competence>();
 		String[] competences =  form.getListCompetences();
 		
 		assert(competences.length != 0);
 		
-		for(String competence : form.getListCompetences())
-			listCompetences.add(cdao.findById(Integer.parseInt(competence)));
-		
+		for(String competence : form.getListCompetences()){
+//##			listCompetences.add(cdao.findById(Integer.parseInt(competence)));
+			listCompetences.add(metierUIServices.findCompetenceById(Integer.parseInt(competence)));
+		}
 		List<Competence> listCompetencesTmp= new ArrayList<Competence>();
 		for (Competence c : listCompetences){
 			listCompetencesTmp.add(c);
@@ -68,8 +73,10 @@ public class CreateResume extends ActionSupport implements SessionAware{
 
 		owner.addResume(resume);
 		try {
-			rdao.create(resume);
-			odao.update(owner);
+//##			rdao.create(resume);
+			metierUIServices.createResume(resume);			
+//##			odao.update(owner);
+			metierUIServices.updateOwner(owner);
 		} catch (Exception e) {
 			addActionMessage("Momentary problem... Please try again later.");
 			return INPUT;
