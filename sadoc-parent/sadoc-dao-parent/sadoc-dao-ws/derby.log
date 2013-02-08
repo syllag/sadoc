@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
-2013-01-28 15:23:01.432 GMT:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.6.2.1 - (999685): instance a816c00e-013c-81c1-18ea-000002ea63b0 
-on database directory memory:/homelocal/julie/SADOC/sadoc-parent/sadoc-dao-parent/sadoc-dao-ws/myDbWebServiceSADoc  with class loader sun.misc.Launcher$AppClassLoader@1f183871 
-Loaded from file:/homelocal/julie/.m2/repository/org/apache/derby/derby/10.6.2.1/derby-10.6.2.1.jar
+2013-01-28 16:08:52.337 GMT:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.6.2.1 - (999685): instance a816c00e-013c-81eb-1312-000002eb6980 
+on database directory memory:/homelocal/mohamed/workspacesadoc/sadoc/sadoc-parent/sadoc-dao-parent/sadoc-dao-ws/myDbWebServiceSADoc  with class loader sun.misc.Launcher$AppClassLoader@36d98810 
+Loaded from file:/homelocal/mohamed/.m2/repository/org/apache/derby/derby/10.6.2.1/derby-10.6.2.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_04-b20
+java.runtime.version=1.7.0-b147
 Database Class Loader started - derby.database.classpath=''
