@@ -20,7 +20,7 @@ public interface IMetierCommunServices {
 	 * @param id
 	 * @return
 	 */
-	Item findItemById(int id);
+	Item findItemById(long id);
 
 	/**
 	 * Ask the list of Item by Competence
@@ -43,7 +43,7 @@ public interface IMetierCommunServices {
 	 * @param id
 	 * @return
 	 */
-	Competence findCompetenceById(int id);
+	Competence findCompetenceById(long id);
 
 	/**
 	 * Insert the competence in Database
@@ -66,7 +66,7 @@ public interface IMetierCommunServices {
 	 * @param id
 	 * @return 
 	 */
-	Domaine findDomaineById(int id);
+	Domaine findDomaineById(long id);
 
 	/**
 	 * Insert the domaine in Database
@@ -81,7 +81,7 @@ public interface IMetierCommunServices {
 	 * @param id
 	 * @return
 	 */
-	Referentiel findReferentielById(int id);
+	Referentiel findReferentielById(long id);
 
 	/**
 	 * Ask the list of Domaine by Referentiel

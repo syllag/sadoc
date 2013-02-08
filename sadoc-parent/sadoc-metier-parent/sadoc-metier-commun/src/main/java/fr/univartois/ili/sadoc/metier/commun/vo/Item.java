@@ -7,11 +7,11 @@ package fr.univartois.ili.sadoc.metier.commun.vo;
  */
 public class Item {
 
-	private int id;
+	private long id;
 	private String codeItem;
 	private String description;
-	private int poids;
-	private int empreinte;
+	private long poids;
+	private long empreinte;
 	private String type;
 
 	public Item() {
@@ -26,11 +26,11 @@ public class Item {
 		this.setDescription(description);
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -50,15 +50,15 @@ public class Item {
 		this.description = description;
 	}
 
-	public int getPoids() {
+	public long getPoids() {
 		return poids;
 	}
 
-	public void setPoids(int poids) {
+	public void setPoids(long poids) {
 		this.poids = poids;
 	}
 
-	public int getEmpreinte() {
+	public long getEmpreinte() {
 		return empreinte;
 	}
 

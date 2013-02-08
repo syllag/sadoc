@@ -13,7 +13,7 @@ public class Competence implements Serializable {
 	 */
 	private static final long serialVersionUID = 5559364452348508266L;
 
-	private int id;
+	private long id;
 	private String codeCompetence;
 	private String description;
 
@@ -29,11 +29,11 @@ public class Competence implements Serializable {
 		this.setDescription(description);
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

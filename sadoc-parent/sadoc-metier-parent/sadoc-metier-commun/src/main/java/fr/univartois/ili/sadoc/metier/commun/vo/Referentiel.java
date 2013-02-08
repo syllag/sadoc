@@ -6,11 +6,11 @@ package fr.univartois.ili.sadoc.metier.commun.vo;
  * 
  */
 public class Referentiel {
-	private int id;
+	private long id;
 	private String codeReferentiel;
 	private String name;
 	private String description;
-	private int seuil;
+	private long seuil;
 	private String url;
 
 	public Referentiel() {
@@ -29,11 +29,11 @@ public class Referentiel {
 		this.url = url;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -69,11 +69,11 @@ public class Referentiel {
 		this.description = description;
 	}
 
-	public int getSeuil() {
+	public long getSeuil() {
 		return seuil;
 	}
 
-	public void setSeuil(int seuil) {
+	public void setSeuil(long seuil) {
 		this.seuil = seuil;
 	}
 

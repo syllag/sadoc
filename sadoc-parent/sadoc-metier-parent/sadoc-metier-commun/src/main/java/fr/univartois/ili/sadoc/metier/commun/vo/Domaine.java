@@ -7,7 +7,7 @@ package fr.univartois.ili.sadoc.metier.commun.vo;
  */
 public class Domaine {
 
-	private int id;
+	private long id;
 	private String codeDomaine;
 	private String description;
 
@@ -23,11 +23,11 @@ public class Domaine {
 		this.setDescription(description);
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
