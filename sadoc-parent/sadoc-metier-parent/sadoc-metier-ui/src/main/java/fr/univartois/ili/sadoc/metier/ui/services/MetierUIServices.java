@@ -7,6 +7,7 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
+import fr.univartois.sadoc.dao.services.IOwnerDAO;
 
 public class MetierUIServices implements IMetierUIServices{
 	
@@ -25,11 +26,11 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	public Owner findOwnerById(int id) {
-		return ownerDAO.findById(id);
+		return ownerDAO.findOwnerById(id);
 	}
 
 	public void createOwner(Owner owner) {
-		ownerDAO.create(owner);		
+		ownerDAO.createOwner(owner);		
 	}
 
 	public Competence findCompetenceById(int id) {
@@ -58,7 +59,7 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	public void updateOwner(Owner owner) {
-		ownerDAO.update(owner);		
+		ownerDAO.updateOwner(owner);		
 	}
 
 	public Owner findOwnerByEmailAndPassword(String email, String password) {
