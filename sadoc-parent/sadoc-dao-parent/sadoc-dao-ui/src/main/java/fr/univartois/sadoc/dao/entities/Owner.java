@@ -21,7 +21,7 @@ public class Owner implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private long id;
 	// TODO Numéro de SECU ou Numéro carte séjour
 
 	private String firstName;
@@ -33,7 +33,7 @@ public class Owner implements Serializable {
 	private String town;
 	private String phone;
 	
-	private int idOwnerWs;
+	private long idOwnerWs;
 
 
 	/************************************************/
@@ -61,11 +61,11 @@ public class Owner implements Serializable {
 		this.password = password;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -130,11 +130,11 @@ public class Owner implements Serializable {
 	}
 
 	
-	public int getIdOwnerWs() {
+	public long getIdOwnerWs() {
 		return idOwnerWs;
 	}
 
-	public void setIdOwnerWs(int idOwnerWs) {
+	public void setIdOwnerWs(long idOwnerWs) {
 		this.idOwnerWs = idOwnerWs;
 	}
 	
