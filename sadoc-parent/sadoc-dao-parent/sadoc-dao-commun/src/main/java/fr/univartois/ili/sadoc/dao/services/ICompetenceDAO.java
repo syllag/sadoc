@@ -18,7 +18,7 @@ public interface ICompetenceDAO {
 	 * @return Competence
 	 * return the corresponding competence
 	 */
-	Competence findCompetenceById(int id);
+	Competence findCompetenceById(long id);
 
 	/**
 	 * Insert the competence in DB
