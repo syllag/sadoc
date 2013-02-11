@@ -17,7 +17,7 @@ public interface IItemDAO {
 	 * @return Item
 	 * return the corresponding item
 	 */
-	Item findItemById(int id);
+	Item findItemById(long id);
 
 	/**
 	 * Insert the item in DB
