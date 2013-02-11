@@ -47,8 +47,6 @@ public class DownloadP7S extends ActionSupport implements SessionAware {
 		
 		//long realID = TestID.findRealID(sa);
 		
-		//##DocumentDAO ddao = new DocumentDAO();
-		//##Document doc = ddao.findById(sa);
 		Document doc = metierUIServices.findDocumentById(sa);
 		
 		if (doc == null) {

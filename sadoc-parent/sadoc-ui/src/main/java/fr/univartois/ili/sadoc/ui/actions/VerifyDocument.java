@@ -28,8 +28,6 @@ public class VerifyDocument extends ActionSupport {
 		//## TODO injection 
 		IMetierUIServices metierUIServices = null ;
 		
-		//##DocumentDAO ddao = new DocumentDAO();
-		//##Document document = ddao.findById(id);
 		Document document = metierUIServices.findDocumentById(id);
 		if (document != null) {
 			try {				

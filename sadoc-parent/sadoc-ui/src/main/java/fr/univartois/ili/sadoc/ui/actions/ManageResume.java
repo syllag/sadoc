@@ -28,9 +28,6 @@ public class ManageResume  extends ActionSupport implements SessionAware {
 		
 		String mail = (String) session.get("mail");
 
-//##		ResumeDAO rdao=new ResumeDAO();
-//##		OwnerDAO odao=new OwnerDAO();
-//##		Owner own=odao.findByMail(mail);
 		Owner own = metierUIServices.findOwnerByEmail(mail);
 		
 		//res.setOwner(own);		

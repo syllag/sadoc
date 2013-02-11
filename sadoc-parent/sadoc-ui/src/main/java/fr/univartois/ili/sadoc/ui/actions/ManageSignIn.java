@@ -50,8 +50,6 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		//## TODO injection 
 		IMetierUIServices metierUIServices = null ;
 		
-//##		OwnerDAO odao = new OwnerDAO();
-//##		if (odao.findByMail(form.getMail()) != null) {
 		if (metierUIServices.findOwnerByEmail(form.getMail()) != null){		
 			session.put("error", "Mail déjà utilisé");
 			return INPUT;
@@ -89,7 +87,6 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			}
 			personne.setPassword(hashString.toString());
 			
-			//##odao.create(personne);
 			metierUIServices.createOwner(personne);
 			
 			// TODO : connecter la personne
