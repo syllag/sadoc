@@ -59,8 +59,6 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 		Document document = new Document();
 		FileOutputStream fo;
 
-//##		ResumeDAO resumeDao = new ResumeDAO();		
-//##		Resume resume = resumeDao.findById(cv);
 		IMetierUIServices metierUIServices = null ;
 		Resume resume =  metierUIServices.findResumeById(cv);
 		try {

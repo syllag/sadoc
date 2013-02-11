@@ -27,7 +27,7 @@ public class CreateResume extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
 	private CreateResumeForm form;
 	private Map<String, Object> session;
-//##	private ResumeDAO rdao;
+
 	/************************************************/
 	/*
 	 * (non-Javadoc)
@@ -43,15 +43,10 @@ public class CreateResume extends ActionSupport implements SessionAware{
 		if (form == null)
 			return INPUT;
 		
-//##	rdao = new ResumeDAO();
 		int idOwner = (Integer) session.get("id");
 		Resume resume = new Resume();
 		Owner owner = new Owner();
-//##		OwnerDAO odao = new OwnerDAO();
-//##		CompetenceDAO cdao = new CompetenceDAO();
-//##		ResumeDAO rdao = new ResumeDAO();
 		
-		//##owner = odao.findById(idOwner); 
 		metierUIServices.findOwnerById(idOwner);
 		
 		//TODO recupérer de dao commun 
@@ -61,7 +56,6 @@ public class CreateResume extends ActionSupport implements SessionAware{
 		assert(competences.length != 0);
 		
 		for(String competence : form.getListCompetences()){
-//##			listCompetences.add(cdao.findById(Integer.parseInt(competence)));
 			listCompetences.add(metierUIServices.findCompetenceById(Integer.parseInt(competence)));
 		}
 		List<Competence> listCompetencesTmp= new ArrayList<Competence>();
@@ -73,9 +67,7 @@ public class CreateResume extends ActionSupport implements SessionAware{
 
 		owner.addResume(resume);
 		try {
-//##			rdao.create(resume);
 			metierUIServices.createResume(resume);			
-//##			odao.update(owner);
 			metierUIServices.updateOwner(owner);
 		} catch (Exception e) {
 			addActionMessage("Momentary problem... Please try again later.");

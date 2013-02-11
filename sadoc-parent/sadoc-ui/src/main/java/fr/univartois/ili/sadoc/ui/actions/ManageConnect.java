@@ -57,8 +57,6 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 			return INPUT;
 		}
 		
-//##		OwnerDAO odao = new OwnerDAO();
-		
 		
 		Owner owner = null;
 		try {
@@ -76,7 +74,6 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 				}
 			}
 
-//#			owner = odao.findOwner(connect.getEmail(), hashString.toString());
 			owner = metierUIServices.findOwnerByEmailAndPassword(connect.getEmail(), hashString.toString());
 			
 		} catch (NoSuchAlgorithmException e) {
@@ -168,9 +165,6 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		for (int i = 0; i < listDegrees.size(); i++) {
 			setCompetence.addAll(listDegrees.get(i).getCompetences());
 		}
-
-//##		AcquisitionDAO acquisDao = new AcquisitionDAO();
-//##		List<Acquisition> acquis = acquisDao.findByOwner(owner);
 		
 		//## TODO injection
 		IMetierUIServices metierUIServices = null ;

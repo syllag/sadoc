@@ -21,13 +21,10 @@ public class ModifyUrl extends ActionSupport {
 		//## TODO injection 
 		IMetierUIServices metierUIServices = null ;
 
-		//##DocumentDAO ddao = new DocumentDAO();
-		//##Document document = ddao.findById(form.getDocumentId());
 		Document document = metierUIServices.findDocumentById(form.getDocumentId());
 		
 		if (document != null) {
 			document.setUrl(form.getUrl());
-			//##ddao.update(document);
 			metierUIServices.updateDocument(document);
 			id = document.getId();
 			return SUCCESS;
