@@ -14,7 +14,7 @@ public interface IReferentielDAO {
 	 * @return Referentiel
 	 * return the corresponding referentiel
 	 */
-	Referentiel findReferentielById(int id);
+	Referentiel findReferentielById(long id);
 
 	/**
 	 * Insert the referentiel in DB

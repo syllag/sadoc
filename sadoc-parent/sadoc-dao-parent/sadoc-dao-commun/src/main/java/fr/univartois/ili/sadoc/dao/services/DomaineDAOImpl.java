@@ -17,15 +17,9 @@ public class DomaineDAOImpl implements IDomaineDAO {
 	}
 
 	@Override
-	public Domaine findDomaineById(int id) {
-		TypedQuery<Domaine> query = em.createQuery(
-				"SELECT d FROM Domaine d WHERE d.id = :id", Domaine.class);
-		query.setParameter("id", id);
-		try {
-			return query.getSingleResult();
-		} catch (Exception e) {
-		}
-		return null;
+	public Domaine findDomaineById(long id) {
+		Domaine domaine = em.find(Domaine.class, id);
+		return domaine;
 	}
 
 	@Override
@@ -36,7 +30,7 @@ public class DomaineDAOImpl implements IDomaineDAO {
 	}
 
 	@Override
-	public List<Domaine> findDomaineByReferentiel(Referentiel referentiel) {
+	public List<Domaine> findDomaineByReferentiel(Referentiel referentiel) {		
 		TypedQuery<Domaine> query = em.createQuery(
 				"SELECT d FROM Domaine d WHERE d.referentiel = :referentiel",
 				Domaine.class);

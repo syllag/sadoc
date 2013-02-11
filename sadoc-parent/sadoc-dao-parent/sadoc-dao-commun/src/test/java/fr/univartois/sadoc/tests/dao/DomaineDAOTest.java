@@ -1,13 +1,17 @@
 package fr.univartois.sadoc.tests.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.dao.entities.Domaine;
@@ -27,20 +31,60 @@ public class DomaineDAOTest {
 		ddaoi = new DomaineDAOImpl(em);
 	}
 
+	@After
+	public void tearDown() {
+		em.close();
+	}
+
 	@Test
-	public void testCreate() {
+	public void testSearchId() {
 		Domaine domaine = new Domaine();
 		domaine.setCodeDomaine("codeDomaine");
 		domaine.setDescription("description");
-		domaine.setId(1);
-		domaine.setReferentiel(null);
+		em.getTransaction().begin();
+		em.persist(domaine);
+		em.getTransaction().commit();
+		Domaine domaineResults = ddaoi.findDomaineById(domaine.getId());
+		assertEquals(domaine.getCodeDomaine(), domaineResults.getCodeDomaine());
+		assertEquals(domaine.getCompetences(), domaineResults.getCompetences());
+		assertEquals(domaine.getDescription(), domaineResults.getDescription());
+		assertEquals(domaine.getId(), domaineResults.getId());
+		assertEquals(domaine.getReferentiel(), domaineResults.getReferentiel());
+		em.getTransaction().begin();
+		em.remove(domaine);
+		em.getTransaction().commit();
+	}
+
+	@Test
+	public void testCreate() {
+		Domaine domaine = new Domaine();
 		ddaoi.createDomaine(domaine);
 		Domaine d = em.find(Domaine.class, domaine.getId());
 		assertEquals(domaine, d);
+		assertNotNull("id not null", domaine.getId());
+		em.getTransaction().begin();
+		em.remove(domaine);
+		em.getTransaction().commit();
 	}
 
-	@Ignore@Test
-	public void testSearch() {
-	}
+	@Test
+	public void testSearchReferentiel() {
+		Domaine domaine = new Domaine();
+		Referentiel referentiel = new Referentiel();
+		em.getTransaction().begin();
+		em.persist(referentiel);
+		em.getTransaction().commit();
+		domaine.setReferentiel(referentiel);
+		em.getTransaction().begin();
+		em.persist(domaine);
+		em.getTransaction().commit();
+		List<Domaine> domaineResults = ddaoi
+				.findDomaineByReferentiel(referentiel);
+		assertTrue(domaineResults.contains(domaine));
 
+		em.getTransaction().begin();
+		em.remove(referentiel);
+		em.remove(domaine);
+		em.getTransaction().commit();
+	}
 }

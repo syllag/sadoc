@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -13,6 +14,7 @@ public class Referentiel implements Serializable {
 	private static final long serialVersionUID = -1754735558436958586L;
 
 	@Id
+	@GeneratedValue
 	private long id;
 	private String codeReferentiel;
 	private String name;

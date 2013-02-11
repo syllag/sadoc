@@ -18,7 +18,7 @@ public interface IDomaineDAO {
 	 * @return Domaine
 	 * return the corresponding domaine
 	 */
-	Domaine findDomaineById(int id);
+	Domaine findDomaineById(long id);
 
 	/**
 	 * Insert the domaine in DB
