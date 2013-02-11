@@ -1,9 +1,9 @@
-package fr.univartois.sadoc.dao.services;
+package fr.univartois.ili.sadoc.dao.services;
 
 import java.util.List;
 
-import fr.univartois.sadoc.dao.entities.Referentiel;
-import fr.univartois.sadoc.dao.entities.Domaine;
+import fr.univartois.ili.sadoc.dao.entities.Domaine;
+import fr.univartois.ili.sadoc.dao.entities.Referentiel;
 
 
 /**
@@ -25,7 +25,7 @@ public interface IDomaineDAO {
 	 * 
 	 * @param competence that is the domaine to create 
 	 */
-	void createDomanine(Domaine domaine);
+	void createDomaine(Domaine domaine);
 	
 	/**
 	 * Ask the list of Domaine by Referentiel

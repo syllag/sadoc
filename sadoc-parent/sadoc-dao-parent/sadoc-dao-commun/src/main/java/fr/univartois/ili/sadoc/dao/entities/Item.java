@@ -1,4 +1,4 @@
-package fr.univartois.sadoc.dao.entities;
+package fr.univartois.ili.sadoc.dao.entities;
 
 import java.io.Serializable;
 

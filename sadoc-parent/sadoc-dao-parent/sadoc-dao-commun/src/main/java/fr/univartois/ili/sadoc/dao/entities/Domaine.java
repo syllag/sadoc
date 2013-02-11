@@ -1,10 +1,11 @@
-package fr.univartois.sadoc.dao.entities;
+package fr.univartois.ili.sadoc.dao.entities;
 
 import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -13,6 +14,7 @@ public class Domaine implements Serializable{
 
 	private static final long serialVersionUID = 1351118578858097701L;
 
+	@Id
 	@GeneratedValue
 	private long id;
 	private String codeDomaine;

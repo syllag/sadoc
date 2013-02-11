@@ -1,9 +1,9 @@
-package fr.univartois.sadoc.dao.services;
+package fr.univartois.ili.sadoc.dao.services;
 
 import java.util.List;
 
-import fr.univartois.sadoc.dao.entities.Competence;
-import fr.univartois.sadoc.dao.entities.Domaine;
+import fr.univartois.ili.sadoc.dao.entities.Competence;
+import fr.univartois.ili.sadoc.dao.entities.Domaine;
 
 
 /**
