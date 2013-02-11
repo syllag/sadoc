@@ -1,6 +1,9 @@
 package fr.univartois.sadoc.dao.services;
 
+import java.util.List;
+
 import fr.univartois.sadoc.dao.entities.Competence;
+import fr.univartois.sadoc.dao.entities.Domaine;
 
 
 /**
@@ -23,5 +26,13 @@ public interface ICompetenceDAO {
 	 * @param competence that is the competence to create 
 	 */
 	void createCompetence(Competence competence);
+	
+	/**
+	 * Ask the list of Competence by domaine
+	 * 
+	 * @param domaine
+	 * @return List<Competence>
+	 */
+	List<Competence> findCompetenceByDomaine(Domaine domaine);
 
 }
