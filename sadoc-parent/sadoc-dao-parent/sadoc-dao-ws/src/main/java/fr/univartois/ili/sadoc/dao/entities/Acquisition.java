@@ -2,85 +2,82 @@ package fr.univartois.ili.sadoc.dao.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.ManyToMany;
 
-/**
- * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
- * @author damien wattiez <damien.wattiez at gmail.com>
- * @author Kenny Cormont <kennycormontili at gmail.com>
- * 
- */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Acquisition implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	
+	private static final long serialVersionUID = 3216317303555902356L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 	
-	@OneToOne
-	private Document document;
-	
-	@OneToOne
-	private int id_competence;
-	
-	@Temporal(TemporalType.DATE)
+	private String id_item;
 	private Date creationDate;
 	
-	/************************************************/
+	//rel
+	@ManyToMany
+	private List<Document> documents;
 
-	public Acquisition() {}
-	
-	public Acquisition(Document document, int id_competence,Date creationDate){
-		this.document=document;
-		this.id_competence=id_competence;
-		this.creationDate=creationDate;
-	}
-	
-	/************************************************/
-
-	public Document getDocument() {
-		return document;
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
 	}
 
-	public void setDocument(Document document) {
-		this.document = document;
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public int getId_ompetence() {
-		return id_competence;
+	/**
+	 * @return the id_item
+	 */
+	public String getId_item() {
+		return id_item;
 	}
 
-	public void setId_competence(int id_competence) {
-		this.id_competence = id_competence;
+	/**
+	 * @param id_item the id_item to set
+	 */
+	public void setId_item(String id_item) {
+		this.id_item = id_item;
 	}
 
+	/**
+	 * @return the creationDate
+	 */
 	public Date getCreationDate() {
 		return creationDate;
 	}
 
+	/**
+	 * @param creationDate the creationDate to set
+	 */
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	public int getId() {
-		return id;
+	/**
+	 * @return the documents
+	 */
+	public List<Document> getDocuments() {
+		return documents;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	/**
+	 * @param documents the documents to set
+	 */
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
 	}
+	
 }
