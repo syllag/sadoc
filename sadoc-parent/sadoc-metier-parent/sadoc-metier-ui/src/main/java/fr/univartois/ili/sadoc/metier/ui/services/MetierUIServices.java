@@ -27,12 +27,13 @@ public class MetierUIServices implements IMetierUIServices{
 
 	public Owner findOwnerById(int id) {
 		//TODO mapping
-		return ownerDAO.findOwnerById(id);
+//		return ownerDAO.findOwnerById(id);
+		return null;
 	}
 
 	public void createOwner(Owner owner) {
 		//TODO mapping
-		ownerDAO.createOwner(owner);		
+//		ownerDAO.createOwner(owner);		
 	}
 
 	public Competence findCompetenceById(int id) {
@@ -62,12 +63,13 @@ public class MetierUIServices implements IMetierUIServices{
 
 	public void updateOwner(Owner owner) {
 		//TODO mapping
-		ownerDAO.updateOwner(owner);		
+//		ownerDAO.updateOwner(owner);		
 	}
 
 	public Owner findOwnerByEmailAndPassword(String email, String password) {
 		//TODO mapping
-		return ownerDAO.findOwnerByEmailAndPassword(email, password);
+//		return ownerDAO.findOwnerByEmailAndPassword(email, password);
+		return null;
 	}
 
 	public List<Acquisition> findAcquisitionByOwner(Owner owner) {
@@ -77,7 +79,8 @@ public class MetierUIServices implements IMetierUIServices{
 
 	public Owner findOwnerByEmail(String email) {
 		//TODO mapping
-		return ownerDAO.findOwnerByEmail(email);
+//		return ownerDAO.findOwnerByEmail(email);
+		return null;
 	}
 
 	public void updateDocument(Document document) {
