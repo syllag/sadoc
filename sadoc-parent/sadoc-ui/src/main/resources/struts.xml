@@ -12,26 +12,26 @@
 			<result>content/home/Home.jsp</result>
 		</action>
 
-		<action name="ValidateConnect" class="fr.univartois.ili.sadoc.actions.ManageConnect"
+		<action name="ValidateConnect" class="fr.univartois.ili.sadoc.ui.actions.ManageConnect"
 			method="execute">
 			<result name="success">content/profile/Profile.jsp</result>
 			<result name="input">content/connect/Connect.jsp</result>
 		</action>
 
-		<action name="SignIn" class="fr.univartois.ili.sadoc.actions.ManageSignIn"
+		<action name="SignIn" class="fr.univartois.ili.sadoc.ui.actions.ManageSignIn"
 			method="execute">
 			<result name="success">content/connect/Connect.jsp</result>
 			<result name="input">content/signin/Signin.jsp</result>
 			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 
-		<action name="Deconnection" class="fr.univartois.ili.sadoc.actions.Deconnection">
+		<action name="Deconnection" class="fr.univartois.ili.sadoc.ui.actions.Deconnection">
 			<result name="input">content/home/Home.jsp</result>
 			<result name="success">content/home/Home.jsp</result>
 		</action>
 
 		<action name="ModifyProfile"
-			class="fr.univartois.ili.sadoc.actions.TestManageProfile">
+			class="fr.univartois.ili.sadoc.ui.actions.TestManageProfile">
 			<result name="input">content/profile/Profile.jsp</result>
 			<result name="success">content/profile/EditProfile.jsp</result>
 			<result name="astalavista">content/home/Home.jsp</result>
@@ -42,13 +42,13 @@
 			<result name="success">content/profile/Profile.jsp</result>
 		</action>
 
-		<action name="ModifyProfile2" class="fr.univartois.ili.sadoc.actions.ManageProfile">
+		<action name="ModifyProfile2" class="fr.univartois.ili.sadoc.ui.actions.ManageProfile">
 			<result name="success">content/profile/Profile.jsp</result>
 			<result name="input">content/profile/EditProfile.jsp</result>
 			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 
-		<action name="checkDocument" class="fr.univartois.ili.sadoc.actions.CheckDocument"
+		<action name="checkDocument" class="fr.univartois.ili.sadoc.ui.actions.CheckDocument"
 			method="execute">
 			<result name="success">content/DocumentInformation/documentInformation.jsp
 			</result>
@@ -57,7 +57,7 @@
 			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 
-		<action name="downloadResume" class="fr.univartois.ili.sadoc.actions.DownloadResume"
+		<action name="downloadResume" class="fr.univartois.ili.sadoc.ui.actions.DownloadResume"
 			method="execute">
 			<result name="success" type="stream">
 				<param name="contentType">application/pdf</param>
@@ -68,14 +68,14 @@
 			<result name="astalavista">content/home/Home.jsp</result>
 
 		</action>
-		<action name="manageResume" class="fr.univartois.ili.sadoc.actions.ManageResume"
+		<action name="manageResume" class="fr.univartois.ili.sadoc.ui.actions.ManageResume"
 			method="execute">
 			<result name="success">content/resume/manageResume.jsp
 			</result>
 			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 
-		<action name="downloadP7S" class="fr.univartois.ili.sadoc.actions.DownloadP7S"
+		<action name="downloadP7S" class="fr.univartois.ili.sadoc.ui.actions.DownloadP7S"
 			method="execute">
 			<result name="success" type="stream">
 				<param name="contentType">application/x-pkcs7-signature</param>
@@ -87,17 +87,17 @@
 			</result>
 			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
-		<action name="ShowCreateResume" class="fr.univartois.ili.sadoc.actions.ShowCreateResume"
+		<action name="ShowCreateResume" class="fr.univartois.ili.sadoc.ui.actions.ShowCreateResume"
 			method="execute">
 			<result name="success">content/resume/createResume.jsp</result>
 		</action>
 
-		<action name="CreateResume" class="fr.univartois.ili.sadoc.actions.CreateResume"
+		<action name="CreateResume" class="fr.univartois.ili.sadoc.ui.actions.CreateResume"
 			method="execute">
 			<result name="success">content/resume/manageResume.jsp</result>
 		</action>
 
-		<action name="ModifyUrl" class="fr.univartois.ili.sadoc.actions.ModifyUrl"
+		<action name="ModifyUrl" class="fr.univartois.ili.sadoc.ui.actions.ModifyUrl"
 			method="execute">
 			<result name="success" type="redirectAction">
 				<param name="actionName">checkDocument</param>
@@ -106,7 +106,7 @@
 			</result>
 		</action>
 
-		<action name="VerifyDocument" class="fr.univartois.ili.sadoc.actions.VerifyDocument"
+		<action name="VerifyDocument" class="fr.univartois.ili.sadoc.ui.actions.VerifyDocument"
 			method="execute">
 			<result name="success">content/verification/VerifySuccess.jsp</result>
 			<result name="error">content/verification/VerifyError.jsp</result>
