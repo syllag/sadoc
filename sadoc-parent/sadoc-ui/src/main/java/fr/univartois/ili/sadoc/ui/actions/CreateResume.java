@@ -12,11 +12,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
+import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.form.CreateResumeForm;
-import fr.univartois.ili.sadoc.ui.metier.ui.entities.Competence;
-
 
 public class CreateResume extends ActionSupport implements SessionAware{
 
