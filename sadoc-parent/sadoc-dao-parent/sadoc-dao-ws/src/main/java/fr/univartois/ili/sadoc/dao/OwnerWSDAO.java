@@ -1,67 +1,66 @@
 package fr.univartois.ili.sadoc.dao;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.univartois.ili.sadoc.domaine.Owner;
 import fr.univartois.ili.sadoc.constante.Request;
+import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
+import fr.univartois.ili.sadoc.dao.services.IOwnerDAO;
+import fr.univartois.ili.sadoc.dao.services.IWebServiceDAO;
 
 @Service("ownerDAO")
 @Transactional
-public class OwnerDAO {
+public class OwnerWSDAO extends AbstractWebServiceDAO implements IWebServiceDAO<OwnerWS>,IOwnerDAO{
 
-	protected EntityManager entityManager;
-
-	public EntityManager getEntityManager() {
-		return entityManager;
+	public OwnerWSDAO() {
+		super();
 	}
 
-	@PersistenceContext(unitName = "sadocjpa")
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
-
-	public OwnerDAO() {
-		entityManager = PersistenceProvider.getEntityManager();
-	}
-
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public void create(Owner owner) {
+	public void create(OwnerWS owner) {
 		entityManager.persist(owner);
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Owner findById(int id) {
-		return entityManager.find(Owner.class, id);
+	public OwnerWS findById(long id) {
+		return entityManager.find(OwnerWS.class, id);
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Owner findByMail(String mail) {
+	public OwnerWS findByMail(String mail) {
 		try {
-			final TypedQuery<Owner> query;
+			final TypedQuery<OwnerWS> query;
 			query = entityManager.createQuery(Request.FIND_OWNER_BY_MAIL,
-					Owner.class);
+					OwnerWS.class);
 			query.setParameter("mail", mail);
 
 			return query.getSingleResult();
-		} catch(NoResultException e) {
-	        return null;
-	    }
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
-
+	
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public void update(Owner user) {
+	public void update(OwnerWS user) {
 		entityManager.merge(user);
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public void delete(Owner user) {
+	public void delete(OwnerWS user) {
 		entityManager.remove(user);
+	}
+
+	@Override
+	public void refresh(OwnerWS entity) {
+		entityManager.refresh(entity);		
 	}
 }
