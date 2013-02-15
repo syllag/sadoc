@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Document implements Serializable {
@@ -24,6 +26,7 @@ public class Document implements Serializable {
 	private String checksum;
 	@Enumerated(EnumType.STRING)
 	private ChecksumAlgorithm algorithm;
+	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 	
 	//rel
