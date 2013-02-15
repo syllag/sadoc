@@ -5,11 +5,12 @@
 	<persistence-unit name="sadocjpa" transaction-type="RESOURCE_LOCAL">
 <!-- 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
 		<non-jta-data-source>java:/comp/env/ds/sadocwebserviceDS</non-jta-data-source>
-		<class>fr.univartois.ili.sadoc.entities.classes.Certificate</class>
-		<class>fr.univartois.ili.sadoc.entities.classes.Competence</class>
-		<class>fr.univartois.ili.sadoc.entities.classes.Signature</class>
-		<class>fr.univartois.ili.sadoc.entities.classes.Owner</class>
-		<class>fr.univartois.ili.sadoc.entities.classes.Document</class>
+		<class>fr.univartois.ili.sadoc.dao.entities.Acquisition</class>
+		<class>fr.univartois.ili.sadoc.dao.entities.Certificate</class>
+		<class>fr.univartois.ili.sadoc.dao.entities.Document</class>
+		<class>fr.univartois.ili.sadoc.dao.entities.Signature</class>
+		<class>fr.univartois.ili.sadoc.dao.entities.OwnerWS</class>
+		
 
 
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
