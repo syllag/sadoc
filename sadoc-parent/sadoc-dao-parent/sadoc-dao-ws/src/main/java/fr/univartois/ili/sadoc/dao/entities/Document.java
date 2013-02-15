@@ -2,103 +2,132 @@ package fr.univartois.ili.sadoc.dao.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
- *
- */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Document implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	
+	private static final long serialVersionUID = 2105359651993183213L;
 	
 	@Id
-	private String id;
-	
+	private long id;
 	private String name;
-	private String checkSum;
-	private byte[] p7s;
 	private String url;
-	
+	private String checksum;
+	@Enumerated(EnumType.STRING)
+	private ChecksumAlgorithm algorithm;
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 	
-	/************************************************/
-	
-	public Document(){}
-	
-	public Document(String name, String checkSum,String url,byte[] p7s,Date creationDate){
-		this.name=name;
-		this.checkSum=checkSum;
-		this.url=url;
-		this.p7s=p7s;
-		this.creationDate=creationDate;
-	}
-	
-	/************************************************/
-	
-	public String getId() {
+	//rel
+	@OneToMany(mappedBy="document")
+	private List<Signature> signatures;
+	@ManyToMany
+	private List<Acquisition> acquisitions;
+	/**
+	 * @return the id
+	 */
+	public long getId() {
 		return id;
 	}
-
-	public void setId(String id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
 		this.id = id;
 	}
-
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
-
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getCheckSum() {
-		return checkSum;
-	}
-
-	public void setCheckSum(String checkSum) {
-		this.checkSum = checkSum;
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-	
-	public boolean equals(Document document) {
-		return this.id == document.getId();
-	}
-
-	public byte[] getP7s() {
-		return p7s;
-	}
-
-	public void setP7s(byte[] p7s) {
-		this.p7s = p7s;
-	}
-
+	/**
+	 * @return the url
+	 */
 	public String getUrl() {
 		return url;
 	}
-
+	/**
+	 * @param url the url to set
+	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
+	/**
+	 * @return the checksum
+	 */
+	public String getChecksum() {
+		return checksum;
+	}
+	/**
+	 * @param checksum the checksum to set
+	 */
+	public void setChecksum(String checksum) {
+		this.checksum = checksum;
+	}
+	/**
+	 * @return the algorithm
+	 */
+	public ChecksumAlgorithm getAlgorithm() {
+		return algorithm;
+	}
+	/**
+	 * @param algorithm the algorithm to set
+	 */
+	public void setAlgorithm(ChecksumAlgorithm algorithm) {
+		this.algorithm = algorithm;
+	}
+	/**
+	 * @return the creationDate
+	 */
+	public Date getCreationDate() {
+		return creationDate;
+	}
+	/**
+	 * @param creationDate the creationDate to set
+	 */
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+	/**
+	 * @return the signatures
+	 */
+	public List<Signature> getSignatures() {
+		return signatures;
+	}
+	/**
+	 * @param signatures the signatures to set
+	 */
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
+	}
+	/**
+	 * @return the acquisitions
+	 */
+	public List<Acquisition> getAcquisitions() {
+		return acquisitions;
+	}
+	/**
+	 * @param acquisitions the acquisitions to set
+	 */
+	public void setAcquisitions(List<Acquisition> acquisitions) {
+		this.acquisitions = acquisitions;
+	}
 }
-
-
