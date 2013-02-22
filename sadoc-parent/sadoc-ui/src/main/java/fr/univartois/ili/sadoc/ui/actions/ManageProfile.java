@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageProfileForm;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -21,6 +22,9 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	private ManageProfileForm form;
 	private Map<String, Object> session;
 	
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
+
+	
 	/************************************************/
 
 	public String execute () {
@@ -31,9 +35,6 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		if (form == null) {
 			return INPUT;
 		}
-		
-		//## TODO injection 
-		IMetierUIServices metierUIServices = null ;
 				
 		String mail = (String) session.get("mail");
 		Owner owner = metierUIServices.findOwnerByEmail(mail);
@@ -84,5 +85,8 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	}
 	public Map<String, Object> getSession(){
 		return session;
+	}
+	public IMetierUIServices getMetierUIService() {
+		return metierUIServices;
 	}
 }

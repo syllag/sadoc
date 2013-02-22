@@ -16,6 +16,7 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.form.CreateResumeForm;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 public class CreateResume extends ActionSupport implements SessionAware{
 
@@ -26,6 +27,8 @@ public class CreateResume extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
 	private CreateResumeForm form;
 	private Map<String, Object> session;
+	
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
 
 	/************************************************/
 	/*
@@ -35,9 +38,6 @@ public class CreateResume extends ActionSupport implements SessionAware{
 	 */
 	public String execute(){
 		session = ActionContext.getContext().getSession();
-		
-		//## TODO injection 
-		IMetierUIServices metierUIServices = null ;
 		
 		if (form == null)
 			return INPUT;
@@ -89,4 +89,11 @@ public class CreateResume extends ActionSupport implements SessionAware{
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;
 	}
+
+
+	public IMetierUIServices getMetierUIServices() {
+		return metierUIServices;
+	}
+
+	
 }
