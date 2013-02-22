@@ -2,7 +2,7 @@ package fr.univartois.ili.sadoc.constante;
 
 public interface Request {
 	
-	String FIND_OWNER_BY_MAIL = "SELECT o FROM Owner o WHERE o.mail_initial = :mail";
+	String FIND_OWNER_BY_MAIL = "SELECT o FROM OwnerWS o WHERE o.mail_initial = :mail";
 	String FIND_IN_SIGNATURE_BY_OWNER = "SELECT s FROM OwnerWS o, IN(o.certificates) c,IN(c.signatures) s WHERE o = :owner";
 	String FIND_IN_SIGNATURE_BY_DOCUMENT = "SELECT s FROM Signature s WHERE s.document = :document";
 	String FIND_IN_SIGNATURE_BY_CERTIFICATE = "SELECT s FROM Signature s WHERE s.certificate = :certificate";

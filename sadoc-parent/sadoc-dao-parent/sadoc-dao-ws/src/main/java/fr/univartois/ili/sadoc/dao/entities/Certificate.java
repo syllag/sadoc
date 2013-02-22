@@ -2,7 +2,7 @@ package fr.univartois.ili.sadoc.dao.entities;
 
 import java.io.Serializable;
 import java.sql.Blob;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;

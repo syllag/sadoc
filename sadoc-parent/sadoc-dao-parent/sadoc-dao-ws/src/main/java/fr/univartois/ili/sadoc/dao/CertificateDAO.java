@@ -12,11 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.univartois.ili.sadoc.constante.Request;
 import fr.univartois.ili.sadoc.dao.entities.Certificate;
 import fr.univartois.ili.sadoc.dao.services.ICertificateDAO;
-import fr.univartois.ili.sadoc.dao.services.IWebServiceDAO;
 
 @Service("certificateDAO")
 @Transactional
-public class CertificateDAO extends AbstractWebServiceDAO implements IWebServiceDAO<Certificate>,ICertificateDAO {
+public class CertificateDAO extends AbstractWebServiceDAO implements ICertificateDAO {
 
 	public CertificateDAO() {
 		super();

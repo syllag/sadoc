@@ -5,7 +5,7 @@ import java.util.List;
 
 import fr.univartois.ili.sadoc.dao.entities.Certificate;
 
-public interface ICertificateDAO {
+public interface ICertificateDAO extends IWebServiceDAO<Certificate> {
 
 	/**
 	 * Get certificates associated to the owner 

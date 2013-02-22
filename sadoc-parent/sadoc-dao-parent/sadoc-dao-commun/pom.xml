@@ -1,57 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>fr.univartois.ili.sadoc</groupId>
-    <artifactId>sadoc-dao-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>sadoc-dao-commun</artifactId>
-  <name>sadoc-dao-commun</name>
-  
-  
-  
-  <dependencies>
-  	<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
-			<version>2.3.2</version>
-		</dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.univartois.ili.sadoc</groupId>
+		<artifactId>sadoc-dao-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>sadoc-dao-commun</artifactId>
+	<name>sadoc-dao-commun</name>
 
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>javax.persistence</artifactId>
-			<version>2.0.0</version>
-		</dependency>
+	<dependencies>
 
-		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.1-901.jdbc4</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>10.6.2.1</version>
-		</dependency>
-		
-		
 		<dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-core</artifactId>
 			<version>2.0.3.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>3.1.0.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -72,7 +35,7 @@
 			<artifactId>castor</artifactId>
 			<version>1.2</version>
 		</dependency>
- 
+
 		<!-- Castor need this -->
 		<dependency>
 			<groupId>xerces</groupId>
@@ -104,7 +67,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
-			<version>3.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<!-- Bean Factory and JavaBeans utilities (depends on core) Define this 
@@ -115,21 +78,13 @@
 			<version>3.1.0.RELEASE</version>
 		</dependency>
 
-		<!-- Aspect Oriented Programming (AOP) Framework (depends on core, beans) 
-			Define this if you use Spring AOP APIs (org.springframework.aop.*) -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>3.1.0.RELEASE</version>
-		</dependency>
-
 		<!-- Application Context (depends on core, expression, aop, beans) This 
 			is the central artifact for Spring's Dependency Injection Container and is 
 			generally always defined -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>3.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<!-- Various Application Context utilities, including EhCache, JavaMail, 
@@ -137,25 +92,9 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>3.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
-		<!-- JPA Data Access Library (depends on core, beans, context, transaction) 
-			Define this if you use Spring's JpaTemplate API (org.springframework.jpa.*) -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jpa</artifactId>
-			<version>2.0.8</version>
-		</dependency>
-
-		<!-- Object-to-XML Mapping (OXM) abstraction and integration with JAXB, 
-			JiBX, Castor, XStream, and XML Beans. (depends on core, beans, context) Define 
-			this if you need OXM (org.springframework.oxm.*) -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>3.1.0.RELEASE</version>
-		</dependency>
 
 		<!-- Web app development utilities common across Servlet/Portlet environments 
 			(depends on core, beans, context) Define this if you use Spring MVC, or wish 
@@ -163,25 +102,25 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>3.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>3.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-asm</artifactId>
-			<version>3.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc-portlet</artifactId>
-			<version>3.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<!-- Support for testing Spring applications with tools such as JUnit and 
@@ -190,13 +129,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.1.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.13</version>
-			<scope>compile</scope>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
@@ -204,18 +137,18 @@
 			<version>2.2.5</version>
 			<scope>provided</scope>
 		</dependency>
-		
-	
+
+
 		<dependency>
 			<groupId>com.sun.xml.stream</groupId>
 			<artifactId>sjsxp</artifactId>
 			<version>1.0.1</version>
 		</dependency>
-  </dependencies>
-  <repositories>
+	</dependencies>
+	<repositories>
 		<repository>
-		   <id>EclipseLink</id>
-		   <url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
+			<id>EclipseLink</id>
+			<url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
 		</repository>
 	</repositories>
 </project>

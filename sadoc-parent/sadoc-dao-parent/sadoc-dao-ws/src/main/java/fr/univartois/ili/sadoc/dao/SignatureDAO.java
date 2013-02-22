@@ -14,12 +14,11 @@ import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import fr.univartois.ili.sadoc.dao.entities.Signature;
 import fr.univartois.ili.sadoc.dao.services.ISignatureDAO;
-import fr.univartois.ili.sadoc.dao.services.IWebServiceDAO;
 
 @Service("signatureDAO")
 @Transactional
 public class SignatureDAO extends AbstractWebServiceDAO implements
-		IWebServiceDAO<Signature>,ISignatureDAO {
+		ISignatureDAO {
 
 	public SignatureDAO() {
 		super();

@@ -5,7 +5,7 @@ import java.util.List;
 import fr.univartois.ili.sadoc.dao.entities.Acquisition;
 import fr.univartois.ili.sadoc.dao.entities.Document;
 
-public interface IAcquisitionDAO{
+public interface IAcquisitionDAO extends IWebServiceDAO<Acquisition>{
 
 	/**
 	 * Ask the list of Acquisition by document

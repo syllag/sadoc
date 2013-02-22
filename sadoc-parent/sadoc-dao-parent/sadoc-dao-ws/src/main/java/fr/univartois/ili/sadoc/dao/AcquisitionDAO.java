@@ -9,9 +9,8 @@ import fr.univartois.ili.sadoc.constante.Request;
 import fr.univartois.ili.sadoc.dao.entities.Acquisition;
 import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.services.IAcquisitionDAO;
-import fr.univartois.ili.sadoc.dao.services.IWebServiceDAO;
 
-public class AcquisitionDAO extends AbstractWebServiceDAO implements IWebServiceDAO<Acquisition>,IAcquisitionDAO {
+public class AcquisitionDAO extends AbstractWebServiceDAO implements IAcquisitionDAO {
 
 	
 	@Override

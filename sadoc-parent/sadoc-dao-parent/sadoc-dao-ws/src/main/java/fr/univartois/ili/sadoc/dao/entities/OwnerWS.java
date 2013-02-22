@@ -44,4 +44,12 @@ public class OwnerWS implements Serializable{
 		this.mail_initial = mail_initial;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "OwnerWS [id=" + id + ", mail_initial=" + mail_initial + "]";
+	}
+	
 }

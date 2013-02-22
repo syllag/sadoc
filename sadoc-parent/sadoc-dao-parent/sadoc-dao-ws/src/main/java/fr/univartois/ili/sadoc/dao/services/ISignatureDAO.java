@@ -7,7 +7,7 @@ import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import fr.univartois.ili.sadoc.dao.entities.Signature;
 
-public interface ISignatureDAO {
+public interface ISignatureDAO extends IWebServiceDAO<Signature> {
 
 	/**
 	 * Find documents for the owner
