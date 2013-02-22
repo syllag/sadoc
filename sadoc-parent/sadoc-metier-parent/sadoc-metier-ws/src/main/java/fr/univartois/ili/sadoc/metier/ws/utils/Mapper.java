@@ -33,7 +33,7 @@ public class Mapper {
 	 * @return documentDO
 	 */
 
-	public fr.univartois.ili.sadoc.dao.entities.Document documentVOToDocumentDO(
+	public final static fr.univartois.ili.sadoc.dao.entities.Document documentVOToDocumentDO(
 			Document docVO) {
 		List<fr.univartois.ili.sadoc.dao.entities.Signature> signs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Signature>();
 		List<fr.univartois.ili.sadoc.dao.entities.Acquisition> acquis = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Acquisition>();
@@ -60,7 +60,7 @@ public class Mapper {
 	 * @param documentDO
 	 * @return documentVO
 	 */
-	public Document documentDOToDocumentVO(
+	public final static Document documentDOToDocumentVO(
 			fr.univartois.ili.sadoc.dao.entities.Document docDO) {
 		List<Signature> signs = new ArrayList<Signature>();
 		List<Acquisition> acquis = new ArrayList<Acquisition>();
@@ -92,7 +92,7 @@ public class Mapper {
 	 * @throws IOException
 	 */
 
-	public fr.univartois.ili.sadoc.dao.entities.Certificate certificateVOToCertificateDO(
+	public final static fr.univartois.ili.sadoc.dao.entities.Certificate certificateVOToCertificateDO(
 			Certificate certVO) throws SQLException, IOException {
 		fr.univartois.ili.sadoc.dao.entities.Certificate certDO = new fr.univartois.ili.sadoc.dao.entities.Certificate();
 		List<fr.univartois.ili.sadoc.dao.entities.Signature> signs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Signature>();
@@ -145,7 +145,7 @@ public class Mapper {
 	 * @throws SQLException
 	 * @throws IOException
 	 */
-	public Certificate certificateDOToCertificateVO(
+	public final static Certificate certificateDOToCertificateVO(
 			fr.univartois.ili.sadoc.dao.entities.Certificate certDO)
 			throws ClassNotFoundException, SQLException, IOException {
 		Certificate certVO = new Certificate();
@@ -205,7 +205,7 @@ public class Mapper {
 	 * @param SignatureVO
 	 * @return SignatureDO
 	 */
-	public fr.univartois.ili.sadoc.dao.entities.Signature signatureVOToSignatureDO(
+	public final static fr.univartois.ili.sadoc.dao.entities.Signature signatureVOToSignatureDO(
 			Signature signVO) {
 		fr.univartois.ili.sadoc.dao.entities.Signature signDO = new fr.univartois.ili.sadoc.dao.entities.Signature();
 		signDO.setId(signVO.getId());
@@ -222,7 +222,7 @@ public class Mapper {
 	 * @param SignatureDO
 	 * @return SignatureVO
 	 */
-	public Signature signatureDOToSignatureVO(
+	public final static Signature signatureDOToSignatureVO(
 			fr.univartois.ili.sadoc.dao.entities.Signature signDO) {
 		Signature signVO = new Signature();
 		signVO.setId(signDO.getId());
@@ -239,7 +239,7 @@ public class Mapper {
 	 * @param AcquisitionVO
 	 * @return AcquisitionDO
 	 */
-	public fr.univartois.ili.sadoc.dao.entities.Acquisition acquisitionVOToAcquisitionDO(
+	public final static fr.univartois.ili.sadoc.dao.entities.Acquisition acquisitionVOToAcquisitionDO(
 			Acquisition acqVO) {
 		fr.univartois.ili.sadoc.dao.entities.Acquisition acqDO = new fr.univartois.ili.sadoc.dao.entities.Acquisition();
 		List<fr.univartois.ili.sadoc.dao.entities.Document> docs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Document>();
@@ -262,7 +262,7 @@ public class Mapper {
 	 * @param AcquisitionDO
 	 * @return AcquisitionVO
 	 */
-	public Acquisition acquisitionDOToAcquisitionVO(
+	public final static Acquisition acquisitionDOToAcquisitionVO(
 			fr.univartois.ili.sadoc.dao.entities.Acquisition acqDO) {
 		Acquisition acqVO = new Acquisition();
 		List<Document> docs = new ArrayList<Document>();
