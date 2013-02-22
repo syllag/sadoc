@@ -16,6 +16,8 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory.ApplicationContextType;
 import fr.univartois.ili.sadoc.ui.utils.TestID;
 
 public class CheckDocument extends ActionSupport implements SessionAware {
@@ -30,6 +32,10 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 	private Owner owner = null;
 	private List<Competence> listCompetences = new ArrayList<Competence>();
 	private Map<String, Object> session;
+	
+	//## TODO injection spring pour interface
+	
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
 
 	public String getSa() {
 		return sa;
@@ -55,8 +61,6 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 // TODO : Changer les appels
 		if (sa != null && TestID.trueFalseID(sa)) {
 
-			//## TODO injection spring pour interface
-			IMetierUIServices metierUIServices = null;
 									
 			Document doc = metierUIServices.findDocumentById(sa);
 			
@@ -149,5 +153,9 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 
 	public Map<String, Object> getSession() {
 		return session;
+	}
+
+	public IMetierUIServices getMetierUIService() {
+		return metierUIServices;
 	}
 }

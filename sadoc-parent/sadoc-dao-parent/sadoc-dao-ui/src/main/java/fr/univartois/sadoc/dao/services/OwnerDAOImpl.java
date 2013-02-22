@@ -1,6 +1,8 @@
 package fr.univartois.sadoc.dao.services;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import fr.univartois.sadoc.dao.entities.Owner;
 
@@ -8,6 +10,9 @@ public class OwnerDAOImpl implements IOwnerDAO {
 
 	private EntityManager em; 
 
+	public OwnerDAOImpl() {
+		// empty constructor for test
+	}
 	
 	public OwnerDAOImpl(EntityManager em) {
 		this.em = em;
