@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Acquisition implements Serializable {
@@ -18,6 +20,7 @@ public class Acquisition implements Serializable {
 	private long id;
 	
 	private String id_item;
+	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 	
 	//rel

@@ -11,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Certificate implements Serializable {
@@ -21,6 +23,7 @@ public class Certificate implements Serializable {
 	@Id
 	private long id;
 	
+	@Temporal(TemporalType.DATE)
 	private Date dateValidity;
 	private Blob certificate;
 	private Blob privateKey;

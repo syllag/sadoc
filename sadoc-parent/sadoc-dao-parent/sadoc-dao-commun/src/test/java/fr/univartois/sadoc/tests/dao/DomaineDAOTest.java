@@ -2,6 +2,7 @@ package fr.univartois.sadoc.tests.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -45,11 +46,7 @@ public class DomaineDAOTest {
 		em.persist(domaine);
 		em.getTransaction().commit();
 		Domaine domaineResults = ddaoi.findDomaineById(domaine.getId());
-		assertEquals(domaine.getCodeDomaine(), domaineResults.getCodeDomaine());
-		assertEquals(domaine.getCompetences(), domaineResults.getCompetences());
-		assertEquals(domaine.getDescription(), domaineResults.getDescription());
-		assertEquals(domaine.getId(), domaineResults.getId());
-		assertEquals(domaine.getReferentiel(), domaineResults.getReferentiel());
+		assertSame(domaineResults, domaine);	
 		em.getTransaction().begin();
 		em.remove(domaine);
 		em.getTransaction().commit();

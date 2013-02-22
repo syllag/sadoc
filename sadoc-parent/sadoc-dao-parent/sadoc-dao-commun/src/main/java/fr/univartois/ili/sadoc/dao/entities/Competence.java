@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -14,6 +15,7 @@ public class Competence implements Serializable {
 	private static final long serialVersionUID = -8507546730554845454L;
 
 	@Id
+	@GeneratedValue
 	private long id;
 	private String codeCompetence;
 	private String description;

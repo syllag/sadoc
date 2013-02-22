@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.ui.form.ModifyUrlForm;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 import fr.univartois.ili.sadoc.ui.utils.TestID;
 
 public class ModifyUrl extends ActionSupport {
@@ -16,11 +17,10 @@ public class ModifyUrl extends ActionSupport {
 
 	private ModifyUrlForm form;
 	private String id;
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
+
 	
 	public String execute() {
-		//## TODO injection 
-		IMetierUIServices metierUIServices = null ;
-
 		Document document = metierUIServices.findDocumentById(form.getDocumentId());
 		
 		if (document != null) {
@@ -46,6 +46,13 @@ public class ModifyUrl extends ActionSupport {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
+		return metierUIServices;
 	}
 	
 }

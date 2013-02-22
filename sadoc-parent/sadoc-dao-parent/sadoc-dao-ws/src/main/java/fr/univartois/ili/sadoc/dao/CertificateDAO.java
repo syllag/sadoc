@@ -1,48 +1,40 @@
 package fr.univartois.ili.sadoc.dao;
 
+import java.security.acl.Owner;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.univartois.ili.sadoc.domaine.Certificate;
-import fr.univartois.ili.sadoc.domaine.Owner;
 import fr.univartois.ili.sadoc.constante.Request;
+import fr.univartois.ili.sadoc.dao.entities.Certificate;
+import fr.univartois.ili.sadoc.dao.services.ICertificateDAO;
+import fr.univartois.ili.sadoc.dao.services.IWebServiceDAO;
 
 @Service("certificateDAO")
 @Transactional
-public class CertificateDAO {
-
-	protected EntityManager entityManager;
-
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@PersistenceContext(unitName = "sadocjpa")
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+public class CertificateDAO extends AbstractWebServiceDAO implements IWebServiceDAO<Certificate>,ICertificateDAO {
 
 	public CertificateDAO() {
-		entityManager = PersistenceProvider.getEntityManager();
+		super();
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void create(Certificate certificate) {
 		entityManager.persist(certificate);
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Certificate findById(int id) {
+	public Certificate findById(long id) {
 		return entityManager.find(Certificate.class, id);
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public List<Certificate> findByOwner(Owner owner) {
 		final TypedQuery<Certificate> query;
@@ -52,13 +44,20 @@ public class CertificateDAO {
 		return query.getResultList();
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void update(Certificate certificate) {
 		entityManager.merge(certificate);
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void delete(Certificate certificate) {
 		entityManager.remove(certificate);
+	}
+
+	@Override
+	public void refresh(Certificate entity) {
+		entityManager.refresh(entity);
 	}
 }

@@ -2,6 +2,9 @@ package fr.univartois.ili.sadoc.metier.ui.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
@@ -9,12 +12,29 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.sadoc.dao.services.IOwnerDAO;
 
+@Component
 public class MetierUIServices implements IMetierUIServices{
 	
+	@Autowired
 	private IOwnerDAO ownerDAO ;
 	
-	//TODO appeler les mapper VO-DO avant de retourner les objets 
 
+	/**
+	 * @return the ownerDAO
+	 */
+	public IOwnerDAO getOwnerDAO() {
+		return ownerDAO;
+	}
+
+	/**
+	 * @param ownerDAO the ownerDAO to set
+	 */
+	public void setOwnerDAO(IOwnerDAO ownerDAO) {
+		this.ownerDAO = ownerDAO;
+	}
+
+	//TODO appeler les mapper VO-DO avant de retourner les objets
+	
 	public Document findDocumentById(String id) {
 		// TODO Auto-generated method stub
 		return null;
@@ -28,7 +48,9 @@ public class MetierUIServices implements IMetierUIServices{
 	public Owner findOwnerById(int id) {
 		//TODO mapping
 //		return ownerDAO.findOwnerById(id);
-		return null;
+		
+		//for test purposes only
+		return new Owner("toto", "toto", "mail", "toto", "toto", "toto", "toto", "toto");
 	}
 
 	public void createOwner(Owner owner) {

@@ -23,6 +23,7 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.form.ManageConnectForm;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 /**
  * @author Damien Wattiez <Damien Wattiez at gmail.com>
@@ -40,13 +41,13 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	 */
 	private ManageConnectForm connect;
 	private Map<String, Object> session;
+	
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
+
 
 	public String execute() {
 		// Create session
 		session = ActionContext.getContext().getSession();
-		
-		//## TODO injection
-		IMetierUIServices metierUIServices = null ;
 		
 		if (session.get("mail") != null) {
 			return SUCCESS;
@@ -166,8 +167,6 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 			setCompetence.addAll(listDegrees.get(i).getCompetences());
 		}
 		
-		//## TODO injection
-		IMetierUIServices metierUIServices = null ;
 		List<Acquisition> acquis = metierUIServices.findAcquisitionByOwner(owner);
 		
 		Iterator<Competence> item = setCompetence.iterator();
@@ -203,6 +202,10 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 
 	public Map<String, Object> getSession() {
 		return session;
+	}
+	
+	public IMetierUIServices getMetierUIService() {
+		return metierUIServices;
 	}
 
 }
