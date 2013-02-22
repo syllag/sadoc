@@ -33,8 +33,6 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 	private List<Competence> listCompetences = new ArrayList<Competence>();
 	private Map<String, Object> session;
 	
-	//## TODO injection spring pour interface
-	
 	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
 
 	public String getSa() {
