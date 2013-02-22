@@ -8,12 +8,6 @@
 	</parent>
 	<artifactId>sadoc-dao-parent</artifactId>
 
-	<properties>
-		<spring.version>3.1.2.RELEASE</spring.version>
-		<spring.jpa.version>2.0.8</spring.jpa.version>
-		<openjpa.version>2.2.1</openjpa.version>
-	</properties>
-
 	<packaging>pom</packaging>
 	<name>sadoc-dao-parent</name>
 	<modules>
@@ -59,11 +53,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -71,7 +60,23 @@
 			<artifactId>spring-jpa</artifactId>
 			<version>${spring.jpa.version}</version>
 		</dependency>
-		
+		<!-- Application Context (depends on core, expression, aop, beans) This 
+			is the central artifact for Spring's Dependency Injection Container and is 
+			generally always defined -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Various Application Context utilities, including EhCache, JavaMail, 
+			Quartz, and Freemarker integration Define this if you need any of these integrations -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
 		<!-- <dependency> -->
 		<!-- <groupId>org.apache.openjpa</groupId> -->
 		<!-- <artifactId>openjpa</artifactId> -->

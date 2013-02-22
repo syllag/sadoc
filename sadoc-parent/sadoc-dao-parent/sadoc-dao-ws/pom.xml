@@ -12,7 +12,7 @@
 		<dependency>
 			<groupId>fr.univartois.ili.sadoc</groupId>
 			<artifactId>sadoc-dao-commun</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
