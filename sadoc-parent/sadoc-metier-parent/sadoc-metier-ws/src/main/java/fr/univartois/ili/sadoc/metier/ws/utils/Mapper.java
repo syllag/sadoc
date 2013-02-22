@@ -119,7 +119,7 @@ public class Mapper {
 	 * 
 	 */
 
-	private final static <T> Blob objectToBlob(T t) throws IOException,
+	public final static <T> Blob objectToBlob(T t) throws IOException,
 			SerialException, SQLException {
 		ByteArrayOutputStream baos;
 		ObjectOutputStream out;
@@ -185,12 +185,12 @@ public class Mapper {
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	private final static <T> T blobToObject(Blob b, Class<T> clazz)
+	public final static <T> T blobToObject(Blob b, Class<T> clazz)
 			throws SQLException, IOException, ClassNotFoundException {
 		ByteArrayInputStream bais;
 		ObjectInputStream in;
 
-		bais = new ByteArrayInputStream(b.getBytes(1, 0));
+		bais = new ByteArrayInputStream(b.getBytes(1,(int) b.length()));
 		in = new ObjectInputStream(bais);
 
 		T object = (T) in.readObject();

@@ -3,7 +3,7 @@ package fr.univartois.ili.sadoc.metier.ws.vo;
 import java.io.Serializable;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import fr.univartois.ili.sadoc.metier.ws.certificate.BaseCertificate;
