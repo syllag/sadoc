@@ -1,5 +1,7 @@
 package fr.univartois.ili.sadoc.metier.commun.vo;
 
+import java.util.List;
+
 /**
  * 
  * @author Mohamed Belhadj-adda <belhadjadda.mohamed at gmail.com>
@@ -12,6 +14,7 @@ public class Referentiel {
 	private String description;
 	private long seuil;
 	private String url;
+	private List<Domaine> domaines ;
 
 	public Referentiel() {
 	}
@@ -77,4 +80,14 @@ public class Referentiel {
 		this.seuil = seuil;
 	}
 
+	public List<Domaine> getDomaines() {
+		return domaines;
+	}
+
+	public void setDomaines(List<Domaine> domaines) {
+		this.domaines = domaines;
+	}
+
+	
+	
 }

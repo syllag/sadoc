@@ -1,6 +1,8 @@
 package fr.univartois.ili.sadoc.metier.commun.vo;
 
 import java.io.Serializable;
+import java.util.List;
+
 
 /**
  * 
@@ -16,6 +18,9 @@ public class Competence implements Serializable {
 	private long id;
 	private String codeCompetence;
 	private String description;
+	
+	private Domaine domaine;
+	private List<Item> items;
 
 	public Competence() {
 	}
@@ -53,4 +58,21 @@ public class Competence implements Serializable {
 		this.codeCompetence = codeCompetence;
 	}
 
+	public Domaine getDomaine() {
+		return domaine;
+	}
+
+	public void setDomaine(Domaine domaine) {
+		this.domaine = domaine;
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	
 }
