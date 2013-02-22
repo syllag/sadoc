@@ -3,6 +3,9 @@ package fr.univartois.ili.sadoc.metier.ws.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import fr.univartois.ili.sadoc.dao.entities.Certificate;
+import fr.univartois.ili.sadoc.dao.entities.Document;
+
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
  *
@@ -13,26 +16,21 @@ public class Signature implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int id;
+	private long id;
 	
 	private Document document;
 	
-	private Owner owner;
-	
-	private Competence competence;
-
 	private Certificate certificate;
 	
-	private Date creationDate;
+	private Date dateSignature;
+	
 
 	/****************************************/
 
 	public Signature (){}
 	
-	public Signature (Document document, Owner owner, Competence competence, Certificate certificate) {
-		this.document=document;
-		this.owner=owner;
-		this.competence=competence;
+	public Signature (Document document, Certificate certificate) {
+		this.document=document;	
 		this.certificate=certificate;
 	}
 	
@@ -46,22 +44,6 @@ public class Signature implements Serializable {
 		this.document = document;
 	}
 
-	public Owner getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
-
-	public Competence getCompetence() {
-		return competence;
-	}
-
-	public void setCompetence(Competence competence) {
-		this.competence = competence;
-	}
-
 	public Certificate getCertificate() {
 		return certificate;
 	}
@@ -71,18 +53,18 @@ public class Signature implements Serializable {
 	}
 
 	public Date getCreationDate() {
-		return (Date) creationDate.clone();
+		return (Date) dateSignature.clone();
 	}
 
 	public void setCreationDate(Date creationDate) {
-		this.creationDate = (Date) creationDate.clone();
+		this.dateSignature = (Date) creationDate.clone();
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 }
