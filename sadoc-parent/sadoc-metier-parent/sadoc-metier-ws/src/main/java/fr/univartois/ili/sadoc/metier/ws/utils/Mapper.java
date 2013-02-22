@@ -33,7 +33,7 @@ public class Mapper {
 	 * @return documentDO
 	 */
 
-	public fr.univartois.ili.sadoc.dao.entities.Document mapperDocumentVOToDocumentDO(
+	public final static fr.univartois.ili.sadoc.dao.entities.Document documentVOToDocumentDO(
 			Document docVO) {
 		List<fr.univartois.ili.sadoc.dao.entities.Signature> signs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Signature>();
 		List<fr.univartois.ili.sadoc.dao.entities.Acquisition> acquis = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Acquisition>();
@@ -45,9 +45,9 @@ public class Mapper {
 		docDO.setCreationDate(docVO.getCreationDate());
 		docDO.setAlgorithm(docVO.getAlgorithm());
 		for (Signature sign : docVO.getSignatures())
-			signs.add(mapperSignatureVOToSignatureDO(sign));
+			signs.add(signatureVOToSignatureDO(sign));
 		for (Acquisition acqui : docVO.getAcquisitions())
-			acquis.add(mapperAcquisitionVOToAcquisitionDO(acqui));
+			acquis.add(acquisitionVOToAcquisitionDO(acqui));
 		docDO.setSignatures(signs);
 		docDO.setAcquisitions(acquis);
 		return docDO;
@@ -60,7 +60,7 @@ public class Mapper {
 	 * @param documentDO
 	 * @return documentVO
 	 */
-	public Document mapperDocumentDOToDocumentVO(
+	public final static Document documentDOToDocumentVO(
 			fr.univartois.ili.sadoc.dao.entities.Document docDO) {
 		List<Signature> signs = new ArrayList<Signature>();
 		List<Acquisition> acquis = new ArrayList<Acquisition>();
@@ -73,10 +73,10 @@ public class Mapper {
 		docVO.setCreationDate(docDO.getCreationDate());
 		for (fr.univartois.ili.sadoc.dao.entities.Signature sign : docDO
 				.getSignatures())
-			signs.add(mapperSignatureDOToSignatureVO(sign));
+			signs.add(signatureDOToSignatureVO(sign));
 		for (fr.univartois.ili.sadoc.dao.entities.Acquisition acqui : docDO
 				.getAcquisitions())
-			acquis.add(mapperAcquisitionDOToAcquisitionVO(acqui));
+			acquis.add(acquisitionDOToAcquisitionVO(acqui));
 		docVO.setSignatures(signs);
 		docVO.setAcquisitions(acquis);
 		return docVO;
@@ -92,7 +92,7 @@ public class Mapper {
 	 * @throws IOException
 	 */
 
-	public fr.univartois.ili.sadoc.dao.entities.Certificate mapperCertificateVOToCertificateDO(
+	public final static fr.univartois.ili.sadoc.dao.entities.Certificate certificateVOToCertificateDO(
 			Certificate certVO) throws SQLException, IOException {
 		fr.univartois.ili.sadoc.dao.entities.Certificate certDO = new fr.univartois.ili.sadoc.dao.entities.Certificate();
 		List<fr.univartois.ili.sadoc.dao.entities.Signature> signs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Signature>();
@@ -102,7 +102,7 @@ public class Mapper {
 		ows.setId(certVO.getIdOwner());
 		certDO.setOwnerWs(ows);
 		for (Signature sign : certVO.getSignatures())
-			signs.add(mapperSignatureVOToSignatureDO(sign));
+			signs.add(signatureVOToSignatureDO(sign));
 		certDO.setSignatures(signs);
 
 		certDO.setPrivateKey(objectToBlob(certVO.getPrivateKey()));
@@ -145,7 +145,7 @@ public class Mapper {
 	 * @throws SQLException
 	 * @throws IOException
 	 */
-	public Certificate mapperCertificateDOToCertificateVO(
+	public final static Certificate certificateDOToCertificateVO(
 			fr.univartois.ili.sadoc.dao.entities.Certificate certDO)
 			throws ClassNotFoundException, SQLException, IOException {
 		Certificate certVO = new Certificate();
@@ -156,7 +156,7 @@ public class Mapper {
 
 		for (fr.univartois.ili.sadoc.dao.entities.Signature sign : certDO
 				.getSignatures())
-			signs.add(mapperSignatureDOToSignatureVO(sign));
+			signs.add(signatureDOToSignatureVO(sign));
 		certVO.setSignatures(signs);
 		
 		// Blob To PrivateKey		
@@ -205,7 +205,7 @@ public class Mapper {
 	 * @param SignatureVO
 	 * @return SignatureDO
 	 */
-	public fr.univartois.ili.sadoc.dao.entities.Signature mapperSignatureVOToSignatureDO(
+	public final static fr.univartois.ili.sadoc.dao.entities.Signature signatureVOToSignatureDO(
 			Signature signVO) {
 		fr.univartois.ili.sadoc.dao.entities.Signature signDO = new fr.univartois.ili.sadoc.dao.entities.Signature();
 		signDO.setId(signVO.getId());
@@ -222,7 +222,7 @@ public class Mapper {
 	 * @param SignatureDO
 	 * @return SignatureVO
 	 */
-	public Signature mapperSignatureDOToSignatureVO(
+	public final static Signature signatureDOToSignatureVO(
 			fr.univartois.ili.sadoc.dao.entities.Signature signDO) {
 		Signature signVO = new Signature();
 		signVO.setId(signDO.getId());
@@ -239,7 +239,7 @@ public class Mapper {
 	 * @param AcquisitionVO
 	 * @return AcquisitionDO
 	 */
-	public fr.univartois.ili.sadoc.dao.entities.Acquisition mapperAcquisitionVOToAcquisitionDO(
+	public final static fr.univartois.ili.sadoc.dao.entities.Acquisition acquisitionVOToAcquisitionDO(
 			Acquisition acqVO) {
 		fr.univartois.ili.sadoc.dao.entities.Acquisition acqDO = new fr.univartois.ili.sadoc.dao.entities.Acquisition();
 		List<fr.univartois.ili.sadoc.dao.entities.Document> docs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Document>();
@@ -248,7 +248,7 @@ public class Mapper {
 		acqDO.setId_item(acqVO.getId_item());
 
 		for (Document doc : acqVO.getDocuments())
-			docs.add(mapperDocumentVOToDocumentDO(doc));
+			docs.add(documentVOToDocumentDO(doc));
 		acqDO.setDocuments(docs);
 
 		return acqDO;
@@ -262,7 +262,7 @@ public class Mapper {
 	 * @param AcquisitionDO
 	 * @return AcquisitionVO
 	 */
-	public Acquisition mapperAcquisitionDOToAcquisitionVO(
+	public final static Acquisition acquisitionDOToAcquisitionVO(
 			fr.univartois.ili.sadoc.dao.entities.Acquisition acqDO) {
 		Acquisition acqVO = new Acquisition();
 		List<Document> docs = new ArrayList<Document>();
@@ -272,7 +272,7 @@ public class Mapper {
 
 		for (fr.univartois.ili.sadoc.dao.entities.Document doc : acqDO
 				.getDocuments())
-			docs.add(mapperDocumentDOToDocumentVO(doc));
+			docs.add(documentDOToDocumentVO(doc));
 		acqVO.setDocuments(docs);
 
 		return acqVO;
