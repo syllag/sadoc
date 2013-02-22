@@ -68,7 +68,10 @@ public class DownloadP7S extends ActionSupport implements SessionAware {
 		return session;
 	}
 	
-	public IMetierUIServices getMetierUIService() {
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
 		return metierUIServices;
 	}
 }

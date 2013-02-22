@@ -204,7 +204,10 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		return session;
 	}
 	
-	public IMetierUIServices getMetierUIService() {
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
 		return metierUIServices;
 	}
 

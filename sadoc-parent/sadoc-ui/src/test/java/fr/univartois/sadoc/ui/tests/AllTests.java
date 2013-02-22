@@ -19,9 +19,9 @@ public class AllTests {
 	@Test
 	public void testInjectionForMetierUiServiceInCheckDocument() {		
 		CheckDocument cd = new CheckDocument() ;
-		assertNotNull(cd.getMetierUIService());
+		assertNotNull(cd.getMetierUIServices());
 		// test purposes only
-		assertEquals("toto",cd.getMetierUIService().findOwnerById(0).getFirstName());
+		assertEquals("toto",cd.getMetierUIServices().findOwnerById(0).getFirstName());
 	}
 
 }

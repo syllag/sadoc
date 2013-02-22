@@ -16,7 +16,6 @@ import fr.univartois.ili.sadoc.ui.actions.ManageResume;
 import fr.univartois.ili.sadoc.ui.actions.ManageSignIn;
 import fr.univartois.ili.sadoc.ui.actions.ModifyUrl;
 import fr.univartois.ili.sadoc.ui.actions.ShowCreateResume;
-import fr.univartois.ili.sadoc.ui.actions.TestManageProfile;
 import fr.univartois.ili.sadoc.ui.actions.VerifyDocument;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
@@ -37,22 +36,22 @@ public class MetierUIServicesTest {
 	@Test
 	public void testMetierInjectionInStrutsActions(){
 		CheckDocument cd = new CheckDocument();
-		assertNotNull(cd.getMetierUIService());
+		assertNotNull(cd.getMetierUIServices());
 		
 		CreateResume cr = new CreateResume() ;
 		assertNotNull(cr.getMetierUIServices());
 		
 		DownloadP7S dp = new DownloadP7S();
-		assertNotNull(dp.getMetierUIService());
+		assertNotNull(dp.getMetierUIServices());
 		
 		DownloadResume dr = new DownloadResume() ;
-		assertNotNull(dr.getMetierUIService());
+		assertNotNull(dr.getMetierUIServices());
 		
 		ManageConnect mc = new ManageConnect();
-		assertNotNull(mc.getMetierUIService());
+		assertNotNull(mc.getMetierUIServices());
 		
 		ManageProfile mp = new ManageProfile();
-		assertNotNull(mp.getMetierUIService());
+		assertNotNull(mp.getMetierUIServices());
 		
 		ManageResume mr = new ManageResume();
 		assertNotNull(mr.getMetierUIServices());

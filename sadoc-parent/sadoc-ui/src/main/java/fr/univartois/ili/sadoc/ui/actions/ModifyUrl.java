@@ -6,7 +6,6 @@ import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.ui.form.ModifyUrlForm;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
-import fr.univartois.ili.sadoc.ui.utils.TestID;
 
 public class ModifyUrl extends ActionSupport {
 

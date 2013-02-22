@@ -14,6 +14,10 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 public class ManageResume  extends ActionSupport implements SessionAware {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map<String, Object> session;
 	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
 

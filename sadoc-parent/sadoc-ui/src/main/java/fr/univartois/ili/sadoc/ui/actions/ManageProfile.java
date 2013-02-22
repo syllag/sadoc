@@ -86,7 +86,11 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	public Map<String, Object> getSession(){
 		return session;
 	}
-	public IMetierUIServices getMetierUIService() {
+	
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
 		return metierUIServices;
 	}
 }

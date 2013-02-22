@@ -90,7 +90,9 @@ public class CreateResume extends ActionSupport implements SessionAware{
 		this.session = arg0;
 	}
 
-
+	/**
+	 * @return the metierUIServices
+	 */
 	public IMetierUIServices getMetierUIServices() {
 		return metierUIServices;
 	}

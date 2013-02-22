@@ -17,7 +17,6 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
-import fr.univartois.ili.sadoc.ui.utils.ContextFactory.ApplicationContextType;
 import fr.univartois.ili.sadoc.ui.utils.TestID;
 
 public class CheckDocument extends ActionSupport implements SessionAware {
@@ -153,7 +152,10 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 		return session;
 	}
 
-	public IMetierUIServices getMetierUIService() {
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
 		return metierUIServices;
 	}
 }
