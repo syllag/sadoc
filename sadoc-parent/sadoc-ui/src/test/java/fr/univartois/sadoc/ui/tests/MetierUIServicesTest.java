@@ -19,6 +19,9 @@ import fr.univartois.ili.sadoc.ui.actions.ShowCreateResume;
 import fr.univartois.ili.sadoc.ui.actions.VerifyDocument;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
+/**
+ *	Tests for UIServices injections
+ */
 public class MetierUIServicesTest {
 
 	@Test
