@@ -3,7 +3,6 @@ package fr.univartois.ili.sadoc.ui.actions;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -13,6 +12,7 @@ import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.ui.sign.IVerifSignFile;
 import fr.univartois.ili.sadoc.ui.sign.VerifSignFileImpl;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 public class VerifyDocument extends ActionSupport {
 
@@ -24,9 +24,9 @@ public class VerifyDocument extends ActionSupport {
 	private File file;
 	private String id;
 	
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
+
 	public String execute() {
-		//## TODO injection 
-		IMetierUIServices metierUIServices = null ;
 		
 		Document document = metierUIServices.findDocumentById(id);
 		if (document != null) {
@@ -70,6 +70,13 @@ public class VerifyDocument extends ActionSupport {
 
 	public void setFile(File file) {
 		this.file = file;
+	}
+
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
+		return metierUIServices;
 	}
 	
 }

@@ -12,6 +12,7 @@ import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageSignInForm;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 /**
  * @author Diane Dutartre <LiDaYuRan at gmail.com>
@@ -29,6 +30,8 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	 */
 	private ManageSignInForm form;
 	private Map<String, Object> session;
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
+
 
 	/************************************************/
 	/*
@@ -46,9 +49,6 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			session.put("error", "");
 			return INPUT;
 		}
-		
-		//## TODO injection 
-		IMetierUIServices metierUIServices = null ;
 		
 		if (metierUIServices.findOwnerByEmail(form.getMail()) != null){		
 			session.put("error", "Mail déjà utilisé");
@@ -127,5 +127,13 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	}
 	public Map<String, Object> getSession(){
 		return session;
+	}
+
+
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
+		return metierUIServices;
 	}
 }

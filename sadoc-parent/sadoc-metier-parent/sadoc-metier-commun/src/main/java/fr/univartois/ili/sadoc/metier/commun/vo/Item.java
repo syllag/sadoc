@@ -1,5 +1,6 @@
 package fr.univartois.ili.sadoc.metier.commun.vo;
 
+
 /**
  * 
  * @author Mohamed Belhadj-adda <belhadjadda.mohamed at gmail.com>
@@ -14,6 +15,8 @@ public class Item {
 	private long empreinte;
 	private String type;
 
+	private Competence competence;
+	
 	public Item() {
 	}
 
@@ -62,7 +65,7 @@ public class Item {
 		return empreinte;
 	}
 
-	public void setEmpreinte(int empreinte) {
+	public void setEmpreinte(long empreinte) {
 		this.empreinte = empreinte;
 	}
 
@@ -73,5 +76,15 @@ public class Item {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public Competence getCompetence() {
+		return competence;
+	}
+
+	public void setCompetence(Competence competence) {
+		this.competence = competence;
+	}
+	
+	
 
 }

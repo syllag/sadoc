@@ -14,6 +14,7 @@ import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 //TODO : Changer l'acquisition de la session
 public class ShowCreateResume extends ActionSupport implements SessionAware{
@@ -25,6 +26,8 @@ public class ShowCreateResume extends ActionSupport implements SessionAware{
 	private List<Competence> listCompetences = new ArrayList<Competence>();
 	private Map<String, Object> session;
 	
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
+	
 	public void setSession(Map<String, Object> arg0) {
 		// TODO Auto-generated method stub
 		
@@ -32,9 +35,6 @@ public class ShowCreateResume extends ActionSupport implements SessionAware{
 	
 	public String execute() {
 		session = ActionContext.getContext().getSession();
-		
-		//## TODO injection 
-		IMetierUIServices metierUIServices = null ;
 
 		int idOwner = (Integer) session.get("id");
 		Owner owner = metierUIServices.findOwnerById(idOwner);
@@ -46,6 +46,13 @@ public class ShowCreateResume extends ActionSupport implements SessionAware{
 
 	public List<Competence> getListCompetences() {
 		return listCompetences;
+	}
+
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
+		return metierUIServices;
 	}
 
 
