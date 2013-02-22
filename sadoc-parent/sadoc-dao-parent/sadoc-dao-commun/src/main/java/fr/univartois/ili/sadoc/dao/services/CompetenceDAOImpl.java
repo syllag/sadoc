@@ -32,7 +32,6 @@ public class CompetenceDAOImpl implements ICompetenceDAO{
 		return em.find(Competence.class, id);
 	}
 
-	@Override
 	public void createCompetence(Competence competence) {
 		em.getTransaction().begin();
 		em.persist(competence);
@@ -46,6 +45,15 @@ public class CompetenceDAOImpl implements ICompetenceDAO{
 				Competence.class);
 		query.setParameter("domaine", domaine);
 		return query.getResultList();
+	}
+
+	@Override
+	public Competence findByAcronym(String acronym) {
+		TypedQuery<Competence> query = em.createQuery(
+				"SELECT c FROM Competence c WHERE c.codeCompetence = :acronym",
+				Competence.class);
+		query.setParameter("acronym", acronym);
+		return query.getSingleResult();
 	}
 
 }

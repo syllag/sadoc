@@ -73,9 +73,22 @@ public class CompetenceDAOTest {
 		em.persist(domaine);
 		em.persist(competence);
 		em.getTransaction().commit();
-		List<Competence> competences = cdaoi
-				.findCompetenceByDomaine(domaine);
+		List<Competence> competences = cdaoi.findCompetenceByDomaine(domaine);
 		assertTrue(competences.contains(competence));
+	}
+
+	@Test
+	public void testFindCompetenceByAcronym() {
+		String codeComp = "D1";
+
+		Competence competence = new Competence();
+		competence.setCodeCompetence(codeComp);
+		em.getTransaction().begin();
+		em.persist(competence);
+		em.getTransaction().commit();
+		Competence comp = cdaoi.findByAcronym(codeComp);
+		assertTrue(competence.getCodeCompetence().equals(
+				comp.getCodeCompetence()));
 	}
 
 }

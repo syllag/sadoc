@@ -16,7 +16,7 @@ public interface IOwnerDAO {
 	 * @return Owner
 	 * return the corresponding owner
 	 */
-	Owner findOwnerById(int id);
+	Owner findOwnerById(long id);
 	
 	
 	/**
