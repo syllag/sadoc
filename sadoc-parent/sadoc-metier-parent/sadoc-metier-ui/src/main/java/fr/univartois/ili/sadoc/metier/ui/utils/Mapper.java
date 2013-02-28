@@ -5,8 +5,6 @@ package fr.univartois.ili.sadoc.metier.ui.utils;
 
 import java.util.Map;
 
-import javax.persistence.metamodel.IdentifiableType;
-
 import org.apache.commons.collections.map.HashedMap;
 
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
