@@ -7,35 +7,41 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import fr.univartois.ili.sadoc.dao.AbstractWebServiceDAO;
-import fr.univartois.ili.sadoc.dao.OwnerWSDAO;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
-import fr.univartois.ili.sadoc.dao.services.IOwnerDAO;
+import fr.univartois.ili.sadoc.dao.services.IOwnerWSDAO;
+
 
 public class TestOwnerWSDAO {
 
-	private static IOwnerDAO ownerDAO;
+	private static final String APPLICATION_CONTEXT_XML = "applicationContext.xml";
+	private static IOwnerWSDAO ownerDAO;
+	private static ApplicationContext appContext;
 	private OwnerWS owner;
-	
+	private int id = 1;
+
 	@BeforeClass
 	public static void testGetEntityManager() {
-		ownerDAO = new OwnerWSDAO();
-		AbstractWebServiceDAO wsDao = (AbstractWebServiceDAO) ownerDAO;
-		assertNotNull(wsDao);
-		assertNotNull(wsDao.getEntityManager());
+		appContext = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML);
+		ownerDAO = appContext.getBean("ownerDAO",IOwnerWSDAO.class);
+		assertNotNull(ownerDAO);
 	}
-	
+
 	@Before
-	public void createUser(){
+	public void createUser() {
 		owner = new OwnerWS();
-		owner.setMail_initial( UUID.randomUUID().toString().replace("-", "")+"@toto.com");
+		owner.setMail_initial(UUID.randomUUID().toString().replace("-", "")
+				+ "@toto.com");
+		owner.setId(id++);
 		ownerDAO.create(owner);
 	}
-	
+
 	@Test
-	public void testGetByEmail()
-	{
+	public void testGetByEmail() {
 		System.err.println(owner);
 		OwnerWS first = ownerDAO.findById(owner.getId());
 		assertNotNull(first);

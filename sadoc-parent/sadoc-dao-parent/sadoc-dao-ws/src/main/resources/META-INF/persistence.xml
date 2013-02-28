@@ -4,23 +4,18 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd ">
 	<persistence-unit name="sadocjpa" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<!-- <non-jta-data-source>java:/comp/env/ds/sadocwebserviceDS</non-jta-data-source> -->
 		<class>fr.univartois.ili.sadoc.dao.entities.Acquisition</class>
 		<class>fr.univartois.ili.sadoc.dao.entities.Certificate</class>
 		<class>fr.univartois.ili.sadoc.dao.entities.Document</class>
 		<class>fr.univartois.ili.sadoc.dao.entities.Signature</class>
 		<class>fr.univartois.ili.sadoc.dao.entities.OwnerWS</class>
-
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-tables" />
 			<property name="eclipselink.ddl-generation.output-mode"
 				value="database" />
-			<property name="eclipselink.weaving" value="static" />
-			<property name="eclipselink.logging.level" value="WARNING" />
-			
+			<property name="eclipselink.logging.level" value="INFO" />
+			<property name="eclipselink.weaving" value="false"/>
 		</properties>
 	</persistence-unit>
-
-
 </persistence>
