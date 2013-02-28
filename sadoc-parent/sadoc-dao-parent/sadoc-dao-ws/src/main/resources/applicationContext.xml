@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jee="http://www.springframework.org/schema/jee"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop
@@ -13,23 +14,12 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util.xsd">
-
-	<!-- Enable weaver -->
-	<context:load-time-weaver />
-
 	<!-- Enable annotation -->
 	<context:annotation-config />
 	<context:component-scan base-package="fr.univartois.ili.sadoc" />
-
 	<!-- import properties -->
 	<context:property-placeholder location="classpath:database.properties" />
-
-	<!-- import database informations -->
+	<!-- Import configuration DATABASE -->
 	<import resource="classpath:databaseContext.xml" />
-
-	<!-- Import confifuration -->
-	<import resource="classpath:databaseContext.xml" />
-
-	<!-- TODO : transaction manager ??? -->
-
+	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

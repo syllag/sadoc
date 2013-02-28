@@ -12,24 +12,33 @@
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util
-		http://www.springframework.org/schema/util/spring-util.xsd">
+		http://www.springframework.org/schema/util/spring-util.xsd
+		">
+
+	<!-- Datasource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" p:driverClassName="${database.driver}" p:url="${database.url}"
+		p:username="${database.user}" p:password="${database.password}" />
 
 	<!-- Entity Manager -->
-	<bean id="entityManagerFactoryAbstract" abstract="true"
+	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		p:persistenceXmlLocation="classpath:META-INF/persistence.xml">
+		p:dataSource-ref="dataSource" p:persistenceUnitName="sadocjpa">
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
+		</property>
 		<property name="jpaVendorAdapter">
 			<bean
 				class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
-				<property name="databasePlatform"
-					value="org.eclipse.persistence.platform.database.OraclePlatform" />
-				<property name="generateDdl" value="true" />
-				<property name="showSql" value="true" />
+				<property name="databasePlatform" value="${database.eclipseLinkDialect}" />
+				<property name="showSql" value="${database.showSQL}" />
 			</bean>
 		</property>
 	</bean>
 
-	<bean id="entityFactoryManager" parent="entityManagerFactoryAbstract"
-		p:persistenceUnitName="sadocjpa" />
-
+	<!-- Transaction Manager -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory" />
 </beans>

@@ -1,5 +1,6 @@
 package fr.univartois.ili.sadoc.dao.services;
 
+
 /**
  * Interface centralized all DAO basics methods
  * 

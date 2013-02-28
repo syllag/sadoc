@@ -3,7 +3,7 @@ package fr.univartois.ili.sadoc.dao.services;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 
 
-public interface IOwnerDAO extends IWebServiceDAO<OwnerWS> {
+public interface IOwnerWSDAO extends IWebServiceDAO<OwnerWS> {
 
 	/**
 	 * Find a Owner with this email address

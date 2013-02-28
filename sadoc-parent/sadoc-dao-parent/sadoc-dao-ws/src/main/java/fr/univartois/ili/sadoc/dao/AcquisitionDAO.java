@@ -5,35 +5,45 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import fr.univartois.ili.sadoc.constante.Request;
 import fr.univartois.ili.sadoc.dao.entities.Acquisition;
 import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.services.IAcquisitionDAO;
 
+@Service("acquisitionDAO")
+@Transactional
 public class AcquisitionDAO extends AbstractWebServiceDAO implements IAcquisitionDAO {
-
 	
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void create(Acquisition entity) {
 		entityManager.persist(entity);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Acquisition findById(long id) {
 		return entityManager.find(Acquisition.class, id);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void delete(Acquisition entity) {
 		entityManager.remove(entity);		
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void update(Acquisition entity) {
 		entityManager.merge(entity);	
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void refresh(Acquisition entity) {
 		entityManager.refresh(entity);	
 	}
@@ -51,5 +61,4 @@ public class AcquisitionDAO extends AbstractWebServiceDAO implements IAcquisitio
 		querry.setParameter("id", owner);
 		return querry.getResultList();
 	}
-
 }
