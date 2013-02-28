@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import fr.univartois.ili.sadoc.metier.ui.utils.Mapper;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
@@ -46,16 +47,16 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	public Owner findOwnerById(int id) {
-		//TODO mapping
-//		return ownerDAO.findOwnerById(id);
-		
-		//for test purposes only
-		return new Owner("toto", "toto", "mail", "toto", "toto", "toto", "toto", "toto");
+		fr.univartois.sadoc.dao.entities.Owner owner = ownerDAO.findOwnerById(id);
+		Owner ownerVO = null;
+		if(owner != null)
+			ownerVO = Mapper.getOwnerFromEntities(owner); 
+		return ownerVO;
 	}
 
 	public void createOwner(Owner owner) {
-		//TODO mapping
-//		ownerDAO.createOwner(owner);		
+		fr.univartois.sadoc.dao.entities.Owner ownerDO = Mapper.getOwnerFromVO(owner);
+		ownerDAO.createOwner(ownerDO);
 	}
 
 	public Competence findCompetenceById(int id) {
@@ -84,14 +85,17 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	public void updateOwner(Owner owner) {
-		//TODO mapping
-//		ownerDAO.updateOwner(owner);		
+		fr.univartois.sadoc.dao.entities.Owner ownerDO = Mapper.getOwnerFromVO(owner);
+		ownerDAO.updateOwner(ownerDO);		
 	}
 
 	public Owner findOwnerByEmailAndPassword(String email, String password) {
-		//TODO mapping
-//		return ownerDAO.findOwnerByEmailAndPassword(email, password);
-		return null;
+		fr.univartois.sadoc.dao.entities.Owner ownerDO = ownerDAO.findOwnerByEmailAndPassword(email, password);
+		Owner owner = null;
+		if(ownerDO != null){
+			owner = Mapper.getOwnerFromEntities(ownerDO);
+		}
+		return owner;
 	}
 
 	public List<Acquisition> findAcquisitionByOwner(Owner owner) {
@@ -100,9 +104,12 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	public Owner findOwnerByEmail(String email) {
-		//TODO mapping
-//		return ownerDAO.findOwnerByEmail(email);
-		return null;
+		fr.univartois.sadoc.dao.entities.Owner ownerDO = ownerDAO.findOwnerByEmail(email);
+		Owner owner = null;
+		if(ownerDO != null){
+			owner = Mapper.getOwnerFromEntities(ownerDO);
+		}
+		return owner;
 	}
 
 	public void updateDocument(Document document) {
