@@ -87,7 +87,6 @@ public class Mapper {
 			identityMap.put(owner, newOwner);
 		} else {
 			// l'objet existe dans la map identité, il faut le mettre à jour
-			newOwner.setId(owner.getId());
 			newOwner.setFirstName(owner.getFirstName());
 			newOwner.setLastName(owner.getLastName());
 			newOwner.setMail(owner.getMail());
