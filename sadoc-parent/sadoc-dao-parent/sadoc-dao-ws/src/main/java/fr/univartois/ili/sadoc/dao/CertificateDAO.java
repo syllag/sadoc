@@ -1,6 +1,6 @@
 package fr.univartois.ili.sadoc.dao;
 
-import java.security.acl.Owner;
+import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -35,7 +35,7 @@ public class CertificateDAO extends AbstractWebServiceDAO implements ICertificat
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public List<Certificate> findByOwner(Owner owner) {
+	public List<Certificate> findByOwner(OwnerWS owner) {
 		final TypedQuery<Certificate> query;
 		query = entityManager.createQuery(Request.FIND_IN_CERTIFICATE_BY_OWNER,
 				Certificate.class);
