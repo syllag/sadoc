@@ -61,7 +61,7 @@ public class MetierCommunServices implements IMetierCommunServices {
 
 	@Override
 	public List<Competence> findCompetenceByDomaine(Domaine domaine) {
-		fr.univartois.ili.sadoc.dao.entities.Domaine domaineDO = Mapper.getDomaineFromVO(domaine);
+		fr.univartois.ili.sadoc.dao.entities.Domaine domaineDO = Mapper.getDomainFromVO(domaine);
 		List<fr.univartois.ili.sadoc.dao.entities.Competence> listCompetencesDo = competenceDAO.findCompetenceByDomaine(domaineDO);
 		List<Competence> listCompetencesVO = new ArrayList<Competence>();
 		for (fr.univartois.ili.sadoc.dao.entities.Competence competenceDO : listCompetencesDo) {
@@ -74,12 +74,12 @@ public class MetierCommunServices implements IMetierCommunServices {
 	@Override
 	public Domaine findDomaineById(long id) {
 		fr.univartois.ili.sadoc.dao.entities.Domaine domaineDO = domaineDAO.findDomaineById(id);
-		return Mapper.getDomaineFromEntity(domaineDO);
+		return Mapper.getDomainFromEntity(domaineDO);
 	}
 
 	@Override
 	public void createDomaine(Domaine domaine) {
-		fr.univartois.ili.sadoc.dao.entities.Domaine domaineDO = Mapper.getDomaineFromVO(domaine);
+		fr.univartois.ili.sadoc.dao.entities.Domaine domaineDO = Mapper.getDomainFromVO(domaine);
 		domaineDAO.createDomaine(domaineDO);
 	}
 
@@ -95,7 +95,7 @@ public class MetierCommunServices implements IMetierCommunServices {
 		List<fr.univartois.ili.sadoc.dao.entities.Domaine> listDomainesDo = domaineDAO.findDomaineByReferentiel(referentielDO);
 		List<Domaine> listDomainesVO = new ArrayList<Domaine>();
 		for (fr.univartois.ili.sadoc.dao.entities.Domaine domaineDO : listDomainesDo) {
-			listDomainesVO.add(Mapper.getDomaineFromEntity(domaineDO));
+			listDomainesVO.add(Mapper.getDomainFromEntity(domaineDO));
 		}
 
 		return listDomainesVO;

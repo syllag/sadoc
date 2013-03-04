@@ -23,7 +23,7 @@ public interface IDomaineDAO {
 	/**
 	 * Insert the domaine in DB
 	 * 
-	 * @param competence that is the domaine to create 
+	 * @param domaine that is the domaine to create 
 	 */
 	void createDomaine(Domaine domaine);
 	
