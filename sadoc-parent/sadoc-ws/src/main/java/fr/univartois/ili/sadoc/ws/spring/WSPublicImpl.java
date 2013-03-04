@@ -2,7 +2,6 @@ package fr.univartois.ili.sadoc.ws.spring;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -11,16 +10,14 @@ import javax.annotation.Resource;
 
 import com.itextpdf.text.pdf.PdfReader;
 
+import fr.univartois.ili.sadoc.dao.CertificateDAO;
+import fr.univartois.ili.sadoc.dao.DocumentDAO;
+import fr.univartois.ili.sadoc.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;
 import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ws.vo.Signature;
-import fr.univartois.ili.sadoc.entitiesws.dao.CertificateDAO;
-import fr.univartois.ili.sadoc.entitiesws.dao.CompetenceDAO;
-import fr.univartois.ili.sadoc.entitiesws.dao.DocumentDAO;
-import fr.univartois.ili.sadoc.entitiesws.dao.OwnerDAO;
-import fr.univartois.ili.sadoc.entitiesws.dao.SignatureDAO;
 import fr.univartois.ili.sadoc.ws.pdf.ManageQRCImpl;
 import fr.univartois.ili.sadoc.ws.sign.integrationsign.SignFile;
 import fr.univartois.ili.sadoc.ws.utils.Crypt;
@@ -65,9 +62,6 @@ public class WSPublicImpl implements WSPublic {
 			Owner ownOwner = ownerDAO.findByMail(owner.getMail());
 
 			Certificate certificate = sf.GiveCertificateForUser(ownOwner);
-			certificate.setOwner(ownOwner);
-
-			ownOwner.getCertificates().add(certificate);
 
 			ownerDAO.update(ownOwner);
 			Document document = new Document(name, "", null);
