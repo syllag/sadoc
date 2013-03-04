@@ -12,10 +12,6 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageProfileForm;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
-/**
- * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
- * 
- */
 public class ManageProfile extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 1L;
@@ -24,13 +20,11 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	
 	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
 
-	
-	/************************************************/
-
 	public String execute () {
 		session = ActionContext.getContext().getSession();
 		if (session.get("mail")==null) {
-			return "astalavista";
+			//non logged user
+			return "index";
 		}
 		if (form == null) {
 			return INPUT;
@@ -38,16 +32,14 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 				
 		String mail = (String) session.get("mail");
 		Owner owner = metierUIServices.findOwnerByEmail(mail);
-		
-		//owner.setFirstName(form.getFirstName());
-		//owner.setLastName(form.getLastName());
+		//Add information of user account from the form
 		owner.setAddress(form.getAdress());
 		owner.setZipCode(form.getZipCode());
 		owner.setTown(form.getTown());
 		owner.setPhone(form.getPhone());
 		if ( !(form.getPassword().isEmpty() 
 				&& form.getPassword2().isEmpty()) 
-				&& (form.getPassword().equals(form.getPassword2()))) {
+				&& form.getPassword().equals(form.getPassword2())) {
 					owner.setPassword(form.getPassword());
 		}
 		
@@ -56,9 +48,8 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		session.put("town", owner.getTown());
 		session.put("phone", owner.getPhone());
 		ActionContext.getContext().setSession(session);
-		
+		//Add modification
 		metierUIServices.updateOwner(owner);
-		
 		
 		return SUCCESS;
 	}
@@ -70,9 +61,8 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 				addFieldError( "password2", "Les mots de passe sont différents.");
 			}
 		}
+		//FIXME : add content checking by xml validation for other field 
 	}
-	
-	/************************************************/
 	
 	public ManageProfileForm getForm() {
 		return form;
@@ -81,7 +71,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		this.form = form;
 	}
 	public void setSession(Map<String, Object> session){
-		  session = this.getSession();
+		  this.session = session;
 	}
 	public Map<String, Object> getSession(){
 		return session;

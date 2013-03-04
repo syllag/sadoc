@@ -9,9 +9,6 @@ import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 public class ModifyUrl extends ActionSupport {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private ModifyUrlForm form;
