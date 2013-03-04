@@ -1,6 +1,7 @@
 package fr.univartois.ili.sadoc.ui.actions;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -53,9 +54,9 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 	public Owner getOwner() {
 		return owner;
 	}
+	
 
 	public String execute() {
-// TODO : Changer les appels
 		if (sa != null && TestID.trueFalseID(sa)) {
 
 									
@@ -71,36 +72,40 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 				if (docws != null) {
 
 					Byte[] fakearraytmp = docws.getPk7();
-					byte[] fakearray = new byte[fakearraytmp.length];
+					byte[] fakearrayP7S = new byte[fakearraytmp.length];
 					for (int i = 0; i < fakearraytmp.length; i++) {
-						fakearray[i] = fakearraytmp[i];
+						fakearrayP7S[i] = fakearraytmp[i];
 					}
 
-					Document doctoregister = new Document(docws.getName(),
-							docws.getCheckSum(), "", fakearray, null);
+					
+					Document doctoregister = new Document();
+					doctoregister.setName(docws.getName());
+					doctoregister.setCheckSum(docws.getCheckSum());
+					doctoregister.setP7s(fakearrayP7S);
+					doctoregister.setUrl("");
+					doctoregister.setCreationDate(new Date());
 					doctoregister.setId(TestID.createFalseID((docws.getId().longValue())));
 					
 					metierUIServices.createDocument(doctoregister);
-					
-
 					document = doctoregister;
+					
 					clientWebService.getCompetences(docws.getId().longValue());
 					Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> comp = clientWebService
 							.getCompetences(docws.getId().longValue());
 					fr.univartois.ili.sadoc.client.webservice.tools.Owner incowner = comp
 							.keySet().iterator().next();
 
-					metierUIServices.findOwnerById(incowner.getId().intValue());
+					metierUIServices.findOwnerById(incowner.getId().longValue());
 					
 					if (owner == null) {
+						
 						Owner owntoregister = new Owner();
 						owntoregister.setFirstName(incowner.getFirstName());
 						owntoregister.setLastName(incowner.getLastName());
 						owntoregister.setMail(incowner.getMail());
-						owntoregister.setId(incowner.getId().intValue());
+						owntoregister.setId(incowner.getId().longValue());
 						
-						metierUIServices.createOwner(owntoregister);
-						
+						metierUIServices.createOwner(owntoregister);						
 						owner = owntoregister;
 					}
 
@@ -109,8 +114,9 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 
 						Competence c = metierUIServices.findCompetenceById(competence.getId().intValue());
 						if (c == null) {
-							c = new Competence(competence.getName(),
-									competence.getDescription());
+							c = new Competence();
+							c.setName(competence.getName());
+							c.setDescription(competence.getDescription());
 							c.setId(competence.getId().intValue());
 							
 							metierUIServices.createCompetence(c);
@@ -145,7 +151,7 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 	}
 
 	public void setSession(Map<String, Object> session) {
-		session = this.getSession();
+		this.session = session;
 	}
 
 	public Map<String, Object> getSession() {
