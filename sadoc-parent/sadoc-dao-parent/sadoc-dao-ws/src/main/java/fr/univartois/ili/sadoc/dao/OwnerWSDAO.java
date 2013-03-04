@@ -9,12 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.constante.Request;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
-import fr.univartois.ili.sadoc.dao.services.IOwnerDAO;
-import fr.univartois.ili.sadoc.dao.services.IWebServiceDAO;
+import fr.univartois.ili.sadoc.dao.services.IOwnerWSDAO;
 
 @Service("ownerDAO")
-@Transactional
-public class OwnerWSDAO extends AbstractWebServiceDAO implements IWebServiceDAO<OwnerWS>,IOwnerDAO{
+@Transactional()
+public class OwnerWSDAO extends AbstractWebServiceDAO implements IOwnerWSDAO{
 
 	public OwnerWSDAO() {
 		super();

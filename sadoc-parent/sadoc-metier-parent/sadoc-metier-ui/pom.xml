@@ -18,28 +18,14 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-ws-core</artifactId>
-			<version>2.0.3.RELEASE</version>
+	  		<groupId>fr.univartois.ili.sadoc</groupId>
+	  		<artifactId>sadoc-dao-ui</artifactId>
+	  		<version>${project.version}</version>
 		</dependency>
 		<dependency>
 	  		<groupId>fr.univartois.ili.sadoc</groupId>
 	  		<artifactId>sadoc-dao-commun</artifactId>
-	  		<version>0.0.1-SNAPSHOT</version>
-	  		<scope>compile</scope>
-  		</dependency>
-		<dependency>
-	  		<groupId>fr.univartois.ili.sadoc</groupId>
-	  		<artifactId>sadoc-dao-ui</artifactId>
-	  		<version>0.0.1-SNAPSHOT</version>
-	  		<scope>compile</scope>
-  		</dependency>
+	  		<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>

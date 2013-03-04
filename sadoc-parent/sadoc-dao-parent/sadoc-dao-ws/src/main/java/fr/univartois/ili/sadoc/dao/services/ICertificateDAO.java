@@ -1,17 +1,17 @@
 package fr.univartois.ili.sadoc.dao.services;
 
-import java.security.acl.Owner;
+import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import java.util.List;
 
 import fr.univartois.ili.sadoc.dao.entities.Certificate;
 
-public interface ICertificateDAO {
+public interface ICertificateDAO extends IWebServiceDAO<Certificate> {
 
 	/**
 	 * Get certificates associated to the owner 
 	 * @param owner
 	 * @return List of certificate
 	 */
-	List<Certificate> findByOwner(Owner owner);
+	List<Certificate> findByOwner(OwnerWS owner);
 
 }

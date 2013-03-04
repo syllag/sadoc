@@ -9,7 +9,7 @@
 		<h3>Curriculum vitae</h3> <span class="genererCv"><a
 			href="ShowCreateResume">+ generer CV</a> </span>
 		<table>
-			<c:forEach var="resume" items="${listResume}">
+			<c:forEach var="resume" items="${resumes}">
 				<tr>
 					<td>CV_${resume.id}</td>
 					<td><span class="genererCv"><a href="downloadResume?cv=${resume.id}" title="Télécharger le CV"><img

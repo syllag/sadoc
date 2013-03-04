@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -14,9 +17,9 @@ import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
-//TODO : Changer l'acquisition de la session
-public class ShowCreateResume extends ActionSupport implements SessionAware{
+public class ShowCreateResume extends ActionSupport implements SessionAware,ServletRequestAware{
 
 	/**
 	 * 
@@ -24,23 +27,16 @@ public class ShowCreateResume extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
 	private List<Competence> listCompetences = new ArrayList<Competence>();
 	private Map<String, Object> session;
-	
-	public void setSession(Map<String, Object> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	private HttpServletRequest request;
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
 	
 	public String execute() {
-		session = ActionContext.getContext().getSession();
-		
-		//## TODO injection 
-		IMetierUIServices metierUIServices = null ;
-
-		int idOwner = (Integer) session.get("id");
+		long idOwner = (Integer) session.get("id");
 		Owner owner = metierUIServices.findOwnerById(idOwner);
-		for (Acquisition a : metierUIServices.findAcquisitionByOwner(owner)){
-			listCompetences.add(a.getCompetence());
+		for (Acquisition acquisition : metierUIServices.findAcquisitionByOwner(owner)){
+			listCompetences.add(acquisition.getCompetence());
 		}
+		request.setAttribute("listCompetences", listCompetences);
 		return SUCCESS;
 	}
 
@@ -48,5 +44,26 @@ public class ShowCreateResume extends ActionSupport implements SessionAware{
 		return listCompetences;
 	}
 
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
+		return metierUIServices;
+	}
 
+	/**
+	 * @return the session
+	 */
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+	public void setSession(Map<String, Object> arg0) {
+		this.session = arg0;		
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest arg0) {
+		request = arg0;		
+	}
 }

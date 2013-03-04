@@ -32,5 +32,13 @@ public interface ICompetenceDAO {
 	public abstract List<Competence> findCompetenceByDomaine(Domaine domaine);
 
 	public abstract Competence findByAcronym(String acronym);
+	
+	/**
+	 * Insert the competence in DB
+	 * 
+	 * @param competence that is the competence to create 
+	 */
+	
+	void createCompetence(Competence competence);
 
 }

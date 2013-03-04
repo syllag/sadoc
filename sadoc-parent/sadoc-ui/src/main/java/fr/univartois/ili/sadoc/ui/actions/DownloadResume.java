@@ -24,6 +24,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
+import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 public class DownloadResume extends ActionSupport implements SessionAware {
 
@@ -40,6 +41,9 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 
 	private int cv;
 	private Map<String, Object> session;
+
+	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
+
 
 	public int getCv() {
 		return cv;
@@ -59,7 +63,6 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 		Document document = new Document();
 		FileOutputStream fo;
 
-		IMetierUIServices metierUIServices = null ;
 		Resume resume =  metierUIServices.findResumeById(cv);
 		try {
 			session = ActionContext.getContext().getSession();
@@ -152,10 +155,17 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 	}
 
 	public void setSession(Map<String, Object> session) {
-		session = this.getSession();
+		this.session = session;
 	}
 
 	public Map<String, Object> getSession() {
 		return session;
+	}
+	
+	/**
+	 * @return the metierUIServices
+	 */
+	public IMetierUIServices getMetierUIServices() {
+		return metierUIServices;
 	}
 }

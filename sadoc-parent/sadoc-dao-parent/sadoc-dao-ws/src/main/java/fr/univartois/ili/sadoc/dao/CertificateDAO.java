@@ -1,6 +1,6 @@
 package fr.univartois.ili.sadoc.dao;
 
-import java.security.acl.Owner;
+import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -12,11 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.univartois.ili.sadoc.constante.Request;
 import fr.univartois.ili.sadoc.dao.entities.Certificate;
 import fr.univartois.ili.sadoc.dao.services.ICertificateDAO;
-import fr.univartois.ili.sadoc.dao.services.IWebServiceDAO;
 
 @Service("certificateDAO")
 @Transactional
-public class CertificateDAO extends AbstractWebServiceDAO implements IWebServiceDAO<Certificate>,ICertificateDAO {
+public class CertificateDAO extends AbstractWebServiceDAO implements ICertificateDAO {
 
 	public CertificateDAO() {
 		super();
@@ -36,7 +35,7 @@ public class CertificateDAO extends AbstractWebServiceDAO implements IWebService
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public List<Certificate> findByOwner(Owner owner) {
+	public List<Certificate> findByOwner(OwnerWS owner) {
 		final TypedQuery<Certificate> query;
 		query = entityManager.createQuery(Request.FIND_IN_CERTIFICATE_BY_OWNER,
 				Certificate.class);

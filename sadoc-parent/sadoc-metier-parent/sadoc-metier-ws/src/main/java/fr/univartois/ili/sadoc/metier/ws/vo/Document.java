@@ -2,6 +2,11 @@ package fr.univartois.ili.sadoc.metier.ws.vo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.ManyToMany;
+
+import fr.univartois.ili.sadoc.dao.entities.ChecksumAlgorithm;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -13,14 +18,53 @@ public class Document implements Serializable, Comparable<Object> {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int id;
+	private long id;
 
 	private String name;
+	private String url;
 	private String checkSum;
 	private byte[] pk7;
+	private ChecksumAlgorithm algorithm;
 
 	private Date creationDate;
+	
+	private List<Signature> signatures;	
+	private List<Acquisition> acquisitions;
 
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public ChecksumAlgorithm getAlgorithm() {
+		return algorithm;
+	}
+
+	public void setAlgorithm(ChecksumAlgorithm algorithm) {
+		this.algorithm = algorithm;
+	}
+
+	public List<Signature> getSignatures() {
+		return signatures;
+	}
+
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
+	}
+
+	public List<Acquisition> getAcquisitions() {
+		return acquisitions;
+	}
+
+	public void setAcquisitions(List<Acquisition> acquisitions) {
+		this.acquisitions = acquisitions;
+	}
+
+	
 	/************************************************/
 
 	public Document() {
@@ -54,11 +98,11 @@ public class Document implements Serializable, Comparable<Object> {
 
 	/************************************************/
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

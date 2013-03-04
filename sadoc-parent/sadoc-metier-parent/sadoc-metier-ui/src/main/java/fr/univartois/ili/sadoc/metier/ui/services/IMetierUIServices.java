@@ -37,10 +37,10 @@ public interface IMetierUIServices {
 	/**
 	 * Ask the owner to the DB
 	 * 
-	 * @param id
+	 * @param idOwner
 	 * @return
 	 */
-	Owner findOwnerById(int id);
+	Owner findOwnerById(long idOwner);
 	
 	/**
 	 * Insert the owner in Database

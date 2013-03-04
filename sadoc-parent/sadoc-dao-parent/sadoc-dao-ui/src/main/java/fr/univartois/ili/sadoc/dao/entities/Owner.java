@@ -1,8 +1,9 @@
-package fr.univartois.sadoc.dao.entities;
+package fr.univartois.ili.sadoc.dao.entities;
 
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -21,6 +22,7 @@ public class Owner implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue
 	private long id;
 	// TODO Numéro de SECU ou Numéro carte séjour
 

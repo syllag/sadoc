@@ -10,11 +10,10 @@ import fr.univartois.ili.sadoc.constante.Request;
 import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import fr.univartois.ili.sadoc.dao.services.IDocumentDAO;
-import fr.univartois.ili.sadoc.dao.services.IWebServiceDAO;
 
 @Service("documentDAO")
 @Transactional
-public class DocumentDAO extends AbstractWebServiceDAO implements IWebServiceDAO<Document>,IDocumentDAO {
+public class DocumentDAO extends AbstractWebServiceDAO implements IDocumentDAO {
 
 	public DocumentDAO() {
 		super();

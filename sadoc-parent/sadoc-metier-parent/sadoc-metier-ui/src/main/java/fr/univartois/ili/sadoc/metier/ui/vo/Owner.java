@@ -13,7 +13,7 @@ public class Owner implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int id;
+	private long id;
 	// TODO Numéro de SECU ou Numéro carte séjour
 
 	private String firstName;
@@ -25,6 +25,9 @@ public class Owner implements Serializable {
 	private String town;
 	private String phone;
 
+	private long idOwnerWs;
+	
+	//XXX : to refactor
 	private List<Resume> resumes;
 
 	private List<Degree> degrees;
@@ -62,11 +65,11 @@ public class Owner implements Serializable {
 		this.degrees = degrees;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -139,6 +142,14 @@ public class Owner implements Serializable {
 		this.phone = phone;
 	}
 	
+	public long getIdOwnerWs() {
+		return idOwnerWs;
+	}
+
+	public void setIdOwnerWs(long idOwnerWs) {
+		this.idOwnerWs = idOwnerWs;
+	}
+
 	public boolean equals(Owner owner) {
 		return this.id == owner.getId();
 	}
