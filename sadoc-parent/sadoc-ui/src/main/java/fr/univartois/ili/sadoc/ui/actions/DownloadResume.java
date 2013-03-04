@@ -155,7 +155,7 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 	}
 
 	public void setSession(Map<String, Object> session) {
-		session = this.getSession();
+		this.session = session;
 	}
 
 	public Map<String, Object> getSession() {
