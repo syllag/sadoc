@@ -39,31 +39,25 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 	private static Font empty = new Font(Font.FontFamily.HELVETICA, 20,
 			Font.BOLD, BaseColor.WHITE);
 
+	private InputStream fileInputStream;
+
 	private int cv;
 	private Map<String, Object> session;
 
-	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
+	private IMetierUIServices metierUIServices = ContextFactory.getContext()
+			.getBean(IMetierUIServices.class);
 
+	
 
-	public int getCv() {
-		return cv;
-	}
-
-	public void setCv(String cvs) {
-		cv = Integer.parseInt(cvs);
-	}
-
-	private InputStream fileInputStream;
-
-	public InputStream getFileInputStream() {
-		return fileInputStream;
-	}
+	/**
+	 * method createPdf
+	 */
 
 	private void createPdf() {
 		Document document = new Document();
 		FileOutputStream fo;
 
-		Resume resume =  metierUIServices.findResumeById(cv);
+		Resume resume = metierUIServices.findResumeById(cv);
 		try {
 			session = ActionContext.getContext().getSession();
 			fo = new FileOutputStream("/tmp/" + session.get("id") + "_" + cv
@@ -102,13 +96,13 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 			document.add(prefaceMail);
 			document.add(prefaceTel);
 
-			document.add(new Paragraph(" ",empty));
-			document.add(new Paragraph(" ",empty));
+			document.add(new Paragraph(" ", empty));
+			document.add(new Paragraph(" ", empty));
 			Paragraph prefaceTitleComp = new Paragraph("Compétences",
 					sectionFont);
 			prefaceTitleComp.setAlignment(Element.ALIGN_CENTER);
 			document.add(prefaceTitleComp);
-			document.add(new Paragraph(" ",empty));
+			document.add(new Paragraph(" ", empty));
 			List<Competence> listComp = new ArrayList<Competence>(
 					resume.getCompetences());
 
@@ -127,18 +121,16 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 
 		} catch (DocumentException e) {
 			e.printStackTrace();
-
 		}
-
 	}
 
 	public String execute() {
 
 		session = ActionContext.getContext().getSession();
 		if (session.get("mail") == null) {
-			return "astalavista";
+			return "index";
 		}
-		
+
 		try {
 			createPdf();
 
@@ -154,6 +146,20 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 
 	}
 
+	/**
+	 * getter and setter of Cv
+	 */
+	public int getCv() {
+		return cv;
+	}
+
+	public void setCv(String cvs) {
+		cv = Integer.parseInt(cvs);
+	}
+	
+	/**
+	 * getter and setter of Session
+	 */
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
@@ -161,11 +167,18 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 	public Map<String, Object> getSession() {
 		return session;
 	}
-	
+
 	/**
 	 * @return the metierUIServices
 	 */
 	public IMetierUIServices getMetierUIServices() {
 		return metierUIServices;
+	}
+	
+	/**
+	 * @return the fileInputStream
+	 */
+	public InputStream getFileInputStream() {
+		return fileInputStream;
 	}
 }
