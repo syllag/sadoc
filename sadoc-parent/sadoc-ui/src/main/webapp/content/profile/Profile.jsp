@@ -7,17 +7,17 @@
 
 <section id="content">
 	<div class="user">
-		<p>${firstname} ${name}</p>
-		<p>${ adress }</p>
+		<p>${owner.firstname} ${owner.name}</p>
+		<p>${owner.adress }</p>
 		<p>
-			${ zipCode }
-			<c:if test="not empty ${ zipCode }  && not empty ${ town } ">
+			${owner.zipCode }
+			<c:if test="not empty ${owner.zipCode }  && not empty ${ owner.town } ">
 				,
 				</c:if>
-			${ town }
+			${owner.town }
 		</p>
-		<p>${ phone }</p>
-		<p>${ mail }</p>
+		<p>${owner.phone }</p>
+		<p>${owner.mail }</p>
 	</div>
 	<hr />
 	<div class="competence">

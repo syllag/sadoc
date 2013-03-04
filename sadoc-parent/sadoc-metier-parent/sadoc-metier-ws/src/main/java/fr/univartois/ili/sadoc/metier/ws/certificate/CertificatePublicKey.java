@@ -32,8 +32,7 @@ public class CertificatePublicKey implements BaseCertificate {
 
 	@Override
 	public CertificateType getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return CertificateType.PublicKey;
 	}
 
 }

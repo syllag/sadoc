@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
@@ -21,7 +23,6 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Degree;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
-import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.form.ManageConnectForm;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
@@ -29,7 +30,8 @@ import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
  * @author Damien Wattiez <Damien Wattiez at gmail.com>
  * 
  */
-public class ManageConnect extends ActionSupport implements SessionAware {
+public class ManageConnect extends ActionSupport implements SessionAware,
+		ServletRequestAware {
 
 	/**
 	 * 
@@ -41,14 +43,13 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	 */
 	private ManageConnectForm connect;
 	private Map<String, Object> session;
-	
-	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
 
+	private HttpServletRequest request;
+
+	private IMetierUIServices metierUIServices = ContextFactory.getContext()
+			.getBean(IMetierUIServices.class);
 
 	public String execute() {
-		// Create session
-		session = ActionContext.getContext().getSession();
-		
 		if (session.get("mail") != null) {
 			return SUCCESS;
 		}
@@ -57,8 +58,7 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 			session.put("incorrect", "");
 			return INPUT;
 		}
-		
-		
+
 		Owner owner = null;
 		try {
 			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
@@ -75,86 +75,33 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 				}
 			}
 
-			owner = metierUIServices.findOwnerByEmailAndPassword(connect.getEmail(), hashString.toString());
-			
+			owner = metierUIServices.findOwnerByEmailAndPassword(
+					connect.getEmail(), hashString.toString());
+
 		} catch (NoSuchAlgorithmException e) {
 		}
 
-		// if empty
+		/**
+		 * if empty
+		 */
 		if (owner == null) {
 			session.put("incorrect", "Password ou mail incorrect");
 			return INPUT;
 		}
-		session.put("id", owner.getId());
-		session.put("firstname", owner.getFirstName());
-		session.put("name", owner.getLastName());
-		session.put("adress", owner.getAddress());
-		session.put("town", owner.getTown());
-		session.put("zipCode", owner.getZipCode());
-		session.put("phone", owner.getPhone());
-		session.put("mail", owner.getMail());
-		session.put("listResume", owner.getResumes());
-		// session.put("listResume", getFakeResumes(owner));
+
+		owner.setPassword(null);
+
+		session.put("owner", owner);
+		/**
+		 * session.put("listResume", getFakeResumes(owner));
+		 */
 
 		session.put("mapCompetence", getMapCompetence(owner));
-		// session.put("mapCompetence", getFakeMapCompetence(owner));
+		/**
+		 * session.put("mapCompetence", getFakeMapCompetence(owner));
+		 */
 
 		return SUCCESS;
-	}
-
-	private Map<Competence, List<Document>> getFakeMapCompetence(Owner owner) {
-		Set<Competence> setCompetence = new HashSet<Competence>();
-		Competence comp1 = new Competence("nomCompetence1", "descCompetence1");
-		comp1.setId(0);
-		comp1.setAcronym("CMP1");
-		setCompetence.add(comp1);
-		Competence comp2 = new Competence("nomCompetence2", "descCompetence2");
-		comp2.setId(1);
-		comp2.setAcronym("CMP2");
-		setCompetence.add(comp2);
-
-		Map<Competence, List<Document>> map = new HashMap<Competence, List<Document>>();
-
-		Document doc1 = new Document("doc1", "", "", null, null);
-		doc1.setId("0");
-		Document doc2 = new Document("doc2", "", "", null, null);
-		doc1.setId("1");
-		Document doc3 = new Document("doc3", "", "", null, null);
-		doc1.setId("2");
-		Acquisition acquis1 = new Acquisition(owner, doc1, comp1, null);
-		List<Acquisition> acquis = new ArrayList<Acquisition>();
-		acquis.add(new Acquisition(owner, doc1, comp1, null));
-		acquis.add(new Acquisition(owner, doc2, comp1, null));
-		acquis.add(new Acquisition(owner, doc3, comp2, null));
-		acquis.add(new Acquisition(owner, doc3, comp1, null));
-
-		Iterator<Competence> item = setCompetence.iterator();
-		while (item.hasNext()) {
-			map.put(item.next(), new ArrayList<Document>());
-		}
-
-		for (int h = 0; h < acquis.size(); h++) {
-			List<Document> listDocument = map
-					.get(acquis.get(h).getCompetence());
-			listDocument.add(acquis.get(h).getDocument());
-			map.put(acquis.get(h).getCompetence(), listDocument);
-		}
-
-		return map;
-	}
-
-	private List<Resume> getFakeResumes(Owner owner) {
-		List<Resume> listResume = new ArrayList<Resume>();
-		Resume tmp = new Resume(owner, null);
-		tmp.setId(0);
-		Resume tmp2 = new Resume(owner, null);
-		tmp2.setId(1);
-		Resume tmp3 = new Resume(owner, null);
-		tmp3.setId(2);
-		listResume.add(tmp);
-		listResume.add(tmp2);
-		listResume.add(tmp3);
-		return listResume;
 	}
 
 	private Map<Competence, List<Document>> getMapCompetence(Owner owner) {
@@ -166,14 +113,15 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		for (int i = 0; i < listDegrees.size(); i++) {
 			setCompetence.addAll(listDegrees.get(i).getCompetences());
 		}
-		
-		List<Acquisition> acquis = metierUIServices.findAcquisitionByOwner(owner);
-		
+
+		List<Acquisition> acquis = metierUIServices
+				.findAcquisitionByOwner(owner);
+
 		Iterator<Competence> item = setCompetence.iterator();
 		while (item.hasNext()) {
 			map.put(item.next(), new ArrayList<Document>());
 		}
-		
+
 		for (int h = 0; h < acquis.size(); h++) {
 
 			List<Document> listDocument = map
@@ -203,12 +151,25 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	public Map<String, Object> getSession() {
 		return session;
 	}
-	
+
 	/**
 	 * @return the metierUIServices
 	 */
 	public IMetierUIServices getMetierUIServices() {
 		return metierUIServices;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.setRequest(request);
+	}
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
 	}
 
 }

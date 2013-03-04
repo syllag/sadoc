@@ -55,17 +55,22 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		personne.setId(personneWS.getId());
 		personne.setMail(form.getMail());
 		try {
-			personne.setPassword(PasswordUtil.encrypt(form.getPassword()).toString());
+			personne.setPassword(PasswordUtil.encrypt(form.getPassword())
+					.toString());
 			metierUIServices.createOwner(personne);
-			// TODO : connecter la personne
+			/**
+			 * TODO : connecter la personne
+			 */
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			session.put("error", "Problème temporaire... Essayez plus tard.");
 			return INPUT;
 		}
 
-		// Synchronization s= new Synchronization();
-		// s.SynchronizeWebAPPDatabase(personne.getMail());
+		/**
+		 * Synchronization s= new Synchronization();
+		 * s.SynchronizeWebAPPDatabase(personne.getMail());
+		 */
 		return SUCCESS;
 	}
 

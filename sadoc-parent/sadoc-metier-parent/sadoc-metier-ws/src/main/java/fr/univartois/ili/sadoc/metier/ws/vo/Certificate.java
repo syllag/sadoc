@@ -85,6 +85,10 @@ public class Certificate implements Serializable {
 		return idOwner;
 	}
 
+	public void setOwner(Owner o) {
+		idOwner = o.getId();
+	}
+	
 	public void setIdOwner(long idOwner) {
 		this.idOwner = idOwner;
 	}

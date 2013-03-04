@@ -10,40 +10,104 @@ import fr.univartois.ili.sadoc.metier.ws.vo.Signature;
 
 /**
  * @author Alan Delahaye <alan.delahayee@gmail.com>
- *
+ * 
  */
 public interface IMetierWSServices {
-    //TODO JavaDoc
-	//TODO voir doublons méthode avec partie ui
+	// TODO JavaDoc
+	// TODO voir doublons méthode avec partie ui
 	// Les méthodes DAO de la partie ui devrait devenir
-	// quasi inexistante et tout doit se faire par 
+	// quasi inexistante et tout doit se faire par
 	// appel webservice
-	
-	void createCompetance(Competence competence);
-	
-	Document findDocumentById(int id);
-	
-	Owner findOwnerByDocument(Document document);
 
-	List<Competence> findCompetenceByDocument();
+	// XXX Plus nécessaire car pas Competence dans la BDws
+//	/**
+//	 * @param competence
+//	 */
+//	void createCompetence(Competence competence);
 	
-	List<Document> findDocumentByOwner(Owner owner);
-	
-	Owner findOwnerByMail(String mail);
-	
-	void createOwner(Owner owner);
-	
-	void updateOwner(Owner owner);
-	
+	/**
+	 * Create a document
+	 * 
+	 * @param document
+	 * @return void
+	 */
 	void createDocument(Document document);
 	
-	Competence findCompetenceByAcronym(String acronym);
+	/**
+	 * 
+	 * 
+	 * @param owner
+	 * @return void
+	 */
+	void createOwner(Owner owner);
 	
-	Certificate findCertificateByOwner(Owner owner);
-	
+	/**
+	 * Create a signature
+	 * 
+	 * @param signature
+	 * @return void
+	 */
 	void createSignature(Signature signature);
 	
+	/**
+	 * Update a document
+	 * 
+	 * @param document
+	 * @return void
+	 */
 	void updateDocument(Document document);
+
+	/**
+	 * Find a specific document
+	 * 
+	 * @param id
+	 * @return Document
+	 */
+	Document findDocumentById(long id);
+
+	/**
+	 * @param document
+	 * @return Owner
+	 */
+	Owner findOwnerByDocument(Document document);
+
+
 	
-	List<Certificate> findCertificateByOwner();
+	/**
+	 * @param owner
+	 * @return List<Document>
+	 */
+	List<Document> findDocumentByOwner(Owner owner);
+
+	
+	/**
+	 * @param mail
+	 * @return Owner
+	 */
+	Owner findOwnerByMail(String mail);
+	
+	/**
+	 * @param owner
+	 * @return Certificate
+	 */
+	Certificate findCertificateByOwner(Owner owner);
+
+	/**
+	 * @param owner
+	 * @return List<Certificate>
+	 */
+	List<Certificate> findCertificatesByOwner(Owner owner);
+	
+	/**
+	 * @param acronym
+	 * @return Competence
+	 */
+	Competence findCompetenceByAcronym(String acronym); 
+	
+	/**
+	 * @param document
+	 * @return List<Competence>
+	 */
+	List<Competence> findCompetencesByDocument(Document document);
+	
 }

@@ -44,6 +44,20 @@ public class OwnerWS implements Serializable{
 		this.mail_initial = mail_initial;
 	}
 	
+	/**
+	 * @return the certificates
+	 */
+	public List<Certificate> getCertificates() {
+		return certificates;
+	}
+	
+	/**
+	 * @param certificates the certificates to set
+	 */
+	public void setCertificates(List<Certificate> certificates) {
+		this.certificates = certificates;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

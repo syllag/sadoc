@@ -1,6 +1,5 @@
 package fr.univartois.ili.sadoc.ui.actions;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
-import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 public class ManageResume extends ActionSupport implements SessionAware,

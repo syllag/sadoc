@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import fr.univartois.ili.sadoc.metier.commun.services.IMetierCommunServices;
+import fr.univartois.ili.sadoc.metier.ws.services.IMetierWSServices;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 
 @Component
@@ -20,6 +21,10 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 	@Autowired
 	@Qualifier("metierCommunServices")
 	private IMetierCommunServices metierCommunServices;
+	
+	@Autowired
+	//@Qualifier("")
+	private IMetierWSServices metierWSServices;
 	
 	protected String nomFichierXML;
 	int cptTag = 0;
@@ -134,12 +139,7 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 
 			trace(com.getAcronym() + " " + com.getName() + " "
 					+ com.getDescription());
-			//TODO : change this
-			CompetenceDAO cDao = new CompetenceDAO();
-
-			cDao.getEntityManager().getTransaction().begin();
-			cDao.create(com);
-			cDao.getEntityManager().getTransaction().commit();
+			metierWSServices.createCompetance(com);
 		}
 		if ("domain".equals(qName)) {
 			nameCom = null;

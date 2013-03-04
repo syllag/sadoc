@@ -34,8 +34,11 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
+import org.bouncycastle.asn1.x509.BasicConstraints;
+import org.bouncycastle.asn1.x509.X509Extension;
 import org.bouncycastle.cert.X509CertificateHolder;
 import org.bouncycastle.cert.X509v3CertificateBuilder;
 import org.bouncycastle.cert.jcajce.JcaCertStore;
@@ -59,8 +62,8 @@ import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.bouncycastle.operator.jcajce.JcaDigestCalculatorProviderBuilder;
 import org.bouncycastle.util.Store;
 import org.bouncycastle.x509.extension.SubjectKeyIdentifierStructure;
-import org.bouncycastle.asn1.x509.*;
 
+import fr.univartois.ili.sadoc.metier.ws.certificate.CertificatePublicKey;
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
 import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
 
@@ -77,7 +80,7 @@ public class SignFile {
 //	private static final String CACNRSROOT = "CNRS2.crt";
 	private static final String CACNRSSTANDARD = "CNRS2-Standard.crt";
 	private static final String CASADOC = "sadoc.pem";
-	private static final String SADOCPRIVAYEKEY = "sadoc.pk8";
+	private static final String SADOCPRIVATEKEY = "sadoc.pk8";
 
 	/**
 	 * Generate a key pair (public and private).
@@ -216,9 +219,8 @@ public class SignFile {
 		if (o.getCertificates().isEmpty()) {
 			// Generate private and public keys
 			KeyPair userKeys = generateRSAKeyPair();
-			// recovery private key and certificate X509
-			PrivateKey userPrivateKey = userKeys.getPrivate();
-			certif = new Certificate(userKeys.getPublic(), userPrivateKey, o);
+			certif = new Certificate(userKeys.getPublic(), userKeys.getPrivate(), o.getId());
+			o.getCertificates().add(certif);
 		} else {
 			certif = o.getCertificates().get(0);
 		}
@@ -235,20 +237,20 @@ public class SignFile {
 	 * 
 	 * @return file P7S.
 	 */
-	public byte[] signDocument(byte[] fileToSign, Owner owner) throws Exception {
+	public byte[] signDocument(byte[] fileToSign, Owner owner, Certificate certificate) throws Exception {
 
 		// Use of Bouncy Castle library
 		Security.addProvider(new BouncyCastleProvider());
 
 		// Read the private key and the different certificates
-		byte[] pk8File = decryptPK8File(FOLDER + SADOCPRIVAYEKEY, this.getClass().getSimpleName());
+		byte[] pk8File = decryptPK8File(FOLDER + SADOCPRIVATEKEY, this.getClass().getSimpleName());
 		PrivateKey facPK = readPK8File(pk8File);
 		//X509Certificate root = ReadCertificateFile(FOLDER + CACNRSROOT);
 		X509Certificate cnrsCA = ReadCertificateFile(FOLDER + CACNRSSTANDARD);
 		X509Certificate facCA = ReadCertificateFile(FOLDER + CASADOC);
 
 		// Generate private and public keys
-		KeyPair userKeys = generateRSAKeyPair();
+		KeyPair userKeys = new KeyPair(certificate.getCertificate().getPublicKey(), certificate.getPrivateKey());
 		X509Certificate certX509 = createCertificate(facCA, facPK, userKeys,owner, facCA.getNotBefore(), facCA.getNotAfter());
 
 		// Declaration of certificates store
