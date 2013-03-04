@@ -13,12 +13,10 @@ public class Owner implements Serializable, Comparable<Object> {
 	private static final long serialVersionUID = 1L;
 	
 	
-	private int id;
+	private long id;
 	// TODO Numéro de SECU ou Numéro carte séjour
 	
-	private String firstName;
-	private String lastName;
-	private String mail;
+	private String mail_initial;
 	
 	private List<Certificate> certificates;
 	
@@ -26,16 +24,12 @@ public class Owner implements Serializable, Comparable<Object> {
 	
 	public Owner(){}
 	
-	public Owner(String firstName, String lastName, String mail) {
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.mail=mail;
+	public Owner(String mail) {
+		this.mail_initial=mail;
 	}
 	
-	public Owner(String firstName, String lastName, String mail, List<Certificate> certificates) {
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.mail=mail;
+	public Owner(String mail, List<Certificate> certificates) {
+		this.mail_initial=mail;
 		this.certificates=certificates;
 	}
 	
@@ -54,43 +48,28 @@ public class Owner implements Serializable, Comparable<Object> {
 	// compareTo method, while in Java 6 it uses the equals method.
 	
 	public int compareTo(Object other) { 
-	      String name1 = ((Owner) other).getLastName()+((Owner) other).getFirstName(); 
-	      String name2 = this.getLastName()+this.getFirstName(); 
-	      return name2.compareTo(name1);
+//	      String name1 = ((Owner) other).getLastName()+((Owner) other).getFirstName(); 
+//	      String name2 = this.getLastName()+this.getFirstName(); 
+//	      return name2.compareTo(name1);
+		return this.getMail_initial().compareTo(((Owner) other).getMail_initial());
 	   } 
 	
 	/************************************************/
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getMail_initial() {
+		return mail_initial;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setMail_initial(String mail_initial) {
+		this.mail_initial = mail_initial;
 	}
 
 	public List<Certificate> getCertificates() {

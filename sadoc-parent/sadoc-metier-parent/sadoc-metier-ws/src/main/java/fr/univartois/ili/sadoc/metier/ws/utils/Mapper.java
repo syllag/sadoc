@@ -21,6 +21,7 @@ import fr.univartois.ili.sadoc.metier.ws.certificate.CertificateX509;
 import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;
+import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ws.vo.Signature;
 
 public class Mapper {
@@ -32,7 +33,6 @@ public class Mapper {
 	 * @param documentVO
 	 * @return documentDO
 	 */
-
 	public final static fr.univartois.ili.sadoc.dao.entities.Document documentVOToDocumentDO(
 			Document docVO) {
 		List<fr.univartois.ili.sadoc.dao.entities.Signature> signs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Signature>();
@@ -91,7 +91,6 @@ public class Mapper {
 	 * @throws SQLException
 	 * @throws IOException
 	 */
-
 	public final static fr.univartois.ili.sadoc.dao.entities.Certificate certificateVOToCertificateDO(
 			Certificate certVO) throws SQLException, IOException {
 		fr.univartois.ili.sadoc.dao.entities.Certificate certDO = new fr.univartois.ili.sadoc.dao.entities.Certificate();
@@ -118,7 +117,6 @@ public class Mapper {
 	 * @throws SerialException
 	 * 
 	 */
-
 	public final static <T> Blob objectToBlob(T t) throws IOException,
 			SerialException, SQLException {
 		ByteArrayOutputStream baos;
@@ -278,4 +276,50 @@ public class Mapper {
 		return acqVO;
 
 	}
+	
+	/**
+	 * Convert OwnerVO to OwnerDO Parses the OwnerVO
+	 * interpreting its content as a OwnerDO.
+	 * 
+	 * @param OwnerVO
+	 * @return OwnerDO
+	 * @throws IOException 
+	 * @throws SQLException 
+	 */
+	public final static fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerVOToOwnerDO(Owner ownerVO) throws SQLException, IOException{
+		fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerDO = new fr.univartois.ili.sadoc.dao.entities.OwnerWS();
+		List<fr.univartois.ili.sadoc.dao.entities.Certificate> certifs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Certificate>();
+		ownerDO.setId(ownerVO.getId());
+		ownerDO.setMail_initial(ownerVO.getMail_initial());
+		
+		for(Certificate certif : ownerVO.getCertificates())
+			certifs.add(certificateVOToCertificateDO(certif));
+		ownerDO.setCertificates(certifs);
+		
+		return ownerDO;
+	}
+	
+	/**
+	 * Convert OwnerDO to OwnerVO Parses the OwnerDO
+	 * interpreting its content as a OwnerVO.
+	 * 
+	 * @param OwnerDO
+	 * @return OwnerVO
+	 * @throws IOException 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public final static Owner ownerDOToOwnerVO(fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerDO) throws ClassNotFoundException, SQLException, IOException{
+		Owner ownerVO = new Owner();
+		List<Certificate> certifs = new ArrayList<Certificate>();
+		ownerVO.setId(ownerDO.getId());
+		ownerVO.setMail_initial(ownerDO.getMail_initial());
+		
+		for(fr.univartois.ili.sadoc.dao.entities.Certificate certif : ownerDO.getCertificates())
+			certifs.add(certificateDOToCertificateVO(certif));
+		ownerVO.setCertificates(certifs);
+		
+		return ownerVO;
+	}
+	
 }

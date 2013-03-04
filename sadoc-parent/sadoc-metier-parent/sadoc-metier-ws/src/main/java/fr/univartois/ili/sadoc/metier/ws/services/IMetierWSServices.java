@@ -12,10 +12,6 @@ import fr.univartois.ili.sadoc.metier.ws.vo.Signature;
  * @author Alan Delahaye <alan.delahayee@gmail.com>
  * 
  */
-/**
- * @author mathieu15
- *
- */
 public interface IMetierWSServices {
 	// TODO JavaDoc
 	// TODO voir doublons méthode avec partie ui
@@ -23,16 +19,51 @@ public interface IMetierWSServices {
 	// quasi inexistante et tout doit se faire par
 	// appel webservice
 
+	// XXX Plus nécessaire car pas Competence dans la BDws
+//	/**
+//	 * @param competence
+//	 */
+//	void createCompetence(Competence competence);
+	
 	/**
-	 * @param competence
+	 * Create a document
+	 * 
+	 * @param document
+	 * @return void
 	 */
-	void createCompetance(Competence competence);
+	void createDocument(Document document);
+	
+	/**
+	 * 
+	 * 
+	 * @param owner
+	 * @return void
+	 */
+	void createOwner(Owner owner);
+	
+	/**
+	 * Create a signature
+	 * 
+	 * @param signature
+	 * @return void
+	 */
+	void createSignature(Signature signature);
+	
+	/**
+	 * Update a document
+	 * 
+	 * @param document
+	 * @return void
+	 */
+	void updateDocument(Document document);
 
 	/**
+	 * Find a specific document
+	 * 
 	 * @param id
 	 * @return Document
 	 */
-	Document findDocumentById(int id);
+	Document findDocumentById(long id);
 
 	/**
 	 * @param document
@@ -40,12 +71,6 @@ public interface IMetierWSServices {
 	 */
 	Owner findOwnerByDocument(Document document);
 
-
-	/**
-	 * @param document
-	 * @return List<Competence>
-	 */
-	List<Competence> findCompetencesByDocument(Document document);
 
 	
 	/**
@@ -60,35 +85,6 @@ public interface IMetierWSServices {
 	 * @return Owner
 	 */
 	Owner findOwnerByMail(String mail);
-
-	
-	/**
-	 * @param owner
-	 * @return void
-	 */
-	void createOwner(Owner owner);
-
-	/**
-	 * @param owner
-	 * @return void
-	 */
-	void updateOwner(Owner owner);
-
-	
-	/**
-	 * @param document
-	 * @return void
-	 */
-	void createDocument(Document document);
-
-	
-	/**
-	 * @param acronym
-	 * @return Competence
-	 */
-	
-	Competence findCompetenceByAcronym(String acronym); 
-	
 	
 	/**
 	 * @param owner
@@ -96,23 +92,22 @@ public interface IMetierWSServices {
 	 */
 	Certificate findCertificateByOwner(Owner owner);
 
-	
-	/**
-	 * @param signature
-	 * @return void
-	 */
-	void createSignature(Signature signature);
-
-	
-	/**
-	 * @param document
-	 * @return void
-	 */
-	void updateDocument(Document document);
-
 	/**
 	 * @param owner
 	 * @return List<Certificate>
 	 */
 	List<Certificate> findCertificatesByOwner(Owner owner);
+	
+	/**
+	 * @param acronym
+	 * @return Competence
+	 */
+	Competence findCompetenceByAcronym(String acronym); 
+	
+	/**
+	 * @param document
+	 * @return List<Competence>
+	 */
+	List<Competence> findCompetencesByDocument(Document document);
+	
 }
