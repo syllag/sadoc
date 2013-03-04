@@ -3,7 +3,7 @@ package fr.univartois.ili.sadoc.dao;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +11,7 @@ import fr.univartois.ili.sadoc.constante.Request;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import fr.univartois.ili.sadoc.dao.services.IOwnerWSDAO;
 
-@Service("ownerDAO")
+@Repository("ownerDAO")
 @Transactional()
 public class OwnerWSDAO extends AbstractWebServiceDAO implements IOwnerWSDAO{
 

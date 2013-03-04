@@ -2,7 +2,7 @@ package fr.univartois.ili.sadoc.dao;
 
 import javax.persistence.TypedQuery;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +11,7 @@ import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import fr.univartois.ili.sadoc.dao.services.IDocumentDAO;
 
-@Service("documentDAO")
+@Repository("documentDAO")
 @Transactional
 public class DocumentDAO extends AbstractWebServiceDAO implements IDocumentDAO {
 

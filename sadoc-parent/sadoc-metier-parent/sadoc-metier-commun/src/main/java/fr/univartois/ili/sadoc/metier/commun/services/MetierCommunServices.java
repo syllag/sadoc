@@ -3,6 +3,8 @@ package fr.univartois.ili.sadoc.metier.commun.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import fr.univartois.ili.sadoc.dao.services.ICompetenceDAO;
 import fr.univartois.ili.sadoc.dao.services.IDomaineDAO;
 import fr.univartois.ili.sadoc.dao.services.IItemDAO;
@@ -17,6 +19,7 @@ import fr.univartois.ili.sadoc.metier.commun.utils.Mapper;
  * @author Noureddine Kasri < kasrinoureddine@gmail.com >
  *
  */
+@Service("metierCommunServices")
 public class MetierCommunServices implements IMetierCommunServices {
 	private IItemDAO itemDAO;
 	private ICompetenceDAO competenceDAO;

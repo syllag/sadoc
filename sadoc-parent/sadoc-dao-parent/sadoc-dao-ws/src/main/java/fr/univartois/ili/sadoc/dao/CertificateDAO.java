@@ -1,19 +1,19 @@
 package fr.univartois.ili.sadoc.dao;
 
-import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.constante.Request;
 import fr.univartois.ili.sadoc.dao.entities.Certificate;
+import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import fr.univartois.ili.sadoc.dao.services.ICertificateDAO;
 
-@Service("certificateDAO")
+@Repository("certificateDAO")
 @Transactional
 public class CertificateDAO extends AbstractWebServiceDAO implements ICertificateDAO {
 

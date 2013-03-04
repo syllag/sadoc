@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import fr.univartois.ili.sadoc.dao.entities.Signature;
 import fr.univartois.ili.sadoc.dao.services.ISignatureDAO;
 
-@Service("signatureDAO")
+@Repository("signatureDAO")
 @Transactional
 public class SignatureDAO extends AbstractWebServiceDAO implements
 		ISignatureDAO {
