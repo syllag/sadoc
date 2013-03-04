@@ -52,7 +52,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		Owner personne = new Owner();
 		personne.setFirstName(personneWS.getFirstName());
 		personne.setLastName(personneWS.getLastName());
-		personne.setId(personneWS.getId().intValue());
+		personne.setId(personneWS.getId());
 		personne.setMail(form.getMail());
 		try {
 			personne.setPassword(PasswordUtil.encrypt(form.getPassword()).toString());

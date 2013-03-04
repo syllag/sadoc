@@ -90,14 +90,14 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 					fr.univartois.ili.sadoc.client.webservice.tools.Owner incowner = comp
 							.keySet().iterator().next();
 
-					metierUIServices.findOwnerById(incowner.getId().intValue());
+					metierUIServices.findOwnerById(incowner.getId());
 					
 					if (owner == null) {
 						Owner owntoregister = new Owner();
 						owntoregister.setFirstName(incowner.getFirstName());
 						owntoregister.setLastName(incowner.getLastName());
 						owntoregister.setMail(incowner.getMail());
-						owntoregister.setId(incowner.getId().intValue());
+						owntoregister.setId(incowner.getId());
 						
 						metierUIServices.createOwner(owntoregister);
 						

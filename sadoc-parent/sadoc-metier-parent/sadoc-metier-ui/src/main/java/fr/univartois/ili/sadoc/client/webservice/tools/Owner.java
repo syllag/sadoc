@@ -1,7 +1,6 @@
 
 package fr.univartois.ili.sadoc.client.webservice.tools;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -42,7 +41,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Owner {
 
     @XmlElement(required = true)
-    protected BigInteger id;
+    protected long id;
     @XmlElement(required = true)
     protected String firstName;
     @XmlElement(required = true)
@@ -58,7 +57,7 @@ public class Owner {
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getId() {
+    public long getId() {
         return id;
     }
 
@@ -70,7 +69,7 @@ public class Owner {
      *     {@link BigInteger }
      *     
      */
-    public void setId(BigInteger value) {
+    public void setId(long value) {
         this.id = value;
     }
 
