@@ -1,17 +1,10 @@
 package fr.univartois.ili.sadoc.metier.ws.services;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.univartois.ili.sadoc.dao.CertificateDAO;
-import fr.univartois.ili.sadoc.dao.CompetenceDAO;
 import fr.univartois.ili.sadoc.dao.DocumentDAO;
-import fr.univartois.ili.sadoc.dao.OwnerDAO;
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;

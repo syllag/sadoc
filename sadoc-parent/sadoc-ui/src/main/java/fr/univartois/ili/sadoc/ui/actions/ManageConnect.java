@@ -30,7 +30,8 @@ import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
  * @author Damien Wattiez <Damien Wattiez at gmail.com>
  * 
  */
-public class ManageConnect extends ActionSupport implements SessionAware,ServletRequestAware {
+public class ManageConnect extends ActionSupport implements SessionAware,
+		ServletRequestAware {
 
 	/**
 	 * 
@@ -42,14 +43,13 @@ public class ManageConnect extends ActionSupport implements SessionAware,Servlet
 	 */
 	private ManageConnectForm connect;
 	private Map<String, Object> session;
-	
+
 	private HttpServletRequest request;
 
-	
-	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
+	private IMetierUIServices metierUIServices = ContextFactory.getContext()
+			.getBean(IMetierUIServices.class);
 
-
-	public String execute() {		
+	public String execute() {
 		if (session.get("mail") != null) {
 			return SUCCESS;
 		}
@@ -58,8 +58,7 @@ public class ManageConnect extends ActionSupport implements SessionAware,Servlet
 			session.put("incorrect", "");
 			return INPUT;
 		}
-		
-		
+
 		Owner owner = null;
 		try {
 			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
@@ -76,24 +75,31 @@ public class ManageConnect extends ActionSupport implements SessionAware,Servlet
 				}
 			}
 
-			owner = metierUIServices.findOwnerByEmailAndPassword(connect.getEmail(), hashString.toString());
-			
+			owner = metierUIServices.findOwnerByEmailAndPassword(
+					connect.getEmail(), hashString.toString());
+
 		} catch (NoSuchAlgorithmException e) {
 		}
 
-		// if empty
+		/**
+		 * if empty
+		 */
 		if (owner == null) {
 			session.put("incorrect", "Password ou mail incorrect");
 			return INPUT;
 		}
-		
+
 		owner.setPassword(null);
-		
+
 		session.put("owner", owner);
-		// session.put("listResume", getFakeResumes(owner));
+		/**
+		 * session.put("listResume", getFakeResumes(owner));
+		 */
 
 		session.put("mapCompetence", getMapCompetence(owner));
-		// session.put("mapCompetence", getFakeMapCompetence(owner));
+		/**
+		 * session.put("mapCompetence", getFakeMapCompetence(owner));
+		 */
 
 		return SUCCESS;
 	}
@@ -107,14 +113,15 @@ public class ManageConnect extends ActionSupport implements SessionAware,Servlet
 		for (int i = 0; i < listDegrees.size(); i++) {
 			setCompetence.addAll(listDegrees.get(i).getCompetences());
 		}
-		
-		List<Acquisition> acquis = metierUIServices.findAcquisitionByOwner(owner);
-		
+
+		List<Acquisition> acquis = metierUIServices
+				.findAcquisitionByOwner(owner);
+
 		Iterator<Competence> item = setCompetence.iterator();
 		while (item.hasNext()) {
 			map.put(item.next(), new ArrayList<Document>());
 		}
-		
+
 		for (int h = 0; h < acquis.size(); h++) {
 
 			List<Document> listDocument = map
@@ -144,7 +151,7 @@ public class ManageConnect extends ActionSupport implements SessionAware,Servlet
 	public Map<String, Object> getSession() {
 		return session;
 	}
-	
+
 	/**
 	 * @return the metierUIServices
 	 */
@@ -164,6 +171,5 @@ public class ManageConnect extends ActionSupport implements SessionAware,Servlet
 	public void setRequest(HttpServletRequest request) {
 		this.request = request;
 	}
-
 
 }
