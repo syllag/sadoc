@@ -44,11 +44,9 @@ public class DownloadP7S extends ActionSupport implements SessionAware {
 	public String execute() throws Exception {
 		session = ActionContext.getContext().getSession();
 		if (session.get("mail")==null) {
-			return "astalavista";
+			return "index";
 		}
 				
-		//long realID = TestID.findRealID(sa);
-		
 		Document doc = metierUIServices.findDocumentById(sa);
 		
 		if (doc == null) {
@@ -62,7 +60,7 @@ public class DownloadP7S extends ActionSupport implements SessionAware {
 	}
 	
 	public void setSession(Map<String, Object> session){
-		  session = this.getSession();
+		  this.session = session;
 	}
 	public Map<String, Object> getSession(){
 		return session;
