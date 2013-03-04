@@ -1,6 +1,7 @@
 package fr.univartois.ili.sadoc.metier.ws.services;
 
 import java.util.List;
+import java.util.Map;
 
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
@@ -109,5 +110,11 @@ public interface IMetierWSServices {
 	 * @return List<Competence>
 	 */
 	List<Competence> findCompetencesByDocument(Document document);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	Map<Owner, List<Competence>> findOwnerAndCompetencesByDocumentId(int documentId);
 	
 }
