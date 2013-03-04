@@ -32,6 +32,7 @@ public class CompetenceDAOImpl implements ICompetenceDAO{
 		return em.find(Competence.class, id);
 	}
 
+	@Override
 	public void createCompetence(Competence competence) {
 		em.getTransaction().begin();
 		em.persist(competence);
