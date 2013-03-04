@@ -46,7 +46,7 @@ public class MetierUIServices implements IMetierUIServices{
 		
 	}
 
-	public Owner findOwnerById(int id) {
+	public Owner findOwnerById(long id) {
 		fr.univartois.sadoc.dao.entities.Owner owner = ownerDAO.findOwnerById(id);
 		Owner ownerVO = null;
 		if(owner != null)
