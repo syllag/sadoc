@@ -1,12 +1,12 @@
-package fr.univartois.sadoc.dao.services;
+package fr.univartois.ili.sadoc.dao.services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import fr.univartois.sadoc.dao.entities.Owner;
+import fr.univartois.ili.sadoc.dao.entities.Owner;
 
-public class OwnerDAOImpl implements IOwnerDAO {
+public class OwnerDAOImpl extends AbstractWebAppDAO implements IOwnerDAO {
 
 	private EntityManager em; 
 

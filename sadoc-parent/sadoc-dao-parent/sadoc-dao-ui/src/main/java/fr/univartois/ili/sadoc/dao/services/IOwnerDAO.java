@@ -1,6 +1,6 @@
-package fr.univartois.sadoc.dao.services;
+package fr.univartois.ili.sadoc.dao.services;
 
-import fr.univartois.sadoc.dao.entities.Owner;
+import fr.univartois.ili.sadoc.dao.entities.Owner;
 
 /**
  * @author Noureddine Kasri < kasrinoureddine@gmail.com >

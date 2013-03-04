@@ -29,7 +29,7 @@ public class Mapper {
 	 * @return
 	 * 		the owner in business layer
 	 */
-	public static Owner getOwnerFromEntities(fr.univartois.sadoc.dao.entities.Owner owner){
+	public static Owner getOwnerFromEntities(fr.univartois.ili.sadoc.dao.entities.Owner owner){
 		Owner newOwner = (Owner) alreadyExist(owner);
 		if(newOwner == null){
 			// Objet non existant dans la map identité, il faut le convertir
@@ -70,11 +70,11 @@ public class Mapper {
 	 * @return
 	 * 		the owner in database
 	 */
-	public static fr.univartois.sadoc.dao.entities.Owner getOwnerFromVO(Owner owner){
-		fr.univartois.sadoc.dao.entities.Owner newOwner = (fr.univartois.sadoc.dao.entities.Owner) alreadyExist(owner);
+	public static fr.univartois.ili.sadoc.dao.entities.Owner getOwnerFromVO(Owner owner){
+		fr.univartois.ili.sadoc.dao.entities.Owner newOwner = (fr.univartois.ili.sadoc.dao.entities.Owner) alreadyExist(owner);
 		if(newOwner == null){
 			// Objet non existant dans la map identité, il faut le convertir
-			newOwner = new fr.univartois.sadoc.dao.entities.Owner();
+			newOwner = new fr.univartois.ili.sadoc.dao.entities.Owner();
 			newOwner.setFirstName(owner.getFirstName());
 			newOwner.setLastName(owner.getLastName());
 			newOwner.setMail(owner.getMail());

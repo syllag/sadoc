@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import fr.univartois.ili.sadoc.dao.services.IOwnerDAO;
 import fr.univartois.ili.sadoc.metier.ui.utils.Mapper;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
-import fr.univartois.sadoc.dao.services.IOwnerDAO;
 
 @Component
 public class MetierUIServices implements IMetierUIServices{
@@ -47,7 +47,7 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	public Owner findOwnerById(long id) {
-		fr.univartois.sadoc.dao.entities.Owner owner = ownerDAO.findOwnerById(id);
+		fr.univartois.ili.sadoc.dao.entities.Owner owner = ownerDAO.findOwnerById(id);
 		Owner ownerVO = null;
 		if(owner != null)
 			ownerVO = Mapper.getOwnerFromEntities(owner); 
@@ -55,7 +55,7 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	public void createOwner(Owner owner) {
-		fr.univartois.sadoc.dao.entities.Owner ownerDO = Mapper.getOwnerFromVO(owner);
+		fr.univartois.ili.sadoc.dao.entities.Owner ownerDO = Mapper.getOwnerFromVO(owner);
 		ownerDAO.createOwner(ownerDO);
 	}
 
@@ -85,12 +85,12 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	public void updateOwner(Owner owner) {
-		fr.univartois.sadoc.dao.entities.Owner ownerDO = Mapper.getOwnerFromVO(owner);
+		fr.univartois.ili.sadoc.dao.entities.Owner ownerDO = Mapper.getOwnerFromVO(owner);
 		ownerDAO.updateOwner(ownerDO);		
 	}
 
 	public Owner findOwnerByEmailAndPassword(String email, String password) {
-		fr.univartois.sadoc.dao.entities.Owner ownerDO = ownerDAO.findOwnerByEmailAndPassword(email, password);
+		fr.univartois.ili.sadoc.dao.entities.Owner ownerDO = ownerDAO.findOwnerByEmailAndPassword(email, password);
 		Owner owner = null;
 		if(ownerDO != null){
 			owner = Mapper.getOwnerFromEntities(ownerDO);
@@ -104,7 +104,7 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	public Owner findOwnerByEmail(String email) {
-		fr.univartois.sadoc.dao.entities.Owner ownerDO = ownerDAO.findOwnerByEmail(email);
+		fr.univartois.ili.sadoc.dao.entities.Owner ownerDO = ownerDAO.findOwnerByEmail(email);
 		Owner owner = null;
 		if(ownerDO != null){
 			owner = Mapper.getOwnerFromEntities(ownerDO);
