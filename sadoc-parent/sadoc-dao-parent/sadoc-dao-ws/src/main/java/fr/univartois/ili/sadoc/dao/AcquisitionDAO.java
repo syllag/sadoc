@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +14,7 @@ import fr.univartois.ili.sadoc.dao.entities.Acquisition;
 import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.services.IAcquisitionDAO;
 
-@Service("acquisitionDAO")
+@Repository("acquisitionDAO")
 @Transactional
 public class AcquisitionDAO extends AbstractWebServiceDAO implements IAcquisitionDAO {
 	

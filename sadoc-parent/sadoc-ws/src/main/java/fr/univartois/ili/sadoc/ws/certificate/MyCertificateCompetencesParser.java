@@ -4,15 +4,28 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import fr.univartois.ili.sadoc.entitiesws.dao.CompetenceDAO;
+import fr.univartois.ili.sadoc.metier.commun.services.IMetierCommunServices;
+import fr.univartois.ili.sadoc.metier.ws.services.IMetierWSServices;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
-//TODO changement DAO
+
+@Component
 public class MyCertificateCompetencesParser extends DefaultHandler {
 
+	@Autowired
+	@Qualifier("metierCommunServices")
+	private IMetierCommunServices metierCommunServices;
+	
+	@Autowired
+	//@Qualifier("")
+	private IMetierWSServices metierWSServices;
+	
 	protected String nomFichierXML;
 	int cptTag = 0;
 
@@ -126,12 +139,7 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 
 			trace(com.getAcronym() + " " + com.getName() + " "
 					+ com.getDescription());
-
-			CompetenceDAO cDao = new CompetenceDAO();
-
-			cDao.getEntityManager().getTransaction().begin();
-			cDao.create(com);
-			cDao.getEntityManager().getTransaction().commit();
+			metierWSServices.createCompetance(com);
 		}
 		if ("domain".equals(qName)) {
 			nameCom = null;
