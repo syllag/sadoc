@@ -8,7 +8,6 @@ import java.util.Set;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
@@ -30,25 +29,17 @@ public class CreateResume extends ActionSupport implements SessionAware{
 	
 	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
 
-	/************************************************/
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.opensymphony.xwork2.ActionSupport#execute()
-	 */
 	public String execute(){
-		session = ActionContext.getContext().getSession();
-		
+				
 		if (form == null)
 			return INPUT;
 		
-		int idOwner = (Integer) session.get("id");
+		long idOwner = (Long) session.get("id");
 		Resume resume = new Resume();
 		Owner owner = new Owner();
 		
-		metierUIServices.findOwnerById(idOwner);
+		owner = metierUIServices.findOwnerById(idOwner);
 		
-		//TODO recupérer de dao commun 
 		Set<Competence> listCompetences = new HashSet<Competence>();
 		String[] competences =  form.getListCompetences();
 		
@@ -76,7 +67,6 @@ public class CreateResume extends ActionSupport implements SessionAware{
 
 	}
 
-
 	public CreateResumeForm getForm() {
 		return form;
 	}
@@ -89,7 +79,10 @@ public class CreateResume extends ActionSupport implements SessionAware{
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;
 	}
-
+	
+	public Map<String, Object> getSession() {
+		return this.session;
+	}
 	/**
 	 * @return the metierUIServices
 	 */
