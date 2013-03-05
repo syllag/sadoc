@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.univartois.ili.sadoc</groupId>
 	<artifactId>sadoc-parent</artifactId>
@@ -16,7 +17,24 @@
 		<spring.jpa.version>2.0.8</spring.jpa.version>
 		<openjpa.version>2.2.1</openjpa.version>
 		<spring.springframework.ws>2.0.4.RELEASE</spring.springframework.ws>
+		<nexus.url>http://192.168.64.1:8081/nexus</nexus.url>
 	</properties>
+
+	<distributionManagement>
+		<!-- Publish versioned releases here -->
+		<repository>
+			<id>nexus-dev-smaster</id>
+			<name>nexus-smaster-releases</name>
+			<url>${nexus.url}/content/repositories/releases</url>
+		</repository>
+		<!-- Publish snapshots here -->
+		<snapshotRepository>
+			<id>nexus-dev-smaster</id>
+			<name>nexus-smaster-snapshot</name>
+			<url>${nexus.url}/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -72,6 +90,18 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<!-- Deploy -->
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.2</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>nexus-dev-smaster</serverId>
+					<nexusUrl>${nexus.url}</nexusUrl>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>
