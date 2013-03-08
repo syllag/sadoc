@@ -31,6 +31,13 @@ public class DocumentDAO extends AbstractWebServiceDAO implements IDocumentDAO {
 		Document d =entityManager.find(Document.class, id);
 		return d;
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Document findByOwnerWS(OwnerWS ownerWS) {
+		// TODO Imp Method
+		return null;
+	}
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -47,15 +54,5 @@ public class DocumentDAO extends AbstractWebServiceDAO implements IDocumentDAO {
 	@Override
 	public void refresh(Document entity) {
 		entityManager.refresh(entity);
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public OwnerWS findOwnerWSByDocument(Document document) {
-		final TypedQuery<OwnerWS> query = entityManager.createQuery(
-				Request.FIND_OWNER_IN_SIGNATURE_BY_DOCUMENT, OwnerWS.class);
-		query.setParameter("document", document);
-		
-		return query.getSingleResult();
 	}
 }

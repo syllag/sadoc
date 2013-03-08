@@ -4,10 +4,12 @@ import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 
 public interface IDocumentDAO extends IWebServiceDAO<Document> {
+
 	/**
-	 * Find a owner asssociated with a document
-	 * @param document The document
-	 * @return The owner of the document
+	 * Find the document by OwnerWS
+	 * 
+	 * @param ownerWS
+	 * @return the Document
 	 */
-	OwnerWS findOwnerWSByDocument(Document document);
+	Document findByOwnerWS(OwnerWS ownerWS);
 }

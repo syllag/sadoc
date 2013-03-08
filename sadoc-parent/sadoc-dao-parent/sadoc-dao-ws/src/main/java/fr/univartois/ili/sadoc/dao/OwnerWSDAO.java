@@ -50,8 +50,11 @@ public class OwnerWSDAO extends AbstractWebServiceDAO implements IOwnerWSDAO{
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public OwnerWS findByDocument(Document document) {
-		// TODO Impl method.
-		return null;
+		final TypedQuery<OwnerWS> query = entityManager.createQuery(
+				Request.FIND_OWNER_IN_SIGNATURE_BY_DOCUMENT, OwnerWS.class);
+		query.setParameter("document", document);
+		
+		return query.getSingleResult();
 	}
 	
 	@Override
