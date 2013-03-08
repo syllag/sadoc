@@ -54,9 +54,16 @@ public interface IMetierWSServices {
 	 * Update a document
 	 * 
 	 * @param document
-	 * @return void
 	 */
 	void updateDocument(Document document);
+	
+	/**
+	 * Update an owner
+	 * 
+	 * @param owner
+	 *  
+	 */
+	void updateOwner(Owner owner);
 
 	/**
 	 * Find a specific document
