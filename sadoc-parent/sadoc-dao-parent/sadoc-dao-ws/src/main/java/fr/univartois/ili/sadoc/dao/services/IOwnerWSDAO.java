@@ -1,5 +1,6 @@
 package fr.univartois.ili.sadoc.dao.services;
 
+import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 
 
@@ -12,4 +13,11 @@ public interface IOwnerWSDAO extends IWebServiceDAO<OwnerWS> {
 	 */
 	OwnerWS findByMail(String mail);
 
+	/**
+	 * Find a Owner with this document
+	 * @param document
+	 * @return The owner
+	 */
+	OwnerWS findByDocument(Document document);
+	
 }

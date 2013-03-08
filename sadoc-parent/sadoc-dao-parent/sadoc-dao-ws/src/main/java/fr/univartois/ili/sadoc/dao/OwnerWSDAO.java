@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.constante.Request;
+import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 import fr.univartois.ili.sadoc.dao.services.IOwnerWSDAO;
 
@@ -44,6 +45,13 @@ public class OwnerWSDAO extends AbstractWebServiceDAO implements IOwnerWSDAO{
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public OwnerWS findByDocument(Document document) {
+		// TODO Impl method.
+		return null;
 	}
 	
 	@Override
