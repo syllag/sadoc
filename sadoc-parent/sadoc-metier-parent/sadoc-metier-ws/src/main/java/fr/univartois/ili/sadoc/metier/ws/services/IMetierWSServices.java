@@ -3,6 +3,7 @@ package fr.univartois.ili.sadoc.metier.ws.services;
 import java.util.List;
 import java.util.Map;
 
+import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;
@@ -40,7 +41,7 @@ public interface IMetierWSServices {
 	 * @param owner
 	 * @return void
 	 */
-	void createOwner(Owner owner);
+	void createOwnerWS(Owner owner);
 	
 	/**
 	 * Create a signature
@@ -63,7 +64,7 @@ public interface IMetierWSServices {
 	 * @param owner
 	 *  
 	 */
-	void updateOwner(Owner owner);
+	void updateOwnerWS(Owner owner);
 
 	/**
 	 * Find a specific document
@@ -123,5 +124,13 @@ public interface IMetierWSServices {
 	 * @return
 	 */
 	Map<Owner, List<Competence>> findOwnerAndCompetencesByDocumentId(int documentId);
+	
+	/**
+	 * Find an acquisition by acronym (nb:  format idReferentiel:idDomaine:idCompetence:idItem)
+	 * 
+	 * @param idItem
+	 * @return Acquisition
+	 */
+	Acquisition findAcquisitionByAcronym(String idItem);
 	
 }
