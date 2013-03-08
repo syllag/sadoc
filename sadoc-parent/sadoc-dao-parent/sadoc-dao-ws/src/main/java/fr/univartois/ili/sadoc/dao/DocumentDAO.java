@@ -1,5 +1,7 @@
 package fr.univartois.ili.sadoc.dao;
 
+import java.util.List;
+
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -34,9 +36,11 @@ public class DocumentDAO extends AbstractWebServiceDAO implements IDocumentDAO {
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Document findByOwnerWS(OwnerWS ownerWS) {
-		// TODO Imp Method
-		return null;
+	public List<Document> findByOwnerWS(OwnerWS ownerWS) {
+		final TypedQuery<Document> query = entityManager.createQuery(
+				Request.FIND_DOCUMENTS_BY_OWNERWS, Document.class);
+		query.setParameter("owner", ownerWS);
+		return query.getResultList();
 	}
 
 	@Override

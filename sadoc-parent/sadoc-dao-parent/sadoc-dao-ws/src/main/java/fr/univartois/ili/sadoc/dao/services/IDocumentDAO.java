@@ -1,15 +1,17 @@
 package fr.univartois.ili.sadoc.dao.services;
 
+import java.util.List;
+
 import fr.univartois.ili.sadoc.dao.entities.Document;
 import fr.univartois.ili.sadoc.dao.entities.OwnerWS;
 
 public interface IDocumentDAO extends IWebServiceDAO<Document> {
 
 	/**
-	 * Find the document by OwnerWS
+	 * Find the List<document> by OwnerWS
 	 * 
 	 * @param ownerWS
-	 * @return the Document
+	 * @return the List<Document>
 	 */
-	Document findByOwnerWS(OwnerWS ownerWS);
+	List<Document> findByOwnerWS(OwnerWS ownerWS);
 }
