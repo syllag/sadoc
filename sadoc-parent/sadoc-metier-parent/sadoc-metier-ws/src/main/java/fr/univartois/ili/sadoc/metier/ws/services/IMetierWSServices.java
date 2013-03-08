@@ -65,6 +65,15 @@ public interface IMetierWSServices {
 	 *  
 	 */
 	void updateOwnerWS(Owner owner);
+	
+	/**
+	 * Update an acquisition
+	 * 
+	 * @param acquisition
+	 *  
+	 */
+	void updateAcquisition(Acquisition acquisition);
+	
 
 	/**
 	 * Find a specific document
