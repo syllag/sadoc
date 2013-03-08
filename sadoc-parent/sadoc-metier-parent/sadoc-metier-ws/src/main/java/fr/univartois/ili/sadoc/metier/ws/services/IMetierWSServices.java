@@ -50,6 +50,13 @@ public interface IMetierWSServices {
 	 * @return void
 	 */
 	void createSignature(Signature signature);
+
+	/**
+	 * Create an acquisition
+	 * 
+	 * @param acquisition
+	 */
+	void createAcquisition(Acquisition acquisition);
 	
 	/**
 	 * Update a document
