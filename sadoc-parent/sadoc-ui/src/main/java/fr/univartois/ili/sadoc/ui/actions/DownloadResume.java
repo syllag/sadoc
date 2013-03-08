@@ -18,11 +18,11 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
+import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
@@ -59,26 +59,30 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 
 		Resume resume = metierUIServices.findResumeById(cv);
 		try {
-			session = ActionContext.getContext().getSession();
+		
 			fo = new FileOutputStream("/tmp/" + session.get("id") + "_" + cv
 					+ "cv.pdf");
 
 			Paragraph title = new Paragraph("Curriculum vitae", titleFont);
 			title.setAlignment(Element.ALIGN_CENTER);
+			
+			Owner owner = (Owner) session.get("owner");
 
-			Paragraph prefaceNom = new Paragraph((String) session.get("name"),
+			Paragraph prefaceNom = new Paragraph((String) owner.getLastName(),
 					particularFont);
 			Paragraph prefacePrenom = new Paragraph(
-					(String) session.get("firstName"), particularFont);
+					(String) owner.getFirstName(), particularFont);
 			Paragraph prefaceAdresse = new Paragraph(
-					(String) session.get("adress"), particularFont);
+					(String) owner.getAddress(), particularFont);
 			Paragraph prefaceVille = new Paragraph(
-					(String) session.get("zipCode") + ", "
-							+ (String) session.get("town"), particularFont);
-			Paragraph prefaceMail = new Paragraph((String) session.get("mail"),
+					(String) owner.getZipCode() + ", "
+							+ (String) owner.getTown(), particularFont);
+			Paragraph prefaceMail = new Paragraph((String) owner.getMail(),
 					particularFont);
-			Paragraph prefaceTel = new Paragraph((String) session.get("phone"),
+			Paragraph prefaceTel = new Paragraph((String) owner.getPhone(),
 					particularFont);
+			
+			
 			prefaceNom.setAlignment(Element.ALIGN_LEFT);
 			prefacePrenom.setAlignment(Element.ALIGN_LEFT);
 			prefaceAdresse.setAlignment(Element.ALIGN_LEFT);
@@ -126,7 +130,6 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 
 	public String execute() {
 
-		session = ActionContext.getContext().getSession();
 		if (session.get("mail") == null) {
 			return "index";
 		}

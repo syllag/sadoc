@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
@@ -22,7 +21,6 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 			.getBean(IMetierUIServices.class);
 
 	public String execute() {
-		session = ActionContext.getContext().getSession();
 		if (session.get("mail") == null) {
 			/**
 			 * non logged user
@@ -47,11 +45,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 			owner.setPassword(form.getPassword());
 		}
 
-		session.put("adress", owner.getAddress());
-		session.put("zipCode", owner.getZipCode());
-		session.put("town", owner.getTown());
-		session.put("phone", owner.getPhone());
-		ActionContext.getContext().setSession(session);
+		session.put("owner", owner);
 		/**
 		 * Add modification
 		 */
