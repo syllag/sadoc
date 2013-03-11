@@ -67,7 +67,8 @@ public class AcquisitionDAO extends AbstractWebServiceDAO implements IAcquisitio
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Acquisition findByAcronym(String acronym) {
-		// TODO impl method
-		return null;
+		TypedQuery<Acquisition> querry = entityManager.createQuery(Request.FIND_ACQUISITION_BY_ACRONYM, Acquisition.class);
+		querry.setParameter("acronym", acronym);
+		return querry.getSingleResult();
 	}
 }
