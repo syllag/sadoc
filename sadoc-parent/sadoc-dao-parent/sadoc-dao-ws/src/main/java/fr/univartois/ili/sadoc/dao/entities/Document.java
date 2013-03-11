@@ -28,6 +28,7 @@ public class Document implements Serializable {
 	private ChecksumAlgorithm algorithm;
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
+	private byte[] p7s;
 	
 	//rel
 	@OneToMany(mappedBy="document")
@@ -106,6 +107,21 @@ public class Document implements Serializable {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
+	
+	/**
+	 * @return the p7s
+	 */
+	public byte[] getP7s() {
+		return p7s;
+	}
+	
+	/**
+	 * @param p7s the p7s
+	 */
+	public void setP7s(byte[] p7s) {
+		this.p7s = p7s;
+	}
+	
 	/**
 	 * @return the signatures
 	 */
@@ -130,4 +146,5 @@ public class Document implements Serializable {
 	public void setAcquisitions(List<Acquisition> acquisitions) {
 		this.acquisitions = acquisitions;
 	}
+
 }
