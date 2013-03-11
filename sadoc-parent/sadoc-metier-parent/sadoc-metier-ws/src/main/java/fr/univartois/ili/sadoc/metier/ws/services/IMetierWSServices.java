@@ -1,5 +1,6 @@
 package fr.univartois.ili.sadoc.metier.ws.services;
 
+import java.io.FileInputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -148,5 +149,7 @@ public interface IMetierWSServices {
 	 * @return Acquisition
 	 */
 	Acquisition findAcquisitionByAcronym(String idItem);
+	
+	FileInputStream getP7SFromDocument(long id);
 	
 }
