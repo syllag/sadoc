@@ -97,5 +97,13 @@ public interface IMetierCommunServices {
 	 * @param referentiel
 	 */
 	void createReferentiel(Referentiel referentiel);
-
+	
+	/**
+	 * Assert that the acronym given is real.
+	 * 
+	 * @param acronym
+	 * @return 
+	 *     true if competence exists, false otherwise
+	 */
+	boolean isValideAcronym(String acronym);
 }

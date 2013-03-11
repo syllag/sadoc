@@ -110,4 +110,10 @@ public class MetierCommunServices implements IMetierCommunServices {
 		referentielDAO.createReferentiel(referentielDO);
 	}
 
+	@Override
+	public boolean isValideAcronym(String acronym) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
