@@ -3,27 +3,25 @@ package fr.univartois.ili.sadoc.metier.ws.services;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-// TODO utiliser les interfaces
 import fr.univartois.ili.sadoc.dao.AcquisitionDAO;
 import fr.univartois.ili.sadoc.dao.CertificateDAO;
 import fr.univartois.ili.sadoc.dao.DocumentDAO;
 import fr.univartois.ili.sadoc.dao.OwnerWSDAO;
 import fr.univartois.ili.sadoc.dao.SignatureDAO;
-
-import fr.univartois.ili.sadoc.metier.ws.vo.*;
-
-//import fr.univartois.ili.sadoc.dao.services.ICompetenceDAO;
 import fr.univartois.ili.sadoc.metier.ws.utils.Mapper;
+import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
+import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
+import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
+import fr.univartois.ili.sadoc.metier.ws.vo.Document;
+import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
+import fr.univartois.ili.sadoc.metier.ws.vo.Signature;
+// TODO utiliser les interfaces
+//import fr.univartois.ili.sadoc.dao.services.ICompetenceDAO;
 
 public class MetierWSServices implements IMetierWSServices {
 
@@ -217,7 +215,7 @@ public class MetierWSServices implements IMetierWSServices {
 
 	// XXX OK
 	public Owner findOwnerByMail(String mail) {
-		Owner owner = new Owner();
+		Owner owner = null;
 		OwnerWSDAO ownerWSDAO = new OwnerWSDAO();
 		try {
 			owner = Mapper.ownerDOToOwnerVO(ownerWSDAO.findByMail(mail));

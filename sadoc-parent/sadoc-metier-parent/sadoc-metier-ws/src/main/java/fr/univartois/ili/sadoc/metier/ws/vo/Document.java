@@ -1,6 +1,7 @@
 package fr.univartois.ili.sadoc.metier.ws.vo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -74,6 +75,8 @@ public class Document implements Serializable, Comparable<Object> {
 		this.name = name;
 		this.checkSum = checksum;
 		this.pk7 = pk7;
+		this.acquisitions = new ArrayList<Acquisition>();
+		this.signatures = new ArrayList<Signature>();
 	}
 
 	/************************************************/

@@ -139,7 +139,7 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 
 			trace(com.getAcronym() + " " + com.getName() + " "
 					+ com.getDescription());
-			metierWSServices.createCompetance(com);
+//			metierWSServices.createCompetance(com);
 		}
 		if ("domain".equals(qName)) {
 			nameCom = null;

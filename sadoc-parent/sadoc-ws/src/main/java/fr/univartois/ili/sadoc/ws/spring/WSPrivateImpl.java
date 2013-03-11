@@ -1,6 +1,5 @@
 package fr.univartois.ili.sadoc.ws.spring;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +20,7 @@ public class WSPrivateImpl implements WSPrivate {
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public boolean verifyDocument(Byte[] doc, Document document,
 			Owner utilisateur) {
-		// TODO Auto-generated method stub
+		// TODO imp method ?
 		return false;
 	}
 

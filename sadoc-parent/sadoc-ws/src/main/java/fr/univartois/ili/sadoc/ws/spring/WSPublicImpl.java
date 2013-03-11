@@ -4,15 +4,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itextpdf.text.pdf.PdfReader;
 
-import fr.univartois.ili.sadoc.dao.CertificateDAO;
-import fr.univartois.ili.sadoc.dao.DocumentDAO;
-import fr.univartois.ili.sadoc.dao.SignatureDAO;
+import fr.univartois.ili.sadoc.metier.commun.services.IMetierCommunServices;
+import fr.univartois.ili.sadoc.metier.ws.services.IMetierWSServices;
+import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;
@@ -21,83 +24,100 @@ import fr.univartois.ili.sadoc.metier.ws.vo.Signature;
 import fr.univartois.ili.sadoc.ws.pdf.ManageQRCImpl;
 import fr.univartois.ili.sadoc.ws.sign.integrationsign.SignFile;
 import fr.univartois.ili.sadoc.ws.utils.Crypt;
-//TODO Change DAO
+
 public class WSPublicImpl implements WSPublic {
 
-	@Resource(name = "ownerDAO")
-	private OwnerDAO ownerDAO;
+	@Autowired
+	private IMetierWSServices metierWSServices;
+	
+	@Autowired
+	private IMetierCommunServices metierCommunServices;
 
-	@Resource(name = "documentDAO")
-	private DocumentDAO documentDAO;
-
-	@Resource(name = "signatureDAO")
-	private SignatureDAO signatureDAO;
-
-	@Resource(name = "certificateDAO")
-	private CertificateDAO certificateDAO;
-
-	@Resource(name = "competenceDAO")
-	private CompetenceDAO competenceDAO;
-
-	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Owner createOwner(String lastName, String firstName, String mail)
 			throws Exception {
-		Owner owner = ownerDAO.findByMail(mail);
+		Owner owner = metierWSServices.findOwnerByMail(mail);
 		if (owner == null) {
-			owner = new Owner(firstName, lastName, mail);
-			ownerDAO.create(owner);
+			owner = new Owner(mail);
+			metierWSServices.createOwnerWS(owner);
 		}
 		return owner;
 	}
 
-	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
 			Competence[] competence) {
 		byte[] dest = null;
 		try {
 			SignFile sf = new SignFile();
-			if (ownerDAO.findByMail(owner.getMail()) == null) {
-				ownerDAO.create(owner);
+			Owner ownOwner = metierWSServices.findOwnerByMail(owner.getMail_initial());
+			if (ownOwner == null) {
+				throw new IllegalStateException("L'utilisateur n'existe pas !");
+				//ownerDAO.create(owner);
 			}
-			Owner ownOwner = ownerDAO.findByMail(owner.getMail());
 
-			Certificate certificate = sf.GiveCertificateForUser(ownOwner);
+			//TODO if certificate is null
+			Certificate certificate = metierWSServices.findCertificateByOwner(ownOwner);
+			if(certificate == null){
+				certificate = sf.GiveCertificateForUser(ownOwner);
+			}
+			metierWSServices.updateOwnerWS(ownOwner);
 
-			ownerDAO.update(ownOwner);
 			Document document = new Document(name, "", null);
-			documentDAO.create(document);
-			Competence compTmp = null;
 			for (Competence comp : competence) {
-				compTmp = competenceDAO.findByAcronym(comp.getAcronym());
-				Signature signature = new Signature(document, ownOwner,
-						compTmp, certificateDAO.findByOwner(ownOwner).get(0));
-				signatureDAO.create(signature);
+				if(metierCommunServices.isValideAcronym(comp.getAcronym())){
+					Acquisition acquisition = metierWSServices.findAcquisitionByAcronym(comp.getAcronym());
+					if(acquisition == null){
+						acquisition = new Acquisition();
+						acquisition.setId_item(comp.getAcronym());
+						acquisition.setCreationDate(new Date());
+						metierWSServices.createAcquisition(acquisition);
+					}
+					acquisition.getDocuments().add(document);
+					document.getAcquisitions().add(acquisition);
+				} else {
+					//TODO : Log 
+					// problème la compétence n'existe pas
+				}
 			}
-			ManageQRCImpl qrc = new ManageQRCImpl();
+			metierWSServices.createDocument(document);
+			for(Acquisition acquisition : document.getAcquisitions()){
+				metierWSServices.updateAcquisition(acquisition);
+			}
+				Signature signature = new Signature(document, certificate);
+				metierWSServices.createSignature(signature);
+
+				ManageQRCImpl qrc = new ManageQRCImpl();
 
 			try {
 				dest = qrc.generatePdfWithQrCode(new PdfReader(doc),
 						String.valueOf(Crypt.createFalseID(document.getId())));
 
-				byte[] p7s = sf.signDocument(dest, ownOwner);
+				// XXX : A voir avec Anicet comment faire pour le récupérer ultérieurement
+				byte[] p7s = sf.signDocument(dest, ownOwner, certificate);
 				document.setPk7(p7s);
-				documentDAO.update(document);
+				
+				metierWSServices.updateDocument(document);
 
 			} catch (Exception e) {
+				// TODO log
 				e.printStackTrace();
 			}
 		} catch (Exception e1) {
+			// TODO log
 			e1.printStackTrace();
 		}
 		return dest;
 	}
 
+	// XXX : ??? 
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public byte[] signDocument(byte[] doc, String name,
 			Certificate certificate, Competence[] competence) {
 		return null;
 	}
 
+	// XXX : ?? 
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void createCertificate(Owner owner) {
 		// Generation clefs publiques & prives
@@ -108,8 +128,7 @@ public class WSPublicImpl implements WSPublic {
 
 	// @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Certificate> getCertificate(Owner owner) {
-
-		return certificateDAO.findByOwner(ownerDAO.findByMail(owner.getMail()));
+		return metierWSServices.findCertificatesByOwner(owner);
 	}
 
 	// // public OwnerDAO getOwnerDAO() {
@@ -122,8 +141,7 @@ public class WSPublicImpl implements WSPublic {
 	// // }
 	//
 	public Owner getOwner(String mail) {
-		// TODO Auto-generated method stub
-		return ownerDAO.findByMail(mail);
+		return metierWSServices.findOwnerByMail(mail);
 	}
 
 	public static byte[] readFully(InputStream stream) throws IOException {

@@ -3,8 +3,8 @@ package fr.univartois.ili.sadoc.metier.ws.vo;
 import java.io.Serializable;
 import java.util.Date;
 
-import fr.univartois.ili.sadoc.dao.entities.Certificate;
-import fr.univartois.ili.sadoc.dao.entities.Document;
+import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
+import fr.univartois.ili.sadoc.metier.ws.vo.Document;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>

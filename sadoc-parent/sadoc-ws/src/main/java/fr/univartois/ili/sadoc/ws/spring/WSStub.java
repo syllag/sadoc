@@ -20,6 +20,7 @@ public class WSStub {
 
 	@Resource(name = "wsPrivate")
 	private WSPrivate wsPrivate;
+	
 	@Resource(name = "wsPublic")
 	private WSPublic wsPublic;
 	

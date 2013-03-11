@@ -203,12 +203,19 @@ public class Mapper {
 	 * @param SignatureVO
 	 * @return SignatureDO
 	 */
+	//TODO : use Logger instead of e.printstacktrace
 	public final static fr.univartois.ili.sadoc.dao.entities.Signature signatureVOToSignatureDO(
 			Signature signVO) {
 		fr.univartois.ili.sadoc.dao.entities.Signature signDO = new fr.univartois.ili.sadoc.dao.entities.Signature();
 		signDO.setId(signVO.getId());
-		signDO.setDocument(signVO.getDocument());
-		signDO.setCertificate(signVO.getCertificate());
+		signDO.setDocument(documentVOToDocumentDO(signVO.getDocument()));
+		try {
+			signDO.setCertificate(certificateVOToCertificateDO(signVO.getCertificate()));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		signDO.setDateSignature(signVO.getCreationDate());
 		return signDO;
 	}
@@ -220,13 +227,22 @@ public class Mapper {
 	 * @param SignatureDO
 	 * @return SignatureVO
 	 */
+	//TODO : use Logger instead of e.printstacktrace
 	public final static Signature signatureDOToSignatureVO(
 			fr.univartois.ili.sadoc.dao.entities.Signature signDO) {
 		Signature signVO = new Signature();
 		signVO.setId(signDO.getId());
 		signVO.setCreationDate(signDO.getDateSignature());
-		signVO.setDocument(signDO.getDocument());
-		signVO.setCertificate(signDO.getCertificate());
+		signVO.setDocument(documentDOToDocumentVO(signDO.getDocument()));
+		try {
+			signVO.setCertificate(certificateDOToCertificateVO(signDO.getCertificate()));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return signVO;
 	}
 
