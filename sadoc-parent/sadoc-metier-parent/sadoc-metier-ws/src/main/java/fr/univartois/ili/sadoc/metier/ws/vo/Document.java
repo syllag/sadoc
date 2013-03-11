@@ -24,7 +24,7 @@ public class Document implements Serializable, Comparable<Object> {
 	private String name;
 	private String url;
 	private String checkSum;
-	private byte[] pk7;
+	private byte[] p7s;
 	private ChecksumAlgorithm algorithm;
 
 	private Date creationDate;
@@ -71,10 +71,10 @@ public class Document implements Serializable, Comparable<Object> {
 	public Document() {
 	}
 
-	public Document(String name, String checksum, byte[] pk7) {
+	public Document(String name, String checksum, byte[] p7s) {
 		this.name = name;
 		this.checkSum = checksum;
-		this.pk7 = pk7;
+		this.p7s = p7s;
 		this.acquisitions = new ArrayList<Acquisition>();
 		this.signatures = new ArrayList<Signature>();
 	}
@@ -133,12 +133,12 @@ public class Document implements Serializable, Comparable<Object> {
 		this.creationDate = (Date) creationDate;
 	}
 
-	public byte[] getPk7() {
-		return pk7;
+	public byte[] getP7s() {
+		return p7s;
 	}
 
-	public void setPk7(byte[] pk7) {
-		this.pk7 = pk7;
+	public void setP7s(byte[] p7s) {
+		this.p7s = p7s;
 	}
 
 }
