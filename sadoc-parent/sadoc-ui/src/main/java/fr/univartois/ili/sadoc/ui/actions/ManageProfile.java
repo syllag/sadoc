@@ -20,6 +20,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	private IMetierUIServices metierUIServices = ContextFactory.getContext()
 			.getBean(IMetierUIServices.class);
 
+	
 	public String execute() {
 		if (session.get("mail") == null) {
 			/**

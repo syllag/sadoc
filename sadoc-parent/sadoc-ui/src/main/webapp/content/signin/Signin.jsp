@@ -26,9 +26,9 @@
 			<section class="inscription">
 				<form method="post" action="SignIn">
 					Prénom<br/>
-					<input type="text" name="form.firstname" id="prenom" placeholder="Prénom" required /><br/>
+					<input type="text" name="form.firstName" id="prenom" placeholder="Prénom" required /><br/>
 					Nom<br/> 
-					<input type="text" name="form.name" id="nom" placeholder="Nom" required /><br/>
+					<input type="text" name="form.lastName" id="nom" placeholder="Nom" required /><br/>
 					Email<br/> 
 					<input type="text" name="form.mail" id="email" placeholder="Email" 
 						pattern="([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))"

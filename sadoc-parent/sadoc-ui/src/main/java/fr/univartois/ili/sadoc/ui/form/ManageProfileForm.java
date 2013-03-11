@@ -1,10 +1,7 @@
 package fr.univartois.ili.sadoc.ui.form;
 
-/**
- * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
- * 
- */
 public class ManageProfileForm {
+
 	private String password;
 	private String password2;
 	private String address;
@@ -18,7 +15,7 @@ public class ManageProfileForm {
 	public ManageProfileForm() {
 
 	}
-	
+
 	public ManageProfileForm(String firstName, String lastName,
 			String password, String password2, String adress, String zipCode,
 			String town, String phone, String mail) {
@@ -30,8 +27,6 @@ public class ManageProfileForm {
 		this.phone = phone;
 		this.mail = mail;
 	}
-
-
 
 	/************************************************/
 
