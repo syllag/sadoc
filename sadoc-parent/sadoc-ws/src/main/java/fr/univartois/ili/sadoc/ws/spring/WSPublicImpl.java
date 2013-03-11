@@ -95,7 +95,7 @@ public class WSPublicImpl implements WSPublic {
 
 				// XXX : A voir avec Anicet comment faire pour le récupérer ultérieurement
 				byte[] p7s = sf.signDocument(dest, ownOwner, certificate);
-				document.setPk7(p7s);
+				document.setP7s(p7s);
 				
 				metierWSServices.updateDocument(document);
 
