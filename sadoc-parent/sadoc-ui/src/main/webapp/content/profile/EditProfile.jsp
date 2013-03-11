@@ -13,13 +13,13 @@
 					Confirmation du mot de passe<br/> 
 					<input type="password" name="form.password2" id="password2" placeholder="Confirmation mot de passe" /><br/><br/>
 					Adresse<br/>
-					<input type="text" name="form.adress" id="adress" placeholder="Adresse" value="${ owner.adress }"  /><br/>
+					<input type="text" name="form.address" id="address" placeholder="Adresse" value="${owner.address}"  /><br/>
 					Code postal<br/>
-					<input type="text" name="form.zipCode" id="zipCode" placeholder="Code postal" value="${ owner.zipCode }"  /><br/>
+					<input type="text" name="form.zipCode" id="zipCode" placeholder="Code postal" value="${owner.zipCode}"  /><br/>
 					Ville<br/>   
-					<input type="text" name="form.town" id="town" placeholder="Ville" value="${ owner.town }"  /><br/>
+					<input type="text" name="form.town" id="town" placeholder="Ville" value="${owner.town}"  /><br/>
 					Téléphone<br/> 
-					<input type="text" name="form.phone" id="phone" placeholder="Téléphone" value="${ owner.phone }"  /><br/>
+					<input type="text" name="form.phone" id="phone" placeholder="Téléphone" value="${owner.phone}"  /><br/>
 					<button type=submit class="button">Mettre à jour</button>
 				</form>
 			</section>

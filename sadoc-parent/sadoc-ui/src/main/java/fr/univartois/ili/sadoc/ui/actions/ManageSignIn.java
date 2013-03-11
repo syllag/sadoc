@@ -44,11 +44,19 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		ClientWebServiceImpl webService = new ClientWebServiceImpl();
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner personneWS = webService
 				.getOwner(form.getMail());
-		if (personneWS == null) {
+		
+		// TODO Fake user
+		personneWS = new fr.univartois.ili.sadoc.client.webservice.tools.Owner();
+		personneWS.setId(1);
+		personneWS.setFirstName("Sylvain");
+		personneWS.setLastName("LAGRUE");
+		
+		// TODO remove "false" condition when fake user will be removed
+		if (false && personneWS == null) {
 			session.put("error", "Vous n'avez pas encore exporté de documents.");
 			return INPUT;
 		}
-
+		
 		Owner personne = new Owner();
 		personne.setFirstName(personneWS.getFirstName());
 		personne.setLastName(personneWS.getLastName());

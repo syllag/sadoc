@@ -96,11 +96,14 @@ public class ManageConnect extends ActionSupport implements SessionAware,
 		 * session.put("listResume", getFakeResumes(owner));
 		 */
 
-		session.put("mapCompetence", getMapCompetence(owner));
+		
+		//session.put("mapCompetence", getMapCompetence(owner));
+		session.put("mapCompetence", new HashSet<Competence>());
 		/**
 		 * session.put("mapCompetence", getFakeMapCompetence(owner));
 		 */
 
+		session.put("mail", owner.getMail());
 		return SUCCESS;
 	}
 

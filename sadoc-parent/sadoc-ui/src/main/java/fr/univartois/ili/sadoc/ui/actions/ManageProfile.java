@@ -36,7 +36,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		/**
 		 * Add information of user account from the form
 		 */
-		owner.setAddress(form.getAdress());
+		owner.setAddress(form.getAddress());
 		owner.setZipCode(form.getZipCode());
 		owner.setTown(form.getTown());
 		owner.setPhone(form.getPhone());
