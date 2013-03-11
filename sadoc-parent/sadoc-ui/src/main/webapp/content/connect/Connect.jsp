@@ -14,8 +14,8 @@
 					<div class="errorMessage">${ incorrect }</div>
 				
 			<button type=submit class="buttonLogin">Connexion</button>
-			
-			<a href="<s:url action="SignIn" />"><button class="buttonSignin">Inscription</button></a>
+			<s:url var="signin" action="SignIn" />
+			<a href="${signin}"><button class="buttonSignin">Inscription</button></a>
   <div class="spacer"> </div>
 		</form>
 	</section>
