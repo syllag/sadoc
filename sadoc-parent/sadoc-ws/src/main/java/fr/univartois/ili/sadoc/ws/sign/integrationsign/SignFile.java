@@ -184,9 +184,9 @@ public class SignFile {
 		certifBuilder.addRDN(BCStyle.C, "FR");
 		certifBuilder.addRDN(BCStyle.ST, "France");
 		certifBuilder.addRDN(BCStyle.L, "LENS");
-		certifBuilder.addRDN(BCStyle.O,user.getFirstName() + " " + user.getLastName());
-		certifBuilder.addRDN(BCStyle.OU,user.getFirstName() + " " + user.getLastName());
-		certifBuilder.addRDN(BCStyle.CN,user.getFirstName() + " " + user.getLastName());
+		certifBuilder.addRDN(BCStyle.O, "SADOC organization");
+		//certifBuilder.addRDN(BCStyle.OU, "");
+		certifBuilder.addRDN(BCStyle.CN,user.getMail_initial());
 
 		BigInteger serial = BigInteger.valueOf(System.currentTimeMillis());
 
