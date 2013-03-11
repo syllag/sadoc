@@ -3,6 +3,7 @@
 <%
 	session.setAttribute("currentMenu", "Connect");
 %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <c:import url="../layouts/Header.jsp" />
 
 	<section class="connection">
@@ -13,7 +14,8 @@
 					<div class="errorMessage">${ incorrect }</div>
 				
 			<button type=submit class="buttonLogin">Connexion</button>
-			<a href="SignIn"><button class="buttonSignin">Inscription</button></a>
+			
+			<a href="<s:url action="SignIn" />"><button class="buttonSignin">Inscription</button></a>
   <div class="spacer"> </div>
 		</form>
 	</section>
