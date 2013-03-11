@@ -259,7 +259,7 @@ public class MetierWSServices implements IMetierWSServices {
 		FileInputStream in = null;
 		try {
 			out = new FileOutputStream("/tmp/authenticate.p7s");
-			out.write(doc.getPk7());
+			out.write(doc.getP7s());
 			out.close();
 			in = new FileInputStream(new File("/tmp/authenticate.p7s"));
 		} catch (Exception e) {
