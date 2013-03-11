@@ -22,4 +22,12 @@ public interface IAcquisitionDAO extends IWebServiceDAO<Acquisition>{
 	 * @return the List<Acquisition> that belongs to the owner
 	 */
 	List<Acquisition> findAcquisitionByOwner(int owner);
+	
+	/**
+	 * Ask the Acquisition by acronym
+	 * 
+	 * @param String acronym
+	 * @return the Acquisition that belongs to the acronym
+	 */
+	Acquisition findByAcronym(String acronym);
 }
