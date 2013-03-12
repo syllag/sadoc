@@ -1,5 +1,7 @@
 package fr.univartois.ili.sadoc.metier.commun.vo;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,14 +9,18 @@ import java.util.List;
  * @author Mohamed Belhadj-adda <belhadjadda.mohamed at gmail.com>
  * 
  */
-public class Referentiel {
-	private long id;
-	private String codeReferentiel;
-	private String name;
-	private String description;
-	private long seuil;
-	private String url;
-	private List<Domaine> domaines ;
+public class Referentiel implements Serializable {
+
+	private static final long serialVersionUID = 2834501934059922232L;
+
+	private long id = -1L;
+	private String codeReferentiel = null;
+	private String name = null;
+	private String description = null;
+	private long seuil = 0L;
+	private String url = null;
+
+	private List<Domaine> domaines = new ArrayList<Domaine>();
 
 	public Referentiel() {
 	}
@@ -26,9 +32,8 @@ public class Referentiel {
 
 	public Referentiel(String codeReferentiel, String name, String description,
 			String url) {
+		this(name, description);
 		this.codeReferentiel = codeReferentiel;
-		this.name = name;
-		this.description = description;
 		this.url = url;
 	}
 
@@ -87,7 +92,4 @@ public class Referentiel {
 	public void setDomaines(List<Domaine> domaines) {
 		this.domaines = domaines;
 	}
-
-	
-	
 }

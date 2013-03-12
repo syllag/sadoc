@@ -9,8 +9,17 @@
 		<div class="competenceScroll">
 			<div class="competence">
 				<ul>
-					<c:forEach var="competence" items="${listCompetences}">
-						<li><input type="checkbox" name="form.listCompetences" class="mycheckbox" value="${competence.id}" checked/> ${competence.name}</li>
+					<c:forEach var="referentiel" items="${listCompetences}">
+						<li><input type="checkbox" name="form.listCompetences"
+							class="mycheckbox" value="${referentiel.id}" checked />
+							${referentiel.description}
+							<ul>
+								<c:forEach var="domaine" items="${referentiel.domaines}">
+									<li><input type="checkbox" name="form.listCompetences"
+										class="mycheckbox" value="${domaine.id}" checked />
+										${domaine.description}</li>
+								</c:forEach>
+							</ul></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -18,7 +27,7 @@
 		<button type=submit class="button">Créer le CV</button>
 	</form>
 </section>
-		
-		
-	
+
+
+
 <c:import url="../layouts/Footer.jsp" />

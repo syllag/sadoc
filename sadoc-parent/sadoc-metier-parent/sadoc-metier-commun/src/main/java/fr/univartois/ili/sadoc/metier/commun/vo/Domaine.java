@@ -1,22 +1,25 @@
 package fr.univartois.ili.sadoc.metier.commun.vo;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * 
  * @author Mohamed Belhadj-adda <belhadjadda.mohamed at gmail.com>
  * 
  */
-public class Domaine {
+public class Domaine implements Serializable {
 
-	private long id;
-	private String codeDomaine;
-	private String description;
+	private static final long serialVersionUID = -8971395079915618911L;
 
-	private Referentiel referentiel;
-	private List<Competence> competences;
-	
+	private long id = -1L;
+	private String codeDomaine = null;
+	private String description = null;
+
+	private Referentiel referentiel = null;
+	private List<Competence> competences = new ArrayList<Competence>();
+
 	public Domaine() {
 	}
 
@@ -24,9 +27,15 @@ public class Domaine {
 		this.setDescription(description);
 	}
 
-	public Domaine(String codeDonaime, String description) {
-		this.codeDomaine = codeDonaime;
-		this.setDescription(description);
+	public Domaine(String codeDomaine, String description) {
+		this(description);
+		this.codeDomaine = codeDomaine;
+	}
+
+	public Domaine(String codeDomaine, String description,
+			Referentiel referentiel) {
+		this(codeDomaine, description);
+		this.referentiel = referentiel;
 	}
 
 	public long getId() {
@@ -68,6 +77,4 @@ public class Domaine {
 	public void setCompetences(List<Competence> competences) {
 		this.competences = competences;
 	}
-
-	
 }
