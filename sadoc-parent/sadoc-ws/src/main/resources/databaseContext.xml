@@ -29,7 +29,7 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
 		p:dataSource-ref="dataSource" p:persistenceUnitName="sadocjpa">
-		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml" />
 		<property name="jpaDialect">
 			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
 		</property>
