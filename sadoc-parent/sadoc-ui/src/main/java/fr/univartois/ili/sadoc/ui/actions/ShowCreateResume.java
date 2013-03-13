@@ -46,22 +46,21 @@ public class ShowCreateResume extends ActionSupport implements SessionAware,Serv
 		List<Referentiel> list = new ArrayList<Referentiel>();
 		
 		// Referentiel
-		Referentiel ref = new Referentiel("REF_C2i", "C2i2e", "Référentiel C2i", "http://www.c2i.fr");
+		Referentiel ref = new Referentiel("REF_C2i", "C2i2e", "R√©f√©rentiel C2i", "http://www.c2i.fr");
 		list.add(ref);
 		
 		// Domaines
-		Domaine domaineA = new Domaine("A", "Compétences générales liées à l’exercice du métier pour le C2i2e", ref);
-		Domaine domaineB = new Domaine("B", "Compétences nécessaires à l’intégration des TICE dans sa pratique", ref);
+		Domaine domaineA = new Domaine("A", "Comp√©tences g√©n√©rales li√©es √† l'exercice du m√©tier pour le C2i2e", ref);
+		Domaine domaineB = new Domaine("B", "Comp√©tences n√©cessaires √† l'int√©gration des TICE dans sa pratique", ref);
 		ref.getDomaines().add(domaineA);
 		ref.getDomaines().add(domaineB);
 		
 		// Competences
-		Competence competenceA1 = new Competence("A.1", "Maîtrise de l’environnement numérique professionnel", domaineA);
-		Competence competenceA2 = new Competence("A.2", "Développement des compétences pour la formation tout au long de la vie", domaineA);
+		Competence competenceA1 = new Competence("A.1", "Ma√Ætrise de l'environnement num√©rique professionnel", domaineA);
+		Competence competenceA2 = new Competence("A.2", "D√©veloppement des comp√©tences pour la formation tout au long de la vie", domaineA);
 		domaineA.getCompetences().add(competenceA1);
 		domaineA.getCompetences().add(competenceA2);
-		Competence competenceB1 = new Competence("B.1", "Travail en réseau avec l’utilisation des outils de travail collaboratif", domaineB);
-		domaineB.getCompetences().add(competenceB1);
+		// No competences for B
 		
 		// Items
 		Item A1item1 = new Item("A.1.1", "Item 1 de A1");
@@ -70,39 +69,12 @@ public class ShowCreateResume extends ActionSupport implements SessionAware,Serv
 		competenceA1.getItems().add(A1item1);
 		competenceA1.getItems().add(A1item2);
 		competenceA1.getItems().add(A1item3);
-		Item A2item1 = new Item("A.2.1", "Item 1 de A2");
-		Item A2item2 = new Item("A.2.2", "Item 2 de A2");
-		competenceA2.getItems().add(A2item1);
-		competenceA2.getItems().add(A2item2);
-		Item B1item1 = new Item("B.1.1", "Item 1 de B1");
-		competenceB1.getItems().add(B1item1);
-		
+		// No item for A2
 		
 		// Referentiel
-		ref = new Referentiel("REF_CLES", "Cles anglais", "Référentiel Cles anglais", "http://www.cles_anglais.fr");
-		list.add(ref);
-		
-		// Domaines
-		domaineA = new Domaine("A", "Niveaux introductif et intermédiaire", ref);
-		domaineB = new Domaine("B", "Niveaux seuil et avancé", ref);
-		ref.getDomaines().add(domaineA);
-		ref.getDomaines().add(domaineB);
-		
-		// Competences
-		competenceA1 = new Competence("A.1", "Niveau introductif", domaineA);
-		domaineA.getCompetences().add(competenceA1);
-		competenceB1 = new Competence("B.1", "Niveau seuil", domaineB);
-		domaineB.getCompetences().add(competenceB1);
-		
-		// Items
-		A1item1 = new Item("A.1 Ecouter", "Je peux comprendre des mots familiers...");
-		A1item2 = new Item("A.1 Lire", "Je peux comprendre des noms familiers...");
-		A1item3 = new Item("A.1 Parler", "Je peux communiquer, de façon simple...");
-		competenceA1.getItems().add(A1item1);
-		competenceA1.getItems().add(A1item2);
-		competenceA1.getItems().add(A1item3);
-		B1item1 = new Item("B.1 Ecouter", "Je peux comprendre les points essentiels...");
-		competenceB1.getItems().add(B1item1);
+		ref = new Referentiel("REF_CLES", "Cles anglais", "R√©f√©rentiel Cles anglais", "http://www.cles_anglais.fr");
+		list.add(ref);		
+		// No domaines for ref
 		
 		return list;
 	}
