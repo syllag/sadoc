@@ -3,25 +3,31 @@
 <%
 	session.setAttribute("currentMenu", "EditProfile");
 %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+
 <c:import url="../layouts/Header.jsp" />
 			
 	
 			<section id="content">
-				<form method="post" action="ModifyProfile2">
-					Mot de passe<br/>
-					<input type="password" name="form.password" id="password" placeholder="Nouveau mot de passe" /><br/>
-					Confirmation du mot de passe<br/> 
-					<input type="password" name="form.password2" id="password2" placeholder="Confirmation mot de passe" /><br/><br/>
-					Adresse<br/>
-					<input type="text" name="form.address" id="address" placeholder="Adresse" value="${owner.address}"  /><br/>
-					Code postal<br/>
-					<input type="text" name="form.zipCode" id="zipCode" placeholder="Code postal" value="${owner.zipCode}"  /><br/>
-					Ville<br/>   
-					<input type="text" name="form.town" id="town" placeholder="Ville" value="${owner.town}"  /><br/>
-					Téléphone<br/> 
-					<input type="text" name="form.phone" id="phone" placeholder="Téléphone" value="${owner.phone}"  /><br/>
-					<button type=submit class="button">Mettre à jour</button>
-				</form>
+				<s:form action="ModifyProfile2" validate="true">
+					<s:actionerror />
+					
+					
+					<s:textfield label="Mot de passe" labelposition="top" key="form.password" placeholder="Nouveau mot de passe" />
+					
+					<s:textfield label="Confirmation du mot de passe" labelposition="top" key="form.password2" placeholder="Confirmation mot de passe" />
+					
+					<s:textfield label="Adresse" labelposition="top" key="form.address" placeholder="Adresse" value="%{session.owner.address}" />
+					
+					<s:textfield label="Code postal" labelposition="top" key="form.zipCode" placeholder="Code postal" value="%{session.owner.zipCode}" />
+					  
+					<s:textfield label="Ville" labelposition="top" key="form.town" placeholder="Ville" value="%{session.owner.town}" />
+					
+					<s:textfield label="Téléphone" labelposition="top" key="form.phone" placeholder="Téléphone" value="%{session.owner.phone}" />
+					<s:submit key="Mettre à jour" cssClass="button" />
+				</s:form>
+				
+				
 			</section>
 			
 <c:import url="../layouts/Footer.jsp" />

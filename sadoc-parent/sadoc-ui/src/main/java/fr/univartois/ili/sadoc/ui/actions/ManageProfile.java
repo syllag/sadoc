@@ -60,12 +60,14 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		if ((form != null)
 				&& !(form.getPassword().isEmpty() && form.getPassword2()
 						.isEmpty())) {
-			if (form.getPassword().equals(form.getPassword2())) {
-				addFieldError("password2", "Les mots de passe sont différents.");
+			if (!form.getPassword().equals(form.getPassword2())) {
+				addFieldError("form.password2", "Les mots de passe sont différents.");
 			}
+			
 		}
+		
 		/**
-		 * FIXME : add content checking by xml validation for other field
+		 * TODO : add controls for address, zipCode, town, phone
 		 */
 	}
 
@@ -91,4 +93,5 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	public IMetierUIServices getMetierUIServices() {
 		return metierUIServices;
 	}
+
 }
