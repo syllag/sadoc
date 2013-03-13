@@ -56,8 +56,11 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 	private void createPdf() {
 		Document document = new Document();
 		FileOutputStream fo;
-
-		Resume resume = metierUIServices.findResumeById(cv);
+		
+		// TODO to change when fake will be useless
+		Resume resume = Resume.getFake();
+		// Resume resume = metierUIServices.findResumeById(cv);
+		
 		try {
 		
 			fo = new FileOutputStream("/tmp/" + session.get("id") + "_" + cv
@@ -107,16 +110,16 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 			prefaceTitleComp.setAlignment(Element.ALIGN_CENTER);
 			document.add(prefaceTitleComp);
 			document.add(new Paragraph(" ", empty));
-			List<Competence> listComp = new ArrayList<Competence>(
-					resume.getCompetences());
-
-			Paragraph prefaceCompetence = new Paragraph(null, particularFont);
-			prefaceCompetence.setAlignment(Element.ALIGN_CENTER);
-			for (Competence comp : listComp) {
-				prefaceCompetence.add(comp.getName());
-				document.add(prefaceCompetence);
-				prefaceCompetence.clear();
-			}
+			// TODO Add Referentiels, Domaines, Competences & Items into the pdf
+//			List<Competence> listComp = new ArrayList<Competence>(
+//					resume.getCompetences());
+//			Paragraph prefaceCompetence = new Paragraph(null, particularFont);
+//			prefaceCompetence.setAlignment(Element.ALIGN_CENTER);
+//			for (Competence comp : listComp) {
+//				prefaceCompetence.add(comp.getName());
+//				document.add(prefaceCompetence);
+//				prefaceCompetence.clear();
+//			}
 
 			document.close();
 

@@ -92,4 +92,16 @@ public class Item implements Serializable {
 	public void setCompetence(Competence competence) {
 		this.competence = competence;
 	}
+	
+	public final boolean belongs(Referentiel referentiel) {
+		return competence.belongs(referentiel);
+	}
+	
+	public final boolean belongs(Domaine domaine) {
+		return competence.belongs(domaine);
+	}
+	
+	public final boolean belongs(Competence competence) {
+		return this.competence == competence; 
+	}
 }

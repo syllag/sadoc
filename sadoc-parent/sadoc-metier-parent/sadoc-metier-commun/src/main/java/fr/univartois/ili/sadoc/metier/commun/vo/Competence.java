@@ -76,4 +76,12 @@ public class Competence implements Serializable {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
+	
+	public final boolean belongs(Referentiel referentiel) {
+		return domaine.belongs(referentiel);
+	}
+	
+	public final boolean belongs(Domaine domaine) {
+		return this.domaine == domaine;
+	}
 }
