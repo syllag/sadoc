@@ -77,4 +77,8 @@ public class Domaine implements Serializable {
 	public void setCompetences(List<Competence> competences) {
 		this.competences = competences;
 	}
+	
+	public final boolean belongs(Referentiel referentiel) {
+		return this.referentiel == referentiel;
+	}
 }
