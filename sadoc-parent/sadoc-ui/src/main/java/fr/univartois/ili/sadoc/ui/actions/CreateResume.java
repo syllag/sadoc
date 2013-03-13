@@ -44,7 +44,7 @@ public class CreateResume extends ActionSupport implements SessionAware {
 		List<Item> items = form.getChoiceItems(metierCommun);
 
 		// TODO to change when fake will be useless
-		Owner owner = metierUi.findOwnerById(0);
+		Owner owner = metierUi.findOwnerById(1);
 		Resume resume = Resume.getFake();
 		resume.setOwner(owner);
 		// long idOwner = (Long) session.get("id");

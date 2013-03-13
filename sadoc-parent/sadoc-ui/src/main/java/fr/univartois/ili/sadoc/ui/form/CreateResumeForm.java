@@ -157,11 +157,12 @@ public class CreateResumeForm {
 	 */
 	private <T> List<T> getChoice(Finder<T> finder,
 			IMetierCommunServices metier, String[] listIds) {
-		int size = listIds.length;
 		List<T> list = finder.newList();
-
-		for (int i = 0; i < size; ++i) {
-			list.add(finder.find(metier, Long.parseLong(listIds[i])));
+		if (listIds != null) {
+			int size = listIds.length;
+			for (int i = 0; i < size; ++i) {
+				list.add(finder.find(metier, Long.parseLong(listIds[i])));
+			}
 		}
 		return list;
 	}
