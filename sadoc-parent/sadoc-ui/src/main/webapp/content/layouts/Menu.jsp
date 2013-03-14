@@ -2,7 +2,7 @@
 
 <div class="wrap_header">
 <header class="header">
-	<s:url action="Home"><img src='img/logo.png' /></s:url>
+	<a href="<s:url action="Home"/>"><img src='img/logo.png' />"</a>
 	<h1>Système d'authentification de documents</h1>
 </header>
 
