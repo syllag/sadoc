@@ -35,4 +35,6 @@ public interface IDomaineDAO {
 	 */
 	List<Domaine> findDomaineByReferentiel(Referentiel referentiel);
 
+	void removeDomaine(Domaine domaine);
+
 }

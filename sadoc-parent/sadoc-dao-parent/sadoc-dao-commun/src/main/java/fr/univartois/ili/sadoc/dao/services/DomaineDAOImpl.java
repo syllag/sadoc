@@ -43,4 +43,10 @@ public class DomaineDAOImpl extends AbstractCommunDAO implements IDomaineDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public void removeDomaine(Domaine domaine) {
+		entityManager.remove(entityManager.merge(domaine));
+		
+	}
+
 }

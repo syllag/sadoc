@@ -40,5 +40,7 @@ public interface ICompetenceDAO {
 	 */
 	
 	void createCompetence(Competence competence);
+	
+	public void removeCompetence(Competence competence);
 
 }

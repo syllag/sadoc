@@ -25,6 +25,12 @@ public class ReferentielDAOImpl extends AbstractCommunDAO implements IReferentie
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void createReferentiel(Referentiel referentiel) {		
 		entityManager.persist(referentiel);		
+	}
+
+	@Override
+	public void removeReferentiel(Referentiel referentiel) {
+		entityManager.remove(entityManager.merge(referentiel));
+		
 	}	
 
 }

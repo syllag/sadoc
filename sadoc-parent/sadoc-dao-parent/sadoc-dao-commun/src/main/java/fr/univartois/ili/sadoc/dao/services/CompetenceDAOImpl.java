@@ -13,9 +13,9 @@ import fr.univartois.ili.sadoc.dao.entities.Domaine;
 
 @Repository("CompetenceDAO")
 @Transactional
-public class CompetenceDAOImpl extends AbstractCommunDAO  implements ICompetenceDAO{
-	
-	
+public class CompetenceDAOImpl extends AbstractCommunDAO implements
+		ICompetenceDAO {
+
 	public CompetenceDAOImpl() {
 		super();
 	}
@@ -28,8 +28,8 @@ public class CompetenceDAOImpl extends AbstractCommunDAO  implements ICompetence
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public void createCompetence(Competence competence) {		
-		entityManager.persist(competence);	
+	public void createCompetence(Competence competence) {
+		entityManager.persist(competence);
 	}
 
 	@Override
@@ -50,6 +50,12 @@ public class CompetenceDAOImpl extends AbstractCommunDAO  implements ICompetence
 				Competence.class);
 		query.setParameter("acronym", acronym);
 		return query.getSingleResult();
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void removeCompetence(Competence competence) {
+		entityManager.remove(entityManager.merge(competence));
 	}
 
 }
