@@ -1,36 +1,36 @@
 package fr.univartois.ili.sadoc.dao.services;
 
-import javax.persistence.EntityManager;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.dao.entities.Referentiel;
 
-public class ReferentielDAOImpl implements IReferentielDAO {
+@Repository("ReferentielDAO")
+@Transactional
+public class ReferentielDAOImpl extends AbstractCommunDAO implements IReferentielDAO {
 
-	private EntityManager em;
-
-	public ReferentielDAOImpl(EntityManager em) {
-		this.setEm(em);
+	public ReferentielDAOImpl() {
+		super();
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Referentiel findReferentielById(long id) {
-		Referentiel referentiel = em.find(Referentiel.class, id);
+		Referentiel referentiel = entityManager.find(Referentiel.class, id);
 		return referentiel;
 	}
 
 	@Override
-	public void createReferentiel(Referentiel referentiel) {
-		em.getTransaction().begin();
-		em.persist(referentiel);
-		em.getTransaction().commit();
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void createReferentiel(Referentiel referentiel) {		
+		entityManager.persist(referentiel);		
 	}
 
-	public EntityManager getEm() {
-		return em;
-	}
-
-	public void setEm(EntityManager em) {
-		this.em = em;
-	}
+	@Override
+	public void removeReferentiel(Referentiel referentiel) {
+		entityManager.remove(entityManager.merge(referentiel));
+		
+	}	
 
 }

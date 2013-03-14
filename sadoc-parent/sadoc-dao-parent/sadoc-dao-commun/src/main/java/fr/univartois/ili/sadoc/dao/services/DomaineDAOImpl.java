@@ -2,48 +2,51 @@ package fr.univartois.ili.sadoc.dao.services;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.dao.entities.Domaine;
 import fr.univartois.ili.sadoc.dao.entities.Referentiel;
 
-public class DomaineDAOImpl implements IDomaineDAO {
+@Repository("DomaineDAO")
+@Transactional
+public class DomaineDAOImpl extends AbstractCommunDAO implements IDomaineDAO {
 
-	private EntityManager em;
 
-	public DomaineDAOImpl(EntityManager em) {
-		this.em = em;
+	public DomaineDAOImpl() {
+		super();
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Domaine findDomaineById(long id) {
-		Domaine domaine = em.find(Domaine.class, id);
+		Domaine domaine = entityManager.find(Domaine.class, id);
 		return domaine;
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void createDomaine(Domaine domaine) {
-		em.getTransaction().begin();
-		em.persist(domaine);
-		em.getTransaction().commit();
+		entityManager.persist(domaine);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public List<Domaine> findDomaineByReferentiel(Referentiel referentiel) {		
-		TypedQuery<Domaine> query = em.createQuery(
+		TypedQuery<Domaine> query = entityManager.createQuery(
 				"SELECT d FROM Domaine d WHERE d.referentiel = :referentiel",
 				Domaine.class);
 		query.setParameter("referentiel", referentiel);
 		return query.getResultList();
 	}
 
-	public EntityManager getEm() {
-		return em;
-	}
-
-	public void setEm(EntityManager em) {
-		this.em = em;
+	@Override
+	public void removeDomaine(Domaine domaine) {
+		entityManager.remove(entityManager.merge(domaine));
+		
 	}
 
 }

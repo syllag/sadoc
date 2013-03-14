@@ -8,13 +8,6 @@
 	</parent>
 	<artifactId>sadoc-dao-ws</artifactId>
 
-	<dependencies>
-		<dependency>
-			<groupId>fr.univartois.ili.sadoc</groupId>
-			<artifactId>sadoc-dao-commun</artifactId>
-			<version>${project.version}</version>
-			<scope>compile</scope>
-		</dependency>
-	</dependencies>
+	
 
 </project>
