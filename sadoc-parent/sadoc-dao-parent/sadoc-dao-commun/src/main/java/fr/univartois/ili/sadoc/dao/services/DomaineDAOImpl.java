@@ -44,6 +44,7 @@ public class DomaineDAOImpl extends AbstractCommunDAO implements IDomaineDAO {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void removeDomaine(Domaine domaine) {
 		entityManager.remove(entityManager.merge(domaine));
 		
