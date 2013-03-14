@@ -2,78 +2,66 @@ package fr.univartois.sadoc.tests.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.After;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.univartois.ili.sadoc.dao.entities.Competence;
 import fr.univartois.ili.sadoc.dao.entities.Domaine;
-import fr.univartois.ili.sadoc.dao.services.CompetenceDAOImpl;
+import fr.univartois.ili.sadoc.dao.services.ICompetenceDAO;
+import fr.univartois.ili.sadoc.dao.services.IDomaineDAO;
+
 
 public class CompetenceDAOTest {
 
-	private EntityManager em;
-	private CompetenceDAOImpl cdaoi;
+	private static final String APPLICATION_CONTEXT_XML = "applicationContext.xml";
+	private static ICompetenceDAO competenceDAO;
+	private static IDomaineDAO domaineDAO;
+	private static ApplicationContext appContext;	
+	private Competence competence;
 
-	@Before
-	public void init() {
-		EntityManagerFactory fact = Persistence
-				.createEntityManagerFactory("sadocDAOcommun");
-		em = fact.createEntityManager();
-		cdaoi = new CompetenceDAOImpl(em);
+	@BeforeClass
+	public static void testGetEntityManager() {
+		appContext = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML);
+		competenceDAO = appContext.getBean("competenceDAO",ICompetenceDAO.class);
+		domaineDAO = appContext.getBean("domaineDAO",IDomaineDAO.class);
+		assertNotNull(competenceDAO);
 	}
-
-	@After
-	public void tearDown() {
-		em.close();
-	}
-
+	
+	
 	@Test
-	public void testCreate() {
-		Competence competence = new Competence();
-		cdaoi.createCompetence(competence);
-		Competence c = em.find(Competence.class, competence.getId());
+	public void testCreate() {		
+		competence = new Competence();
+		competenceDAO.createCompetence(competence);
+		Competence c = competenceDAO.findCompetenceById(competence.getId());
 		assertEquals(competence, c);
 		assertNotNull("id not null", competence.getId());
-		em.getTransaction().begin();
-		em.remove(competence);
-		em.getTransaction().commit();
+		competenceDAO.removeCompetence(competence);
 	}
 
 	@Test
 	public void testSearchId() {
 		Competence competence = new Competence();
-		em.getTransaction().begin();
-		em.persist(competence);
-		em.getTransaction().commit();
-		Competence competenceResults = cdaoi.findCompetenceById(competence
-				.getId());
-		assertSame(competence, competenceResults);
-		em.getTransaction().begin();
-		em.remove(competence);
-		em.getTransaction().commit();
+		competenceDAO.createCompetence(competence);
+		Competence competenceResults = competenceDAO.findCompetenceById(competence
+				.getId());		
+		assertEquals(competence, competenceResults);
+		competenceDAO.removeCompetence(competence);
 	}
 
 	@Test
 	public void testFindCompetenceByDomaine() {
 		Domaine domaine = new Domaine();
-
 		Competence competence = new Competence();
 		competence.setDomaine(domaine);
-		em.getTransaction().begin();
-		em.persist(domaine);
-		em.persist(competence);
-		em.getTransaction().commit();
-		List<Competence> competences = cdaoi.findCompetenceByDomaine(domaine);
+		domaineDAO.createDomaine(domaine);
+		competenceDAO.createCompetence(competence);		
+		List<Competence> competences = competenceDAO.findCompetenceByDomaine(domaine);
 		assertTrue(competences.contains(competence));
 	}
 
@@ -83,10 +71,9 @@ public class CompetenceDAOTest {
 
 		Competence competence = new Competence();
 		competence.setCodeCompetence(codeComp);
-		em.getTransaction().begin();
-		em.persist(competence);
-		em.getTransaction().commit();
-		Competence comp = cdaoi.findByAcronym(codeComp);
+		competenceDAO.createCompetence(competence);
+		
+		Competence comp = competenceDAO.findByAcronym(codeComp);
 		assertTrue(competence.getCodeCompetence().equals(
 				comp.getCodeCompetence()));
 	}

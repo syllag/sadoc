@@ -2,86 +2,71 @@ package fr.univartois.sadoc.tests.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.After;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.univartois.ili.sadoc.dao.entities.Domaine;
 import fr.univartois.ili.sadoc.dao.entities.Referentiel;
-import fr.univartois.ili.sadoc.dao.services.DomaineDAOImpl;
+import fr.univartois.ili.sadoc.dao.services.IDomaineDAO;
+import fr.univartois.ili.sadoc.dao.services.IReferentielDAO;
 
 public class DomaineDAOTest {
 
-	private EntityManager em;
-	private DomaineDAOImpl ddaoi;
+	private static final String APPLICATION_CONTEXT_XML = "applicationContext.xml";
+	private static IDomaineDAO domaineDAO;
+	private static IReferentielDAO referentielDAO;
+	private static ApplicationContext appContext;	
 
-	@Before
-	public void setUp() {
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("sadocDAOcommun");
-		em = emf.createEntityManager();
-		ddaoi = new DomaineDAOImpl(em);
+	@BeforeClass
+	public static void testGetEntityManager() {
+		appContext = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML);
+		referentielDAO = appContext.getBean("referentielDAO",IReferentielDAO.class);
+		domaineDAO = appContext.getBean("domaineDAO",IDomaineDAO.class);
+		assertNotNull(domaineDAO);
 	}
-
-	@After
-	public void tearDown() {
-		em.close();
-	}
-
+	
 	@Test
 	public void testSearchId() {
 		Domaine domaine = new Domaine();
 		domaine.setCodeDomaine("codeDomaine");
 		domaine.setDescription("description");
-		em.getTransaction().begin();
-		em.persist(domaine);
-		em.getTransaction().commit();
-		Domaine domaineResults = ddaoi.findDomaineById(domaine.getId());
-		assertSame(domaineResults, domaine);	
-		em.getTransaction().begin();
-		em.remove(domaine);
-		em.getTransaction().commit();
+		domaineDAO.createDomaine(domaine);
+		Domaine domaineResults = domaineDAO.findDomaineById(domaine.getId());
+		assertEquals(domaineResults, domaine);	
+		domaineDAO.removeDomaine(domaine);
 	}
 
 	@Test
 	public void testCreate() {
 		Domaine domaine = new Domaine();
-		ddaoi.createDomaine(domaine);
-		Domaine d = em.find(Domaine.class, domaine.getId());
+		domaineDAO.createDomaine(domaine);
+		Domaine d = domaineDAO.findDomaineById(domaine.getId());
 		assertEquals(domaine, d);
 		assertNotNull("id not null", domaine.getId());
-		em.getTransaction().begin();
-		em.remove(domaine);
-		em.getTransaction().commit();
+		domaineDAO.removeDomaine(domaine);
 	}
 
 	@Test
 	public void testSearchReferentiel() {
 		Domaine domaine = new Domaine();
 		Referentiel referentiel = new Referentiel();
-		em.getTransaction().begin();
-		em.persist(referentiel);
-		em.getTransaction().commit();
+		
+		referentielDAO.createReferentiel(referentiel);
 		domaine.setReferentiel(referentiel);
-		em.getTransaction().begin();
-		em.persist(domaine);
-		em.getTransaction().commit();
-		List<Domaine> domaineResults = ddaoi
+		domaineDAO.createDomaine(domaine);
+		
+		List<Domaine> domaineResults = domaineDAO
 				.findDomaineByReferentiel(referentiel);
 		assertTrue(domaineResults.contains(domaine));
-
-		em.getTransaction().begin();
-		em.remove(referentiel);
-		em.remove(domaine);
-		em.getTransaction().commit();
+		
+		
+		domaineDAO.removeDomaine(domaine);
+		referentielDAO.removeReferentiel(referentiel);
 	}
 }
