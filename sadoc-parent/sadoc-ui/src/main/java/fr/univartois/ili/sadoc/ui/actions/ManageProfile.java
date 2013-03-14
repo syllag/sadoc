@@ -57,18 +57,28 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 
 	public void validate() {
 
-		if ((form != null)
-				&& !(form.getPassword().isEmpty() && form.getPassword2()
+		if (form != null) {
+			if (!(form.getPassword().isEmpty() && form.getPassword2()
 						.isEmpty())) {
-			if (!form.getPassword().equals(form.getPassword2())) {
-				addFieldError("form.password2", "Les mots de passe sont différents.");
+				if (!form.getPassword().equals(form.getPassword2())) {
+					addFieldError("form.password2", "Les mots de passe sont différents.");
+				}
+			
 			}
 			
+			if (!(form.getZipCode().isEmpty())) {
+				if (!form.getZipCode().matches("[0-9]{5}")){
+					addFieldError("form.zipCode", "Le code postal n'est pas au bon format");
+				}
+			}
+			
+			if (!(form.getPhone().isEmpty())) {
+				if (!form.getPhone().matches("[0-9]{10}")){
+					addFieldError("form.phone", "Le numéro de téléphone n'est pas au bon format");
+				}
+			}
 		}
 		
-		/**
-		 * TODO : add controls for address, zipCode, town, phone
-		 */
 	}
 
 	public ManageProfileForm getForm() {
