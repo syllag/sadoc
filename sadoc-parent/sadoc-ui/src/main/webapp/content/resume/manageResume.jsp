@@ -9,7 +9,7 @@
 <div class="curriculum">
 	<h3>Curriculum vitae</h3>
 	<span class="genererCv"> <a
-		href="<s:url action="ShowCreateResume" />">+ generer CV</a>
+		href="<s:url action="CreateResume" />">+ generer CV</a>
 	</span>
 	<table>
 		<c:forEach var="resume" items="${resumes}">
