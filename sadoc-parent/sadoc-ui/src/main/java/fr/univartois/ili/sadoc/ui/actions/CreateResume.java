@@ -2,10 +2,12 @@ package fr.univartois.ili.sadoc.ui.actions;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
 
 import fr.univartois.ili.sadoc.metier.commun.services.IMetierCommunServices;
 import fr.univartois.ili.sadoc.metier.commun.vo.Competence;
@@ -17,8 +19,9 @@ import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.form.CreateResumeForm;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
+import fr.univartois.ili.sadoc.ui.utils.ResumeUtil;
 
-public class CreateResume extends ActionSupport implements SessionAware {
+public class CreateResume extends ActionSupport implements SessionAware,Preparable {
 
 	/**
 	 * 
@@ -26,27 +29,49 @@ public class CreateResume extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private CreateResumeForm form;
 	private Map<String, Object> session;
+	private Map<Referentiel, Map<Domaine, Map<Competence, List<Item>>>> arbreCompetences ;
 
 	private IMetierCommunServices metierCommun = ContextFactory.getContext()
 			.getBean(IMetierCommunServices.class);
 	private IMetierUIServices metierUi = ContextFactory.getContext().getBean(
 			IMetierUIServices.class);
+	
+	private Resume resume = null ;
+	private Owner owner = null ;
 
+	@Override
+	public void prepare() throws Exception {
+		System.out.println("avantTOTO");
+	}
+	
 	public String execute() {
-
+		
+	
+		System.out.println("TOTO");
 		// TODO remove false when fake will be useless
-		if (false && form == null)
-			return INPUT;
+		if (form == null) {
+			// TODO to change when fake will be useless
+			owner =  metierUi.findOwnerById(1);
+			resume = Resume.getFake();
+			resume.setOwner(owner);
+			arbreCompetences = ResumeUtil.generateMap(resume);
 
+			for (Entry<Referentiel, Map<Domaine, Map<Competence, List<Item>>>> entry : arbreCompetences.entrySet()) {
+				System.out.println("######");
+				System.out.println("Key : " + entry.getKey() + " - " + entry.getKey().getId() + " Value : "
+					+ entry.getValue());
+				
+			}
+		
+			return INPUT;
+		}
+		
 		List<Referentiel> refes = form.getChoiceReferentiels(metierCommun);
 		List<Domaine> doms = form.getChoiceDomaines(metierCommun);
 		List<Competence> comps = form.getChoiceCompetences(metierCommun);
 		List<Item> items = form.getChoiceItems(metierCommun);
 
-		// TODO to change when fake will be useless
-		Owner owner = metierUi.findOwnerById(1);
-		Resume resume = Resume.getFake();
-		resume.setOwner(owner);
+
 		// long idOwner = (Long) session.get("id");
 		// Owner owner = metierUi.findOwnerById(idOwner);
 		//
@@ -91,5 +116,22 @@ public class CreateResume extends ActionSupport implements SessionAware {
 	public IMetierUIServices getMetierUIServices() {
 		return metierUi;
 	}
+
+	/**
+	 * @return the arbreCompetences
+	 */
+	public Map<Referentiel, Map<Domaine, Map<Competence, List<Item>>>> getArbreCompetences() {
+		return arbreCompetences;
+	}
+
+	/**
+	 * @param arbreCompetences the arbreCompetences to set
+	 */
+	public void setArbreCompetences(
+			Map<Referentiel, Map<Domaine, Map<Competence, List<Item>>>> arbreCompetences) {
+		this.arbreCompetences = arbreCompetences;
+	}
+
+
 
 }
