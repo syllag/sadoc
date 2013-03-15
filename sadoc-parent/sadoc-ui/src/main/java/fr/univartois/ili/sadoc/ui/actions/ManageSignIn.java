@@ -12,6 +12,7 @@ import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageSignInForm;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
+import fr.univartois.ili.sadoc.ui.utils.Form;
 import fr.univartois.ili.sadoc.ui.utils.PasswordUtil;
 
 public class ManageSignIn extends ActionSupport implements SessionAware {
@@ -44,19 +45,19 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		ClientWebServiceImpl webService = new ClientWebServiceImpl();
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner personneWS = webService
 				.getOwner(form.getMail());
-		
+
 		// TODO Fake user
 		personneWS = new fr.univartois.ili.sadoc.client.webservice.tools.Owner();
 		personneWS.setId(1);
 		personneWS.setFirstName(form.getFirstName());
 		personneWS.setLastName(form.getLastName());
-		
+
 		// TODO remove "false" condition when fake user will be removed
 		if (false && personneWS == null) {
 			session.put("error", "Vous n'avez pas encore exporté de documents.");
 			return INPUT;
 		}
-		
+
 		Owner personne = new Owner();
 		personne.setFirstName(personneWS.getFirstName());
 		personne.setLastName(personneWS.getLastName());
@@ -82,38 +83,68 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
-	/************************************************/
 
-	/**
-	 * getter du formulaire de creation d'evenement
-	 * 
-	 * @return
-	 */
-	public ManageSignInForm getForm() {
-		return form;
+	public void validate() {
+		if (form != null) {
+			if(form.getPassword().isEmpty()) {
+				addFieldError("form.password", "Le mot de passe est requis");
+			}
+			else if (form.getPassword().length()<8) {
+				addFieldError("form.password","Le mot de passe doit faire au minimum 8 caractères.");
+			}
+			else if (!(form.getPassword().equals(form.getPassword2()))) {
+				addFieldError("form.password2", "Les mots de passe sont différents.");
+			}			
+			
+			if(form.getFirstName().isEmpty()) {
+				addFieldError("form.firstName", "Le prénom est requis");
+			}
+			if(form.getLastName().isEmpty()) {
+				addFieldError("form.lastName", "Le nom est requis");
+			}
+			if(form.getMail().isEmpty()) {
+				addFieldError("form.mail","L'adresse mail est requise");
+			}
+			else if(!Form.isValidEmailAddress(form.getMail())) {
+				addFieldError("form.mail","L'adresse email n'est pas dans un format valide");
+			}
+		}
 	}
 
-	/**
-	 * setter du formulaire d'evenement
-	 * 
-	 * @param creation
-	 */
-	public void setForm(ManageSignInForm signinform) {
-		this.form = signinform;
-	}
 
-	public void setSession(Map<String, Object> arg0) {
-		this.session = arg0;
-	}
 
-	public Map<String, Object> getSession() {
-		return session;
-	}
+/************************************************/
 
-	/**
-	 * @return the metierUIServices
-	 */
-	public IMetierUIServices getMetierUIServices() {
-		return metierUIServices;
-	}
+/**
+ * getter du formulaire de creation d'evenement
+ * 
+ * @return
+ */
+public ManageSignInForm getForm() {
+	return form;
+}
+
+/**
+ * setter du formulaire d'evenement
+ * 
+ * @param creation
+ */
+public void setForm(ManageSignInForm signinform) {
+	this.form = signinform;
+}
+
+public void setSession(Map<String, Object> arg0) {
+	this.session = arg0;
+}
+
+public Map<String, Object> getSession() {
+	return session;
+}
+
+/**
+ * @return the metierUIServices
+ */
+public IMetierUIServices getMetierUIServices() {
+	return metierUIServices;
+}
 }
