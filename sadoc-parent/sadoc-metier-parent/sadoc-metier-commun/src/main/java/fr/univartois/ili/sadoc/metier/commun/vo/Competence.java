@@ -9,7 +9,7 @@ import java.util.List;
  * @author Mohamed Belhadj-adda <belhadjadda.mohamed at gmail.com>
  * 
  */
-public class Competence implements Serializable {
+public class Competence implements Serializable,Comparable<Competence> {
 
 	private static final long serialVersionUID = -3966140261748206775L;
 
@@ -83,5 +83,10 @@ public class Competence implements Serializable {
 	
 	public final boolean belongs(Domaine domaine) {
 		return this.domaine == domaine;
+	}
+
+	@Override
+	public int compareTo(Competence o) {
+		return codeCompetence.compareTo(o.getCodeCompetence());
 	}
 }

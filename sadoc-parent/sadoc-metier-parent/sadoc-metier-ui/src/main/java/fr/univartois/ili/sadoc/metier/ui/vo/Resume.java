@@ -120,9 +120,9 @@ public class Resume implements Serializable {
 		res.getDomaines().add(domaineB);
 		
 		// Items
-		Item A1item1 = new Item("A.1.1", "Item 1 de A1");
-		Item A1item2 = new Item("A.1.2", "Item 2 de A1");
-		Item A1item3 = new Item("A.1.3", "Item 3 de A1");
+		Item A1item1 = new Item("A.1.1", "Item 1 de A1", competenceA1);
+		Item A1item2 = new Item("A.1.2", "Item 2 de A1", competenceA1);
+		Item A1item3 = new Item("A.1.3", "Item 3 de A1", competenceA1);
 		competenceA1.getItems().add(A1item1);
 		competenceA1.getItems().add(A1item2);
 		competenceA1.getItems().add(A1item3);

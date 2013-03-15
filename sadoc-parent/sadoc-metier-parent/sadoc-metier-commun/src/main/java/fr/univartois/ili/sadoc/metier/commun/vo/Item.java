@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Mohamed Belhadj-adda <belhadjadda.mohamed at gmail.com>
  * 
  */
-public class Item implements Serializable {
+public class Item implements Serializable, Comparable<Item>{
 
 	private static final long serialVersionUID = 4976187438361538939L;
 
@@ -33,7 +33,7 @@ public class Item implements Serializable {
 	}
 
 	public Item(String codeItem, String description, Competence competence) {
-		this(description, codeItem);
+		this(codeItem, description);
 		this.competence = competence;
 	}
 
@@ -103,5 +103,10 @@ public class Item implements Serializable {
 	
 	public final boolean belongs(Competence competence) {
 		return this.competence == competence; 
+	}
+
+	@Override
+	public int compareTo(Item o) {
+		return codeItem.compareTo(o.getCodeItem());
 	}
 }
