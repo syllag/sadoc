@@ -10,14 +10,14 @@
 	<table>
 		<tr>
 			<td><a href="<s:url value="http://www.univ-artois.fr" />"> <img
-					src='img/univ_artois.png' alt="université d'artois" class="icon" />
+					src="<s:url value="/img/univ_artois.png"/>" alt="université d'artois" class="icon" />
 			</a></td>
 			<td><span class="quotation">SADoc - Système
 					d'authentification de documents</span></td>
 		</tr>
 	</table>
 	<p>
-		<img width="300px" src='img/logo_big.png' />
+		<img width="300px" src="<s:url value="/img/logo_big.png"/>" />
 	</p>
 </section>
 
