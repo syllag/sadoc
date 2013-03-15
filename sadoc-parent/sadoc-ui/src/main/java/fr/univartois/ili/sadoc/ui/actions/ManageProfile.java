@@ -10,6 +10,7 @@ import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageProfileForm;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
+import fr.univartois.ili.sadoc.ui.utils.Form;
 
 public class ManageProfile extends ActionSupport implements SessionAware {
 
@@ -37,9 +38,9 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		/**
 		 * Add information of user account from the form
 		 */
-		owner.setAddress(form.getAddress());
+		owner.setAddress(Form.normalizeAddress(form.getAddress()));
 		owner.setZipCode(form.getZipCode());
-		owner.setTown(form.getTown());
+		owner.setTown(Form.normalizeTown(form.getTown()));
 		owner.setPhone(form.getPhone());
 		if (!(form.getPassword().isEmpty() && form.getPassword2().isEmpty())
 				&& form.getPassword().equals(form.getPassword2())) {
@@ -67,13 +68,13 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 			}
 			
 			if (!(form.getZipCode().isEmpty())) {
-				if (!form.getZipCode().matches("[0-9]{5}")){
+				if (!Form.isCorrectZipCode(form.getZipCode())){
 					addFieldError("form.zipCode", "Le code postal n'est pas au bon format");
 				}
 			}
 			
 			if (!(form.getPhone().isEmpty())) {
-				if (!form.getPhone().matches("[0-9]{10}")){
+				if (!Form.isCorrectPhoneNumber(form.getPhone())){
 					addFieldError("form.phone", "Le numéro de téléphone n'est pas au bon format");
 				}
 			}
