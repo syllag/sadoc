@@ -3,6 +3,7 @@ package fr.univartois.ili.sadoc.metier.commun.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.univartois.ili.sadoc.dao.services.ICompetenceDAO;
@@ -21,9 +22,13 @@ import fr.univartois.ili.sadoc.metier.commun.utils.Mapper;
  */
 @Service("metierCommunServices")
 public class MetierCommunServices implements IMetierCommunServices {
+	@Autowired
 	private IItemDAO itemDAO;
+	@Autowired
 	private ICompetenceDAO competenceDAO;
+	@Autowired
 	private IDomaineDAO domaineDAO;
+	@Autowired
 	private	IReferentielDAO referentielDAO;
 		
 	@Override
