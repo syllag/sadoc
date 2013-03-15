@@ -6,42 +6,20 @@
 %>
 <c:import url="../layouts/Header.jsp" />
 
-<script>
-	function check() {
-		var p1 = document.getElementById('password');
-		var p2 = document.getElementById('confirm_password');
-		if (p1.value != p2.value) {
-			p2.setCustomValidity("Les mots de passe ne correspondent pas.");
-		} else {
-			p2.setCustomValidity('');
-		}
-		if (p1.value.length < 8) {
-			p1.setCustomValidity("Le mot de passe doit faire au minimum 8 caractères.");
-		} else {
-			p1.setCustomValidity("");
-		}
-	}
-</script>
 
-			<section class="inscription">
-				<form method="post" action="SignIn">
-					Prénom<br/>
-					<input type="text" name="form.firstName" id="prenom" placeholder="Prénom" required /><br/>
-					Nom<br/> 
-					<input type="text" name="form.lastName" id="nom" placeholder="Nom" required /><br/>
-					Email<br/> 
-					<input type="text" name="form.mail" id="email" placeholder="Email" 
-						pattern="([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))"
-						required /> <br/><br/>
-					Mot de passe<br/>
-					<input type="password" name="form.password"	id="password" placeholder="Mot de passe" required /><br/>
-					Confirmation mot de passe<br/>
-					<input type="password" name="form.password2" id="confirm_password" 
-						placeholder="Confirmation mot de passe" required onblur="check();" /><br/>
-					<div class="errorMessage">${ error }</div>
-					<button type=submit onclick="check();" class="button">Inscription</button>
-				</form>
-			</section>
+			<!--<section class="inscription">
+				<form method="post" action="SignIn"> -->
+					<section id="content">
+						<s:form action="SignIn" validate="true">
+							<s:actionerror />
+								<s:textfield label="Prénom" labelposition="top" key="form.firstName" placeholder="Prénom" />
+								<s:textfield label="Nom" labelposition="top" key="form.lastName" placeholder="Nom" />
+								<s:textfield label="Email" labelposition="top" key="form.mail" placeholder="Email" />
+								<s:password label="Mot de passe" labelposition="top" key="form.password" placeholder="Mot de passe" />
+								<s:password label="Confirmation mot de passe" labelposition="top" key="form.password2" placeholder="Confirmation mot de passe" />
+								<s:submit key="Inscription" cssClass="button" />
+					</s:form>
+				</section>
 
 
 	<c:import url="../layouts/Footer.jsp" />

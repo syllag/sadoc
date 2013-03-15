@@ -1,5 +1,7 @@
 package fr.univartois.ili.sadoc.ui.form;
 
+import fr.univartois.ili.sadoc.ui.utils.Form;
+
 public class ManageSignInForm {
 
 	private String firstName;
@@ -20,6 +22,7 @@ public class ManageSignInForm {
 		this.mail = mail;
 		this.password = password;
 		this.password2 = password2;
+		System.err.println("set firstname = " + firstName + " => "+this.firstName);
 	}
 
 	/************************************************/
@@ -29,7 +32,7 @@ public class ManageSignInForm {
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.firstName = Form.normalizeFirstName(firstName);
 	}
 
 	public String getLastName() {
@@ -37,7 +40,7 @@ public class ManageSignInForm {
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.lastName = Form.normalizeLastName(lastName);
 	}
 
 	public String getMail() {
@@ -63,4 +66,11 @@ public class ManageSignInForm {
 	public void setPassword2(String password2) {
 		this.password2 = password2;
 	}
+
+	@Override
+	public String toString() {
+		return "ManageSignInForm [firstName=" + firstName + ", lastName="
+				+ lastName + ", mail=" + mail + ", password=" + password
+				+ ", password2=" + password2 + "]";
+	}	
 }
