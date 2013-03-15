@@ -3,21 +3,35 @@
 <%
 	session.setAttribute("currentMenu", "Connect");
 %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <c:import url="../layouts/Header.jsp" />
 
-	<section class="connection">
-		<form method="POST" action="ValidateConnect">
-			<input type="email" name="connect.email" id="email" placeholder="Email" required /> 
-			<input type="password" name="connect.password" id="password" placeholder="Mot de passe" required />
-				
-					<div class="errorMessage">${ incorrect }</div>
-				
-			<button type=submit class="buttonLogin">Connexion</button>
+<section class="connection">
+	<s:url var="validateconnect" action="ValidateConnect" />
+	<s:form method="POST" action="%{validateconnect}" theme="simple">
+
+		<s:textfield name="connect.email" id="email" placeholder="Email" />
+		<s:password name="connect.password" id="password"
+			placeholder="Mot de passe" />
+
+
+		<div class="errorMessage">${ incorrect }</div>
+
+		<!-- 		<button type="submit" class="buttonLogin">Connexion</button> -->
+		<div>
+			<s:submit cssClass="buttonLogin" value="Connexion"  />
 			<s:url var="signin" action="SignIn" />
-			<a href="${signin}"><button class="buttonSignin">Inscription</button></a>
-  <div class="spacer"> </div>
-		</form>
-	</section>
+			<s:submit cssClass="buttonSignin" value="Inscription"
+				onclick="window.location.href='/SignIn'" />
+		</div>
+
+	</s:form>
+
+
+
+
+	<div class="spacer"></div>
+
+</section>
 
 <c:import url="../layouts/Footer.jsp" />

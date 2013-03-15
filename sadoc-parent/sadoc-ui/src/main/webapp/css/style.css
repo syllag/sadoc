@@ -324,7 +324,6 @@ p.lien_competence a {
 	color: #555;
 	background: url(../img/button.png);
 	height: 30px;
-	float: right;
 	-moz-box-shadow: 0px 0px 2x 1px #888;
 	-webkit-box-shadow: 0px 0px 2px 1px #888;
 	box-shadow: 0px 0px 2px 1px #888;
@@ -357,7 +356,6 @@ p.lien_competence a {
 	color: #555;
 	background: url(../img/button.png);
 	height: 30px;
-	float: left;
 	-moz-box-shadow: 0px 0px 2x 1px #888;
 	-webkit-box-shadow: 0px 0px 2px 1px #888;
 	box-shadow: 0px 0px 2px 1px #888;
