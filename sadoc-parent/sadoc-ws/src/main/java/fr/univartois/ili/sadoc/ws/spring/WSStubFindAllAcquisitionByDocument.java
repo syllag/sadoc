@@ -16,7 +16,6 @@ import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;
 import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
 //TODO Replace DAO
-@Endpoint
 public class WSStubFindAllAcquisitionByDocument {
 
 	@Resource(name = "wsPrivate")
