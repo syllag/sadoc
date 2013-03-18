@@ -2,26 +2,30 @@ package fr.univartois.ili.sadoc.dao.services;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.dao.entities.Competence;
 import fr.univartois.ili.sadoc.dao.entities.Item;
 
-public class ItemDAOImpl implements IItemDAO {
+@Repository("itemDAO")
+@Transactional
+public class ItemDAOImpl extends AbstractCommunDAO implements IItemDAO {	
 
-	private EntityManager em;
-
-	public ItemDAOImpl(EntityManager em) {
-		this.setEm(em);
+	public ItemDAOImpl() {
+		super();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Item findItemById(long id) {
-		Item degree = em.find(Item.class, id);
+		Item degree = entityManager.find(Item.class, id);
 		return degree;
 	}
 
@@ -29,30 +33,22 @@ public class ItemDAOImpl implements IItemDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void createItem(Item item) {
-		em.getTransaction().begin();
-		em.persist(item);
-		em.getTransaction().commit();
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void createItem(Item item) {		
+		entityManager.persist(item);		
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public List<Item> findItemByCompetence(Competence competence) {
-		TypedQuery<Item> query = em.createQuery(
+		TypedQuery<Item> query = entityManager.createQuery(
 				"SELECT i FROM Item i WHERE i.competence = :competence",
 				Item.class);
 		query.setParameter("competence", competence);
 		return query.getResultList();
-	}
-
-	public EntityManager getEm() {
-		return em;
-	}
-
-	public void setEm(EntityManager em) {
-		this.em = em;
 	}
 
 }

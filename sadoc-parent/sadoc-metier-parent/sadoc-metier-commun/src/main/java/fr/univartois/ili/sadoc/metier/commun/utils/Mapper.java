@@ -56,12 +56,12 @@ public class Mapper {
 			}
 			lItems.add(listeItems.get(tmpI.getId()));
 		}
+		
 		res.setCodeCompetence(c.getCodeCompetence());
 		res.setDescription(c.getDescription());
 		res.setId(c.getId());
 		res.setDomaine(listeDomaines.get(d.getId()));
 		res.setItems(lItems);
-		
 		
 		return res;
 	}

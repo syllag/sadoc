@@ -14,11 +14,19 @@
 		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util.xsd
 		">
+	
+	<!-- WS beans -->
 	<bean id="ownerWSDAO" class="fr.univartois.ili.sadoc.dao.OwnerWSDAO" />
 	<bean id="acquisitionDAO" class="fr.univartois.ili.sadoc.dao.AcquisitionDAO" />
 	<bean id="certificateDAO" class="fr.univartois.ili.sadoc.dao.CertificateDAO" />
 	<bean id="documentDAO" class="fr.univartois.ili.sadoc.dao.DocumentDAO" />
 	<bean id="signatureDAO" class="fr.univartois.ili.sadoc.dao.SignatureDAO" />
+
+	<!-- Commons bean -->
+	<bean id="competenceDAO" class="fr.univartois.ili.sadoc.dao.services.CompetenceDAOImpl" />
+	<bean id="domaineDAO" class="fr.univartois.ili.sadoc.dao.services.DomaineDAOImpl" />
+	<bean id="itemDAO" class="fr.univartois.ili.sadoc.dao.services.ItemDAOImpl" />
+	<bean id="referentielDAO" class="fr.univartois.ili.sadoc.dao.services.ReferentielDAOImpl" />
 
 	<!-- Datasource -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -29,7 +37,7 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
 		p:dataSource-ref="dataSource" p:persistenceUnitName="sadocjpa">
-		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml" />
 		<property name="jpaDialect">
 			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
 		</property>
@@ -42,8 +50,34 @@
 		</property>
 	</bean>
 
+	<!-- Datasource -->
+	<bean id="dataSourceCommun" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" p:driverClassName="${database.commun.driver}" p:url="${database.commun.url}"
+	 	p:username="${database.commun.user}" p:password="${database.commun.password}" />
+	 	
+	<!-- Entity Manager -->
+	<bean id="entityManagerFactoryCommun"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+	 	p:dataSource-ref="dataSourceCommun" p:persistenceUnitName="sadocDAOcommun">
+	 	<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml" />
+	 	<property name="jpaDialect">
+	 		<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
+		</property>
+	 	<property name="jpaVendorAdapter">
+	 		<bean
+	 	  		class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+				<property name="databasePlatform" value="${database.commun.eclipseLinkDialect}" />
+		 		<property name="showSql" value="${database.commun.showSQL}" />
+			</bean>
+	 	</property>
+	</bean>
+
 	<!-- Transaction Manager -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
 		p:entityManagerFactory-ref="entityManagerFactory" />
+		
+	<tx:annotation-driven transaction-manager="transactionManager2" />
+	<bean id="transactionManager2" class="org.springframework.orm.jpa.JpaTransactionManager"
+	 	p:entityManagerFactory-ref="entityManagerFactoryCommun" />
 </beans>

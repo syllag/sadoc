@@ -7,17 +7,17 @@
 
 <section id="content">
 	<div class="user">
-		<p>${owner.firstname} ${owner.name}</p>
-		<p>${owner.adress }</p>
+		<p>${owner.firstName} ${owner.lastName}</p>
+		<p>${owner.address}</p>
 		<p>
-			${owner.zipCode }
-			<c:if test="not empty ${owner.zipCode }  && not empty ${ owner.town } ">
+			${owner.zipCode}
+			<c:if test="not empty ${owner.zipCode}  && not empty ${owner.town} ">
 				,
-				</c:if>
-			${owner.town }
+			</c:if>
+			${owner.town}
 		</p>
-		<p>${owner.phone }</p>
-		<p>${owner.mail }</p>
+		<p>${owner.phone}</p>
+		<p>${owner.mail}</p>
 	</div>
 	<hr />
 	<div class="competence">
@@ -25,11 +25,11 @@
 
 		<c:forEach var="entry" items="${mapCompetence}">
 			<fieldset>
-				<legend>${entry.key.name }</legend>
+				<legend>${entry.key.name}</legend>
 
-				<p>Niveau : ${entry.key.acronym }</p>
+				<p>Niveau : ${entry.key.acronym}</p>
 				<table>
-					<c:forEach var="document" items="${entry.value }">
+					<c:forEach var="document" items="${entry.value}">
 						<tr>
 							<td>${document.name }</td>
 							

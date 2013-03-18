@@ -10,6 +10,7 @@ import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageProfileForm;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
+import fr.univartois.ili.sadoc.ui.utils.Form;
 
 public class ManageProfile extends ActionSupport implements SessionAware {
 
@@ -20,6 +21,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	private IMetierUIServices metierUIServices = ContextFactory.getContext()
 			.getBean(IMetierUIServices.class);
 
+	
 	public String execute() {
 		if (session.get("mail") == null) {
 			/**
@@ -36,9 +38,9 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		/**
 		 * Add information of user account from the form
 		 */
-		owner.setAddress(form.getAdress());
+		owner.setAddress(Form.normalizeAddress(form.getAddress()));
 		owner.setZipCode(form.getZipCode());
-		owner.setTown(form.getTown());
+		owner.setTown(Form.normalizeTown(form.getTown()));
 		owner.setPhone(form.getPhone());
 		if (!(form.getPassword().isEmpty() && form.getPassword2().isEmpty())
 				&& form.getPassword().equals(form.getPassword2())) {
@@ -56,16 +58,28 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 
 	public void validate() {
 
-		if ((form != null)
-				&& !(form.getPassword().isEmpty() && form.getPassword2()
+		if (form != null) {
+			if (!(form.getPassword().isEmpty() && form.getPassword2()
 						.isEmpty())) {
-			if (form.getPassword().equals(form.getPassword2())) {
-				addFieldError("password2", "Les mots de passe sont différents.");
+				if (!form.getPassword().equals(form.getPassword2())) {
+					addFieldError("form.password2", "Les mots de passe sont différents.");
+				}
+			
+			}
+			
+			if (!(form.getZipCode().isEmpty())) {
+				if (!Form.isCorrectZipCode(form.getZipCode())){
+					addFieldError("form.zipCode", "Le code postal n'est pas au bon format");
+				}
+			}
+			
+			if (!(form.getPhone().isEmpty())) {
+				if (!Form.isCorrectPhoneNumber(form.getPhone())){
+					addFieldError("form.phone", "Le numéro de téléphone n'est pas au bon format");
+				}
 			}
 		}
-		/**
-		 * FIXME : add content checking by xml validation for other field
-		 */
+		
 	}
 
 	public ManageProfileForm getForm() {
@@ -90,4 +104,5 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	public IMetierUIServices getMetierUIServices() {
 		return metierUIServices;
 	}
+
 }

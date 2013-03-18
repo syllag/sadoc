@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,16 +21,22 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.univartois.ili.sadoc.metier.commun.vo.Domaine;
+import fr.univartois.ili.sadoc.metier.commun.vo.Item;
+import fr.univartois.ili.sadoc.metier.commun.vo.Competence;
+import fr.univartois.ili.sadoc.metier.commun.vo.Referentiel;
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
-import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
+import fr.univartois.ili.sadoc.ui.utils.ResumeUtil;
 
 public class DownloadResume extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 1L;
 
+	private static final String SEPARATEUR = " - ";
+	private static final String INDENT = " ";
 	private static Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
 			Font.BOLD, BaseColor.DARK_GRAY);
 	private static Font particularFont = new Font(Font.FontFamily.TIMES_ROMAN,
@@ -56,8 +63,11 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 	private void createPdf() {
 		Document document = new Document();
 		FileOutputStream fo;
-
-		Resume resume = metierUIServices.findResumeById(cv);
+		
+		// TODO to change when fake will be useless
+		Resume resume = Resume.getFake();
+		// Resume resume = metierUIServices.findResumeById(cv);
+		
 		try {
 		
 			fo = new FileOutputStream("/tmp/" + session.get("id") + "_" + cv
@@ -66,8 +76,8 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 			Paragraph title = new Paragraph("Curriculum vitae", titleFont);
 			title.setAlignment(Element.ALIGN_CENTER);
 			
-			Owner owner = (Owner) session.get("owner");
-
+			//Owner owner = (Owner) session.get("owner");
+			Owner owner = new Owner("Toto", "TITI", "toto@toto.fr", "", "address", "00000", "ICI", "0102030405");
 			Paragraph prefaceNom = new Paragraph((String) owner.getLastName(),
 					particularFont);
 			Paragraph prefacePrenom = new Paragraph(
@@ -107,15 +117,65 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 			prefaceTitleComp.setAlignment(Element.ALIGN_CENTER);
 			document.add(prefaceTitleComp);
 			document.add(new Paragraph(" ", empty));
-			List<Competence> listComp = new ArrayList<Competence>(
-					resume.getCompetences());
-
-			Paragraph prefaceCompetence = new Paragraph(null, particularFont);
-			prefaceCompetence.setAlignment(Element.ALIGN_CENTER);
-			for (Competence comp : listComp) {
-				prefaceCompetence.add(comp.getName());
-				document.add(prefaceCompetence);
-				prefaceCompetence.clear();
+			
+			Map <Referentiel, Map <Domaine, Map <Competence, List<Item>>>> refWithDoms = ResumeUtil.generateMap(resume);
+			
+			Paragraph prefaceRef = new Paragraph(null, particularFont);
+			int ind = 0;
+			for (Map.Entry<Referentiel, Map<Domaine, Map <Competence, List<Item>>>> entRef : refWithDoms.entrySet()){
+				document.add(new Paragraph(" ", empty));
+				prefaceRef.add(entRef.getKey().getName());
+				if(entRef.getValue().isEmpty()){
+					prefaceRef.add(SEPARATEUR + entRef.getKey().getDescription());
+					document.add(prefaceRef);
+					prefaceRef.clear();
+				}
+				else{
+					ind++;
+					document.add(prefaceRef);
+					prefaceRef.clear();
+					Map <Domaine, Map <Competence, List<Item>>> domWithComps = refWithDoms.get(entRef.getKey());
+					for (Map.Entry<Domaine, Map <Competence, List<Item>>> entDom : domWithComps.entrySet()){
+						prefaceRef.add(indent(ind) + entDom.getKey().getCodeDomaine());
+						if(entDom.getValue().isEmpty()){
+							prefaceRef.add(SEPARATEUR + entDom.getKey().getDescription());
+							document.add(prefaceRef);
+							prefaceRef.clear();
+							ind--;
+						}
+						else{
+							ind++;
+							document.add(prefaceRef);
+							prefaceRef.clear();
+							Map <Competence, List<Item>> compWithItems = domWithComps.get(entDom.getKey());
+							for (Map.Entry<Competence, List<Item>> entComp : compWithItems.entrySet()){
+								prefaceRef.add(indent(ind) + entComp.getKey().getCodeCompetence());
+								if(entComp.getValue().isEmpty()){
+									prefaceRef.add(SEPARATEUR + entComp.getKey().getDescription());
+									document.add(prefaceRef);
+									prefaceRef.clear();
+									ind--;
+								}
+								else{
+									ind++;
+									document.add(prefaceRef);
+									prefaceRef.clear();
+									List<Item> items = compWithItems.get(entComp.getKey());
+									for(Item it : items){
+										prefaceRef.add(indent(ind) + it.getCodeItem());
+										prefaceRef.add(SEPARATEUR + it.getDescription());
+										document.add(prefaceRef);
+										prefaceRef.clear();										
+									}
+									ind--;
+								}
+							}
+							ind--;
+						}
+					}
+					ind--;
+				}
+				
 			}
 
 			document.close();
@@ -127,18 +187,34 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * generate the indentation 
+	 * @param n
+	 * @return the string of the indentation
+	 */
+	private String indent(int n){
+		StringBuffer buf = new StringBuffer();
+		for(int i = 0; i < n; i++){
+			buf.append(INDENT);
+		}
+		return buf.toString();
+	}
+	
+
 
 	public String execute() {
-
-		if (session.get("mail") == null) {
+		// TODO to remove when fake will be useless
+		if (false && session.get("mail") == null) {
 			return "index";
 		}
 
 		try {
 			createPdf();
-
-			fileInputStream = new FileInputStream(new File("/tmp/"
-					+ session.get("id") + "_" + cv + "cv.pdf"));
+			String pdf_path = "/tmp/"
+					+ session.get("id") + "_" + cv + "cv.pdf";
+			LOG.info("PDF generated at "+pdf_path);
+			fileInputStream = new FileInputStream(new File(pdf_path));
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

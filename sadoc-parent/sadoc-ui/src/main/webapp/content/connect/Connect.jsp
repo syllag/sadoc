@@ -3,19 +3,25 @@
 <%
 	session.setAttribute("currentMenu", "Connect");
 %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <c:import url="../layouts/Header.jsp" />
 
-	<section class="connection">
-		<form method="POST" action="ValidateConnect">
-			<input type="email" name="connect.email" id="email" placeholder="Email" required /> 
-			<input type="password" name="connect.password" id="password" placeholder="Mot de passe" required />
-				
-					<div class="errorMessage">${ incorrect }</div>
-				
-			<button type=submit class="buttonLogin">Connexion</button>
-			<a href="SignIn"><button class="buttonSignin">Inscription</button></a>
-  <div class="spacer"> </div>
-		</form>
-	</section>
+<section class="connection">
+	<s:form method="POST" action="ValidateConnect" theme="simple">
+		<s:actionerror />
+		<s:textfield key="connect.email" placeholder="Email" />
+		<s:password key="connect.password" placeholder="Mot de passe" />
+
+		<div>
+			<s:submit cssClass="buttonLogin" value="Connexion" />
+			<s:url var="signin" action="SignIn" />
+			<s:submit cssClass="buttonSignin" value="Inscription"
+				onclick="window.location.href='/SignIn'" />
+		</div>
+	</s:form>
+
+	<div class="spacer"></div>
+
+</section>
 
 <c:import url="../layouts/Footer.jsp" />

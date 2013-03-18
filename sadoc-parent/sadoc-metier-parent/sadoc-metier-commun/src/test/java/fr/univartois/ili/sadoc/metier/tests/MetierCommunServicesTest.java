@@ -23,24 +23,12 @@ public class MetierCommunServicesTest {
 	
 	private ApplicationContext ac;
 	private IMetierCommunServices mcs;
-	@Autowired
-	private IItemDAO itemDAO;
-	@Autowired
-	private ICompetenceDAO competenceDAO;
-	@Autowired
-	private IDomaineDAO domaineDAO;
-	@Autowired
-	private	 IReferentielDAO referentielDAO;
 	
 	@Before
 	public void setUp(){
 		ac=new ClassPathXmlApplicationContext("applicationContext.xml");
 		mcs=(IMetierCommunServices)ac.getBean("metierCommunServices");
-		itemDAO.createItem(new Item());
-		competenceDAO.createCompetence(new Competence());
-		domaineDAO.createDomaine(new Domaine());
-		domaineDAO.createDomaine(new Domaine());
-		referentielDAO.createReferentiel(new Referentiel());
+	
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -77,8 +65,18 @@ public class MetierCommunServicesTest {
 	public void testWithCorrectAcronymAndInexistantIDs() {
 		assertFalse("The method must return false for the acronym \"154:::\"",mcs.isValideAcronym("154:::"));
 		assertFalse("The method must return false for the acronym \"1:487::\"",mcs.isValideAcronym("1:487::"));
-		assertFalse("The method must return false for the acronym \"1:1:15:\"",mcs.isValideAcronym("1:1:15:"));
-		assertFalse("The method must return false for the acronym \"1:1:1:18\"",mcs.isValideAcronym("1:1:1:18"));
+		assertFalse("The method must return false for the acronym \"1:1:157:\"",mcs.isValideAcronym("1:1:157:"));
+		assertFalse("The method must return false for the acronym \"1:1:1:184\"",mcs.isValideAcronym("1:1:1:184"));
+	}
+	
+	@Test
+	public void testWithIncorrectAcronym(){
+		assertFalse("The method must return false for the acronym \":1::\"",mcs.isValideAcronym(":1::"));
+		assertFalse("The method must return false for the acronym \"::1:\"",mcs.isValideAcronym("::1:"));
+		assertFalse("The method must return false for the acronym \":::12\"",mcs.isValideAcronym(":::12"));
+		assertFalse("The method must return false for the acronym \":1:12:\"",mcs.isValideAcronym(":1:12:"));
+		assertFalse("The method must return false for the acronym \":1::17\"",mcs.isValideAcronym(":1::17"));
+		assertFalse("The method must return false for the acronym \"::15:18875\"",mcs.isValideAcronym("::15:18875"));
 	}
 
 }

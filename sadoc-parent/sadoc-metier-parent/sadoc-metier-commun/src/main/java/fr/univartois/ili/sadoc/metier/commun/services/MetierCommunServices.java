@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.univartois.ili.sadoc.dao.services.ICompetenceDAO;
@@ -12,6 +13,7 @@ import fr.univartois.ili.sadoc.dao.services.IDomaineDAO;
 import fr.univartois.ili.sadoc.dao.services.IItemDAO;
 import fr.univartois.ili.sadoc.dao.services.IReferentielDAO;
 import fr.univartois.ili.sadoc.metier.commun.utils.Mapper;
+import fr.univartois.ili.sadoc.metier.commun.utils.StringSplitter;
 import fr.univartois.ili.sadoc.metier.commun.vo.Competence;
 import fr.univartois.ili.sadoc.metier.commun.vo.Domaine;
 import fr.univartois.ili.sadoc.metier.commun.vo.Item;
@@ -23,12 +25,19 @@ import fr.univartois.ili.sadoc.metier.commun.vo.Referentiel;
  */
 @Service("metierCommunServices")
 public class MetierCommunServices implements IMetierCommunServices {
+
 	private static final String ACRONYM_REGEXP = "(\\d+)?:(\\d+)?:(\\d+)?:(\\d+)?";
-	private static final String INTEGER_REGEXP = "\\d*";
+
+	@Autowired
 	private IItemDAO itemDAO;
+	@Autowired
 	private ICompetenceDAO competenceDAO;
+	@Autowired
 	private IDomaineDAO domaineDAO;
-	private	 IReferentielDAO referentielDAO;
+
+	@Autowired
+	private IReferentielDAO referentielDAO;
+
 		
 	@Override
 	public Item findItemById(long id) {
@@ -120,22 +129,16 @@ public class MetierCommunServices implements IMetierCommunServices {
 		boolean dom=false;
 		boolean comp=false;
 		boolean item=false;
-		int i=0;
 		
 		if(acronym==null || !acronym.matches(ACRONYM_REGEXP))
 			throw new IllegalArgumentException();
 		
-		String decomp[]=new String[4];
+		String decomp[]=StringSplitter.split(acronym,':');
 		
 		/* Nécessité d'utiliser une instance de Matcher car la méthode String.split() ne permet pas de récupérer des chaines vides */
-		Matcher m=Pattern.compile(INTEGER_REGEXP).matcher(acronym);
 		
-		while(m.find() && i<4){
-			decomp[i++]=m.group();
-			System.out.println(i+" "+decomp[i-1]);
-		}
 		
-		System.out.println("i = "+i);
+		System.out.println("\n\n");
 		
 		if(decomp[0].equals(""))
 			return false;
@@ -156,7 +159,7 @@ public class MetierCommunServices implements IMetierCommunServices {
 			item=true;
 		}
 		
-		res = res && (referentielDAO.findReferentielById(Long.parseLong(decomp[0])) != null);
+		res = (referentielDAO.findReferentielById(Long.parseLong(decomp[0])) != null);
 		if(dom)
 			res = res && (domaineDAO.findDomaineById(Long.parseLong(decomp[1])) != null);
 		
@@ -168,5 +171,7 @@ public class MetierCommunServices implements IMetierCommunServices {
 		
 		return res;
 	}
+	
+	
 
 }

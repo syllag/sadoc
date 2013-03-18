@@ -160,12 +160,12 @@
 				<xs:element ref="schemas:id" />
 				<xs:element ref="schemas:name" />
 				<xs:element ref="schemas:checkSum" />
-				<xs:element ref="schemas:pk7"  maxOccurs="unbounded" />
+				<xs:element ref="schemas:p7s"  maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="checkSum" type="xs:string" />
-	<xs:element name="pk7" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
+	<xs:element name="p7s" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
 	<xs:element name="creationDate" type="xs:date" />
 	<xs:element name="id" type="xs:integer" />
 	<xs:element name="idDocument" type="xs:integer" />

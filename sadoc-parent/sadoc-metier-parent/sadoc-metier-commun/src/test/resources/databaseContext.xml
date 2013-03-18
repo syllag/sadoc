@@ -15,16 +15,38 @@
 		http://www.springframework.org/schema/util/spring-util.xsd
 		">
 
+	<bean id="competenceDAO" class="fr.univartois.ili.sadoc.dao.services.CompetenceDAOImpl" />
+	<bean id="domaineDAO" class="fr.univartois.ili.sadoc.dao.services.DomaineDAOImpl" />
+	<bean id="itemDAO" class="fr.univartois.ili.sadoc.dao.services.ItemDAOImpl" />
+	<bean id="referentielDAO" class="fr.univartois.ili.sadoc.dao.services.ReferentielDAOImpl" />
+
 	<!-- Datasource -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close" p:driverClassName="${database.driver}" p:url="${database.url}"
 		p:username="${database.user}" p:password="${database.password}" />
 
-	<!-- Entity Manager -->
+	<!-- Entity Manager 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
 		p:dataSource-ref="dataSource" p:persistenceUnitName="sadocjpa">
 		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean
+				class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+				<property name="databasePlatform" value="${database.eclipseLinkDialect}" />
+				<property name="showSql" value="${database.showSQL}" />
+			</bean>
+		</property>
+	</bean>-->
+	
+	<!-- Entity Manager -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		p:dataSource-ref="dataSource" p:persistenceUnitName="sadocDAOcommun">
+		<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml" />
 		<property name="jpaDialect">
 			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
 		</property>

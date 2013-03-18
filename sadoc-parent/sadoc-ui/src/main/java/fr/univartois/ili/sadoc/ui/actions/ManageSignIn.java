@@ -12,7 +12,8 @@ import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageSignInForm;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
-import fr.univartois.ili.sadoc.ui.utils.PasswordUtil;
+import fr.univartois.ili.sadoc.ui.utils.Form;
+import fr.univartois.ili.sadoc.ui.utils.Connection;
 
 public class ManageSignIn extends ActionSupport implements SessionAware {
 
@@ -27,16 +28,16 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			.getBean(IMetierUIServices.class);
 
 	public String execute() {
-		if (session.get("mail") != null) {
+		if (Connection.getUser(session) != null) {
 			return "index";
 		}
 
 		if (form == null) {
-			session.put("error", "");
 			return INPUT;
 		}
 
 		if (metierUIServices.findOwnerByEmail(form.getMail()) != null) {
+			
 			session.put("error", "Mail déjà utilisé");
 			return INPUT;
 		}
@@ -44,7 +45,15 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		ClientWebServiceImpl webService = new ClientWebServiceImpl();
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner personneWS = webService
 				.getOwner(form.getMail());
-		if (personneWS == null) {
+
+		// TODO Fake user
+		personneWS = new fr.univartois.ili.sadoc.client.webservice.tools.Owner();
+		personneWS.setId(1);
+		personneWS.setFirstName(form.getFirstName());
+		personneWS.setLastName(form.getLastName());
+
+		// TODO remove "false" condition when fake user will be removed
+		if (false && personneWS == null) {
 			session.put("error", "Vous n'avez pas encore exporté de documents.");
 			return INPUT;
 		}
@@ -55,8 +64,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		personne.setId(personneWS.getId());
 		personne.setMail(form.getMail());
 		try {
-			personne.setPassword(PasswordUtil.encrypt(form.getPassword())
-					.toString());
+			personne.setPassword(Connection.encryptPassword(form.getPassword()));
 			metierUIServices.createOwner(personne);
 			/**
 			 * TODO : connecter la personne
@@ -74,15 +82,31 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
-	/************************************************/
+	public void validate() {
+		if (form != null) {
+			if (form.getPassword().isEmpty()) {
+				addFieldError("form.password", "Le mot de passe est requis");
+			} else if (form.getPassword().length() < 8) {
+				addFieldError("form.password",
+						"Le mot de passe doit faire au minimum 8 caractères.");
+			} else if (!(form.getPassword().equals(form.getPassword2()))) {
+				addFieldError("form.password2",
+						"Les mots de passe sont différents.");
+			}
 
-	/**
-	 * getter du formulaire de creation d'evenement
-	 * 
-	 * @return
-	 */
-	public ManageSignInForm getForm() {
-		return form;
+			if (form.getFirstName().isEmpty()) {
+				addFieldError("form.firstName", "Le prénom est requis");
+			}
+			if (form.getLastName().isEmpty()) {
+				addFieldError("form.lastName", "Le nom est requis");
+			}
+			if (form.getMail().isEmpty()) {
+				addFieldError("form.mail", "L'adresse mail est requise");
+			} else if (!Form.isValidEmailAddress(form.getMail())) {
+				addFieldError("form.mail",
+						"L'adresse email n'est pas dans un format valide");
+			}
+		}
 	}
 
 	/**
@@ -93,7 +117,17 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 	public void setForm(ManageSignInForm signinform) {
 		this.form = signinform;
 	}
+	
+	/**
+	 * getter du formulaire de creation d'evenement
+	 * 
+	 * @return
+	 */
+	public ManageSignInForm getForm() {
+		return form;
+	}
 
+	@Override
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;
 	}

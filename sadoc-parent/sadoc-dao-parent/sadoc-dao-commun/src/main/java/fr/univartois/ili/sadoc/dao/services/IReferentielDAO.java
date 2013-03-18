@@ -23,4 +23,6 @@ public interface IReferentielDAO {
 	 */
 	void createReferentiel(Referentiel referentiel);
 
+	void removeReferentiel(Referentiel referentiel);
+
 }

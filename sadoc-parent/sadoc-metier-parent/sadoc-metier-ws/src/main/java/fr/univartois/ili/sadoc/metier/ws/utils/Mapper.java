@@ -44,6 +44,7 @@ public class Mapper {
 		docDO.setChecksum(docVO.getCheckSum());
 		docDO.setCreationDate(docVO.getCreationDate());
 		docDO.setAlgorithm(docVO.getAlgorithm());
+		docDO.setP7s(docVO.getP7s());
 		for (Signature sign : docVO.getSignatures())
 			signs.add(signatureVOToSignatureDO(sign));
 		for (Acquisition acqui : docVO.getAcquisitions())
@@ -71,6 +72,7 @@ public class Mapper {
 		docVO.setCheckSum(docDO.getChecksum());
 		docVO.setUrl(docDO.getUrl());
 		docVO.setCreationDate(docDO.getCreationDate());
+		docVO.setP7s(docDO.getP7s());
 		for (fr.univartois.ili.sadoc.dao.entities.Signature sign : docDO
 				.getSignatures())
 			signs.add(signatureDOToSignatureVO(sign));

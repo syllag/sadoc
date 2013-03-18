@@ -18,9 +18,9 @@
 	<context:annotation-config />
 	<context:component-scan base-package="fr.univartois.ili.sadoc" />
 	<context:component-scan base-package="fr.univartois.ili.sadoc.metier.ui.services"/>
+<!-- 	<context:component-scan base-package="fr.univartois.ili.sadoc.metier.commun.services"/> -->
 	<context:component-scan base-package="fr.univartois.ili.sadoc.dao" />
 	<context:component-scan base-package="fr.univartois.ili.sadoc.dao.services" />
 	
 	<import resource="classpath:databaseContext.xml" />
-	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

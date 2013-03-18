@@ -1,11 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="icon" type="image/png" href="img/logo.png" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/style.css" type="text/css" rel="stylesheet" />
+<link href="<s:url value="/css/style.css"/>" type="text/css" rel="stylesheet" />
 <title>SADoc</title>
 </head>
 <body>

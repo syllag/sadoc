@@ -1,32 +1,40 @@
 package fr.univartois.ili.sadoc.metier.commun.vo;
 
+import java.io.Serializable;
 
 /**
  * 
  * @author Mohamed Belhadj-adda <belhadjadda.mohamed at gmail.com>
  * 
  */
-public class Item {
+public class Item implements Serializable, Comparable<Item>{
 
-	private long id;
-	private String codeItem;
-	private String description;
-	private long poids;
-	private long empreinte;
-	private String type;
+	private static final long serialVersionUID = 4976187438361538939L;
 
-	private Competence competence;
-	
+	private long id = 0L;
+	private String codeItem = null;
+	private String description = null;
+	private long poids = 0L;
+	private long empreinte = 0L;
+	private String type = null;
+
+	private Competence competence = null;
+
 	public Item() {
 	}
 
 	public Item(String description) {
-		this.setDescription(description);
+		this.description = description;
 	}
 
 	public Item(String codeItem, String description) {
-		this.setCodeItem(codeItem);
-		this.setDescription(description);
+		this(description);
+		this.codeItem = codeItem;
+	}
+
+	public Item(String codeItem, String description, Competence competence) {
+		this(codeItem, description);
+		this.competence = competence;
 	}
 
 	public long getId() {
@@ -85,6 +93,20 @@ public class Item {
 		this.competence = competence;
 	}
 	
+	public final boolean belongs(Referentiel referentiel) {
+		return competence.belongs(referentiel);
+	}
 	
+	public final boolean belongs(Domaine domaine) {
+		return competence.belongs(domaine);
+	}
+	
+	public final boolean belongs(Competence competence) {
+		return this.competence == competence; 
+	}
 
+	@Override
+	public int compareTo(Item o) {
+		return codeItem.compareTo(o.getCodeItem());
+	}
 }

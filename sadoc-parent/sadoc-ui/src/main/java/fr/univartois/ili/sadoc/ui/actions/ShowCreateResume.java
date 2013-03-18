@@ -9,14 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-
+import fr.univartois.ili.sadoc.metier.commun.vo.Competence;
+import fr.univartois.ili.sadoc.metier.commun.vo.Domaine;
+import fr.univartois.ili.sadoc.metier.commun.vo.Item;
+import fr.univartois.ili.sadoc.metier.commun.vo.Referentiel;
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
-import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
-import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
-import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
 public class ShowCreateResume extends ActionSupport implements SessionAware,ServletRequestAware{
@@ -31,15 +30,56 @@ public class ShowCreateResume extends ActionSupport implements SessionAware,Serv
 	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
 	
 	public String execute() {
-		long idOwner = (Integer) session.get("id");
-		Owner owner = metierUIServices.findOwnerById(idOwner);
-		for (Acquisition acquisition : metierUIServices.findAcquisitionByOwner(owner)){
-			listCompetences.add(acquisition.getCompetence());
-		}
-		request.setAttribute("listCompetences", listCompetences);
+//		long idOwner = (Integer) session.get("id");
+//		Owner owner = metierUIServices.findOwnerById(idOwner);
+//		for (Acquisition acquisition : metierUIServices.findAcquisitionByOwner(owner)){
+//			listCompetences.add(acquisition.getCompetence());
+//		}
+//		request.setAttribute("listCompetences", listCompetences);
+		
+		request.setAttribute("listCompetences", getFakeReferentiels());
 		return SUCCESS;
 	}
 
+	
+	private List<Referentiel> getFakeReferentiels() {
+		List<Referentiel> list = new ArrayList<Referentiel>();
+		
+		// Referentiel
+		Referentiel ref = new Referentiel("REF_C2i", "C2i2e", "Référentiel C2i", "http://www.c2i.fr");
+		list.add(ref);
+		
+		// Domaines
+		Domaine domaineA = new Domaine("A", "Compétences générales liées à l'exercice du métier pour le C2i2e", ref);
+		Domaine domaineB = new Domaine("B", "Compétences nécessaires à l'intégration des TICE dans sa pratique", ref);
+		ref.getDomaines().add(domaineA);
+		ref.getDomaines().add(domaineB);
+		
+		// Competences
+		Competence competenceA1 = new Competence("A.1", "Maîtrise de l'environnement numérique professionnel", domaineA);
+		Competence competenceA2 = new Competence("A.2", "Développement des compétences pour la formation tout au long de la vie", domaineA);
+		domaineA.getCompetences().add(competenceA1);
+		domaineA.getCompetences().add(competenceA2);
+		// No competences for B
+		
+		// Items
+		Item A1item1 = new Item("A.1.1", "Item 1 de A1");
+		Item A1item2 = new Item("A.1.2", "Item 2 de A1");
+		Item A1item3 = new Item("A.1.3", "Item 3 de A1");
+		competenceA1.getItems().add(A1item1);
+		competenceA1.getItems().add(A1item2);
+		competenceA1.getItems().add(A1item3);
+		// No item for A2
+		
+		// Referentiel
+		ref = new Referentiel("REF_CLES", "Cles anglais", "Référentiel Cles anglais", "http://www.cles_anglais.fr");
+		list.add(ref);		
+		// No domaines for ref
+		
+		return list;
+	}
+	
+	
 	public List<Competence> getListCompetences() {
 		return listCompetences;
 	}
