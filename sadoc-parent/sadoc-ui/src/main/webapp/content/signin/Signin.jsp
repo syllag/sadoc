@@ -15,7 +15,7 @@
 							<s:textfield label="Email" labelposition="top" key="form.mail" placeholder="Email" />
 							<s:password label="Mot de passe" labelposition="top" key="form.password" placeholder="Mot de passe" />
 							<s:password label="Confirmation mot de passe" labelposition="top" key="form.password2" placeholder="Confirmation mot de passe" />
-							<s:submit key="Inscription" cssClass="button" />
+							<s:submit key="Inscription" cssClass="buttonSignin" />
 					</s:form>
 </section>
 

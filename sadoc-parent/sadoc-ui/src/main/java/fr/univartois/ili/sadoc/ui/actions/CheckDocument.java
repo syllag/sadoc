@@ -57,11 +57,11 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 	
 
 	public String execute() {
-		if (sa != null && TestID.trueFalseID(sa)) {
-
-									
-			Document doc = metierUIServices.findDocumentById(sa);
-			
+		//if (sa != null && TestID.trueFalseID(sa)) {
+		//	Document doc = metierUIServices.findDocumentById(sa);
+		if (true) {
+			Document doc = Document.getFakeDocument();
+		
 			if (doc == null) {
 
 				IClientWebService clientWebService = new ClientWebServiceImpl();
@@ -137,11 +137,11 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 			} else {
 				document = doc;
 
-				List<Acquisition> acq = metierUIServices.findAcquisitionByDocument(doc);
-				owner = acq.get(0).getOwner();
-				for (Acquisition a : acq) {
-					listCompetences.add(a.getCompetence());
-				}
+//				List<Acquisition> acq = metierUIServices.findAcquisitionByDocument(doc);
+//				owner = acq.get(0).getOwner();
+//				for (Acquisition a : acq) {
+//					listCompetences.add(a.getCompetence());
+//				}
 			}
 
 			return SUCCESS;

@@ -2,6 +2,8 @@ package fr.univartois.ili.sadoc.metier.commun.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +12,12 @@ import fr.univartois.ili.sadoc.dao.services.ICompetenceDAO;
 import fr.univartois.ili.sadoc.dao.services.IDomaineDAO;
 import fr.univartois.ili.sadoc.dao.services.IItemDAO;
 import fr.univartois.ili.sadoc.dao.services.IReferentielDAO;
+import fr.univartois.ili.sadoc.metier.commun.utils.Mapper;
+import fr.univartois.ili.sadoc.metier.commun.utils.StringSplitter;
 import fr.univartois.ili.sadoc.metier.commun.vo.Competence;
 import fr.univartois.ili.sadoc.metier.commun.vo.Domaine;
 import fr.univartois.ili.sadoc.metier.commun.vo.Item;
 import fr.univartois.ili.sadoc.metier.commun.vo.Referentiel;
-import fr.univartois.ili.sadoc.metier.commun.utils.Mapper;
 
 /**
  * @author Noureddine Kasri < kasrinoureddine@gmail.com >
@@ -22,14 +25,19 @@ import fr.univartois.ili.sadoc.metier.commun.utils.Mapper;
  */
 @Service("metierCommunServices")
 public class MetierCommunServices implements IMetierCommunServices {
+
+	private static final String ACRONYM_REGEXP = "(\\d+)?:(\\d+)?:(\\d+)?:(\\d+)?";
+
 	@Autowired
 	private IItemDAO itemDAO;
 	@Autowired
 	private ICompetenceDAO competenceDAO;
 	@Autowired
 	private IDomaineDAO domaineDAO;
+
 	@Autowired
 	private IReferentielDAO referentielDAO;
+
 		
 	@Override
 	public Item findItemById(long id) {
@@ -117,8 +125,53 @@ public class MetierCommunServices implements IMetierCommunServices {
 
 	@Override
 	public boolean isValideAcronym(String acronym) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res=false;
+		boolean dom=false;
+		boolean comp=false;
+		boolean item=false;
+		
+		if(acronym==null || !acronym.matches(ACRONYM_REGEXP))
+			throw new IllegalArgumentException();
+		
+		String decomp[]=StringSplitter.split(acronym,':');
+		
+		/* Nécessité d'utiliser une instance de Matcher car la méthode String.split() ne permet pas de récupérer des chaines vides */
+		
+		
+		System.out.println("\n\n");
+		
+		if(decomp[0].equals(""))
+			return false;
+		
+		if(decomp[1].equals("")){
+			if(!decomp[2].equals("") || !decomp[3].equals(""))
+				return false;
+		}else
+			dom=true;
+				
+		if(decomp[2].equals("")){
+			if(!decomp[3].equals(""))
+				return false;
+		}else
+			comp=true;
+		
+		if(!decomp[3].equals("")){
+			item=true;
+		}
+		
+		res = (referentielDAO.findReferentielById(Long.parseLong(decomp[0])) != null);
+		if(dom)
+			res = res && (domaineDAO.findDomaineById(Long.parseLong(decomp[1])) != null);
+		
+		if(comp)
+			res = res && (competenceDAO.findCompetenceById(Long.parseLong(decomp[2])) != null);
+		
+		if(item)
+			res = res && (itemDAO.findItemById(Long.parseLong(decomp[3])) != null);
+		
+		return res;
 	}
+	
+	
 
 }
