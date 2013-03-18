@@ -46,8 +46,9 @@ public class DownloadP7S extends ActionSupport implements SessionAware {
 		if (session.get("mail")==null) {
 			return "index";
 		}
-				
-		Document doc = metierUIServices.findDocumentById(sa);
+			
+		Document doc = Document.getFakeDocument();
+//		Document doc = metierUIServices.findDocumentById(sa);
 		
 		if (doc == null) {
 			return ERROR;

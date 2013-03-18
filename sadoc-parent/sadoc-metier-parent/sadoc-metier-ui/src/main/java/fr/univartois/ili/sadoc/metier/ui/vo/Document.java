@@ -87,4 +87,11 @@ public class Document implements Serializable {
 		this.url = url;
 	}
 
+	
+	public static Document getFakeDocument() {
+		byte[]tab=new byte[10];
+		Date date=new Date(100000);
+		return new Document("fakedanicet", "checksum","burbure",tab, date);
+	}
+	
 }
