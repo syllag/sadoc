@@ -9,7 +9,6 @@ public class StringSplitter {
 		List<String> res=new ArrayList<String>();
 
 		int i=0;
-		int j=0;
 		
 		char[] decoupChar=string.toCharArray();
 		StringBuilder tmp=new StringBuilder();

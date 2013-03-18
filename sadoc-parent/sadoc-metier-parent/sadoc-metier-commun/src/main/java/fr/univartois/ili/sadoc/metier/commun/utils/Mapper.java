@@ -41,26 +41,24 @@ public class Mapper {
 	public static fr.univartois.ili.sadoc.metier.commun.vo.Competence getCompetenceFromEntity(Competence c) {
 		if(c == null)
 			throw new IllegalArgumentException();
+		
+		if(listeCompetences.containsKey(c.getId()))
+			return listeCompetences.get(c.getId());
+		
 		fr.univartois.ili.sadoc.metier.commun.vo.Competence res = new fr.univartois.ili.sadoc.metier.commun.vo.Competence();
 		List<fr.univartois.ili.sadoc.metier.commun.vo.Item> lItems = new ArrayList<fr.univartois.ili.sadoc.metier.commun.vo.Item>();
 		Domaine d=c.getDomaine();
 		List<Item> lItem=c.getItems();
 		
-		if(!listeDomaines.containsKey(d.getId())){
-			listeDomaines.put(d.getId(), getDomainFromEntity(d));
-		}
 		
 		for(Item tmpI:lItem){
-			if(!listeItems.containsKey(tmpI.getId())){
-				listeItems.put(tmpI.getId(), getItemFromEntity(tmpI));
-			}
-			lItems.add(listeItems.get(tmpI.getId()));
+			lItems.add(listeItems.get(getItemFromEntity(tmpI)));
 		}
 		
 		res.setCodeCompetence(c.getCodeCompetence());
 		res.setDescription(c.getDescription());
 		res.setId(c.getId());
-		res.setDomaine(listeDomaines.get(d.getId()));
+		res.setDomaine(getDomainFromEntity(d));
 		res.setItems(lItems);
 		
 		return res;
@@ -70,25 +68,24 @@ public class Mapper {
 		if(c == null)
 			throw new IllegalArgumentException();
 		
+		if(listeDomaines.containsKey(c.getId()))
+			return listeDomaines.get(c.getId());
+		
 		fr.univartois.ili.sadoc.metier.commun.vo.Domaine res = new fr.univartois.ili.sadoc.metier.commun.vo.Domaine();
 		Referentiel r=c.getReferentiel();
 		List<fr.univartois.ili.sadoc.metier.commun.vo.Competence> lComp=new ArrayList<fr.univartois.ili.sadoc.metier.commun.vo.Competence>();
 		
-		if(!listeReferentiels.containsKey(r.getId()))
-			listeReferentiels.put(r.getId(),getReferentielFromEntity(r));
+		listeDomaines.put(c.getId(),res);
 		
 		for(Competence tmpC:c.getCompetences()){
-			if(!listeCompetences.containsKey(tmpC.getId()))
-				listeCompetences.put(tmpC.getId(), getCompetenceFromEntity(tmpC));
-			lComp.add(listeCompetences.get(tmpC.getId()));
+			lComp.add(getCompetenceFromEntity(tmpC));
 		}
 		
 		res.setCodeDomaine(c.getCodeDomaine());
 		res.setDescription(c.getDescription());
 		res.setId(c.getId());
 		res.setCompetences(lComp);
-		res.setReferentiel(listeReferentiels.get(r.getId()));
-		
+		res.setReferentiel(getReferentielFromEntity(r));
 		
 		return res;
 	}
@@ -96,6 +93,9 @@ public class Mapper {
 	public static fr.univartois.ili.sadoc.metier.commun.vo.Item getItemFromEntity(Item c) {
 		if(c == null)
 			throw new IllegalArgumentException();
+		
+		if(listeItems.containsKey(c.getId()))
+			return listeItems.get(c.getId());
 		
 		fr.univartois.ili.sadoc.metier.commun.vo.Item res = new fr.univartois.ili.sadoc.metier.commun.vo.Item();
 		
@@ -106,6 +106,8 @@ public class Mapper {
 		res.setPoids(c.getPoids());
 		res.setType(c.getType());
 		
+		listeItems.put(c.getId(),res);
+		
 		return res;
 	}
 	
@@ -113,15 +115,17 @@ public class Mapper {
 		if(c == null)
 			throw new IllegalArgumentException();
 		
+		if(listeReferentiels.containsKey(c.getId()))
+			return listeReferentiels.get(c.getId());
+		
 		List<fr.univartois.ili.sadoc.metier.commun.vo.Domaine> ld=new ArrayList<fr.univartois.ili.sadoc.metier.commun.vo.Domaine>();
+		fr.univartois.ili.sadoc.metier.commun.vo.Referentiel res = new fr.univartois.ili.sadoc.metier.commun.vo.Referentiel();
+			
+		listeReferentiels.put(c.getId(),res);
 		
 		for(Domaine d:c.getDomaines()){
-			if(!listeDomaines.containsKey(d.getId()))
-				listeDomaines.put(d.getId(), getDomainFromEntity(d));
 			ld.add(getDomainFromEntity(d));
 		}
-		
-		fr.univartois.ili.sadoc.metier.commun.vo.Referentiel res = new fr.univartois.ili.sadoc.metier.commun.vo.Referentiel();
 		
 		res.setCodeReferentiel(c.getCodeReferentiel());
 		res.setDescription(c.getDescription());
@@ -130,6 +134,8 @@ public class Mapper {
 		res.setSeuil(c.getSeuil());
 		res.setUrl(c.getUrl());
 		res.setDomaines(ld);
+		
+		
 		
 		return res;
 	}
