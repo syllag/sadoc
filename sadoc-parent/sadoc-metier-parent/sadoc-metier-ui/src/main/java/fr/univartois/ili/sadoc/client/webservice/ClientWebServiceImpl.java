@@ -95,10 +95,8 @@ public class ClientWebServiceImpl implements IClientWebService {
 				.getBean(WebServiceTemplate.class);
 		try {
 
-			CreateOwnerRequest createOwnerRequest = new CreateOwnerRequest();
-			createOwnerRequest.setFirstName(firstName);
-			createOwnerRequest.setLastName(lastName);
-			createOwnerRequest.setMail(mail);
+			CreateOwnerRequest createOwnerRequest = new CreateOwnerRequest();			
+			createOwnerRequest.setMail_initial(mail);
 			response = (fr.univartois.ili.sadoc.client.webservice.tools.Owner) webServiceTemplate
 					.marshalSendAndReceive(createOwnerRequest);
 			

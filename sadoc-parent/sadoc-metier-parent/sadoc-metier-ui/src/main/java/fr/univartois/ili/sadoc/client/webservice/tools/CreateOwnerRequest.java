@@ -18,9 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}firstName"/>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}lastName"/>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}mail"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}mail_initial"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,91 +28,29 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "firstName",
-    "lastName",
-    "mail"
+@XmlType(name = "", propOrder = {   
+    "mail_initial"
 })
 @XmlRootElement(name = "createOwnerRequest")
 public class CreateOwnerRequest {
-
+    
     @XmlElement(required = true)
-    protected String firstName;
-    @XmlElement(required = true)
-    protected String lastName;
-    @XmlElement(required = true)
-    protected String mail;
+    protected String mail_initial;
 
-    /**
-     * Gets the value of the firstName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getFirstName() {
-        return firstName;
-    }
+	/**
+	 * @return the mail_initial
+	 */
+	public String getMail_initial() {
+		return mail_initial;
+	}
 
-    /**
-     * Sets the value of the firstName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setFirstName(String value) {
-        this.firstName = value;
-    }
+	/**
+	 * @param mail_initial the mail_initial to set
+	 */
+	public void setMail_initial(String mail_initial) {
+		this.mail_initial = mail_initial;
+	}
 
-    /**
-     * Gets the value of the lastName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * Sets the value of the lastName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLastName(String value) {
-        this.lastName = value;
-    }
-
-    /**
-     * Gets the value of the mail property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMail() {
-        return mail;
-    }
-
-    /**
-     * Sets the value of the mail property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMail(String value) {
-        this.mail = value;
-    }
+   
 
 }
