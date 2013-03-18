@@ -14,21 +14,21 @@ import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;
 import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
+
 //TODO Replace DAO
 @Endpoint
 public class WSStub {
 
 	@Resource(name = "wsPrivate")
 	private WSPrivate wsPrivate;
-	
+
 	@Resource(name = "wsPublic")
 	private WSPublic wsPublic;
-	
 
 	@PayloadRoot(localPart = "createOwnerRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public CreateOwnerResponse createOwner(@RequestPayload CreateOwnerRequest request)
-			throws Exception {
+	public CreateOwnerResponse createOwner(
+			@RequestPayload CreateOwnerRequest request) throws Exception {
 		CreateOwnerResponse resp = new CreateOwnerResponse();
 		Owner o = wsPublic.createOwner(request.getLastName(),
 				request.getFirstName(), request.getMail());
@@ -45,9 +45,10 @@ public class WSStub {
 
 	@PayloadRoot(localPart = "signDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
-	public SignDocumentResponse signDocument(@RequestPayload SignDocumentRequest request) {
-		byte[] byteDoc = wsPublic.signDocument(request.getDoc(), request.getName(),
-				request.getOwner(), request.getCompetence());
+	public SignDocumentResponse signDocument(
+			@RequestPayload SignDocumentRequest request) {
+		byte[] byteDoc = wsPublic.signDocument(request.getDoc(),
+				request.getName(), request.getOwner(), request.getCompetence());
 		SignDocumentResponse resp = new SignDocumentResponse();
 		resp.setDoc(byteDoc);
 		return resp;
@@ -55,7 +56,7 @@ public class WSStub {
 
 	public byte[] signDocument(byte[] doc, String name, Certificate certificat,
 			Competence[] competence) {
-		//TODO ???
+		// TODO ???
 		// Cette méthode devrait-elle renvoyer un tableau vide plutôt que null ?
 		return null;
 	}
@@ -68,7 +69,7 @@ public class WSStub {
 	}
 
 	public List<Certificate> getCertificate(Owner utilisateur) {
-		//TODO ???
+		// TODO ???getAllDocumentByOwner
 		return null;
 	}
 
@@ -84,7 +85,7 @@ public class WSStub {
 	public GetDocumentInformationsResponse getDocumentInformations(
 			@RequestPayload GetDocumentInformationsRequest request) {
 		GetDocumentInformationsResponse getDocumentInformationsResponse = new GetDocumentInformationsResponse();
-		
+
 		Map<Owner, List<Competence>> lites = wsPrivate
 				.getDocumentInformations(request.getIdDocument());
 		lites.keySet();
@@ -94,10 +95,9 @@ public class WSStub {
 
 			getDocumentInformationsResponse.setOwner(entry.getKey());
 
-			getDocumentInformationsResponse.setCompetence(entry
-					.getValue());
+			getDocumentInformationsResponse.setCompetence(entry.getValue());
 		}
-		
+
 		return getDocumentInformationsResponse;
 
 	}
@@ -117,15 +117,22 @@ public class WSStub {
 	public List<Competence> importCompetences(@RequestPayload Document document) {
 		return wsPrivate.importCompetences(document);
 	}
-							  
+
 	@PayloadRoot(localPart = "getDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
 	public GetDocumentResponse getDocument(
 			@RequestPayload GetDocumentRequest request) {
-		
+
 		Document d = wsPrivate.getDocument(request.getIdDocument());
 		GetDocumentResponse get = new GetDocumentResponse();
 		get.setDocument(d);
 		return get;
 	}
+
+	@PayloadRoot(localPart = "owner", namespace = "http://sadoc.com/ac/schemas")
+	@ResponsePayload
+	public List<Document> getAllDocumentByOwner(@RequestPayload Owner user) {
+		return wsPublic.getAllDocumentByOwner(user);
+	}
+
 }

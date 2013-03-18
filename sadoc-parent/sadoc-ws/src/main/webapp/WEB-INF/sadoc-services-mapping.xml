@@ -7,7 +7,7 @@
 			<bind-xml name="id" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 		<field name="mail_initial" type="string">
-			<bind-xml name="mail" node="element" xmlns="http://sadoc.com/ac/schemas" />
+			<bind-xml name="mail_initial" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 	</class>
 
@@ -30,7 +30,7 @@
 			<bind-xml name="p7s" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 		<field name="creationDate" type="date">
-			<bind-xml name="name" node="element" xmlns="http://sadoc.com/ac/schemas" />
+			<bind-xml name="creationDate" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 	</class>
 

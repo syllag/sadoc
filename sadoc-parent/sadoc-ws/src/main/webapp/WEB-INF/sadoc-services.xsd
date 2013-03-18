@@ -10,6 +10,13 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="getAllDocumentByOwner">
+	<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:owner" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="getOwnerRequest">
 		<xs:complexType>
 			<xs:sequence>
@@ -133,15 +140,14 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="schemas:id" />
-				<xs:element ref="schemas:firstName" />
-				<xs:element ref="schemas:lastName" />
-				<xs:element ref="schemas:mail" />
+				<xs:element ref="schemas:mail_initial" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="firstName" type="xs:string" />
 	<xs:element name="lastName" type="xs:string" />
 	<xs:element name="mail" type="xs:string" />
+	<xs:element name="mail_initial" type="xs:string" />
 	<xs:element name="competence">
 		<xs:complexType>
 			<xs:sequence>
@@ -159,15 +165,18 @@
 			<xs:sequence>
 				<xs:element ref="schemas:id" />
 				<xs:element ref="schemas:name" />
+				<xs:element ref="schemas:url"/>
 				<xs:element ref="schemas:checkSum" />
 				<xs:element ref="schemas:p7s"  maxOccurs="unbounded" />
+				<xs:element ref="schemas:creationDate"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="checkSum" type="xs:string" />
-	<xs:element name="p7s" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
 	<xs:element name="creationDate" type="xs:date" />
-	<xs:element name="id" type="xs:integer" />
+	<xs:element name="url" type="xs:string" />
+	<xs:element name="p7s" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
+	<xs:element name="id" type="xs:long" />
 	<xs:element name="idDocument" type="xs:integer" />
 	<xs:element name="acronym" type="xs:string" />
 </xs:schema>

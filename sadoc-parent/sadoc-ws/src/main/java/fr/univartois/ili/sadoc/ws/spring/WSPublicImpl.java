@@ -169,4 +169,9 @@ public class WSPublicImpl implements WSPublic {
 			}
 		}
 	}
+
+	@Override
+	public List<Document> getAllDocumentByOwner(Owner user) {
+		return metierWSServices.findDocumentByOwner(user);
+	}
 }
