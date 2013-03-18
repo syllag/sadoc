@@ -23,13 +23,13 @@ public class Resume implements Serializable {
 	private Owner owner;
 
 	@ElementCollection
-	private List<String> referentiels = new ArrayList<String>();
+	private List<Long> referentiels = new ArrayList<Long>();
 	@ElementCollection
-	private List<String> domaines = new ArrayList<String>();
+	private List<Long> domaines = new ArrayList<Long>();
 	@ElementCollection
-	private List<String> competences = new ArrayList<String>();
+	private List<Long> competences = new ArrayList<Long>();
 	@ElementCollection
-	private List<String> items = new ArrayList<String>();
+	private List<Long> items = new ArrayList<Long>();
 	
 	public Resume() {
 	}
@@ -50,35 +50,35 @@ public class Resume implements Serializable {
 		this.owner = owner;
 	}
 
-	public List<String> getReferentiels() {
+	public List<Long> getReferentiels() {
 		return referentiels;
 	}
 
-	public void setReferentiels(List<String> referentiels) {
+	public void setReferentiels(List<Long> referentiels) {
 		this.referentiels = referentiels;
 	}
 
-	public List<String> getDomaines() {
+	public List<Long> getDomaines() {
 		return domaines;
 	}
 
-	public void setDomaines(List<String> domaines) {
+	public void setDomaines(List<Long> domaines) {
 		this.domaines = domaines;
 	}
 
-	public List<String> getCompetences() {
+	public List<Long> getCompetences() {
 		return competences;
 	}
 
-	public void setCompetences(List<String> competences) {
+	public void setCompetences(List<Long> competences) {
 		this.competences = competences;
 	}
 
-	public List<String> getItems() {
+	public List<Long> getItems() {
 		return items;
 	}
 
-	public void setItems(List<String> items) {
+	public void setItems(List<Long> items) {
 		this.items = items;
 	}
 }

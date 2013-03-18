@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.univartois.ili.sadoc.dao.services.IOwnerDAO;
+import fr.univartois.ili.sadoc.dao.services.IResumeDAO;
 import fr.univartois.ili.sadoc.metier.ui.utils.Mapper;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
@@ -19,6 +20,8 @@ public class MetierUIServices implements IMetierUIServices{
 	@Autowired
 	private IOwnerDAO ownerDAO ;
 	
+	@Autowired
+	private IResumeDAO resumeDAO;
 
 	/**
 	 * @return the ownerDAO
@@ -37,13 +40,11 @@ public class MetierUIServices implements IMetierUIServices{
 	//TODO appeler les mapper VO-DO avant de retourner les objets
 	@Override
 	public void createOwner(Owner owner) {
-		fr.univartois.ili.sadoc.dao.entities.Owner ownerDO = Mapper.getOwnerFromVO(owner);
-		ownerDAO.createOwner(ownerDO);
+		ownerDAO.createOwner(Mapper.getOwnerFromVO(owner));
 	}
 	@Override
 	public void updateOwner(Owner owner) {
-		fr.univartois.ili.sadoc.dao.entities.Owner ownerDO = Mapper.getOwnerFromVO(owner);
-		ownerDAO.updateOwner(ownerDO);		
+		ownerDAO.updateOwner(Mapper.getOwnerFromVO(owner));		
 	}
 	
 	@Override
@@ -121,22 +122,20 @@ public class MetierUIServices implements IMetierUIServices{
 
 	@Override
 	public void createResume(Resume resume) {
-		// TODO Auto-generated method stub
+		resumeDAO.createResume(Mapper.getResumeFromVO(resume));
 	}
 
 	@Override
 	public void updateResume(Resume resume) {
-		// TODO Auto-generated method stub
+		resumeDAO.updateResume(Mapper.getResumeFromVO(resume));
 	}
 	
-	public Resume findResumeById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
-	public List<Resume> findResumeByOwner(Owner owner) {
-		// TODO Auto-generated method stub
-		return null;
+	public Resume findResumeById(long id) {
+		fr.univartois.ili.sadoc.dao.entities.Resume resume = resumeDAO.findResumeById(id);
+		Resume resumeVO = null;
+		if(resume != null)
+			resumeVO = Mapper.getResumeFromEntities(resume); 
+		return resumeVO;
 	}
 }

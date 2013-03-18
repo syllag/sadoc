@@ -29,7 +29,7 @@ public class MetierCommunServices implements IMetierCommunServices {
 	@Autowired
 	private IDomaineDAO domaineDAO;
 	@Autowired
-	private	IReferentielDAO referentielDAO;
+	private IReferentielDAO referentielDAO;
 		
 	@Override
 	public Item findItemById(long id) {

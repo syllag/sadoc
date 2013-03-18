@@ -140,13 +140,6 @@ public interface IMetierUIServices {
 	 * @return
 	 * 		
 	 */
-	Resume findResumeById(int id);
-	
-	/**
-	 * Ask the list of resume by owner
-	 * 
-	 * @param owner
-	 * @return
-	 */
-	List<Resume> findResumeByOwner(Owner owner);
+	Resume findResumeById(long id);
+
 }
