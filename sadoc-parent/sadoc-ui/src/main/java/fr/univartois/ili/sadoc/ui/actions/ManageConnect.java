@@ -27,9 +27,8 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 1L;
 
-	private ManageConnectForm connect;
+	private ManageConnectForm form;
 	private Map<String, Object> session;
-
 	private IMetierUIServices metierUIServices = ContextFactory.getContext()
 			.getBean(IMetierUIServices.class);
 
@@ -40,13 +39,12 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		if (owner != null) {
 			return SUCCESS;
 		}
-		if (connect == null) {
+		if (form == null) {
 			return INPUT;
 		}
 
-		owner = metierUIServices.findOwnerByEmailAndPassword(
-				connect.getEmail(),
-				Connection.encryptPassword(connect.getPassword()));
+		owner = metierUIServices.findOwnerByEmailAndPassword(form.getEmail(),
+				Connection.encryptPassword(form.getPassword()));
 		if (owner == null) {
 			addActionError("Mot de passe ou email incorrect");
 			return INPUT;
@@ -68,53 +66,55 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 	}
 
 	private Map<Competence, List<Document>> getMapCompetence(Owner owner) {
-		List<Degree> listDegrees = owner.getDegrees();
-		Set<Competence> setCompetence = new HashSet<Competence>();
-
-		Map<Competence, List<Document>> map = new HashMap<Competence, List<Document>>();
-
-		for (int i = 0; i < listDegrees.size(); i++) {
-			setCompetence.addAll(listDegrees.get(i).getCompetences());
-		}
-
-		List<Acquisition> acquis = metierUIServices
-				.findAcquisitionByOwner(owner);
-
-		Iterator<Competence> item = setCompetence.iterator();
-		while (item.hasNext()) {
-			map.put(item.next(), new ArrayList<Document>());
-		}
-
-		for (int h = 0; h < acquis.size(); h++) {
-
-			List<Document> listDocument = map
-					.get(acquis.get(h).getCompetence()) != null ? map
-					.get(acquis.get(h).getCompetence())
-					: new ArrayList<Document>();
-
-			listDocument.add(acquis.get(h).getDocument());
-			map.put(acquis.get(h).getCompetence(), listDocument);
-		}
-
-		return map;
+		// TODO to update with new Referentiels, Domaines, Competences, Items
+		//		List<Degree> listDegrees = owner.getDegrees();
+//		Set<Competence> setCompetence = new HashSet<Competence>();
+//
+//		Map<Competence, List<Document>> map = new HashMap<Competence, List<Document>>();
+//
+//		for (int i = 0; i < listDegrees.size(); i++) {
+//			setCompetence.addAll(listDegrees.get(i).getCompetences());
+//		}
+//
+//		List<Acquisition> acquis = metierUIServices
+//				.findAcquisitionByOwner(owner);
+//
+//		Iterator<Competence> item = setCompetence.iterator();
+//		while (item.hasNext()) {
+//			map.put(item.next(), new ArrayList<Document>());
+//		}
+//
+//		for (int h = 0; h < acquis.size(); h++) {
+//
+//			List<Document> listDocument = map
+//					.get(acquis.get(h).getCompetence()) != null ? map
+//					.get(acquis.get(h).getCompetence())
+//					: new ArrayList<Document>();
+//
+//			listDocument.add(acquis.get(h).getDocument());
+//			map.put(acquis.get(h).getCompetence(), listDocument);
+//		}
+//
+//		return map;
+		return null;
 	}
 
 	public ManageConnectForm getConnect() {
-		return connect;
+		return form;
 	}
 
 	public void setConnect(ManageConnectForm connect) {
-		this.connect = connect;
+		this.form = connect;
 	}
 
 	public Map<String, Object> getSession() {
 		return session;
 	}
-	
+
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;
 	}
-	
+
 	/**
 	 * @return the metierUIServices
 	 */
