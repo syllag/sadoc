@@ -11,48 +11,55 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fr.univartois.ili.sadoc.dao.AcquisitionDAO;
-import fr.univartois.ili.sadoc.dao.CertificateDAO;
-import fr.univartois.ili.sadoc.dao.DocumentDAO;
-import fr.univartois.ili.sadoc.dao.OwnerWSDAO;
-import fr.univartois.ili.sadoc.dao.SignatureDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import fr.univartois.ili.sadoc.dao.services.IAcquisitionDAO;
+import fr.univartois.ili.sadoc.dao.services.ICertificateDAO;
+import fr.univartois.ili.sadoc.dao.services.IDocumentDAO;
+import fr.univartois.ili.sadoc.dao.services.IOwnerWSDAO;
+import fr.univartois.ili.sadoc.dao.services.ISignatureDAO;
 import fr.univartois.ili.sadoc.metier.ws.utils.Mapper;
 import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
-import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;
 import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ws.vo.Signature;
-// TODO utiliser les interfaces
-//import fr.univartois.ili.sadoc.dao.services.ICompetenceDAO;
 
+@Service
 public class MetierWSServices implements IMetierWSServices {
+	
+	@Autowired
+	private IAcquisitionDAO acquisitionDAO;
+	@Autowired
+	private ICertificateDAO certificateDAO;
+	@Autowired
+	private IDocumentDAO documentDAO;
+	@Autowired
+	private IOwnerWSDAO ownerWSDAO;
+	@Autowired
+	private ISignatureDAO signatureDAO;
 
+	@Override
 	public void createAcquisition(Acquisition acquisition) {
-		AcquisitionDAO acquisitionDAO = new AcquisitionDAO();
-		fr.univartois.ili.sadoc.dao.entities.Acquisition acqui = Mapper
-				.acquisitionVOToAcquisitionDO(acquisition);
+		fr.univartois.ili.sadoc.dao.entities.Acquisition acqui = Mapper.acquisitionVOToAcquisitionDO(acquisition);
 		acquisitionDAO.create(acqui);
 	}
 
 	// XXX utile???
-	public void createCertificate(Certificate certificate) throws SQLException,
-			IOException {
-		CertificateDAO certificateDAO = new CertificateDAO();
-		fr.univartois.ili.sadoc.dao.entities.Certificate certif = Mapper
-				.certificateVOToCertificateDO(certificate);
+	public void createCertificate(Certificate certificate) throws SQLException, IOException {
+		fr.univartois.ili.sadoc.dao.entities.Certificate certif = Mapper.certificateVOToCertificateDO(certificate);
 		certificateDAO.create(certif);
 	}
 
+	@Override
 	public void createDocument(Document document) {
-		DocumentDAO documentDAO = new DocumentDAO();
-		fr.univartois.ili.sadoc.dao.entities.Document doc = Mapper
-				.documentVOToDocumentDO(document);
+		fr.univartois.ili.sadoc.dao.entities.Document doc = Mapper.documentVOToDocumentDO(document);
 		documentDAO.create(doc);
 	}
 
+	@Override
 	public void createOwnerWS(Owner owner) {
-		OwnerWSDAO ownerWSDAO = new OwnerWSDAO();
 		fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerWS;
 		try {
 			ownerWS = Mapper.ownerVOToOwnerDO(owner);
@@ -64,44 +71,39 @@ public class MetierWSServices implements IMetierWSServices {
 		}
 	}
 
+	@Override
 	public void createSignature(Signature signature) {
-		SignatureDAO signatureDAO = new SignatureDAO();
-		fr.univartois.ili.sadoc.dao.entities.Signature sign = Mapper
-				.signatureVOToSignatureDO(signature);
+		fr.univartois.ili.sadoc.dao.entities.Signature sign = Mapper.signatureVOToSignatureDO(signature);
 		signatureDAO.create(sign);
 	}
 
+	@Override
+	public void updateAcquisition(Acquisition acquisition) {
+		fr.univartois.ili.sadoc.dao.entities.Acquisition acqui = Mapper.acquisitionVOToAcquisitionDO(acquisition);
+		acquisitionDAO.update(acqui);
+	}
+	
+	@Override
 	public void updateDocument(Document document) {
-		DocumentDAO documentDAO = new DocumentDAO();
 		// fr.univartois.ili.sadoc.dao.entities.Document docOld =
 		// Mapper.documentVOToDocumentDO(findDocumentById(document.getId()));
 		// fr.univartois.ili.sadoc.dao.entities.Document docNew =
 		// Mapper.documentVOToDocumentDO(document);
 		// docNew.setId(docOld.getId());
 		// documentDAO.update(docNew);
-		fr.univartois.ili.sadoc.dao.entities.Document doc = Mapper
-				.documentVOToDocumentDO(document);
+		fr.univartois.ili.sadoc.dao.entities.Document doc = Mapper.documentVOToDocumentDO(document);
 		documentDAO.update(doc);
-	}
-
-	public void updateAcquisition(Acquisition acquisition) {
-		AcquisitionDAO acquisitionDAO = new AcquisitionDAO();
-		fr.univartois.ili.sadoc.dao.entities.Acquisition acqui = Mapper
-				.acquisitionVOToAcquisitionDO(acquisition);
-		acquisitionDAO.update(acqui);
 	}
 
 	// XXX utile???
 	public void updateCertificate(Certificate certificate) throws SQLException,
 			IOException {
-		CertificateDAO certificateDAO = new CertificateDAO();
-		fr.univartois.ili.sadoc.dao.entities.Certificate certif = Mapper
-				.certificateVOToCertificateDO(certificate);
+		fr.univartois.ili.sadoc.dao.entities.Certificate certif = Mapper.certificateVOToCertificateDO(certificate);
 		certificateDAO.update(certif);
 	}
 
+	@Override
 	public void updateOwnerWS(Owner owner) {
-		OwnerWSDAO ownerWSDAO = new OwnerWSDAO();
 		fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerWS;
 		try {
 			ownerWS = Mapper.ownerVOToOwnerDO(owner);
@@ -115,22 +117,68 @@ public class MetierWSServices implements IMetierWSServices {
 
 	// XXX utile???
 	public void updateSignature(Signature signature) {
-		SignatureDAO signatureDAO = new SignatureDAO();
-		fr.univartois.ili.sadoc.dao.entities.Signature sign = Mapper
-				.signatureVOToSignatureDO(signature);
+		fr.univartois.ili.sadoc.dao.entities.Signature sign = Mapper.signatureVOToSignatureDO(signature);
 		signatureDAO.update(sign);
 	}
 
+	@Override
 	public Document findDocumentById(long id) {
-		Document document = new Document();
-		DocumentDAO documentDAO = new DocumentDAO();
-		document = Mapper.documentDOToDocumentVO(documentDAO.findById(id));
+		Document document = Mapper.documentDOToDocumentVO(documentDAO.findById(id));
 		return document;
 	}
 
+	@Override
+	public List<Document> findDocumentByOwner(Owner owner) {
+		List<Document> documents = new ArrayList<Document>();
+		fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerWS;
+		try {
+			ownerWS = Mapper.ownerVOToOwnerDO(owner);
+			List<fr.univartois.ili.sadoc.dao.entities.Document> docs = documentDAO.findByOwnerWS(ownerWS);
+			for (fr.univartois.ili.sadoc.dao.entities.Document doc : docs) {
+				documents.add(Mapper.documentDOToDocumentVO(doc));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return documents;
+	}
+	
+	@Override
+	public Owner findOwnerByDocument(Document document) {
+		Owner owner = new Owner();
+		fr.univartois.ili.sadoc.dao.entities.Document doc = Mapper.documentVOToDocumentDO(document);
+		try {
+			owner = Mapper.ownerDOToOwnerVO(ownerWSDAO.findByDocument(doc));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return owner;
+	}
+	
+	@Override
+	public Owner findOwnerByMail(String mail) {
+		Owner owner = null;
+		try {
+			owner = Mapper.ownerDOToOwnerVO(ownerWSDAO.findByMail(mail));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return owner;
+	}
+	
+	@Override
 	public Certificate findCertificateByOwner(Owner owner) {
-		Certificate certificate = new Certificate();
-		CertificateDAO certificateDAO = new CertificateDAO();
+		Certificate certificate = null;
 		fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerWS;
 		List<fr.univartois.ili.sadoc.dao.entities.Certificate> certifs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Certificate>();
 		try {
@@ -139,8 +187,6 @@ public class MetierWSServices implements IMetierWSServices {
 			for (fr.univartois.ili.sadoc.dao.entities.Certificate certif : certifs) {
 				if (certif.getDateValidity().after(new Date())) {
 					certificate = Mapper.certificateDOToCertificateVO(certif);
-				} else {
-					certificate = null;
 				}
 			}
 		} catch (SQLException e1) {
@@ -153,9 +199,9 @@ public class MetierWSServices implements IMetierWSServices {
 		return certificate;
 	}
 
+	@Override
 	public List<Certificate> findCertificatesByOwner(Owner owner) {
 		List<Certificate> certificates = new ArrayList<Certificate>();
-		CertificateDAO certificateDAO = new CertificateDAO();
 		fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerWS;
 		List<fr.univartois.ili.sadoc.dao.entities.Certificate> certifs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Certificate>();
 		try {
@@ -173,79 +219,31 @@ public class MetierWSServices implements IMetierWSServices {
 		}
 		return certificates;
 	}
-
-	public Owner findOwnerByDocument(Document document) {
-		fr.univartois.ili.sadoc.dao.entities.Document doc = new fr.univartois.ili.sadoc.dao.entities.Document();
-		doc = Mapper.documentVOToDocumentDO(document);
-		Owner owner = new Owner();
-		OwnerWSDAO ownerWSDAO = new OwnerWSDAO();
-		try {
-			owner = Mapper.ownerDOToOwnerVO(ownerWSDAO.findByDocument(doc));
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return owner;
-	}
-
-	public List<Document> findDocumentByOwner(Owner owner) {
-		fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerWS = new fr.univartois.ili.sadoc.dao.entities.OwnerWS();
-		List<Document> documents = new ArrayList<Document>();
-		DocumentDAO documentDAO = new DocumentDAO();
-		List<fr.univartois.ili.sadoc.dao.entities.Document> docs = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Document>();
-		docs = documentDAO.findByOwnerWS(ownerWS);
-
-		for (fr.univartois.ili.sadoc.dao.entities.Document doc : docs) {
-			documents.add(Mapper.documentDOToDocumentVO(doc));
-		}
-		return documents;
-	}
-
-	public Owner findOwnerByMail(String mail) {
-		Owner owner = null;
-		OwnerWSDAO ownerWSDAO = new OwnerWSDAO();
-		try {
-			owner = Mapper.ownerDOToOwnerVO(ownerWSDAO.findByMail(mail));
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return owner;
-	}
-
-	@Override
-	public Competence findCompetenceByAcronym(String acronym) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Competence> findCompetencesByDocument(Document document) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<Owner, List<Competence>> findOwnerAndCompetencesByDocumentId(
+	
+	// XXX utile???
+	public Map<Owner, List<Acquisition>> findOwnerAndAcquisitionByDocumentId(
 			int documentId) {
-		Map<Owner, List<Competence>> res = new HashMap<Owner, List<Competence>>();
+		Map<Owner, List<Acquisition>> res = new HashMap<Owner, List<Acquisition>>();
 		Document document = findDocumentById(documentId);
 		Owner owner = findOwnerByDocument(document);
-		List<Competence> competences = findCompetencesByDocument(document);
-		res.put(owner, competences);
+		List<Acquisition> acquisitions = findAcquisitionsByDocument(document);
+		res.put(owner, acquisitions);
 		return res;
 	}
 
+	public List<Acquisition> findAcquisitionsByDocument(Document document){
+		fr.univartois.ili.sadoc.dao.entities.Document doc = Mapper.documentVOToDocumentDO(document);
+		List<Acquisition> a = new ArrayList<Acquisition>();
+		List<fr.univartois.ili.sadoc.dao.entities.Acquisition> acqs = acquisitionDAO.findAcquisitionByDocument(doc);
+		for(fr.univartois.ili.sadoc.dao.entities.Acquisition acq : acqs){
+			a.add(Mapper.acquisitionDOToAcquisitionVO(acq));
+		}
+		return a;
+	}
+	
 	@Override
 	public Acquisition findAcquisitionByAcronym(String idItem) {
 		Acquisition acquiqition = new Acquisition();
-		AcquisitionDAO acquisitionDAO = new AcquisitionDAO();
 		acquiqition = Mapper.acquisitionDOToAcquisitionVO(acquisitionDAO
 				.findByAcronym(idItem));
 		return acquiqition;
@@ -267,27 +265,5 @@ public class MetierWSServices implements IMetierWSServices {
 		}
 		return in;
 	}
-
-	// XXX Plus nécessaire car pas Competence dans la BDws
-	// public void createCompetence(Competence competence) {
-	// ICompetenceDAO competenceDAO;
-	// fr.univartois.ili.sadoc.dao.entities.Competence competence2 =
-	// mapperCompetencesVOToCompetencesDO(competence);
-	// competenceDAO.create(competence2);
-	// }
-	// public Competence findCompetenceByAcronym(String acronym) {
-	// Competence competence = new Competence();
-	// CompetenceDAO competenceDAO = new CompetenceDAO();
-	// competence =
-	// mapperOwnerDOToOwnerVO(competenceDAO.findByAcronym(acronym));
-	// return competence;
-	// }
-	// public List<Competence> findCompetencesByDocument(Document document) {
-	// List<Competence> competences = new ArrayList<Competence>();
-	// List<CompetenceDAO> competencesDAO = new ArrayList<CompetenceDAO>();
-	// competences =
-	// mapperCompetencesDOToCompetencesVO(competencesDAO.findCompetencesByDocument(document));
-	// return competences;
-	// }
 
 }

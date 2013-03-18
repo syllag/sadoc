@@ -1,7 +1,7 @@
 <%@taglib uri="/struts-tags" prefix="s"%> 
 <div class="wrap_header">
 <header class="header">
-	<a href="<s:url action="Home"/>"><img src="<s:url value="/img/logo.png"/>"/></a>
+	<a href="<s:url action="Home"/>"><img src="<s:url value="/img/logo.png"/>" class="img_header"/></a>
 	<h1>Système d'authentification de documents</h1>
 </header>
 

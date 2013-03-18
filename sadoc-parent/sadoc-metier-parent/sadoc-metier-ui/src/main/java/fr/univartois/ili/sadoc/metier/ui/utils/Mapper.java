@@ -8,8 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import fr.univartois.ili.sadoc.metier.commun.services.IMetierCommunServices;
 import fr.univartois.ili.sadoc.metier.commun.services.MetierCommunServices;
 import fr.univartois.ili.sadoc.metier.commun.vo.Competence;
 import fr.univartois.ili.sadoc.metier.commun.vo.Domaine;
@@ -29,8 +30,13 @@ public class Mapper {
 	 */
 	private static Map<Object, Object> identityMap = new HashMap<Object,Object>();
 
-	@Autowired
-	private static MetierCommunServices metier;
+	private static ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContextMetierUI.xml");  
+	private static IMetierCommunServices metier = applicationContext.getBean(IMetierCommunServices.class);
+
+	public static IMetierCommunServices getMetier() {
+		return metier;
+	}
+
 
 	/**
 	 * This method return a fr.univartois.ili.sadoc.metier.ui.vo.Owner, the business object
