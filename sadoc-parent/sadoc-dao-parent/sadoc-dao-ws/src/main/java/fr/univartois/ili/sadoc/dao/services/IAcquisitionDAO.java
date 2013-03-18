@@ -21,7 +21,7 @@ public interface IAcquisitionDAO extends IWebServiceDAO<Acquisition>{
 	 * @param owner
 	 * @return the List<Acquisition> that belongs to the owner
 	 */
-	List<Acquisition> findAcquisitionByOwner(int owner);
+	List<Acquisition> findAcquisitionByOwner(long owner);
 	
 	/**
 	 * Ask the Acquisition by acronym
