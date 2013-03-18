@@ -91,7 +91,7 @@ public class Document implements Serializable {
 	public static Document getFakeDocument() {
 		byte[]tab=new byte[10];
 		Date date=new Date(100000);
-		return new Document("fakedanicet", "checksum","burbure",tab, date);
+		return new Document("fakedanicet", "checksum","http://www.openoffice.org/fr/Documentation/How-to/General/02pdffr.pdf",tab, date);
 	}
 	
 }
