@@ -12,7 +12,7 @@ import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
 @Service("wsPublic")
 public interface WSPublic {
 
-	public Owner createOwner(String nom, String prenom, String mail)
+	public Owner createOwner(String mail)
 			throws Exception;
 
 	public byte[] signDocument(byte[] doc, String name, Owner owner,

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
@@ -30,8 +29,7 @@ public class WSStubFindAllAcquisitionByOwner {
 	public CreateOwnerResponse createOwner(@RequestPayload CreateOwnerRequest request)
 			throws Exception {
 		CreateOwnerResponse resp = new CreateOwnerResponse();
-		Owner o = wsPublic.createOwner(request.getLastName(),
-				request.getFirstName(), request.getMail());
+		Owner o = wsPublic.createOwner(request.getMail_initial());
 		resp.setOwner(o);
 		return resp;
 	}

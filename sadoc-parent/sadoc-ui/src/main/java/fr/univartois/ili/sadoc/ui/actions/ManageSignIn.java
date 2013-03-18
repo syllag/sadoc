@@ -48,9 +48,7 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 
 		// TODO Fake user
 		personneWS = new fr.univartois.ili.sadoc.client.webservice.tools.Owner();
-		personneWS.setId(1);
-		personneWS.setFirstName(form.getFirstName());
-		personneWS.setLastName(form.getLastName());
+		personneWS.setId(1);		
 
 		// TODO remove "false" condition when fake user will be removed
 		if (false && personneWS == null) {
@@ -59,8 +57,8 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 		}
 
 		Owner personne = new Owner();
-		personne.setFirstName(personneWS.getFirstName());
-		personne.setLastName(personneWS.getLastName());
+		personne.setFirstName(form.getFirstName());
+		personne.setLastName(form.getLastName());
 		personne.setId(personneWS.getId());
 		personne.setMail(form.getMail());
 		try {

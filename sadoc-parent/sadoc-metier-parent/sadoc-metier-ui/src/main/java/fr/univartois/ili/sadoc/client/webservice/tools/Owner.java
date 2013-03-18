@@ -19,9 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}id"/>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}firstName"/>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}lastName"/>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}mail"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}mail_initial"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,22 +30,16 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "id",
-    "firstName",
-    "lastName",
-    "mail"
+    "id",    
+    "mail_initial"
 })
 @XmlRootElement(name = "owner")
 public class Owner {
 
     @XmlElement(required = true)
-    protected long id;
+    protected long id;    
     @XmlElement(required = true)
-    protected String firstName;
-    @XmlElement(required = true)
-    protected String lastName;
-    @XmlElement(required = true)
-    protected String mail;
+    protected String mail_initial;
 
     /**
      * Gets the value of the id property.
@@ -73,54 +65,7 @@ public class Owner {
         this.id = value;
     }
 
-    /**
-     * Gets the value of the firstName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * Sets the value of the firstName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setFirstName(String value) {
-        this.firstName = value;
-    }
-
-    /**
-     * Gets the value of the lastName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * Sets the value of the lastName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLastName(String value) {
-        this.lastName = value;
-    }
-
+    
     /**
      * Gets the value of the mail property.
      * 
@@ -130,7 +75,7 @@ public class Owner {
      *     
      */
     public String getMail() {
-        return mail;
+        return mail_initial;
     }
 
     /**
@@ -142,7 +87,7 @@ public class Owner {
      *     
      */
     public void setMail(String value) {
-        this.mail = value;
+        this.mail_initial = value;
     }
 
 }

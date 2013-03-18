@@ -30,8 +30,7 @@ public class WSStub {
 	public CreateOwnerResponse createOwner(
 			@RequestPayload CreateOwnerRequest request) throws Exception {
 		CreateOwnerResponse resp = new CreateOwnerResponse();
-		Owner o = wsPublic.createOwner(request.getLastName(),
-				request.getFirstName(), request.getMail());
+		Owner o = wsPublic.createOwner(request.getMail_initial());
 		resp.setOwner(o);
 		return resp;
 	}

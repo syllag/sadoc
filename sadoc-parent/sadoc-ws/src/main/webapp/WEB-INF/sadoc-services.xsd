@@ -4,9 +4,7 @@
 	<xs:element name="createOwnerRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="schemas:firstName" />
-				<xs:element ref="schemas:lastName" />
-				<xs:element ref="schemas:mail" />
+				<xs:element ref="schemas:mail_initial" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

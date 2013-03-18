@@ -35,7 +35,7 @@ public class WSPublicImplFindAllAcquisitionByOwner implements WSPublicFindAllAcq
 	private IMetierCommunServices metierCommunServices;
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Owner createOwner(String lastName, String firstName, String mail)
+	public Owner createOwner(String mail)
 			throws Exception {
 		Owner owner = metierWSServices.findOwnerByMail(mail);
 		if (owner == null) {
@@ -66,20 +66,21 @@ public class WSPublicImplFindAllAcquisitionByOwner implements WSPublicFindAllAcq
 
 			Document document = new Document(name, "", null);
 			for (Competence comp : competence) {
-				if(metierCommunServices.isValideAcronym(comp.getAcronym())){
-					Acquisition acquisition = metierWSServices.findAcquisitionByAcronym(comp.getAcronym());
-					if(acquisition == null){
-						acquisition = new Acquisition();
-						acquisition.setId_item(comp.getAcronym());
-						acquisition.setCreationDate(new Date());
-						metierWSServices.createAcquisition(acquisition);
-					}
-					acquisition.getDocuments().add(document);
-					document.getAcquisitions().add(acquisition);
-				} else {
-					//TODO : Log 
-					// problème la compétence n'existe pas
-				}
+				// TODO ? comportement attendu avec la disparition de acronym ?
+//				if(metierCommunServices.isValideAcronym(comp.getAcronym())){
+//					Acquisition acquisition = metierWSServices.findAcquisitionByAcronym(comp.getAcronym());
+//					if(acquisition == null){
+//						acquisition = new Acquisition();
+//						acquisition.setId_item(comp.getAcronym());
+//						acquisition.setCreationDate(new Date());
+//						metierWSServices.createAcquisition(acquisition);
+//					}
+//					acquisition.getDocuments().add(document);
+//					document.getAcquisitions().add(acquisition);
+//				} else {
+//					//TODO : Log 
+//					// problème la compétence n'existe pas
+//				}
 			}
 			metierWSServices.createDocument(document);
 			for(Acquisition acquisition : document.getAcquisitions()){
