@@ -26,8 +26,8 @@
 		<field name="checkSum" type="string">
 			<bind-xml name="checkSum" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
-		<field name="pk7" type="byte" collection="array">
-			<bind-xml name="pk7" node="element" xmlns="http://sadoc.com/ac/schemas" />
+		<field name="p7s" type="byte" collection="array">
+			<bind-xml name="p7s" node="element" xmlns="http://sadoc.com/ac/schemas" />
 		</field>
 		<field name="creationDate" type="date">
 			<bind-xml name="name" node="element" xmlns="http://sadoc.com/ac/schemas" />
