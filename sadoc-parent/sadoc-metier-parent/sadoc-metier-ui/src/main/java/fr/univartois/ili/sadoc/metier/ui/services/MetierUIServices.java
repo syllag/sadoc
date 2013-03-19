@@ -98,7 +98,7 @@ public class MetierUIServices implements IMetierUIServices{
 	}
 
 	@Override
-	public Competence findCompetenceById(int id) {
+	public Competence findCompetenceById(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

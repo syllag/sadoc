@@ -32,8 +32,10 @@ public class VerifyDocument extends ActionSupport {
 			.getBean(IMetierUIServices.class);
 
 	public String execute() {
-
-		Document document = metierUIServices.findDocumentById(id);
+		// TODO To remove when fake will be useless
+		//Document document = metierUIServices.findDocumentById(id);
+		Document document = Document.getFakeDocument();
+		
 		if (document != null || file == null) {
 			try {
 				InputStream input = new FileInputStream(file);

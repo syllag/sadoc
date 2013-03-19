@@ -15,6 +15,7 @@ import com.itextpdf.text.pdf.PdfReader;
 
 import fr.univartois.ili.sadoc.metier.commun.services.IMetierCommunServices;
 import fr.univartois.ili.sadoc.metier.ws.services.IMetierWSServices;
+import fr.univartois.ili.sadoc.metier.ws.services.IMetierWSServicesFindAllAcquisitionByOwner;
 import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
@@ -25,10 +26,10 @@ import fr.univartois.ili.sadoc.ws.pdf.ManageQRCImpl;
 import fr.univartois.ili.sadoc.ws.sign.integrationsign.SignFile;
 import fr.univartois.ili.sadoc.ws.utils.Crypt;
 
-public class WSPublicImpl implements WSPublic {
+public class WSPublicImplFindAllAcquisitionByOwner implements WSPublicFindAllAcquisitionByOwner {
 
 	@Autowired
-	private IMetierWSServices metierWSServices;
+	private IMetierWSServicesFindAllAcquisitionByOwner metierWSServices;
 	
 	@Autowired
 	private IMetierCommunServices metierCommunServices;
@@ -172,7 +173,7 @@ public class WSPublicImpl implements WSPublic {
 	}
 
 	@Override
-	public List<Document> getAllDocumentByOwner(Owner user) {
-		return metierWSServices.findDocumentByOwner(user);
+	public List<Acquisition> findAllAcquisition(Owner utilisateur) {
+		return metierWSServices.findAllAcquisition(utilisateur);
 	}
 }

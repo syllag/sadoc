@@ -14,11 +14,12 @@ public class ModifyUrl extends ActionSupport {
 	private ModifyUrlForm form;
 	private String id;
 	private IMetierUIServices metierUIServices = ContextFactory.getContext().getBean(IMetierUIServices.class) ;
-
 	
 	public String execute() {
-		Document document = metierUIServices.findDocumentById(form.getDocumentId());
-		
+		// TODO To remove when fake will be useless
+		Document document = Document.getFakeDocument();
+		// Document document = metierUIServices.findDocumentById(form.getDocumentId());
+
 		if (document != null) {
 			document.setUrl(form.getUrl());
 			metierUIServices.updateDocument(document);

@@ -3,41 +3,29 @@ package fr.univartois.ili.sadoc.ws.spring;
 
 public class CreateOwnerRequest {
 	
-	private String firstName;
-	private String lastName;
-	private String mail;
+	private String mail_initial;
 	
 	public CreateOwnerRequest() {
 	}
 	
-	public CreateOwnerRequest(String firstName,String lastName,String mail) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.mail = mail;
+	public CreateOwnerRequest(String mail_initial) {	
+		this.mail_initial = mail_initial;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	/**
+	 * @return the mail_initial
+	 */
+	public String getMail_initial() {
+		return mail_initial;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	/**
+	 * @param mail_initial the mail_initial to set
+	 */
+	public void setMail_initial(String mail_initial) {
+		this.mail_initial = mail_initial;
 	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+		
+	
 	
 }
