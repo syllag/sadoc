@@ -135,6 +135,7 @@ public class Resume implements Serializable {
 		// Referentiel
 		ref = new Referentiel("REF_CLES", "Cles anglais",
 				"Référentiel Cles anglais", "http://www.cles_anglais.fr");
+		ref.setId(1);
 		// No domaines for ref
 		res.getReferentiels().add(ref);
 
