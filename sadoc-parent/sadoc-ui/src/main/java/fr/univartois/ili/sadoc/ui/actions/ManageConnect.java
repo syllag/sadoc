@@ -64,6 +64,7 @@ public class ManageConnect extends ActionSupport implements SessionAware {
 		// session.put("mapCompetence", getMapCompetence(owner));
 		// session.put("mapCompetence", getFakeMapCompetence(owner));
 
+		Connection.setUser(session, owner);
 		return SUCCESS;
 	}
 

@@ -5,6 +5,7 @@
 	<persistence-unit name="sadocjpaWA" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>fr.univartois.ili.sadoc.dao.entities.Owner</class>
+		<class>fr.univartois.ili.sadoc.dao.entities.Resume</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-tables" />
