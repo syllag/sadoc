@@ -21,7 +21,7 @@ import fr.univartois.ili.sadoc.ui.form.CreateResumeForm;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 import fr.univartois.ili.sadoc.ui.utils.ResumeUtil;
 
-public class CreateResume extends ActionSupport implements SessionAware,Preparable {
+public class CreateResume extends ActionSupport implements SessionAware {
 
 	/**
 	 * 
@@ -39,15 +39,9 @@ public class CreateResume extends ActionSupport implements SessionAware,Preparab
 	private Resume resume = null ;
 	private Owner owner = null ;
 
-	@Override
-	public void prepare() throws Exception {
-		System.out.println("avantTOTO");
-	}
 	
 	public String execute() {
-		
 	
-		System.out.println("TOTO");
 		// TODO remove false when fake will be useless
 		if (form == null) {
 			// TODO to change when fake will be useless
@@ -56,13 +50,7 @@ public class CreateResume extends ActionSupport implements SessionAware,Preparab
 			resume.setOwner(owner);
 			arbreCompetences = ResumeUtil.generateMap(resume);
 
-			for (Entry<Referentiel, Map<Domaine, Map<Competence, List<Item>>>> entry : arbreCompetences.entrySet()) {
-				System.out.println("######");
-				System.out.println("Key : " + entry.getKey() + " - " + entry.getKey().getId() + " Value : "
-					+ entry.getValue());
-				
-			}
-		
+
 			return INPUT;
 		}
 		
@@ -72,15 +60,15 @@ public class CreateResume extends ActionSupport implements SessionAware,Preparab
 		List<Item> items = form.getChoiceItems(metierCommun);
 
 
-		// long idOwner = (Long) session.get("id");
-		// Owner owner = metierUi.findOwnerById(idOwner);
-		//
-		// Resume resume = new Resume();
-		// resume.setOwner(owner);
-		// resume.setReferentiels(refes);
-		// resume.setDomaines(doms);
-		// resume.setCompetences(comps);
-		// resume.setItems(items);
+//		 long idOwner = (Long) session.get("id");
+		 Owner owner = metierUi.findOwnerById(1);
+		
+		 Resume resume = new Resume();
+		 resume.setOwner(owner);
+		 resume.setReferentiels(refes);
+		 resume.setDomaines(doms);
+		 resume.setCompetences(comps);
+		 resume.setItems(items);
 
 		owner.addResume(resume);
 		try {
