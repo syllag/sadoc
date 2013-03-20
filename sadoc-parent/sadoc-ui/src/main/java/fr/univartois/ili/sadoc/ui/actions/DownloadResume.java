@@ -112,7 +112,7 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 
 			document.add(new Paragraph(" ", empty));
 			document.add(new Paragraph(" ", empty));
-			Paragraph prefaceTitleComp = new Paragraph("Compétences",
+			Paragraph prefaceTitleComp = new Paragraph("Qualifications",
 					sectionFont);
 			prefaceTitleComp.setAlignment(Element.ALIGN_CENTER);
 			document.add(prefaceTitleComp);
