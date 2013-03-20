@@ -64,22 +64,21 @@ public class WSPublicImpl implements WSPublic {
 			metierWSServices.updateOwnerWS(ownOwner);
 
 			Document document = new Document(name, "", null);
-			for (Competence comp : competence) {
-				// TODO ? comportement attendu avec la disparition de acronym ?
-//				if(metierCommunServices.isValideAcronym(comp.getAcronym())){
-//					Acquisition acquisition = metierWSServices.findAcquisitionByAcronym(comp.getAcronym());
-//					if(acquisition == null){
-//						acquisition = new Acquisition();
-//						acquisition.setId_item(comp.getAcronym());
-//						acquisition.setCreationDate(new Date());
-//						metierWSServices.createAcquisition(acquisition);
-//					}
-//					acquisition.getDocuments().add(document);
-//					document.getAcquisitions().add(acquisition);
-//				} else {
-//					//TODO : Log 
-//					// problème la compétence n'existe pas
-//				}
+			for (Competence comp : competence) {				
+				if(metierCommunServices.isValideAcronym(comp.getAcronym())){
+					Acquisition acquisition = metierWSServices.findAcquisitionByAcronym(comp.getAcronym());
+					if(acquisition == null){
+						acquisition = new Acquisition();
+						acquisition.setId_item(comp.getAcronym());
+						acquisition.setCreationDate(new Date());
+						metierWSServices.createAcquisition(acquisition);
+					}
+					acquisition.getDocuments().add(document);
+					document.getAcquisitions().add(acquisition);
+				} else {
+					//TODO : Log 
+					// problème la compétence n'existe pas
+				}
 			}
 			metierWSServices.createDocument(document);
 			for(Acquisition acquisition : document.getAcquisitions()){

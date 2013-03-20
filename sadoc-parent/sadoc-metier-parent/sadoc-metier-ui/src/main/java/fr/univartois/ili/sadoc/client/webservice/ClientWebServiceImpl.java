@@ -155,7 +155,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 			ImportDocumentRequest importDocumentRequest = new ImportDocumentRequest();
 			fr.univartois.ili.sadoc.client.webservice.tools.Owner owner2 = new fr.univartois.ili.sadoc.client.webservice.tools.Owner();
 			owner2.setId(owner.getId());
-			owner2.setMail(owner.getMail());
+			owner2.setMail_initial(owner.getMail());
 			importDocumentRequest.setOwner(owner2);
 
 			ImportDocumentResponse responsess = (ImportDocumentResponse) webServiceTemplate

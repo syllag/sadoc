@@ -3,7 +3,10 @@ package fr.univartois.ili.sadoc.metier.ws.vo;
 import java.io.Serializable;
 import java.util.Date;
 
-
+/**
+ * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
+ *
+ */
 public class Competence implements Serializable, Comparable<Object> {
 	/**
 	 * 
@@ -12,15 +15,18 @@ public class Competence implements Serializable, Comparable<Object> {
 	
 	private long id;
 	
-	private String codeCompetence;
-	private String description;	
+	private String name;
+	private String description;
+	private String acronym;
+	
+	private Date creationDate;
 	
 	/************************************************/
 
 	public Competence(){}
 	
-	public Competence(String codeCompetence, String description) {
-		this.codeCompetence=codeCompetence;
+	public Competence(String name, String description) {
+		this.name=name;
 		this.description=description;		
 	}
 	
@@ -40,8 +46,8 @@ public class Competence implements Serializable, Comparable<Object> {
 	// compareTo method, while in Java 6 it uses the equals method.
 	
 	public int compareTo(Object other) { 
-	      String name1 = ((Competence) other).getCodeCompetence(); 
-	      String name2 = this.getCodeCompetence()+this.getCodeCompetence(); 
+	      String name1 = ((Competence) other).getName(); 
+	      String name2 = this.getName()+this.getName(); 
 	      return name2.compareTo(name1);
 	   } 
 	
@@ -55,7 +61,14 @@ public class Competence implements Serializable, Comparable<Object> {
 		this.id = id;
 	}
 
-	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -64,20 +77,20 @@ public class Competence implements Serializable, Comparable<Object> {
 		this.description = description;
 	}
 
-	/**
-	 * @return the codeCompetence
-	 */
-	public String getCodeCompetence() {
-		return codeCompetence;
+	public Date getCreationDate() {
+		return (Date) creationDate.clone();
 	}
 
-	/**
-	 * @param codeCompetence the codeCompetence to set
-	 */
-	public void setCodeCompetence(String codeCompetence) {
-		this.codeCompetence = codeCompetence;
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = (Date) creationDate.clone();
 	}
-	
 
-	
+	public String getAcronym() {
+		return acronym;
+	}
+
+	public void setAcronym(String acronym) {
+		this.acronym = acronym;
+	}
+
 }

@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
 import fr.univartois.ili.sadoc.client.webservice.IClientWebService;
+
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
@@ -99,21 +100,26 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 					if (owner == null) {
 						
 						Owner owntoregister = new Owner();
-						owntoregister.setMail(incowner.getMail());
-						owntoregister.setId(incowner.getId());						
+//						owntoregister.setFirstName(incowner.getFirstName());
+//						owntoregister.setLastName(incowner.getLastName());
+						owntoregister.setMail(incowner.getMail_initial());
+
+						owntoregister.setId(incowner.getId());
+						
 						metierUIServices.createOwner(owntoregister);
 						owner = owntoregister;
 					}
 
+					//TODO les competences sont remplacées par les acquisitions
 					for (fr.univartois.ili.sadoc.client.webservice.tools.Competence competence : comp
 							.get(incowner)) {
-
 						Competence c = metierUIServices.findCompetenceById(competence.getId());
 						if (c == null) {
-							c = new Competence();	
-							c.setCodeCompetence(competence.getCodeCompetence());
+							c = new Competence();
+							c.setName(competence.getName());
 							c.setDescription(competence.getDescription());
-							c.setId(competence.getId());	
+							c.setId(competence.getId());
+							
 							metierUIServices.createCompetence(c);
 						}
 						Acquisition a = new Acquisition();

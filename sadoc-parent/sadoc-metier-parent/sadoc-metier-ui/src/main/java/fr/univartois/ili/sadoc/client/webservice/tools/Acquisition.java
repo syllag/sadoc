@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -19,7 +20,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}id"/>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}mail_initial"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}id_item"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}creationDate"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,23 +32,26 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "id",    
-    "mail_initial"
+    "id",   
+    "id_item",
+    "creationDate"
 })
-@XmlRootElement(name = "owner")
-public class Owner {
+@XmlRootElement(name = "competence")
+public class Acquisition {
 
     @XmlElement(required = true)
-    protected long id;    
+    protected long id;
     @XmlElement(required = true)
-    protected String mail_initial;
+    protected String id_item;
+    @XmlElement(required = true)
+    protected XMLGregorianCalendar creationDate;   
 
     /**
      * Gets the value of the id property.
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link long }
      *     
      */
     public long getId() {
@@ -58,7 +63,7 @@ public class Owner {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link long }
      *     
      */
     public void setId(long value) {
@@ -66,19 +71,36 @@ public class Owner {
     }
 
 	/**
-	 * @return the mail_initial
+	 * @return the id_item
 	 */
-	public String getMail_initial() {
-		return mail_initial;
+	public String getId_item() {
+		return id_item;
 	}
 
 	/**
-	 * @param mail_initial the mail_initial to set
+	 * @param id_item the id_item to set
 	 */
-	public void setMail_initial(String mail_initial) {
-		this.mail_initial = mail_initial;
+	public void setId_item(String id_item) {
+		this.id_item = id_item;
 	}
 
-    
+	/**
+	 * @return the creationDate
+	 */
+	public XMLGregorianCalendar getCreationDate() {
+		return creationDate;
+	}
+
+	/**
+	 * @param creationDate the creationDate to set
+	 */
+	public void setCreationDate(XMLGregorianCalendar creationDate) {
+		this.creationDate = creationDate;
+	}
+
+   
+
   
+    
+
 }

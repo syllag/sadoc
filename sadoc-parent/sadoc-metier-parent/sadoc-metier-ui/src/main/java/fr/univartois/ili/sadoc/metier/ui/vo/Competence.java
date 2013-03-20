@@ -3,7 +3,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
+ *
+ */
 public class Competence implements Serializable {
 	/**
 	 * 
@@ -12,8 +15,9 @@ public class Competence implements Serializable {
 	
 	private long id;
 	
-	private String codeCompetence;
-	private String description;	
+	private String name;
+	private String description;
+	private String acronym;
 	
 	private List<Degree> degrees= new ArrayList<Degree>();
 	
@@ -21,8 +25,8 @@ public class Competence implements Serializable {
 	
 	public Competence(){}
 	
-	public Competence(String codeCompetence, String description){
-		this.codeCompetence=codeCompetence;
+	public Competence(String name, String description){
+		this.name=name;
 		this.description=description;
 	}
 	
@@ -36,7 +40,13 @@ public class Competence implements Serializable {
 		this.id = id;
 	}
 
-	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getDescription() {
 		return description;
@@ -58,21 +68,12 @@ public class Competence implements Serializable {
 		return this.id == competence.getId();
 	}
 
-	/**
-	 * @return the codeCompetence
-	 */
-	public String getCodeCompetence() {
-		return codeCompetence;
+	public String getAcronym() {
+		return acronym;
 	}
 
-	/**
-	 * @param codeCompetence the codeCompetence to set
-	 */
-	public void setCodeCompetence(String codeCompetence) {
-		this.codeCompetence = codeCompetence;
+	public void setAcronym(String acronym) {
+		this.acronym = acronym;
 	}
-
-	
-	
 	
 }
