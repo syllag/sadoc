@@ -1,13 +1,12 @@
 package fr.univartois.sadoc.ui.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.services.MetierUIServices;
 import fr.univartois.ili.sadoc.ui.actions.CheckDocument;
-import fr.univartois.ili.sadoc.ui.actions.CreateResume;
 import fr.univartois.ili.sadoc.ui.actions.DownloadP7S;
 import fr.univartois.ili.sadoc.ui.actions.DownloadResume;
 import fr.univartois.ili.sadoc.ui.actions.ManageConnect;
@@ -15,7 +14,6 @@ import fr.univartois.ili.sadoc.ui.actions.ManageProfile;
 import fr.univartois.ili.sadoc.ui.actions.ManageResume;
 import fr.univartois.ili.sadoc.ui.actions.ManageSignIn;
 import fr.univartois.ili.sadoc.ui.actions.ModifyUrl;
-import fr.univartois.ili.sadoc.ui.actions.ShowCreateResume;
 import fr.univartois.ili.sadoc.ui.actions.VerifyDocument;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 
@@ -41,9 +39,6 @@ public class MetierUIServicesTest {
 		CheckDocument cd = new CheckDocument();
 		assertNotNull(cd.getMetierUIServices());
 		
-		CreateResume cr = new CreateResume() ;
-		assertNotNull(cr.getMetierUIServices());
-		
 		DownloadP7S dp = new DownloadP7S();
 		assertNotNull(dp.getMetierUIServices());
 		
@@ -64,9 +59,6 @@ public class MetierUIServicesTest {
 		
 		ModifyUrl mu = new ModifyUrl();
 		assertNotNull(mu.getMetierUIServices());
-		
-		ShowCreateResume scr = new ShowCreateResume();
-		assertNotNull(scr.getMetierUIServices());
 		
 		VerifyDocument vd = new VerifyDocument() ;
 		assertNotNull(vd.getMetierUIServices());

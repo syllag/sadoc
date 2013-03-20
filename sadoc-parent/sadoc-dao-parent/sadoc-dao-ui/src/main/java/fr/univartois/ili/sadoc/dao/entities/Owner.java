@@ -1,12 +1,15 @@
 package fr.univartois.ili.sadoc.dao.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 /**
  * @author Kevin Pogorzelski <kevin.pogorzelski at gmail.com>
@@ -16,10 +19,8 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Owner implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 3782729130611691854L;
 
 	@Id
 	@GeneratedValue
@@ -37,6 +38,8 @@ public class Owner implements Serializable {
 	
 	private long idOwnerWs;
 
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<Resume> resumes;
 
 	/************************************************/
 
@@ -127,11 +130,6 @@ public class Owner implements Serializable {
 		this.phone = phone;
 	}
 	
-	public boolean equals(Owner owner) {
-		return this.id == owner.getId();
-	}
-
-	
 	public long getIdOwnerWs() {
 		return idOwnerWs;
 	}
@@ -139,5 +137,16 @@ public class Owner implements Serializable {
 	public void setIdOwnerWs(long idOwnerWs) {
 		this.idOwnerWs = idOwnerWs;
 	}
+
+	public List<Resume> getResumes() {
+		return resumes;
+	}
+
+	public void setResumes(List<Resume> resumes) {
+		this.resumes = resumes;
+	}
 	
+	public boolean equals(Owner owner) {
+		return this.id == owner.getId();
+	}
 }
