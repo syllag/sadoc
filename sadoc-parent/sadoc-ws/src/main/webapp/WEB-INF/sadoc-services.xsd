@@ -37,7 +37,7 @@
 				<xs:element ref="schemas:doc" />
 				<xs:element ref="schemas:name" />
 				<xs:element ref="schemas:owner" />
-				<xs:element ref="schemas:competence" maxOccurs="unbounded" />
+				<xs:element ref="schemas:acquisition" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -170,11 +170,21 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="acquisition">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:id" />
+				<xs:element ref="schemas:id_item" />				
+				<xs:element ref="schemas:creationDate"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="checkSum" type="xs:string" />
 	<xs:element name="creationDate" type="xs:date" />
 	<xs:element name="url" type="xs:string" />
 	<xs:element name="p7s" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
 	<xs:element name="id" type="xs:long" />
+	<xs:element name="id_item" type="xs:string" />
 	<xs:element name="idDocument" type="xs:integer" />
 	<xs:element name="acronym" type="xs:string" />
 </xs:schema>

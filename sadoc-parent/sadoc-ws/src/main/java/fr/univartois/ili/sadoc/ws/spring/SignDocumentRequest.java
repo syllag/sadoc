@@ -1,6 +1,6 @@
 package fr.univartois.ili.sadoc.ws.spring;
 
-import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
+import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
 
 
@@ -9,7 +9,7 @@ public class SignDocumentRequest {
 	private byte[] doc;
 	private String name;
 	private Owner owner;
-	private Competence[] competence;
+	private Acquisition[] acquisition;
 	
 	public SignDocumentRequest() {
 	}
@@ -38,12 +38,20 @@ public class SignDocumentRequest {
 		this.owner = owner;
 	}
 
-	public Competence[] getCompetence() {
-		return competence;
+	/**
+	 * @return the acquisition
+	 */
+	public Acquisition[] getAcquisition() {
+		return acquisition;
 	}
 
-	public void setCompetence(Competence[] competence) {
-		this.competence = competence;
+	/**
+	 * @param acquisition the acquisition to set
+	 */
+	public void setAcquisition(Acquisition[] acquisition) {
+		this.acquisition = acquisition;
 	}
+
+	
 	
 }

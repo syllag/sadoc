@@ -45,7 +45,7 @@ public class WSStubFindAllAcquisitionByDocument {
 	@ResponsePayload
 	public SignDocumentResponse signDocument(@RequestPayload SignDocumentRequest request) {
 		byte[] byteDoc = wsPublic.signDocument(request.getDoc(), request.getName(),
-				request.getOwner(), request.getCompetence());
+				request.getOwner(), request.getAcquisition());
 		SignDocumentResponse resp = new SignDocumentResponse();
 		resp.setDoc(byteDoc);
 		return resp;

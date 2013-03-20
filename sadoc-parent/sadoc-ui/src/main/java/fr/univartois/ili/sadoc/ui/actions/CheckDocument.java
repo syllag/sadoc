@@ -71,7 +71,9 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 
 				if (docws != null) {
 
-					Byte[] fakearraytmp = docws.getPk7();
+					// TODO anicet :) le pk7 n'existe plus
+					//Byte[] fakearraytmp = docws.getPk7();
+					Byte[] fakearraytmp = docws.getP7s();
 					byte[] fakearrayP7S = new byte[fakearraytmp.length];
 					for (int i = 0; i < fakearraytmp.length; i++) {
 						fakearrayP7S[i] = fakearraytmp[i];
@@ -84,14 +86,14 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 					doctoregister.setP7s(fakearrayP7S);
 					doctoregister.setUrl("");
 					doctoregister.setCreationDate(new Date());
-					doctoregister.setId(TestID.createFalseID((docws.getId().longValue())));
+					doctoregister.setId(TestID.createFalseID((docws.getId())));
 					
 					metierUIServices.createDocument(doctoregister);
 					document = doctoregister;
 					
-					clientWebService.getCompetences(docws.getId().longValue());
+					clientWebService.getCompetences(docws.getId());
 					Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> comp = clientWebService
-							.getCompetences(docws.getId().longValue());
+							.getCompetences(docws.getId());
 					fr.univartois.ili.sadoc.client.webservice.tools.Owner incowner = comp
 							.keySet().iterator().next();
 

@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlInlineBinaryData;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -26,8 +27,10 @@ import javax.xml.bind.annotation.XmlInlineBinaryData;
  *       &lt;sequence>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}id"/>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}name"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}url"/>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}checkSum"/>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}pk7" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}creationDate"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}p7s" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,93 +43,29 @@ import javax.xml.bind.annotation.XmlInlineBinaryData;
 @XmlType(name = "", propOrder = {
     "id",
     "name",
-    "checkSum",
-    "pk7"
+    "url",    
+    "checkSum",   
+    "creationDate",
+    "p7s"
 })
 @XmlRootElement(name = "document")
 public class Document {
 
     @XmlElement(required = true)
-    protected BigInteger id;
+    protected long id;
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
+    protected String url;
+    @XmlElement(required = true)
     protected String checkSum;
     @XmlElement(required = true)
+    protected XMLGregorianCalendar creationDate; 
+    @XmlElement(required = true)
     @XmlInlineBinaryData
-    protected Byte[] pk7;
+    protected Byte[] p7s;
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setId(BigInteger value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    /**
-     * Gets the value of the checkSum property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCheckSum() {
-        return checkSum;
-    }
-
-    /**
-     * Sets the value of the checkSum property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCheckSum(String value) {
-        this.checkSum = value;
-    }
+  
 
     /**
      * Gets the value of the pk7 property.
@@ -150,11 +89,111 @@ public class Document {
      * 
      * 
      */
-    public Byte[] getPk7() {
-        if (pk7 == null) {
-            pk7 =new  Byte[1];
+    public Byte[] getP7s() {
+        if (p7s == null) {
+            p7s =new  Byte[1];
         }
-        return this.pk7;
+        return this.p7s;
     }
 
+
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	/**
+	 * @return the url
+	 */
+	public String getUrl() {
+		return url;
+	}
+
+
+
+	/**
+	 * @param url the url to set
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+
+	/**
+	 * @return the checkSum
+	 */
+	public String getCheckSum() {
+		return checkSum;
+	}
+
+
+
+	/**
+	 * @param checkSum the checkSum to set
+	 */
+	public void setCheckSum(String checkSum) {
+		this.checkSum = checkSum;
+	}
+
+
+
+	/**
+	 * @return the creationDate
+	 */
+	public XMLGregorianCalendar getCreationDate() {
+		return creationDate;
+	}
+
+
+
+	/**
+	 * @param creationDate the creationDate to set
+	 */
+	public void setCreationDate(XMLGregorianCalendar creationDate) {
+		this.creationDate = creationDate;
+	}
+
+
+
+	/**
+	 * @param p7s the p7s to set
+	 */
+	public void setP7s(Byte[] p7s) {
+		this.p7s = p7s;
+	}
+
+    
 }

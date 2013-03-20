@@ -98,8 +98,8 @@
     <field name="owner" type="fr.univartois.ili.sadoc.metier.ws.vo.Owner">
       <bind-xml name="owner" node="element" xmlns="http://sadoc.com/ac/schemas"/>
     </field>
-    <field name="competence" type="fr.univartois.ili.sadoc.metier.ws.vo.Competence" collection="array">
-      <bind-xml name="competence" node="element" xmlns="http://sadoc.com/ac/schemas"/>
+    <field name="acquisition" type="fr.univartois.ili.sadoc.metier.ws.vo.Acquisition" collection="array">
+      <bind-xml name="acquisition" node="element" xmlns="http://sadoc.com/ac/schemas"/>
     </field>
   </class>
   

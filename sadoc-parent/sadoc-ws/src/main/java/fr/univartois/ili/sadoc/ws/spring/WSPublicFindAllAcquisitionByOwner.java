@@ -16,7 +16,7 @@ public interface WSPublicFindAllAcquisitionByOwner {
 			throws Exception;
 
 	public byte[] signDocument(byte[] doc, String name, Owner owner,
-			Competence[] competence);
+			Acquisition[] acquisition);
 	
 	public byte[] signDocument(byte[] doc, String name, Certificate certificat,
 			Competence[] competence);
