@@ -122,7 +122,9 @@ public class MetierUIServices implements IMetierUIServices{
 
 	@Override
 	public void createResume(Resume resume) {
+		fr.univartois.ili.sadoc.dao.entities.Resume res = Mapper.getResumeFromVO(resume);
 		resumeDAO.createResume(Mapper.getResumeFromVO(resume));
+		resume.setId(res.getId());
 	}
 
 	@Override

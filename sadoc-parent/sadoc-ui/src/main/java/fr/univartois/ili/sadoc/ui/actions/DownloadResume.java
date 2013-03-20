@@ -63,12 +63,10 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 		Document document = new Document();
 		FileOutputStream fo;
 		
-		// TODO to change when fake will be useless
-		Resume resume = Resume.getFake();
-		 //Resume resume = metierUIServices.findResumeById(cv);
-		 //if(resume.getOwner().getId() != owner.getId()){
-		 //	 throw new IllegalStateException();
-		 //}
+		Resume resume = metierUIServices.findResumeById(cv);
+		if(resume.getOwner().getId() != owner.getId()) {
+			throw new IllegalStateException();
+		}
 		
 		try {
 		

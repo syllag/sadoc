@@ -5,13 +5,14 @@ package fr.univartois.ili.sadoc.metier.ui.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.univartois.ili.sadoc.metier.commun.services.IMetierCommunServices;
-import fr.univartois.ili.sadoc.metier.commun.services.MetierCommunServices;
 import fr.univartois.ili.sadoc.metier.commun.vo.Competence;
 import fr.univartois.ili.sadoc.metier.commun.vo.Domaine;
 import fr.univartois.ili.sadoc.metier.commun.vo.Item;
@@ -33,11 +34,6 @@ public class Mapper {
 	private static ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContextMetierUI.xml");  
 	private static IMetierCommunServices metier = applicationContext.getBean(IMetierCommunServices.class);
 
-	public static IMetierCommunServices getMetier() {
-		return metier;
-	}
-
-
 	/**
 	 * This method return a fr.univartois.ili.sadoc.metier.ui.vo.Owner, the business object
 	 * corresponding to the fr.univartois.sadoc.dao.entities.Owner in database
@@ -48,11 +44,19 @@ public class Mapper {
 	 * 		the owner in business layer
 	 */
 	public static Owner getOwnerFromEntities(fr.univartois.ili.sadoc.dao.entities.Owner owner){
+		Set<Object> stack = new HashSet<Object>();
+		return getOwnerFromEntities(owner, stack);
+	}
+	
+	private static Owner getOwnerFromEntities(fr.univartois.ili.sadoc.dao.entities.Owner owner, Set<Object> stack){
 		Owner newOwner = (Owner) alreadyExist(owner);
 		if(newOwner == null){
 			newOwner = new Owner();
 			identityMap.put(owner, newOwner);
+		} else if (stack.contains(newOwner)) {
+			return newOwner;
 		}
+		stack.add(newOwner);
 
 		newOwner.setId(owner.getId());
 		newOwner.setFirstName(owner.getFirstName());
@@ -65,9 +69,14 @@ public class Mapper {
 		newOwner.setPhone(owner.getPhone());
 		newOwner.setIdOwnerWs(owner.getIdOwnerWs());
 
+		List<Resume> resumes = new ArrayList<Resume>();
+		for (fr.univartois.ili.sadoc.dao.entities.Resume resume : owner.getResumes()) {
+			resumes.add(getResumeFromEntities(resume, stack));
+		}
+		newOwner.setResumes(resumes);
+		
 		return newOwner;
 	}
-
 
 	/**
 	 * This method return a fr.univartois.sadoc.dao.entities.Owner, the database object
@@ -78,13 +87,21 @@ public class Mapper {
 	 * @return
 	 * 		the owner in database
 	 */
-	public static fr.univartois.ili.sadoc.dao.entities.Owner getOwnerFromVO(Owner owner){
+	public static fr.univartois.ili.sadoc.dao.entities.Owner getOwnerFromVO(Owner owner) {
+		Set<Object> stack = new HashSet<Object>();
+		return getOwnerFromVO(owner, stack);
+	}
+	
+	private static fr.univartois.ili.sadoc.dao.entities.Owner getOwnerFromVO(Owner owner, Set<Object> stack){
 		fr.univartois.ili.sadoc.dao.entities.Owner newOwner = (fr.univartois.ili.sadoc.dao.entities.Owner) alreadyExist(owner);
 		if(newOwner == null){
 			newOwner = new fr.univartois.ili.sadoc.dao.entities.Owner();
 			newOwner.setPassword(owner.getPassword());
 			identityMap.put(owner, newOwner);
+		} else if (stack.contains(newOwner)) {
+			return newOwner;
 		}
+		stack.add(newOwner);
 
 		if(owner.getPassword() != null)
 			newOwner.setPassword(owner.getPassword());
@@ -98,6 +115,12 @@ public class Mapper {
 		newOwner.setPhone(owner.getPhone());
 		newOwner.setIdOwnerWs(owner.getIdOwnerWs());
 
+		List<fr.univartois.ili.sadoc.dao.entities.Resume> resumes = new ArrayList<fr.univartois.ili.sadoc.dao.entities.Resume>();
+		for (Resume resume : owner.getResumes()) {
+			resumes.add(getResumeFromVO(resume, stack));
+		}
+		newOwner.setResumes(resumes);
+		
 		return newOwner;
 	}
 
@@ -110,15 +133,23 @@ public class Mapper {
 	 * @return
 	 * 		the resume in business layer
 	 */
-	public static Resume getResumeFromEntities(fr.univartois.ili.sadoc.dao.entities.Resume resume){
+	public static Resume getResumeFromEntities(fr.univartois.ili.sadoc.dao.entities.Resume resume) {
+		Set<Object> stack = new HashSet<Object>();
+		return getResumeFromEntities(resume, stack);
+	}
+	
+	private static Resume getResumeFromEntities(fr.univartois.ili.sadoc.dao.entities.Resume resume, Set<Object> stack){
 		Resume newResume = (Resume) alreadyExist(resume);
 		if(newResume == null){
 			newResume = new Resume();
 			identityMap.put(resume, newResume);
+		} else if (stack.contains(newResume)) {
+			return newResume;
 		}
+		stack.add(newResume);
 
 		newResume.setId(resume.getId());
-		newResume.setOwner(getOwnerFromEntities(resume.getOwner()));
+		newResume.setOwner(getOwnerFromEntities(resume.getOwner(), stack));
 		newResume.setReferentiels(getObjetsFromIds(resume.getReferentiels(),findByIdReferentiel));
 		newResume.setDomaines(getObjetsFromIds(resume.getDomaines(),findByIdDomaine));
 		newResume.setCompetences(getObjetsFromIds(resume.getCompetences(),findByIdCompetence));
@@ -136,22 +167,27 @@ public class Mapper {
 	 * 		the resume in database
 	 */
 	public static fr.univartois.ili.sadoc.dao.entities.Resume getResumeFromVO(Resume resume){
+		Set<Object> stack = new HashSet<Object>();
+		return getResumeFromVO(resume, stack);
+	}
+	
+	private static fr.univartois.ili.sadoc.dao.entities.Resume getResumeFromVO(Resume resume, Set<Object> stack){
 		fr.univartois.ili.sadoc.dao.entities.Resume newResume = (fr.univartois.ili.sadoc.dao.entities.Resume) alreadyExist(resume);
-
 		if(newResume == null){
 			newResume = new fr.univartois.ili.sadoc.dao.entities.Resume();
 			identityMap.put(resume, newResume);
+		} else if (stack.contains(newResume)) {
+			return newResume;
 		}
-
-		newResume.setOwner(getOwnerFromVO(resume.getOwner()));
+		stack.add(newResume);
+		
+		newResume.setOwner(getOwnerFromVO(resume.getOwner(), stack));
 		newResume.setReferentiels(getIdsFromObjets(resume.getReferentiels(),findByIdReferentiel));
 		newResume.setDomaines(getIdsFromObjets(resume.getDomaines(),findByIdDomaine));
 		newResume.setCompetences(getIdsFromObjets(resume.getCompetences(),findByIdCompetence));
 		newResume.setItems(getIdsFromObjets(resume.getItems(),findByIdItem));
 		return newResume;
 	}
-
-	//TODO : Penser au mapper pour les objets récupérer du WS : package client.webservice.tools
 
 	/**
 	 * Check in identity map if the object already exist
@@ -174,15 +210,6 @@ public class Mapper {
 		}
 		return retour;
 	}
-
-	private static List<Referentiel> getReferencesFromVO(List<Long> idReferenciels) {
-		List<Referentiel> referenciels=new ArrayList<Referentiel>();
-		for(Long id:idReferenciels) {
-			referenciels.add(metier.findReferentielById(id));
-		}
-		return referenciels;
-	}
-
 
 	interface FindById<T> {
 		public T getById(long id);

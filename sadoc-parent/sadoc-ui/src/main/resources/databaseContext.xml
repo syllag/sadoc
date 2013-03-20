@@ -15,6 +15,7 @@
 		http://www.springframework.org/schema/util/spring-util.xsd
 		">
 	<bean id="ownerDAO" class="fr.univartois.ili.sadoc.dao.services.OwnerDAOImpl" />
+	<bean id="resumeDAO" class="fr.univartois.ili.sadoc.dao.services.ResumeDAOImpl" />
 	<bean id="competenceDAO" class="fr.univartois.ili.sadoc.dao.services.CompetenceDAOImpl" />
 	<bean id="domaineDAO" class="fr.univartois.ili.sadoc.dao.services.DomaineDAOImpl" />
 	<bean id="itemDAO" class="fr.univartois.ili.sadoc.dao.services.ItemDAOImpl" />
