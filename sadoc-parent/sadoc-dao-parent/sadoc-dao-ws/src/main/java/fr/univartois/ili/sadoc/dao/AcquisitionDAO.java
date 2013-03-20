@@ -58,7 +58,7 @@ public class AcquisitionDAO extends AbstractWebServiceDAO implements IAcquisitio
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public List<Acquisition> findAcquisitionByOwner(int owner) {
+	public List<Acquisition> findAcquisitionByOwner(long owner) {
 		TypedQuery<Acquisition> querry = entityManager.createQuery(Request.FIND_ACQUISITION_BY_OWNER, Acquisition.class);
 		querry.setParameter("id", owner);
 		return querry.getResultList();
@@ -71,4 +71,5 @@ public class AcquisitionDAO extends AbstractWebServiceDAO implements IAcquisitio
 		querry.setParameter("acronym", acronym);
 		return querry.getSingleResult();
 	}
+
 }

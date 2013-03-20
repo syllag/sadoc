@@ -101,19 +101,20 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 				String accronym = attr.getValue(i);
 				String strAccr[] = accronym.split(":");
 
-				com.setAcronym(accronym);
+				// TODO Competence n'est plus définie comme avant, il faut redéfinir le parser correctement
+			//	com.setAcronym(accronym); 
 				trace("Date de la competence " + strAccr[1] + "et son nom"
 						+ nameCom);
+				
+//				try {
+//					SimpleDateFormat spDate = new SimpleDateFormat(FORMAT_DATE);
+//					com.setCreationDate(spDate.parse(strAccr[1]));
+//				} catch (ParseException e) {
+//					trace("Erreur Enregistrement creation date competence : "
+//							+ e.toString());
+//				}
 
-				try {
-					SimpleDateFormat spDate = new SimpleDateFormat(FORMAT_DATE);
-					com.setCreationDate(spDate.parse(strAccr[1]));
-				} catch (ParseException e) {
-					trace("Erreur Enregistrement creation date competence : "
-							+ e.toString());
-				}
-
-				com.setName(nameCom);
+				//com.setName(nameCom);
 			}
 		}
 		if ("domain".equals(qName)) {
@@ -137,8 +138,9 @@ public class MyCertificateCompetencesParser extends DefaultHandler {
 			cptTag++;
 			trace("++ compteur de tag :", cptTag);
 
-			trace(com.getAcronym() + " " + com.getName() + " "
-					+ com.getDescription());
+//			trace(com.getAcronym() + " " + com.getName() + " "
+//					+ com.getDescription());
+			trace(com.getCodeCompetence() + " " + com.getDescription());
 //			metierWSServices.createCompetance(com);
 		}
 		if ("domain".equals(qName)) {

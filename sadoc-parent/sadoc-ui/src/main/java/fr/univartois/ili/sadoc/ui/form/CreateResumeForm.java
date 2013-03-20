@@ -2,7 +2,6 @@ package fr.univartois.ili.sadoc.ui.form;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import fr.univartois.ili.sadoc.metier.commun.services.IMetierCommunServices;
 import fr.univartois.ili.sadoc.metier.commun.vo.Competence;
@@ -16,8 +15,6 @@ public class CreateResumeForm {
 	private String[] choiceDomaines = null;
 	private String[] choiceCompetences = null;
 	private String[] choiceItems = null;
-
-	private Map<String, Object> session;
 
 	public CreateResumeForm() {
 	}
@@ -68,10 +65,6 @@ public class CreateResumeForm {
 
 	public void setChoiceItems(String[] choiceItems) {
 		this.choiceItems = choiceItems;
-	}
-
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
 	}
 
 	/**
@@ -161,7 +154,9 @@ public class CreateResumeForm {
 		if (listIds != null) {
 			int size = listIds.length;
 			for (int i = 0; i < size; ++i) {
-				list.add(finder.find(metier, Long.parseLong(listIds[i])));
+				if (!"false".equals(listIds[i])) {
+					list.add(finder.find(metier, Long.parseLong(listIds[i])));
+				}
 			}
 		}
 		return list;

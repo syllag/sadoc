@@ -27,7 +27,7 @@ public class WSPrivateImpl implements WSPrivate {
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Map<Owner, List<Competence>> getDocumentInformations(int documentId) {
 		
-		return metierWSServices.findOwnerAndCompetencesByDocumentId(documentId);
+		return null;
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
@@ -37,7 +37,7 @@ public class WSPrivateImpl implements WSPrivate {
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Competence> importCompetences(Document document) {
-		return metierWSServices.findCompetencesByDocument(document);
+		return null;
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)

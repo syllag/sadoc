@@ -11,7 +11,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
 import fr.univartois.ili.sadoc.client.webservice.IClientWebService;
-
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
@@ -57,11 +56,11 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 	
 
 	public String execute() {
-		if (sa != null && TestID.trueFalseID(sa)) {
-
-									
-			Document doc = metierUIServices.findDocumentById(sa);
-			
+		//if (sa != null && TestID.trueFalseID(sa)) {
+		//	Document doc = metierUIServices.findDocumentById(sa);
+		if (true) {
+			Document doc = Document.getFakeDocument();
+		
 			if (doc == null) {
 
 				IClientWebService clientWebService = new ClientWebServiceImpl();
@@ -100,12 +99,8 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 					if (owner == null) {
 						
 						Owner owntoregister = new Owner();
-						owntoregister.setFirstName(incowner.getFirstName());
-						owntoregister.setLastName(incowner.getLastName());
 						owntoregister.setMail(incowner.getMail());
-
-						owntoregister.setId(incowner.getId());
-						
+						owntoregister.setId(incowner.getId());						
 						metierUIServices.createOwner(owntoregister);
 						owner = owntoregister;
 					}
@@ -113,13 +108,12 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 					for (fr.univartois.ili.sadoc.client.webservice.tools.Competence competence : comp
 							.get(incowner)) {
 
-						Competence c = metierUIServices.findCompetenceById(competence.getId().intValue());
+						Competence c = metierUIServices.findCompetenceById(competence.getId());
 						if (c == null) {
-							c = new Competence();
-							c.setName(competence.getName());
+							c = new Competence();	
+							c.setCodeCompetence(competence.getCodeCompetence());
 							c.setDescription(competence.getDescription());
-							c.setId(competence.getId().intValue());
-							
+							c.setId(competence.getId());	
 							metierUIServices.createCompetence(c);
 						}
 						Acquisition a = new Acquisition();
@@ -137,11 +131,11 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 			} else {
 				document = doc;
 
-				List<Acquisition> acq = metierUIServices.findAcquisitionByDocument(doc);
-				owner = acq.get(0).getOwner();
-				for (Acquisition a : acq) {
-					listCompetences.add(a.getCompetence());
-				}
+//				List<Acquisition> acq = metierUIServices.findAcquisitionByDocument(doc);
+//				owner = acq.get(0).getOwner();
+//				for (Acquisition a : acq) {
+//					listCompetences.add(a.getCompetence());
+//				}
 			}
 
 			return SUCCESS;

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.ManyToMany;
-
 import fr.univartois.ili.sadoc.dao.entities.ChecksumAlgorithm;
 
 /**

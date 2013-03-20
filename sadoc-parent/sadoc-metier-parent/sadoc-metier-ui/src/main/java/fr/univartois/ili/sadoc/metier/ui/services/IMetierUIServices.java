@@ -63,7 +63,7 @@ public interface IMetierUIServices {
 	 * @param id
 	 * @return
 	 */
-	Competence findCompetenceById(int id);
+	Competence findCompetenceById(long id);
 
 	/**
 	 * Insert the competence in Database

@@ -27,10 +27,10 @@ public class Owner implements Serializable {
 	private String phone;
 
 	private long idOwnerWs;
-	
-	//XXX : to refactor
+
 	private List<Resume> resumes = new ArrayList<Resume>();
 
+	// TODO to delete
 	private List<Degree> degrees;
 
 	/************************************************/

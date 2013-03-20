@@ -1,13 +1,39 @@
 package fr.univartois.ili.sadoc.metier.tests;
+import static org.junit.Assert.assertEquals;
+
 import java.lang.reflect.InvocationTargetException;
 
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import fr.univartois.ili.sadoc.dao.entities.Referentiel;
+import fr.univartois.ili.sadoc.dao.services.ICompetenceDAO;
+import fr.univartois.ili.sadoc.dao.services.IDomaineDAO;
+import fr.univartois.ili.sadoc.dao.services.IItemDAO;
+import fr.univartois.ili.sadoc.dao.services.IReferentielDAO;
 import fr.univartois.ili.sadoc.metier.commun.utils.Mapper;
 
 
 public class MapperTest {
+	
+	private ApplicationContext ac;
+	private IReferentielDAO ref;
+	private ICompetenceDAO comp;
+	private IItemDAO item;
+	private IDomaineDAO dom;
 
+	@Before
+	public void setUp(){
+		ac=new ClassPathXmlApplicationContext("applicationContext.xml");
+		ref=(IReferentielDAO)ac.getBean("referentielDAO");
+		comp=(ICompetenceDAO)ac.getBean("competenceDAO");
+		item=(IItemDAO)ac.getBean("itemDAO");
+		dom=(IDomaineDAO)ac.getBean("domaineDAO");
+	}
+	
 	@Test(expected=IllegalArgumentException.class)
 	public void testIfGetCompetenceFromEntityParameterIsNull() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Mapper.getCompetenceFromEntity(null);
@@ -78,9 +104,12 @@ public class MapperTest {
 		
 	}
 	
-	@Test
+	@Ignore
 	public void testGetReferentielFromEntity(){
-		
+		Referentiel r=ref.findReferentielById(1);
+		assertEquals(r.getId(),1);
+		fr.univartois.ili.sadoc.metier.commun.vo.Referentiel r2=Mapper.getReferentielFromEntity(r);
+		assertEquals(r2.getId(), 1);
 	}
 	
 	@Test

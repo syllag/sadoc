@@ -92,9 +92,7 @@
 			<result name="success">/content/resume/manageResume.jsp</result>
 		</action>
 
-		<action name="CreateResume" class="fr.univartois.ili.sadoc.ui.actions.CreateResume"
-			method="execute">
-			<interceptor-ref name="prepare"/> 
+		<action name="CreateResume" class="fr.univartois.ili.sadoc.ui.actions.CreateResume">
 			<result name="success">/content/resume/createResume.jsp</result>
 			<result name="input">/content/resume/createResume.jsp</result>
 		</action>

@@ -95,10 +95,8 @@ public class ClientWebServiceImpl implements IClientWebService {
 				.getBean(WebServiceTemplate.class);
 		try {
 
-			CreateOwnerRequest createOwnerRequest = new CreateOwnerRequest();
-			createOwnerRequest.setFirstName(firstName);
-			createOwnerRequest.setLastName(lastName);
-			createOwnerRequest.setMail(mail);
+			CreateOwnerRequest createOwnerRequest = new CreateOwnerRequest();			
+			createOwnerRequest.setMail_initial(mail);
 			response = (fr.univartois.ili.sadoc.client.webservice.tools.Owner) webServiceTemplate
 					.marshalSendAndReceive(createOwnerRequest);
 			
@@ -157,8 +155,6 @@ public class ClientWebServiceImpl implements IClientWebService {
 			ImportDocumentRequest importDocumentRequest = new ImportDocumentRequest();
 			fr.univartois.ili.sadoc.client.webservice.tools.Owner owner2 = new fr.univartois.ili.sadoc.client.webservice.tools.Owner();
 			owner2.setId(owner.getId());
-			owner2.setFirstName(owner.getFirstName());
-			owner2.setLastName(owner.getLastName());
 			owner2.setMail(owner.getMail());
 			importDocumentRequest.setOwner(owner2);
 
