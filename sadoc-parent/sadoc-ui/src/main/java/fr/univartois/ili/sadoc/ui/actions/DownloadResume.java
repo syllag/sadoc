@@ -5,8 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +26,7 @@ import fr.univartois.ili.sadoc.metier.commun.vo.Referentiel;
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.metier.ui.vo.Resume;
+import fr.univartois.ili.sadoc.ui.utils.Connection;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 import fr.univartois.ili.sadoc.ui.utils.ResumeUtil;
 
@@ -60,13 +59,16 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 	 * method createPdf
 	 */
 
-	private void createPdf() {
+	private void createPdf(Owner owner) {
 		Document document = new Document();
 		FileOutputStream fo;
 		
 		// TODO to change when fake will be useless
 		Resume resume = Resume.getFake();
-		// Resume resume = metierUIServices.findResumeById(cv);
+		 //Resume resume = metierUIServices.findResumeById(cv);
+		 //if(resume.getOwner().getId() != owner.getId()){
+		 //	 throw new IllegalStateException();
+		 //}
 		
 		try {
 		
@@ -76,8 +78,6 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 			Paragraph title = new Paragraph("Curriculum vitae", titleFont);
 			title.setAlignment(Element.ALIGN_CENTER);
 			
-			//Owner owner = (Owner) session.get("owner");
-			Owner owner = new Owner("Toto", "TITI", "toto@toto.fr", "", "address", "00000", "ICI", "0102030405");
 			Paragraph prefaceNom = new Paragraph((String) owner.getLastName(),
 					particularFont);
 			Paragraph prefacePrenom = new Paragraph(
@@ -204,19 +204,24 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 
 
 	public String execute() {
-		// TODO to remove when fake will be useless
-		if (false && session.get("mail") == null) {
+		
+		Owner owner = Connection.getUser(session);
+		if (owner == null){
 			return "index";
 		}
-
+		
 		try {
-			createPdf();
+			createPdf(owner);
 			String pdf_path = "/tmp/"
 					+ session.get("id") + "_" + cv + "cv.pdf";
 			LOG.info("PDF generated at "+pdf_path);
 			fileInputStream = new FileInputStream(new File(pdf_path));
 
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+		 catch (IllegalStateException e) {
 			e.printStackTrace();
 			return ERROR;
 		}
