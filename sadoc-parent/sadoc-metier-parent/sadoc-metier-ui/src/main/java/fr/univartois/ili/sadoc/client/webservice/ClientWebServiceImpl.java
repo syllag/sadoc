@@ -10,18 +10,19 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 
 import fr.univartois.ili.sadoc.client.webservice.tools.CreateOwnerRequest;
 import fr.univartois.ili.sadoc.client.webservice.tools.Document;
+import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentByOwnerRequest;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentInformationsRequest;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentInformationsResponse;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentRequest;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentResponse;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetOwnerRequest;
-import fr.univartois.ili.sadoc.client.webservice.tools.ImportDocumentRequest;
-import fr.univartois.ili.sadoc.client.webservice.tools.ImportDocumentResponse;
 import fr.univartois.ili.sadoc.client.webservice.tools.Owner;
+
 /**
  * manage client web service
+ * 
  * @author habib
- *
+ * 
  */
 public class ClientWebServiceImpl implements IClientWebService {
 
@@ -41,11 +42,9 @@ public class ClientWebServiceImpl implements IClientWebService {
 
 			GetDocumentResponse responses = (GetDocumentResponse) webServiceTemplate
 					.marshalSendAndReceive(getDocumentRequest);
-			
+
 			response = responses.getDocument();
 		} catch (Exception sfce) {
-
-			
 
 			sfce.printStackTrace();
 		}
@@ -73,10 +72,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 			responses = new HashedMap();
 			responses.put(response.getOwner(), response.getCompetence());
 
-	
-
 		} catch (Exception sfce) {
-
 
 			sfce.printStackTrace();
 		}
@@ -95,15 +91,12 @@ public class ClientWebServiceImpl implements IClientWebService {
 				.getBean(WebServiceTemplate.class);
 		try {
 
-			CreateOwnerRequest createOwnerRequest = new CreateOwnerRequest();			
+			CreateOwnerRequest createOwnerRequest = new CreateOwnerRequest();
 			createOwnerRequest.setMail_initial(mail);
 			response = (fr.univartois.ili.sadoc.client.webservice.tools.Owner) webServiceTemplate
 					.marshalSendAndReceive(createOwnerRequest);
-			
 
 		} catch (Exception sfce) {
-
-			
 
 			sfce.printStackTrace();
 		}
@@ -125,11 +118,8 @@ public class ClientWebServiceImpl implements IClientWebService {
 			getOwnerRequest.setMail(mail);
 			response = (fr.univartois.ili.sadoc.client.webservice.tools.Owner) webServiceTemplate
 					.marshalSendAndReceive(getOwnerRequest);
-			
 
 		} catch (Exception sfce) {
-
-			
 
 			sfce.printStackTrace();
 		}
@@ -151,21 +141,14 @@ public class ClientWebServiceImpl implements IClientWebService {
 		WebServiceTemplate webServiceTemplate = applicationContext
 				.getBean(WebServiceTemplate.class);
 		try {
+			GetDocumentByOwnerRequest getDocumentByOwnerRequest = new GetDocumentByOwnerRequest();
+			getDocumentByOwnerRequest.setIdOwnerWs(owner.getId());
 
-			ImportDocumentRequest importDocumentRequest = new ImportDocumentRequest();
-			fr.univartois.ili.sadoc.client.webservice.tools.Owner owner2 = new fr.univartois.ili.sadoc.client.webservice.tools.Owner();
-			owner2.setId(owner.getId());
-			owner2.setMail_initial(owner.getMail());
-			importDocumentRequest.setOwner(owner2);
-
-			ImportDocumentResponse responsess = (ImportDocumentResponse) webServiceTemplate
-					.marshalSendAndReceive(importDocumentRequest);
-			
-			responses = responsess.getDocument();
+			List<fr.univartois.ili.sadoc.client.webservice.tools.Document> responsess = (List<fr.univartois.ili.sadoc.client.webservice.tools.Document>) webServiceTemplate
+					.marshalSendAndReceive(getDocumentByOwnerRequest);
+			responses = (List<Document>) ((GetDocumentResponse) responsess).getDocument();
 
 		} catch (Exception sfce) {
-
-			
 
 			sfce.printStackTrace();
 		}

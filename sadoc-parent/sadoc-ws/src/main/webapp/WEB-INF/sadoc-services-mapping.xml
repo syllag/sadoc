@@ -143,25 +143,6 @@
 		</field>
 	</class>
 	
-	<!-- Mapping for ImportDocumentRequest -->		
-	<class name="fr.univartois.ili.sadoc.ws.spring.ImportDocumentRequest">
-		<map-to xml="importDocumentRequest" ns-uri="http://sadoc.com/ac/schemas" />
-		<field name="owner" type="fr.univartois.ili.sadoc.metier.ws.vo.Owner">
-			<bind-xml name="owner" node="element" xmlns="http://sadoc.com/ac/schemas" />
-		</field>
-	</class>
-
-	<!-- Mapping for ImportDocumentResponse -->	
-	<class name="fr.univartois.ili.sadoc.ws.spring.ImportDocumentResponse">
-		<map-to xml="importDocumentResponse" ns-uri="http://sadoc.com/ac/schemas" />
-		
-		<field name="document"
-			type="fr.univartois.ili.sadoc.metier.ws.vo.Document"
-			collection="arraylist">
-			<bind-xml name="document" node="element"
-				xmlns="http://sadoc.com/ac/schemas" />
-		</field>
-	</class>
 
 	<!-- Mapping for GetDocumentRequest -->		
 	<class name="fr.univartois.ili.sadoc.ws.spring.GetDocumentRequest">

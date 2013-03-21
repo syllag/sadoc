@@ -101,21 +101,8 @@ public class WSStub {
 
 	}
 
-	@PayloadRoot(localPart = "importDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
-	@ResponsePayload
-	public ImportDocumentResponse importDocument(
-			@RequestPayload ImportDocumentRequest request) {
-		List<Document> dd = wsPrivate.importDocument(request.getOwner());
-		ImportDocumentResponse importDocumentResponse = new ImportDocumentResponse();
-		importDocumentResponse.setDocument(dd);
-		return importDocumentResponse;
-	}
-
-	@PayloadRoot(localPart = "importCompetencesRequest", namespace = "http://sadoc.com/ac/schemas")
-	@ResponsePayload
-	public List<Competence> importCompetences(@RequestPayload Document document) {
-		return wsPrivate.importCompetences(document);
-	}
+	
+	
 
 	@PayloadRoot(localPart = "getDocumentRequest", namespace = "http://sadoc.com/ac/schemas")
 	@ResponsePayload
