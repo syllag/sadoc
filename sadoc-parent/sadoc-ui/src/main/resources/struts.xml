@@ -12,17 +12,17 @@
 			<result>/content/home/Home.jsp</result>
 		</action>
 
-		<action name="ValidateConnect" class="fr.univartois.ili.sadoc.ui.actions.ManageConnect"
-			method="execute">
-			<result name="success">/content/profile/Profile.jsp</result>
-			<result name="input">/content/connect/Connect.jsp</result>
-		</action>
-
 		<action name="SignIn" class="fr.univartois.ili.sadoc.ui.actions.ManageSignIn"
 			method="execute">
 			<result name="success">/content/connect/Connect.jsp</result>
 			<result name="input">/content/signin/Signin.jsp</result>
 			<result name="index">/content/home/Home.jsp</result>
+		</action>
+		
+		<action name="ValidateConnect" class="fr.univartois.ili.sadoc.ui.actions.ManageConnect"
+			method="execute">
+			<result name="success">/content/profile/Profile.jsp</result>
+			<result name="input">/content/connect/Connect.jsp</result>
 		</action>
 
 		<action name="Deconnection" class="fr.univartois.ili.sadoc.ui.actions.Deconnection">
@@ -30,19 +30,12 @@
 			<result name="success">/content/home/Home.jsp</result>
 		</action>
 
-		<action name="ModifyProfile"
-			class="fr.univartois.ili.sadoc.ui.actions.TestManageProfile">
-			<result name="input">/content/profile/Profile.jsp</result>
-			<result name="success">/content/profile/EditProfile.jsp</result>
-			<result name="astalavista">/content/home/Home.jsp</result>
-		</action>
-
 		<action name="Profile">
 			<result name="input">/content/profile/Profile.jsp</result>
 			<result name="success">/content/profile/Profile.jsp</result>
 		</action>
 
-		<action name="ModifyProfile2" class="fr.univartois.ili.sadoc.ui.actions.ManageProfile">
+		<action name="ModifyProfile" class="fr.univartois.ili.sadoc.ui.actions.ManageProfile">
 			<result name="success">/content/profile/Profile.jsp</result>
 			<result name="input">/content/profile/EditProfile.jsp</result>
 			<result name="index">/content/home/Home.jsp</result>
@@ -56,7 +49,18 @@
 			</result>
 			<result name="astalavista">/content/home/Home.jsp</result>
 		</action>
-
+		
+		<action name="manageResume" class="fr.univartois.ili.sadoc.ui.actions.ManageResume"
+			method="execute">
+			<result name="success">/content/resume/manageResume.jsp</result>
+			<result name="index">/content/home/Home.jsp</result>
+		</action>
+		
+		<action name="CreateResume" class="fr.univartois.ili.sadoc.ui.actions.CreateResume">
+			<result name="success">/content/resume/createResume.jsp</result>
+			<result name="input">/content/resume/createResume.jsp</result>
+		</action>
+		
 		<action name="downloadResume" class="fr.univartois.ili.sadoc.ui.actions.DownloadResume"
 			method="execute">
 			<result name="success" type="stream">
@@ -66,12 +70,6 @@
 				<param name="bufferSize">1024</param>
 			</result>
 			<result name="astalavista">content/home/Home.jsp</result>
-		</action>
-		
-		<action name="manageResume" class="fr.univartois.ili.sadoc.ui.actions.ManageResume"
-			method="execute">
-			<result name="success">/content/resume/manageResume.jsp</result>
-			<result name="index">/content/home/Home.jsp</result>
 		</action>
 
 		<action name="downloadP7S" class="fr.univartois.ili.sadoc.ui.actions.DownloadP7S"
@@ -85,11 +83,6 @@
 			<result name="error">content/DocumentInformation/documentInformationError.jsp
 			</result>
 			<result name="astalavista">content/home/Home.jsp</result>
-		</action>
-
-		<action name="CreateResume" class="fr.univartois.ili.sadoc.ui.actions.CreateResume">
-			<result name="success">/content/resume/createResume.jsp</result>
-			<result name="input">/content/resume/createResume.jsp</result>
 		</action>
 
 		<action name="ModifyUrl" class="fr.univartois.ili.sadoc.ui.actions.ModifyUrl"
