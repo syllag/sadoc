@@ -66,12 +66,11 @@
 				<param name="bufferSize">1024</param>
 			</result>
 			<result name="astalavista">content/home/Home.jsp</result>
-
 		</action>
+		
 		<action name="manageResume" class="fr.univartois.ili.sadoc.ui.actions.ManageResume"
 			method="execute">
-			<result name="success">/content/resume/manageResume.jsp
-			</result>
+			<result name="success">/content/resume/manageResume.jsp</result>
 			<result name="index">/content/home/Home.jsp</result>
 		</action>
 
@@ -86,10 +85,6 @@
 			<result name="error">content/DocumentInformation/documentInformationError.jsp
 			</result>
 			<result name="astalavista">content/home/Home.jsp</result>
-		</action>
-		<action name="ShowCreateResume" class="fr.univartois.ili.sadoc.ui.actions.ShowCreateResume"
-			method="execute">
-			<result name="success">/content/resume/manageResume.jsp</result>
 		</action>
 
 		<action name="CreateResume" class="fr.univartois.ili.sadoc.ui.actions.CreateResume">
