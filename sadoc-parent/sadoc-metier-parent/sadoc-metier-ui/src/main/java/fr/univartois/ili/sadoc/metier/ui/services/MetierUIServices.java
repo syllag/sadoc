@@ -140,4 +140,9 @@ public class MetierUIServices implements IMetierUIServices{
 			resumeVO = Mapper.getResumeFromEntities(resume); 
 		return resumeVO;
 	}
+
+	@Override
+	public void removeResume(Resume resume) {
+		resumeDAO.removeResume(Mapper.getResumeFromVO(resume));
+	}
 }

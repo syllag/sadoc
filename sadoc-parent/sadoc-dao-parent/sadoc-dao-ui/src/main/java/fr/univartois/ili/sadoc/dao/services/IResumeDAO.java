@@ -27,4 +27,12 @@ public interface IResumeDAO {
 	 * the owner is the owner to update 
 	 */
 	void updateResume(Resume resume);
+
+	/**
+	 * Remove the resume in DB
+	 * 
+	 * @param resume 
+	 * the resume to remove in the DB 
+	 */
+	void removeResume(Resume resume);
 }

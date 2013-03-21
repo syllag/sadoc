@@ -142,4 +142,12 @@ public interface IMetierUIServices {
 	 */
 	Resume findResumeById(long id);
 
+	/**
+	 * Ask to remove the Resume in the DB
+	 * 
+	 * @param resume
+	 * 		
+	 */
+	void removeResume(Resume resume);
+
 }

@@ -72,6 +72,11 @@
 			<result name="astalavista">content/home/Home.jsp</result>
 		</action>
 
+		<action name="RemoveResume" class="fr.univartois.ili.sadoc.ui.actions.RemoveResume">
+			<result name="success">/content/resume/manageResume.jsp</result>
+			<result name="index">/content/home/Home.jsp</result>
+		</action>
+		
 		<action name="downloadP7S" class="fr.univartois.ili.sadoc.ui.actions.DownloadP7S"
 			method="execute">
 			<result name="success" type="stream">
