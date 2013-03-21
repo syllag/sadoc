@@ -82,9 +82,16 @@ public class DownloadResume extends ActionSupport implements SessionAware {
 					(String) owner.getFirstName(), particularFont);
 			Paragraph prefaceAdresse = new Paragraph(
 					(String) owner.getAddress(), particularFont);
+			StringBuilder address = new StringBuilder();
+			if(owner.getZipCode() != null){
+				address.append(owner.getZipCode());
+				address.append(' ');
+			}
+			if(owner.getTown() != null){
+				address.append(owner.getTown());
+			}
 			Paragraph prefaceVille = new Paragraph(
-					(String) owner.getZipCode() + ", "
-							+ (String) owner.getTown(), particularFont);
+					address.toString(), particularFont);
 			Paragraph prefaceMail = new Paragraph((String) owner.getMail(),
 					particularFont);
 			Paragraph prefaceTel = new Paragraph((String) owner.getPhone(),
