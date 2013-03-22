@@ -19,13 +19,15 @@
 				<s:url var="genCV" action="DownloadResume">
 					<s:param name="cv">${resume.id}</s:param>
 				</s:url>
-				<a	href="${genCV}"	title="Télécharger le CV"> <img src="img/download.png" />
-					</a>
+				<a	href="${genCV}"	title="Télécharger le CV"> 
+					<img src="<s:url value="/img/download.png"/>"/>
+				</a>
 				<s:url var="remCV" action="RemoveResume">
 					<s:param name="cv">${resume.id}</s:param>
 				</s:url>
-				<a href="${remCV}" title="Supprimer le CV"> <img src="img/delete.png" />
-					</a>	
+				<a href="${remCV}" title="Supprimer le CV">
+					<img src="<s:url value="/img/delete.png"/>"/>
+				</a>	
 					</span></td>
 			</tr>
 		</c:forEach>
