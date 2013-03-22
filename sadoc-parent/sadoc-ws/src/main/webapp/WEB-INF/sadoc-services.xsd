@@ -90,31 +90,10 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="validation" type="xs:boolean" />
-	<xs:element name="importDocumentRequest">
+	<xs:element name="getDocumentByOwnerRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="schemas:owner" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="importDocumentResponse">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="schemas:document" maxOccurs="unbounded" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="importCompetencesRequest">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="schemas:document" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="importCompetencesResponse">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="schemas:competence" maxOccurs="unbounded" />
+				<xs:element ref="schemas:idOwnerWs" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -184,6 +163,7 @@
 	<xs:element name="url" type="xs:string" />
 	<xs:element name="p7s" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
 	<xs:element name="id" type="xs:long" />
+	<xs:element name="idOwnerWs" type="xs:long" />
 	<xs:element name="id_item" type="xs:string" />
 	<xs:element name="idDocument" type="xs:long" />
 	<xs:element name="acronym" type="xs:string" />

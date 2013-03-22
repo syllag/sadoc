@@ -32,4 +32,10 @@ public class ResumeDAOImpl extends AbstractWebAppDAO implements IResumeDAO{
 		entityManager.merge(resume);	
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void removeResume(Resume resume) {
+		entityManager.remove(entityManager.merge(resume));
+	}
+
 }

@@ -48,12 +48,6 @@ public class MetierUIServicesTest {
 		ManageConnect mc = new ManageConnect();
 		assertNotNull(mc.getMetierUIServices());
 		
-		ManageProfile mp = new ManageProfile();
-		assertNotNull(mp.getMetierUIServices());
-		
-		ManageResume mr = new ManageResume();
-		assertNotNull(mr.getMetierUIServices());
-		
 		ManageSignIn ms = new ManageSignIn();
 		assertNotNull(ms.getMetierUIServices());
 		

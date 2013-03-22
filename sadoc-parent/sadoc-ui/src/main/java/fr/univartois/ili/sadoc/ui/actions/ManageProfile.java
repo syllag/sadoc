@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
 import fr.univartois.ili.sadoc.ui.form.ManageProfileForm;
+import fr.univartois.ili.sadoc.ui.utils.Connection;
 import fr.univartois.ili.sadoc.ui.utils.ContextFactory;
 import fr.univartois.ili.sadoc.ui.utils.Form;
 
@@ -21,43 +22,32 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 	private IMetierUIServices metierUIServices = ContextFactory.getContext()
 			.getBean(IMetierUIServices.class);
 
-	
+	@Override
 	public String execute() {
-		if (session.get("mail") == null) {
-			/**
-			 * non logged user
-			 */
+		Owner owner = Connection.getUser(session);
+		if (owner == null) {
 			return "index";
 		}
+		
 		if (form == null) {
 			return INPUT;
 		}
 
-		String mail = (String) session.get("mail");
-		Owner owner = metierUIServices.findOwnerByEmail(mail);
-		/**
-		 * Add information of user account from the form
-		 */
+		// Add information of user account from the form
 		owner.setAddress(Form.normalizeAddress(form.getAddress()));
 		owner.setZipCode(form.getZipCode());
 		owner.setTown(Form.normalizeTown(form.getTown()));
 		owner.setPhone(form.getPhone());
-		if (!(form.getPassword().isEmpty() && form.getPassword2().isEmpty())
-				&& form.getPassword().equals(form.getPassword2())) {
+		if (!form.getPassword().isEmpty()) {
 			owner.setPassword(form.getPassword());
 		}
-
-		session.put("owner", owner);
-		/**
-		 * Add modification
-		 */
 		metierUIServices.updateOwner(owner);
 
 		return SUCCESS;
 	}
 
+	@Override
 	public void validate() {
-
 		if (form != null) {
 			if (!(form.getPassword().isEmpty() && form.getPassword2()
 						.isEmpty())) {
@@ -79,7 +69,6 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 				}
 			}
 		}
-		
 	}
 
 	public ManageProfileForm getForm() {
@@ -90,19 +79,12 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		this.form = form;
 	}
 
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
-
 	public Map<String, Object> getSession() {
 		return session;
 	}
-
-	/**
-	 * @return the metierUIServices
-	 */
-	public IMetierUIServices getMetierUIServices() {
-		return metierUIServices;
+	
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
-
 }

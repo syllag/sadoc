@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}document"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}idOwnerWs"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,36 +29,33 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "document"
+    "idOwnerWs"
 })
-@XmlRootElement(name = "importCompetencesRequest")
-public class ImportCompetencesRequest {
+@XmlRootElement(name = "getDocumentByOwnerRequest")
+public class GetDocumentByOwnerRequest {
 
-    @XmlElement(required = true)
-    protected Document document;
+	
+	
+	
+    public GetDocumentByOwnerRequest() {		
+	}
 
-    /**
-     * Gets the value of the document property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Document }
-     *     
-     */
-    public Document getDocument() {
-        return document;
-    }
+	@XmlElement(required = true)
+    protected long idOwnerWs;
 
-    /**
-     * Sets the value of the document property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Document }
-     *     
-     */
-    public void setDocument(Document value) {
-        this.document = value;
-    }
+	/**
+	 * @return the idOwnerWs
+	 */
+	public long getIdOwnerWs() {
+		return idOwnerWs;
+	}
+
+	/**
+	 * @param idOwnerWs the idOwnerWs to set
+	 */
+	public void setIdOwnerWs(long idOwnerWs) {
+		this.idOwnerWs = idOwnerWs;
+	}   
+    
 
 }

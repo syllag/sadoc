@@ -70,18 +70,7 @@ public interface SadocServices {
         @WebParam(name = "getDocumentInformationsRequest", targetNamespace = "http://sadoc.com/ac/schemas", partName = "getDocumentInformationsRequest")
         GetDocumentInformationsRequest getDocumentInformationsRequest);
 
-    /**
-     * 
-     * @param importDocumentRequest
-     * @return
-     *     returns com.sadoc.ac.schemas.ImportDocumentResponse
-     */
-    @WebMethod
-    @WebResult(name = "importDocumentResponse", targetNamespace = "http://sadoc.com/ac/schemas", partName = "importDocumentResponse")
-    public ImportDocumentResponse importDocument(
-        @WebParam(name = "importDocumentRequest", targetNamespace = "http://sadoc.com/ac/schemas", partName = "importDocumentRequest")
-        ImportDocumentRequest importDocumentRequest);
-
+   
     /**
      * 
      * @param verifyDocumentRequest
@@ -106,18 +95,7 @@ public interface SadocServices {
         @WebParam(name = "getDocumentRequest", targetNamespace = "http://sadoc.com/ac/schemas", partName = "getDocumentRequest")
         GetDocumentRequest getDocumentRequest);
 
-    /**
-     * 
-     * @param importCompetencesRequest
-     * @return
-     *     returns com.sadoc.ac.schemas.ImportCompetencesResponse
-     */
-    @WebMethod
-    @WebResult(name = "importCompetencesResponse", targetNamespace = "http://sadoc.com/ac/schemas", partName = "importCompetencesResponse")
-    public ImportCompetencesResponse importCompetences(
-        @WebParam(name = "importCompetencesRequest", targetNamespace = "http://sadoc.com/ac/schemas", partName = "importCompetencesRequest")
-        ImportCompetencesRequest importCompetencesRequest);
-
+   
     /**
      * 
      * @param createCertificateRequest

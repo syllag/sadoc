@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{http://sadoc.com/ac/schemas}doc"/>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}name"/>
  *         &lt;element ref="{http://sadoc.com/ac/schemas}owner"/>
- *         &lt;element ref="{http://sadoc.com/ac/schemas}competence" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://sadoc.com/ac/schemas}acquisition" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlType;
     "doc",
     "name",
     "owner",
-    "competence"
+    "acquisition"
 })
 @XmlRootElement(name = "signDocumentRequest")
 public class SignDocumentRequest {
@@ -52,7 +52,7 @@ public class SignDocumentRequest {
     @XmlElement(required = true)
     protected Owner owner;
     @XmlElement(required = true)
-    protected List<Competence> competence;
+    protected List<Acquisition> acquisition;
 
     /**
      * Gets the value of the doc property.
@@ -148,11 +148,18 @@ public class SignDocumentRequest {
      * 
      * 
      */
-    public List<Competence> getCompetence() {
-        if (competence == null) {
-            competence = new ArrayList<Competence>();
+    public List<Acquisition> getAcquisition() {
+        if (acquisition == null) {
+        	acquisition = new ArrayList<Acquisition>();
         }
-        return this.competence;
+        return this.acquisition;
     }
+
+	/**
+	 * @param acquisition the acquisition to set
+	 */
+	public void setAcquisition(List<Acquisition> acquisition) {
+		this.acquisition = acquisition;
+	}
 
 }

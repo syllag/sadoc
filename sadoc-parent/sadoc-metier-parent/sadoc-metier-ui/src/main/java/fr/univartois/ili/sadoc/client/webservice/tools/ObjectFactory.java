@@ -49,14 +49,7 @@ public class ObjectFactory {
     public ObjectFactory() {
     }
 
-    /**
-     * Create an instance of {@link ImportCompetencesRequest }
-     * 
-     */
-    public ImportCompetencesRequest createImportCompetencesRequest() {
-        return new ImportCompetencesRequest();
-    }
-
+   
     /**
      * Create an instance of {@link Owner }
      * 
@@ -73,13 +66,7 @@ public class ObjectFactory {
         return new GetOwnerRequest();
     }
 
-    /**
-     * Create an instance of {@link ImportDocumentRequest }
-     * 
-     */
-    public ImportDocumentRequest createImportDocumentRequest() {
-        return new ImportDocumentRequest();
-    }
+   
 
     /**
      * Create an instance of {@link CreateOwnerRequest }
@@ -153,13 +140,7 @@ public class ObjectFactory {
         return new GetDocumentResponse();
     }
 
-    /**
-     * Create an instance of {@link ImportDocumentResponse }
-     * 
-     */
-    public ImportDocumentResponse createImportDocumentResponse() {
-        return new ImportDocumentResponse();
-    }
+   
 
     /**
      * Create an instance of {@link Document }
@@ -185,14 +166,7 @@ public class ObjectFactory {
         return new VerifyDocumentResponse();
     }
 
-    /**
-     * Create an instance of {@link ImportCompetencesResponse }
-     * 
-     */
-    public ImportCompetencesResponse createImportCompetencesResponse() {
-        return new ImportCompetencesResponse();
-    }
-
+  
     /**
      * Create an instance of {@link Competence }
      * 

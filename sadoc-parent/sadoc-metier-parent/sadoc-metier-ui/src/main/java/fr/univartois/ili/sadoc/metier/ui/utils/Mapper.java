@@ -197,7 +197,7 @@ public class Mapper {
 	 */
 	private static Object alreadyExist(Object object){
 		Object retour = null;
-
+		
 		for(Map.Entry<Object, Object> mapEntry : identityMap.entrySet()){
 			if(object == mapEntry.getKey()){
 				retour = mapEntry.getValue();
