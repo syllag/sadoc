@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.UUID;
 
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.Ignore;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
 import fr.univartois.ili.sadoc.client.webservice.tools.Owner;
@@ -28,7 +28,7 @@ public class GetOwnerTest {
 				.getUnmarshaller());
 	}
 
-	@Test
+	@Ignore
 	public void testApplicationContextLoadByClasspathProcess() {
 		String mail = UUID.randomUUID().toString().replace("-", "")
 				+ "@gmail.com";
