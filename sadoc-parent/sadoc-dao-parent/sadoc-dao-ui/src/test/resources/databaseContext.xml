@@ -15,6 +15,7 @@
 		http://www.springframework.org/schema/util/spring-util.xsd
 		">
 	<bean id="ownerDAO" class="fr.univartois.ili.sadoc.dao.services.OwnerDAOImpl" />
+	<bean id="resumeDAO" class="fr.univartois.ili.sadoc.dao.services.ResumeDAOImpl" />
 
 	<!-- Datasource -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

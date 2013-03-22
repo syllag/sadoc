@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -20,6 +21,7 @@ public class Document implements Serializable {
 	private static final long serialVersionUID = 2105359651993183213L;
 	
 	@Id
+	@GeneratedValue
 	private long id;
 	private String name;
 	private String url;

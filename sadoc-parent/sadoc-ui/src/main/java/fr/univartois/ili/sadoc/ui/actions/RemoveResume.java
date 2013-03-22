@@ -39,11 +39,7 @@ public class RemoveResume extends ActionSupport implements SessionAware {
 		if(resume == null || resume.getOwner().getId() != owner.getId()) {
 			throw new IllegalStateException();
 		}
-		
-		for (Resume res : owner.getResumes()) {
-			System.out.println(res.getId() + " - " + res);
-		}
-		System.out.println("to remove : " + resume.getId() + " - " + resume);
+				
 		owner.getResumes().remove(resume);
 		metierUIServices.updateOwner(owner);
 		metierUIServices.removeResume(resume);
@@ -57,5 +53,4 @@ public class RemoveResume extends ActionSupport implements SessionAware {
 	public Map<String, Object> getSession() {
 		return session;
 	}
-	
 }

@@ -2,7 +2,7 @@ package fr.univartois.sadoc.tests.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class TestResumeDAOImp {
 		assertEquals(1, ownerFound.getResumes().size());
 		assertTrue(ownerFound.getResumes().contains(resume));
 		Resume resumeFound = resumeDAO.findResumeById(resume.getId());
-		assertSame(resume.getOwner(), resumeFound.getOwner());
+		assertEquals(resume.getOwner(), resumeFound.getOwner());
 	}
 	
 	@Test
@@ -112,10 +112,10 @@ public class TestResumeDAOImp {
 		
 		// Test
 		resumeFound = resumeDAO.findResumeById(resume.getId());
-		assertEquals(2, resumeFound.getReferentiels().size());
-		assertEquals(2, resumeFound.getDomaines().size());
-		assertEquals(2, resumeFound.getCompetences().size());
-		assertEquals(2, resumeFound.getItems().size());
+		assertEquals(1, resumeFound.getReferentiels().size());
+		assertEquals(1, resumeFound.getDomaines().size());
+		assertEquals(1, resumeFound.getCompetences().size());
+		assertEquals(1, resumeFound.getItems().size());
 		
 		
 		// Remove elements into lists
@@ -127,6 +127,16 @@ public class TestResumeDAOImp {
 		resume.setCompetences(list);
 
 		resumeFound = resumeDAO.findResumeById(resume.getId());
-		assertSame(resume, resumeFound);
-	}	
+		assertEquals(resume, resumeFound);
+	}
+	
+	@Test
+	public void testRemove() {	
+		Resume resume = new Resume();
+		resumeDAO.createResume(resume);
+		resumeDAO.removeResume(resume);
+		
+		Resume resumeFound=resumeDAO.findResumeById(resume.getId());
+		assertNull(resumeFound);
+	}
 }

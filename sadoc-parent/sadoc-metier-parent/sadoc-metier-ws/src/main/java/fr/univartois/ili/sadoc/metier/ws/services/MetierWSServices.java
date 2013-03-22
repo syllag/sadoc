@@ -64,6 +64,7 @@ public class MetierWSServices implements IMetierWSServices {
 		try {
 			ownerWS = Mapper.ownerVOToOwnerDO(owner);
 			ownerWSDAO.create(ownerWS);
+			owner.setId(ownerWS.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

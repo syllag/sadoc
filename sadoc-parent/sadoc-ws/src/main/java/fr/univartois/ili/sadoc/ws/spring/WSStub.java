@@ -55,7 +55,7 @@ public class WSStub {
 	}
 
 	public byte[] signDocument(byte[] doc, String name, Certificate certificat,
-			Competence[] competence) {
+			Acquisition[] acquisition) {
 		// TODO ???
 		// Cette méthode devrait-elle renvoyer un tableau vide plutôt que null ?
 		return null;

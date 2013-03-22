@@ -21,15 +21,14 @@
 	
 	<import resource="classpath:databaseContextMetierUI.xml" />
 	
-	<bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller"
+	<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller"
 		p:contextPath="fr.univartois.ili.sadoc.client.webservice.tools" />
 
 	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate"
-		p:marshaller-ref="jaxbMarshaller" p:unmarshaller-ref="jaxbMarshaller"
+		p:marshaller-ref="jaxb2Marshaller" p:unmarshaller-ref="jaxb2Marshaller"
 		p:defaultUri="${webservice.ip}"
 		p:messageSender-ref="messageSender">
 		<constructor-arg ref="messageFactory" />
-
 	</bean>
 
 	<bean id="messageSender"

@@ -1,6 +1,5 @@
 package fr.univartois.ili.sadoc.client.webservice;
 
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import fr.univartois.ili.sadoc.client.webservice.tools.CreateOwnerRequest;
+import fr.univartois.ili.sadoc.client.webservice.tools.CreateOwnerResponse;
 import fr.univartois.ili.sadoc.client.webservice.tools.Document;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentByOwnerRequest;
 import fr.univartois.ili.sadoc.client.webservice.tools.GetDocumentInformationsRequest;
@@ -55,7 +55,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 		try {
 
 			GetDocumentRequest getDocumentRequest = new GetDocumentRequest();
-			getDocumentRequest.setIdDocument(BigInteger.valueOf(id));
+			getDocumentRequest.setIdDocument(id);
 
 			GetDocumentResponse responses = (GetDocumentResponse) webServiceTemplate
 					.marshalSendAndReceive(getDocumentRequest);
@@ -93,12 +93,13 @@ public class ClientWebServiceImpl implements IClientWebService {
 
 	public fr.univartois.ili.sadoc.client.webservice.tools.Owner createOwner(
 			String mail) {
-		fr.univartois.ili.sadoc.client.webservice.tools.Owner response = null;
+		CreateOwnerResponse response = null;
 		try {
 
 			CreateOwnerRequest createOwnerRequest = new CreateOwnerRequest();
-			createOwnerRequest.setMail_initial(mail);
-			response = (fr.univartois.ili.sadoc.client.webservice.tools.Owner) webServiceTemplate
+			createOwnerRequest.setMailInitial(mail);
+			
+			response = (CreateOwnerResponse) webServiceTemplate
 					.marshalSendAndReceive(createOwnerRequest);
 
 		} catch (Exception sfce) {
@@ -106,7 +107,7 @@ public class ClientWebServiceImpl implements IClientWebService {
 			sfce.printStackTrace();
 		}
 
-		return response;
+		return response.getOwner();
 	}
 
 	public Owner getOwner(String mail) {

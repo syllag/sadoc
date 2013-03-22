@@ -1,5 +1,6 @@
 package fr.univartois.ili.sadoc.metier.ws.vo;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class Owner implements Serializable, Comparable<Object> {
 	
 	private String mail_initial;
 	
-	private List<Certificate> certificates;
+	private List<Certificate> certificates = new ArrayList<Certificate>();
 	
 	/************************************************/
 	

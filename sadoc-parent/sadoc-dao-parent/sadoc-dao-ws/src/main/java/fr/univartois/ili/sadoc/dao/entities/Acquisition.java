@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
@@ -17,6 +18,7 @@ public class Acquisition implements Serializable {
 	private static final long serialVersionUID = 3216317303555902356L;
 
 	@Id
+	@GeneratedValue
 	private long id;
 	
 	private String id_item;
