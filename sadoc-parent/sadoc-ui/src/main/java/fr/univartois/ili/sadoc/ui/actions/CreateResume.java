@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.itextpdf.text.log.SysoLogger;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.metier.commun.services.IMetierCommunServices;

@@ -2,8 +2,6 @@ package fr.univartois.ili.sadoc.metier.commun.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -134,11 +132,6 @@ public class MetierCommunServices implements IMetierCommunServices {
 			throw new IllegalArgumentException();
 		
 		String decomp[]=StringSplitter.split(acronym,':');
-		
-		/* Nécessité d'utiliser une instance de Matcher car la méthode String.split() ne permet pas de récupérer des chaines vides */
-		
-		
-		System.out.println("\n\n");
 		
 		if(decomp[0].equals(""))
 			return false;

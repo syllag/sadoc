@@ -73,7 +73,10 @@
 		</action>
 
 		<action name="RemoveResume" class="fr.univartois.ili.sadoc.ui.actions.RemoveResume">
-			<result name="success">/content/resume/manageResume.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">ManageResume</param>
+				<param name="namespace">/</param>
+			</result>
 			<result name="index">/content/home/Home.jsp</result>
 		</action>
 		

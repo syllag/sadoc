@@ -14,6 +14,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
+import fr.univartois.ili.sadoc.metier.ui.utils.Mapper;
 import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Degree;
