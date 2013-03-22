@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<s:url value="/css/style.css"/>" type="text/css"
 	rel="stylesheet" />
+<link href="<s:url value="/css/jquery-ui-custom.css"/>" type="text/css"
+	rel="stylesheet" />
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript" src="<s:url value="/content/js/errorDisplayer.js" />" ></script>

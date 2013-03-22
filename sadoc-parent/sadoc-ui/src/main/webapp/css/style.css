@@ -438,3 +438,26 @@ p.lien_competence a {
 .img_header {
 vertical-align : middle
 }
+
+
+
+#contentResume {
+	padding: 15px 35px 10px 35px;
+	border: 1px solid #ccc;
+	width: 750px;
+	margin: 0px auto 0px auto;
+	text-align: left;
+}
+
+#contentResume li {
+	list-style: none;
+}
+
+#contentResume .listCompetence {
+	padding-left : 25px ;	
+}
+
+#contentResume .listItem {
+	padding-left : 50px ;	
+}
+
