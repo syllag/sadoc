@@ -31,7 +31,7 @@ public interface IClientWebService {
 	 * @param idDoc
 	 * @return
 	 */
-	public Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> getCompetences(long idDoc);
+	public Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Acquisition>> getAcquisitions(long idDoc);
 	/**
 	 * create owner
 	 * @param firstName
@@ -39,7 +39,7 @@ public interface IClientWebService {
 	 * @param mail
 	 * @return
 	 */
-	public fr.univartois.ili.sadoc.client.webservice.tools.Owner createOwner(String firstName ,String lastName, String mail);
+	public fr.univartois.ili.sadoc.client.webservice.tools.Owner createOwner(String mail);
 	/**
 	 * get owner by her mail
 	 * @param mail

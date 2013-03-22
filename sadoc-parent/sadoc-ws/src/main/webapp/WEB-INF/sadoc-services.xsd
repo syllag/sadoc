@@ -85,7 +85,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="schemas:owner" />
-				<xs:element ref="schemas:competence"  maxOccurs="unbounded" />
+				<xs:element ref="schemas:acquisition"  maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -165,6 +165,6 @@
 	<xs:element name="id" type="xs:long" />
 	<xs:element name="idOwnerWs" type="xs:long" />
 	<xs:element name="id_item" type="xs:string" />
-	<xs:element name="idDocument" type="xs:integer" />
+	<xs:element name="idDocument" type="xs:long" />
 	<xs:element name="acronym" type="xs:string" />
 </xs:schema>

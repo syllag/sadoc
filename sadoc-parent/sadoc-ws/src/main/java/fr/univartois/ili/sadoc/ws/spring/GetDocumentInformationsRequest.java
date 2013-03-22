@@ -2,13 +2,13 @@ package fr.univartois.ili.sadoc.ws.spring;
 
 public class GetDocumentInformationsRequest {
 
-	private int idDocument;
+	private long idDocument;
 
-	public int getIdDocument() {
+	public long getIdDocument() {
 		return idDocument;
 	}
 
-	public void setIdDocument(int idDocument) {
+	public void setIdDocument(long idDocument) {
 		this.idDocument = idDocument;
 	}
 

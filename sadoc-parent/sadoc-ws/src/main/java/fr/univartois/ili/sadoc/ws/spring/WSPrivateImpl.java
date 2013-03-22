@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.univartois.ili.sadoc.metier.ws.services.IMetierWSServices;
+import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;
 import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
@@ -25,7 +26,7 @@ public class WSPrivateImpl implements WSPrivate {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public Map<Owner, List<Competence>> getDocumentInformations(int documentId) {
+	public Map<Owner, List<Acquisition>> getDocumentInformations(long documentId) {
 		
 		return null;
 	}
@@ -41,7 +42,7 @@ public class WSPrivateImpl implements WSPrivate {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Document getDocument(int id) {
+	public Document getDocument(long id) {
 		return metierWSServices.findDocumentById(id);
 	}
 

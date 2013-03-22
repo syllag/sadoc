@@ -91,9 +91,9 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 					metierUIServices.createDocument(doctoregister);
 					document = doctoregister;
 					
-					clientWebService.getCompetences(docws.getId());
-					Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> comp = clientWebService
-							.getCompetences(docws.getId());
+					clientWebService.getAcquisitions(docws.getId());
+					Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Acquisition>> comp = clientWebService
+							.getAcquisitions(docws.getId());
 					fr.univartois.ili.sadoc.client.webservice.tools.Owner incowner = comp
 							.keySet().iterator().next();
 
@@ -112,10 +112,10 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 						owner = owntoregister;
 					}
 
-					//TODO les competences sont remplacées par les acquisitions
-					for (fr.univartois.ili.sadoc.client.webservice.tools.Competence competence : comp
+					for (fr.univartois.ili.sadoc.client.webservice.tools.Acquisition acquisition : comp
 							.get(incowner)) {
-						Competence c = metierUIServices.findCompetenceById(competence.getId());
+						//TODO les competences sont remplacées par les acquisitions
+/*						Competence c = metierUIServices.findCompetenceById(competence.getId());
 						if (c == null) {
 							c = new Competence();
 							c.setName(competence.getName());
@@ -130,7 +130,7 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 						a.setOwner(owner);
 						
 						metierUIServices.createAcquisition(a);
-						listCompetences.add(c);
+						listCompetences.add(c);*/
 					}
 				} else {
 					return INPUT;

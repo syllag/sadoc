@@ -20,4 +20,20 @@
 	<context:property-placeholder location="classpath:sadocConfig.properties" />
 	
 	<import resource="classpath:databaseContextMetierUI.xml" />
+	
+	<bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller"
+		p:contextPath="fr.univartois.ili.sadoc.client.webservice.tools" />
+
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate"
+		p:marshaller-ref="jaxbMarshaller" p:unmarshaller-ref="jaxbMarshaller"
+		p:defaultUri="${webservice.ip}"
+		p:messageSender-ref="messageSender">
+		<constructor-arg ref="messageFactory" />
+
+	</bean>
+
+	<bean id="messageSender"
+		class="org.springframework.ws.transport.http.CommonsHttpMessageSender" />
+
+	<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory" />
 </beans>

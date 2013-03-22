@@ -2,6 +2,7 @@ package fr.univartois.ili.sadoc.ws.spring;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
@@ -83,16 +84,16 @@ public class WSStubFindAllAcquisitionByDocument {
 			@RequestPayload GetDocumentInformationsRequest request) {
 		GetDocumentInformationsResponse getDocumentInformationsResponse = new GetDocumentInformationsResponse();
 		
-		Map<Owner, List<Competence>> lites = wsPrivate
+		Map<Owner, List<Acquisition>> lites = wsPrivate
 				.getDocumentInformations(request.getIdDocument());
 		lites.keySet();
 		if (!lites.isEmpty()) {
-			Map.Entry<Owner, List<Competence>> entry = lites.entrySet()
+			Entry<Owner, List<Acquisition>> entry = lites.entrySet()
 					.iterator().next();
 
 			getDocumentInformationsResponse.setOwner(entry.getKey());
 
-			getDocumentInformationsResponse.setCompetence(entry
+			getDocumentInformationsResponse.setAcquisition(entry
 					.getValue());
 		}
 		

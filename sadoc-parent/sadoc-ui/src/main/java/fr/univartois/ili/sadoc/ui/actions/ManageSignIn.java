@@ -103,7 +103,10 @@ public class ManageSignIn extends ActionSupport implements SessionAware {
 			} else if (!Form.isValidEmailAddress(form.getMail())) {
 				addFieldError("form.mail",
 						"L'adresse email n'est pas dans un format valide");
+			} else if (metierUIServices.findOwnerByEmail(form.getMail()) != null){
+				addFieldError("form.mail", "L'adresse mail est déjà utilisée");
 			}
+			
 		}
 	}
 
