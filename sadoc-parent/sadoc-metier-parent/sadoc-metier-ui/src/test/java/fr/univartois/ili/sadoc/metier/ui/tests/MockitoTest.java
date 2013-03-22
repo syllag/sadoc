@@ -5,6 +5,9 @@ package fr.univartois.ili.sadoc.metier.ui.tests;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.sql.Time;
+import java.util.UUID;
+
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
@@ -24,7 +27,7 @@ public class MockitoTest {
 		System.out.println(clientWebServiceImpl.getWebServiceTemplate().getDefaultUri());
 		assertNotNull(clientWebServiceImpl.getWebServiceTemplate().getMarshaller());
 		assertNotNull(clientWebServiceImpl.getWebServiceTemplate().getUnmarshaller());
-		clientWebServiceImpl.createOwner("alan.delahayee@gmail.com");
+		clientWebServiceImpl.createOwner(UUID.randomUUID().toString().replace("-", "")+"@gmail.com");
 		
 		//arrange
 //				MetierUIServices m = mock(MetierUIServices.class);
