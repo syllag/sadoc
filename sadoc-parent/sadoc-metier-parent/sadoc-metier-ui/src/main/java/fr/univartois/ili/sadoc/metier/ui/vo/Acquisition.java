@@ -13,52 +13,25 @@ public class Acquisition implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int id;
-	
-	private Owner owner;
-	
-	private Document document;
-	
-	private Competence competence;
-	
+	private long id;
+
+	private String id_item;
+
 	private Date creationDate;
-	
+
 	/************************************************/
 
-	public Acquisition() {}
-	
-	public Acquisition(Owner owner,Document document, Competence competence,Date creationDate){
-		this.owner=owner;
-		this.document=document;
-		this.competence=competence;
-		this.creationDate=creationDate;
+	public Acquisition() {
 	}
-	
+
+	public Acquisition(long id, String id_item, Date creationDate) {
+		super();
+		this.id = id;
+		this.id_item = id_item;
+		this.creationDate = creationDate;
+	}
+
 	/************************************************/
-	
-	public Owner getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
-
-	public Document getDocument() {
-		return document;
-	}
-
-	public void setDocument(Document document) {
-		this.document = document;
-	}
-
-	public Competence getCompetence() {
-		return competence;
-	}
-
-	public void setCompetence(Competence competence) {
-		this.competence = competence;
-	}
 
 	public Date getCreationDate() {
 		return creationDate;
@@ -68,12 +41,20 @@ public class Acquisition implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getId_item() {
+		return id_item;
+	}
+
+	public void setId_item(String id_item) {
+		this.id_item = id_item;
 	}
 
 }
