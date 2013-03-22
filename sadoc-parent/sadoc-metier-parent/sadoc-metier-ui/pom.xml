@@ -213,35 +213,12 @@
 			<scope>provided</scope>
 		</dependency>
 
-		
+
 
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- JAXB binding classes -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<id>ws-generate</id>
-						<goals>
-							<goal>xjc</goal>
-						</goals>
-						<configuration>
-							<schemaDirectory>${basedir}/../../sadoc-ws/src/main/webapp/WEB-INF/</schemaDirectory>
-							<schemaIncludes>
-								<include>sadoc-services.xsd</include>
-							</schemaIncludes>
-							<generatePackage>fr.univartois.ili.sadoc.client.webservice.tools2</generatePackage>
-							<!-- <generateDirectory>${project.build.directory}/generated-sources/xjc1</generateDirectory> -->
-							<!-- ${basedir}/src/main/java -->
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- WS client -->
 			<plugin>
 				<groupId>org.jvnet.jax-ws-commons</groupId>
@@ -255,12 +232,16 @@
 							<goal>wsimport</goal>
 						</goals>
 						<configuration>
-							<packageName>fr.univartois.ili.sadoc.client.webservice.tools2</packageName>
+							<packageName>fr.univartois.ili.sadoc.client.webservice.tools</packageName>
 							<wsdlFiles>
 								<wsdlFile>sadoc.wsdl</wsdlFile>
 							</wsdlFiles>
 							<verbose>true</verbose>
-							<sourceDestDir>${wsdl.generated.source.files.dir}</sourceDestDir>
+<!-- 							<bindingDirectory>${basedir}/../../sadoc-ws/src/main/webapp/WEB-INF/</bindingDirectory> -->
+<!-- 							<bindingFiles> -->
+<!-- 								<bindingFile>sadoc-services.xsd</bindingFile> -->
+<!-- 							</bindingFiles> -->
+							<sourceDestDir>${basedir}/src/main/java</sourceDestDir>
 						</configuration>
 					</execution>
 				</executions>

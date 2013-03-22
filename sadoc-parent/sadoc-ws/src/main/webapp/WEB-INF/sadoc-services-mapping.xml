@@ -80,7 +80,7 @@
   
 	  <!-- Mapping for CreateOwnerResponse -->
 	  <class name="fr.univartois.ili.sadoc.ws.spring.CreateOwnerResponse">
-	    <map-to xml="createOwnerResponse" />
+	    <map-to xml="createOwnerResponse"  ns-uri="http://sadoc.com/ac/schemas" />
 	    <field name="owner" type="fr.univartois.ili.sadoc.metier.ws.vo.Owner">
 	      <bind-xml name="owner" node="element" xmlns="http://sadoc.com/ac/schemas"/>
 	    </field>
@@ -105,7 +105,7 @@
   
   <!-- Mapping for SignDocumentResponse -->	
     <class name="fr.univartois.ili.sadoc.ws.spring.SignDocumentResponse">
-    <map-to xml="signDocumentResponse" />
+    <map-to xml="signDocumentResponse" ns-uri="http://sadoc.com/ac/schemas"/>
     	<field name="doc" type="bytes" >
 			<bind-xml name="doc" node="element" xmlns="http://sadoc.com/ac/schemas"/>
 		</field>
