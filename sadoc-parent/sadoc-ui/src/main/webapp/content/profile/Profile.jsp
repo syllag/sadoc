@@ -46,7 +46,7 @@
 	<hr />
 	<div class="curriculum">
 		<h3>Curriculum vitae</h3>
-		<span class="genererCv"><a href="manageResume" title="Gérer vos CV">Gérer vos CV</a></span>
+		<span class="genererCv"><a href="ManageResume" title="Gérer vos CV">Gérer vos CV</a></span>
 
 	</div>
 </section>
