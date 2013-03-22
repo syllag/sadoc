@@ -9,7 +9,7 @@
 			
 	
 			<section id="content">
-				<s:form action="ModifyProfile2" validate="true">
+				<s:form action="ModifyProfile" validate="true">
 					<s:actionerror />
 					
 					

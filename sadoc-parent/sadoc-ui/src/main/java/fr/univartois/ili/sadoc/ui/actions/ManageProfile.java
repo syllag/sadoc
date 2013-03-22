@@ -1,5 +1,6 @@
 package fr.univartois.ili.sadoc.ui.actions;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -23,7 +24,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 			.getBean(IMetierUIServices.class);
 
 	@Override
-	public String execute() {
+	public String execute() throws NoSuchAlgorithmException {
 		Owner owner = Connection.getUser(session);
 		if (owner == null) {
 			return "index";
@@ -39,7 +40,7 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 		owner.setTown(Form.normalizeTown(form.getTown()));
 		owner.setPhone(form.getPhone());
 		if (!form.getPassword().isEmpty()) {
-			owner.setPassword(form.getPassword());
+			owner.setPassword(Connection.encryptPassword(form.getPassword()));
 		}
 		metierUIServices.updateOwner(owner);
 
@@ -53,6 +54,10 @@ public class ManageProfile extends ActionSupport implements SessionAware {
 						.isEmpty())) {
 				if (!form.getPassword().equals(form.getPassword2())) {
 					addFieldError("form.password2", "Les mots de passe sont différents.");
+				}
+				
+				if (form.getPassword().length() < 8) {
+					addFieldError("form.password2", "Le mot de passe doit comporter au moins 8 caractères");
 				}
 			
 			}
