@@ -29,7 +29,7 @@ public class TestOwnerDAOImpl {
 		iOwnerDAO.createOwner(owner);
 		assertNotNull(owner.getId());
 		Owner o = iOwnerDAO.findOwnerById(owner.getId());
-		assertSame(owner, o);
+		assertEquals(owner, o);
 	}
 	
 	@Test
@@ -60,41 +60,27 @@ public class TestOwnerDAOImpl {
 		assertEquals("59000",find.getZipCode());
 		assertEquals("0606060606",find.getPhone());
 		
-		assertSame(find, o);
+		assertEquals(find, o);
 	}
 	
-	//TODO passer les tests en spring
-//
-//	@Test
-//	public void TestFindOwnerByEmailAndPassword() {
-//		Owner owner = new Owner("toto", "titi", "toto@test.fr", "passe",
-//				"machin", "62300", "Lens", "0628458763");
-//		owner.setId(ID_TEST);
-//		em.getTransaction().begin();
-//		em.persist(owner);
-//		em.getTransaction().commit();
-//		Owner find = impl.findOwnerByEmailAndPassword("toto@test.fr", "passe");
-//		
-//		assertSame(find, owner);
-//		
-//		em.getTransaction().begin();
-//		em.remove(owner);
-//		em.getTransaction().commit();
-//	}
-//
-//	@Test
-//	public void TestFindOwnerByEmail() {
-//		Owner owner = new Owner("toto", "titi", "toto@test.fr", "titi",
-//				"machin", "62300", "Lens", "0628458763");
-//		owner.setId(ID_TEST);
-//		em.getTransaction().begin();
-//		em.persist(owner);
-//		em.getTransaction().commit();
-//		Owner find = impl.findOwnerByEmail("toto@test.fr");
-//		assertSame(find, owner);
-//		
-//		em.getTransaction().begin();
-//		em.remove(owner);
-//		em.getTransaction().commit();
-//	}
+	@Test
+	public void TestFindOwnerByEmailAndPassword() {
+		Owner owner = new Owner("toto2", "titi2", "toto2@test.fr", "passe2",
+				"machin2", "62300", "Lens", "0622458763");
+		iOwnerDAO.createOwner(owner);
+		Owner find = iOwnerDAO.findOwnerByEmailAndPassword("toto2@test.fr", "passe2");
+		
+		assertEquals(find, owner);
+	}
+	
+	@Test
+	public void TestFindOwnerByEmail() {
+		Owner owner = new Owner("toto3", "titi3", "toto3@test.fr", "titi3",
+				"machin3", "62300", "Lens", "0628438763");
+	
+		iOwnerDAO.createOwner(owner);
+		
+		Owner find = iOwnerDAO.findOwnerByEmail("toto3@test.fr");
+		assertEquals(find, owner);
+	}
 }

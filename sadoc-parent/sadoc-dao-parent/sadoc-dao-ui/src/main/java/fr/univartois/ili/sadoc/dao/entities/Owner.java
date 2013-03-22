@@ -146,7 +146,8 @@ public class Owner implements Serializable {
 		this.resumes = resumes;
 	}
 	
-	public boolean equals(Owner owner) {
-		return this.id == owner.getId();
+	@Override
+	public boolean equals(Object obj) {
+		return this.id == ((Owner)obj).getId();
 	}
 }
