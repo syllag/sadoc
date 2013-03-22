@@ -39,7 +39,7 @@ public interface IClientWebService {
 	 * @param mail
 	 * @return
 	 */
-	public fr.univartois.ili.sadoc.client.webservice.tools.Owner createOwner(String firstName ,String lastName, String mail);
+	public fr.univartois.ili.sadoc.client.webservice.tools.Owner createOwner(String mail);
 	/**
 	 * get owner by her mail
 	 * @param mail

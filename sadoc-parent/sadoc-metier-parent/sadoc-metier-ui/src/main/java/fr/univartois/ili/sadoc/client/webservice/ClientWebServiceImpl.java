@@ -26,15 +26,32 @@ import fr.univartois.ili.sadoc.client.webservice.tools.Owner;
  */
 public class ClientWebServiceImpl implements IClientWebService {
 
+	private ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+			"applicationContextMetierUI.xml");
+	private WebServiceTemplate webServiceTemplate = (WebServiceTemplate) applicationContext
+			.getBean("webServiceTemplate");
+	
+	public ClassPathXmlApplicationContext getApplicationContext() {
+		return applicationContext;
+	}
+
+	public void setApplicationContext(
+			ClassPathXmlApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
+	}
+
+	public WebServiceTemplate getWebServiceTemplate() {
+		return webServiceTemplate;
+	}
+
+	public void setWebServiceTemplate(WebServiceTemplate webServiceTemplate) {
+		this.webServiceTemplate = webServiceTemplate;
+	}
+
 	public fr.univartois.ili.sadoc.client.webservice.tools.Document getDocument(
 			long id) {
 
 		fr.univartois.ili.sadoc.client.webservice.tools.Document response = null;
-		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"service-client.xml");
-
-		WebServiceTemplate webServiceTemplate = applicationContext
-				.getBean(WebServiceTemplate.class);
 		try {
 
 			GetDocumentRequest getDocumentRequest = new GetDocumentRequest();
@@ -56,12 +73,6 @@ public class ClientWebServiceImpl implements IClientWebService {
 			long idDoc) {
 
 		Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Acquisition>> responses = null;
-
-		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"service-client.xml");
-
-		WebServiceTemplate webServiceTemplate = applicationContext
-				.getBean(WebServiceTemplate.class);
 		try {
 			GetDocumentInformationsRequest getDocumentInformationsRequest = new GetDocumentInformationsRequest();
 			getDocumentInformationsRequest.setIdDocument(idDoc);
@@ -81,13 +92,8 @@ public class ClientWebServiceImpl implements IClientWebService {
 	}
 
 	public fr.univartois.ili.sadoc.client.webservice.tools.Owner createOwner(
-			String firstName, String lastName, String mail) {
+			String mail) {
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner response = null;
-		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"service-client.xml");
-
-		WebServiceTemplate webServiceTemplate = applicationContext
-				.getBean(WebServiceTemplate.class);
 		try {
 
 			CreateOwnerRequest createOwnerRequest = new CreateOwnerRequest();
@@ -105,11 +111,6 @@ public class ClientWebServiceImpl implements IClientWebService {
 
 	public Owner getOwner(String mail) {
 		fr.univartois.ili.sadoc.client.webservice.tools.Owner response = null;
-		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"service-client.xml");
-
-		WebServiceTemplate webServiceTemplate = applicationContext
-				.getBean(WebServiceTemplate.class);
 		try {
 
 			GetOwnerRequest getOwnerRequest = new GetOwnerRequest();
@@ -134,11 +135,6 @@ public class ClientWebServiceImpl implements IClientWebService {
 	public List<Document> getAllDocument(
 			fr.univartois.ili.sadoc.metier.ui.vo.Owner owner) {
 		List<fr.univartois.ili.sadoc.client.webservice.tools.Document> responses = null;
-		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"service-client.xml");
-
-		WebServiceTemplate webServiceTemplate = applicationContext
-				.getBean(WebServiceTemplate.class);
 		try {
 			GetDocumentByOwnerRequest getDocumentByOwnerRequest = new GetDocumentByOwnerRequest();
 			getDocumentByOwnerRequest.setIdOwnerWs(owner.getId());
