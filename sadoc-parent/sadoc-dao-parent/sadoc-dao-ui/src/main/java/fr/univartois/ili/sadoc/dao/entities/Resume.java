@@ -81,4 +81,13 @@ public class Resume implements Serializable {
 	public void setItems(List<Long> items) {
 		this.items = items;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o.getClass() != getClass()) {
+			return false;
+		}
+		Resume resume = (Resume) o;
+		return resume.getId() == id;
+	}
 }
