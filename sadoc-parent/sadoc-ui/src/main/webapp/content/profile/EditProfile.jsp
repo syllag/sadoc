@@ -13,9 +13,9 @@
 					<s:actionerror />
 					
 					
-					<s:textfield label="Mot de passe" labelposition="top" key="form.password" placeholder="Nouveau mot de passe" />
+					<s:password label="Mot de passe" labelposition="top" key="form.password" placeholder="Nouveau mot de passe" />
 					
-					<s:textfield label="Confirmation du mot de passe" labelposition="top" key="form.password2" placeholder="Confirmation mot de passe" />
+					<s:password label="Confirmation du mot de passe" labelposition="top" key="form.password2" placeholder="Confirmation mot de passe" />
 					
 					<s:textfield label="Adresse" labelposition="top" key="form.address" placeholder="Adresse" value="%{session.owner.address}" />
 					
