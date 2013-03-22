@@ -53,10 +53,10 @@ public class ClientWebServiceImpl implements IClientWebService {
 		return response;
 	}
 
-	public Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> getCompetences(
+	public Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Acquisition>> getAcquisitions(
 			long idDoc) {
 
-		Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Competence>> responses = null;
+		Map<fr.univartois.ili.sadoc.client.webservice.tools.Owner, List<fr.univartois.ili.sadoc.client.webservice.tools.Acquisition>> responses = null;
 
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
 				"service-client.xml");
@@ -65,13 +65,12 @@ public class ClientWebServiceImpl implements IClientWebService {
 				.getBean(WebServiceTemplate.class);
 		try {
 			GetDocumentInformationsRequest getDocumentInformationsRequest = new GetDocumentInformationsRequest();
-			getDocumentInformationsRequest.setIdDocument(BigInteger
-					.valueOf(idDoc));
+			getDocumentInformationsRequest.setIdDocument(idDoc);
 
 			GetDocumentInformationsResponse response = (GetDocumentInformationsResponse) webServiceTemplate
 					.marshalSendAndReceive(getDocumentInformationsRequest);
 			responses = new HashedMap();
-			responses.put(response.getOwner(), response.getCompetence());
+			responses.put(response.getOwner(), response.getAcquisition());
 
 	
 

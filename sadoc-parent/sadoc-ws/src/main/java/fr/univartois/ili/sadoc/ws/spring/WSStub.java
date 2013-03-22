@@ -11,6 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import fr.univartois.ili.sadoc.metier.ws.vo.Certificate;
+import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ws.vo.Document;
 import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
@@ -85,16 +86,16 @@ public class WSStub {
 			@RequestPayload GetDocumentInformationsRequest request) {
 		GetDocumentInformationsResponse getDocumentInformationsResponse = new GetDocumentInformationsResponse();
 
-		Map<Owner, List<Competence>> lites = wsPrivate
+		Map<Owner, List<Acquisition>> lites = wsPrivate
 				.getDocumentInformations(request.getIdDocument());
 		lites.keySet();
 		if (!lites.isEmpty()) {
-			Map.Entry<Owner, List<Competence>> entry = lites.entrySet()
+			Map.Entry<Owner, List<Acquisition>> entry = lites.entrySet()
 					.iterator().next();
 
 			getDocumentInformationsResponse.setOwner(entry.getKey());
 
-			getDocumentInformationsResponse.setCompetence(entry.getValue());
+			getDocumentInformationsResponse.setAcquisition(entry.getValue());
 		}
 
 		return getDocumentInformationsResponse;

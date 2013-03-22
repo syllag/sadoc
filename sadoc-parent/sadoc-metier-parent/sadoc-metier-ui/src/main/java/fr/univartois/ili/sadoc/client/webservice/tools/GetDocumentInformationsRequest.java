@@ -1,7 +1,6 @@
 
 package fr.univartois.ili.sadoc.client.webservice.tools;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -36,17 +35,17 @@ import javax.xml.bind.annotation.XmlType;
 public class GetDocumentInformationsRequest {
 
     @XmlElement(required = true)
-    protected BigInteger idDocument;
+    protected long idDocument;
 
     /**
      * Gets the value of the idDocument property.
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link long }
      *     
      */
-    public BigInteger getIdDocument() {
+    public long getIdDocument() {
         return idDocument;
     }
 
@@ -55,10 +54,10 @@ public class GetDocumentInformationsRequest {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link long }
      *     
      */
-    public void setIdDocument(BigInteger value) {
+    public void setIdDocument(long value) {
         this.idDocument = value;
     }
 

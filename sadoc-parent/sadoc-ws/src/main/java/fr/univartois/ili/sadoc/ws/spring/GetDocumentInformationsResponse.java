@@ -2,24 +2,24 @@ package fr.univartois.ili.sadoc.ws.spring;
 
 import java.util.List;
 
-import fr.univartois.ili.sadoc.metier.ws.vo.Competence;
+import fr.univartois.ili.sadoc.metier.ws.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ws.vo.Owner;
              
 public class GetDocumentInformationsResponse {
 
 	private Owner owner;
-	private List<Competence> competence;
+	private List<Acquisition> acquisition;
 	public Owner getOwner() {
 		return owner;
 	}
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
-	public List<Competence> getCompetence() {
-		return competence;
+	public List<Acquisition> getAcquisition() {
+		return acquisition;
 	}
-	public void setCompetence(List<Competence> competence) {
-		this.competence = competence;
+	public void setAcquisition(List<Acquisition> acquisition) {
+		this.acquisition = acquisition;
 	}
 	
 
