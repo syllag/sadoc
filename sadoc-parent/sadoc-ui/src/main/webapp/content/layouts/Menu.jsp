@@ -6,7 +6,6 @@
 	<h1>Système d'authentification de documents</h1>
 </header>
 
-
 <menu label="main_menu" class="main_menu">
 	<li class="${ currentMenu == 'Home' ? 'menu_active' : ''}">
 		<a href="<s:url action="Home"/>">Accueil</a>
@@ -18,7 +17,7 @@
 		<a href="<s:url action="Competence"/>">Compétences</a>
 	</li>
 	<li class="${ currentMenu == 'CV' ? 'menu_active' : ''}"> 
-		<a href="<s:url action="ShowCreateResume"/>">CV</a>
+		<a href="<s:url action="ManageResume"/>">CV</a>
 	</li>
 	<li class="${ currentMenu == 'EditProfile' ? 'menu_active' : ''}"> 
 		<a href="<s:url action="ModifyProfile"/>">Modifier le profil</a>

@@ -21,11 +21,11 @@ public class RemoveResume extends ActionSupport implements SessionAware {
 			.getBean(IMetierUIServices.class);
 	
 	
-	public long getId() {
+	public long getCv() {
 		return idresume;
 	}
 
-	public void setId(long idresume) {
+	public void setCv(long idresume) {
 		this.idresume = idresume;
 	}
 
@@ -36,10 +36,14 @@ public class RemoveResume extends ActionSupport implements SessionAware {
 		}
 		
 		Resume resume = metierUIServices.findResumeById(idresume);
-		if(resume.getOwner().getId() != owner.getId()) {
+		if(resume == null || resume.getOwner().getId() != owner.getId()) {
 			throw new IllegalStateException();
 		}
 		
+		for (Resume res : owner.getResumes()) {
+			System.out.println(res.getId() + " - " + res);
+		}
+		System.out.println("to remove : " + resume.getId() + " - " + resume);
 		owner.getResumes().remove(resume);
 		metierUIServices.updateOwner(owner);
 		metierUIServices.removeResume(resume);

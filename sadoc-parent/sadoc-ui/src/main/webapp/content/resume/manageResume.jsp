@@ -16,12 +16,12 @@
 			<tr>
 				<td>CV_${resume.id}</td>
 				<td><span class="genererCv"> 
-				<s:url var="genCV" action="downloadResume">
+				<s:url var="genCV" action="DownloadResume">
 					<s:param name="cv">${resume.id}</s:param>
 				</s:url>
 				<a	href="${genCV}"	title="Télécharger le CV"> <img src="img/download.png" />
 					</a>
-				<s:url var="remCV" action="removeResume">
+				<s:url var="remCV" action="RemoveResume">
 					<s:param name="cv">${resume.id}</s:param>
 				</s:url>
 				<a href="${remCV}" title="Supprimer le CV"> <img src="img/delete.png" />

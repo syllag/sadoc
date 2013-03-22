@@ -124,6 +124,7 @@ public class MetierUIServices implements IMetierUIServices{
 	public void createResume(Resume resume) {
 		fr.univartois.ili.sadoc.dao.entities.Resume res = Mapper.getResumeFromVO(resume);
 		resumeDAO.createResume(Mapper.getResumeFromVO(resume));
+		System.out.println(res.getId() + ") " + res + " +++++ " + resume);
 		resume.setId(res.getId());
 	}
 
@@ -135,6 +136,7 @@ public class MetierUIServices implements IMetierUIServices{
 	@Override
 	public Resume findResumeById(long id) {
 		fr.univartois.ili.sadoc.dao.entities.Resume resume = resumeDAO.findResumeById(id);
+		System.out.println(id + "] " + resume + " ----- " + Mapper.getResumeFromEntities(resume));
 		Resume resumeVO = null;
 		if(resume != null)
 			resumeVO = Mapper.getResumeFromEntities(resume); 

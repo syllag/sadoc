@@ -41,7 +41,7 @@
 			<result name="index">/content/home/Home.jsp</result>
 		</action>
 
-		<action name="checkDocument" class="fr.univartois.ili.sadoc.ui.actions.CheckDocument"
+		<action name="CheckDocument" class="fr.univartois.ili.sadoc.ui.actions.CheckDocument"
 			method="execute">
 			<result name="success">/content/DocumentInformation/documentInformation.jsp
 			</result>
@@ -50,7 +50,7 @@
 			<result name="astalavista">/content/home/Home.jsp</result>
 		</action>
 		
-		<action name="manageResume" class="fr.univartois.ili.sadoc.ui.actions.ManageResume"
+		<action name="ManageResume" class="fr.univartois.ili.sadoc.ui.actions.ManageResume"
 			method="execute">
 			<result name="success">/content/resume/manageResume.jsp</result>
 			<result name="index">/content/home/Home.jsp</result>
@@ -61,7 +61,7 @@
 			<result name="input">/content/resume/createResume.jsp</result>
 		</action>
 		
-		<action name="downloadResume" class="fr.univartois.ili.sadoc.ui.actions.DownloadResume"
+		<action name="DownloadResume" class="fr.univartois.ili.sadoc.ui.actions.DownloadResume"
 			method="execute">
 			<result name="success" type="stream">
 				<param name="contentType">application/pdf</param>
