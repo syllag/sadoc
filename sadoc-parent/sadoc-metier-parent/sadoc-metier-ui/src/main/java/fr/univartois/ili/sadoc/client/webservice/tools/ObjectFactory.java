@@ -2,6 +2,7 @@
 package fr.univartois.ili.sadoc.client.webservice.tools;
 
 import java.math.BigInteger;
+
 import javax.activation.DataHandler;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -41,6 +42,12 @@ public class ObjectFactory {
     private final static QName _Acronym_QNAME = new QName("http://sadoc.com/ac/schemas", "acronym");
     private final static QName _LastName_QNAME = new QName("http://sadoc.com/ac/schemas", "lastName");
     private final static QName _Mail_QNAME = new QName("http://sadoc.com/ac/schemas", "mail");
+    
+    private final static QName _Id_item_QNAME = new QName("http://sadoc.com/ac/schemas", "id_item");
+    private final static QName _IdOwnerWs_QNAME = new QName("http://sadoc.com/ac/schemas", "idOwnerWs");
+    private final static QName _P7s_QNAME = new QName("http://sadoc.com/ac/schemas", "p7s");
+    private final static QName _Mail_initial_QNAME = new QName("http://sadoc.com/ac/schemas", "mail_initial");
+    
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.sadoc.ac.schemas
@@ -90,6 +97,10 @@ public class ObjectFactory {
      */
     public GetDocumentInformationsRequest createGetDocumentInformationsRequest() {
         return new GetDocumentInformationsRequest();
+    }
+    
+    public GetDocumentByOwnerRequest createGetDocumentByOwnerRequest() {
+        return new GetDocumentByOwnerRequest();
     }
 
     /**
@@ -184,12 +195,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BigInteger }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link long }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "idDocument")
-    public JAXBElement<BigInteger> createIdDocument(BigInteger value) {
-        return new JAXBElement<BigInteger>(_IdDocument_QNAME, BigInteger.class, null, value);
+    public JAXBElement<Long> createIdDocument(long value) {
+        return new JAXBElement<Long>(_IdDocument_QNAME, Long.class, null, value);
     }
 
     /**
@@ -200,6 +211,12 @@ public class ObjectFactory {
     @XmlMimeType("*/*")
     public JAXBElement<DataHandler> createPk7(DataHandler value) {
         return new JAXBElement<DataHandler>(_Pk7_QNAME, DataHandler.class, null, value);
+    }
+    
+    @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "p7s")
+    @XmlMimeType("*/*")
+    public JAXBElement<DataHandler> createP7s(DataHandler value) {
+        return new JAXBElement<DataHandler>(_P7s_QNAME, DataHandler.class, null, value);
     }
 
     /**
@@ -249,12 +266,22 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BigInteger }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link long }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "id")
-    public JAXBElement<BigInteger> createId(BigInteger value) {
-        return new JAXBElement<BigInteger>(_Id_QNAME, BigInteger.class, null, value);
+    public JAXBElement<Long> createId(Long value) {
+        return new JAXBElement<Long>(_Id_QNAME, Long.class, null, value);
+    }
+    
+    @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "id_item")
+    public JAXBElement<Long> createId_item(Long value) {
+        return new JAXBElement<Long>(_Id_item_QNAME, Long.class, null, value);
+    }
+    
+    @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "idOwnerWs")
+    public JAXBElement<Long> createIdOwnerWs(Long value) {
+        return new JAXBElement<Long>(_IdOwnerWs_QNAME, Long.class, null, value);
     }
 
     /**
@@ -300,6 +327,11 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "mail")
     public JAXBElement<String> createMail(String value) {
         return new JAXBElement<String>(_Mail_QNAME, String.class, null, value);
+    }
+    
+    @XmlElementDecl(namespace = "http://sadoc.com/ac/schemas", name = "mail_initial")
+    public JAXBElement<String> createMail_initial(String value) {
+        return new JAXBElement<String>(_Mail_initial_QNAME, String.class, null, value);
     }
 
 }
