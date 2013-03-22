@@ -3,16 +3,22 @@
  */
 package fr.univartois.ili.sadoc.metier.ui.tests;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.UUID;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
+import fr.univartois.ili.sadoc.client.webservice.tools.Owner;
 
 /**
  * @author Alan Delahaye <alan.delahayee@gmail.com>
  *
  */
+@Ignore
 public class MockitoTest {
 
 	@Test
@@ -24,18 +30,9 @@ public class MockitoTest {
 		System.out.println(clientWebServiceImpl.getWebServiceTemplate().getDefaultUri());
 		assertNotNull(clientWebServiceImpl.getWebServiceTemplate().getMarshaller());
 		assertNotNull(clientWebServiceImpl.getWebServiceTemplate().getUnmarshaller());
-		clientWebServiceImpl.createOwner("alan.delahayee@gmail.com");
-		
-		//arrange
-//				MetierUIServices m = mock(MetierUIServices.class);
-//				when(m.findDocumentById("3")).thenReturn(new Document("Doc", "12", "toto", null, null));
-//				//act
-//				Document doc = m.findDocumentById("3");
-//				//assert
-//				assertNotNull(doc);
-//				assertEquals(doc.getName(), "Doc");
-//				doc = m.findDocumentById("0");
-//				assertNotNull(doc);
-//				assertEquals(doc.getName(), "Doc 1");
+		String mail = UUID.randomUUID().toString().replace("-", "")+"@gmail.com";
+		Owner owner = clientWebServiceImpl.createOwner(mail);
+		assertTrue(owner.getId()>0);
+		assertEquals(mail, owner.getMailInitial());
 	}
 }

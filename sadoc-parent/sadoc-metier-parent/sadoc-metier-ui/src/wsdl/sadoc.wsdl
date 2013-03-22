@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://sadoc.com/ac/schemas" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sadoc.com/ac/schemas" targetNamespace="http://sadoc.com/ac/schemas">
+  <wsdl:types>
+    <xs:schema xmlns:schemas="http://sadoc.com/ac/schemas" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://sadoc.com/ac/schemas">
+	<xs:element name="createOwnerRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:mail_initial"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getAllDocumentByOwner">
+	<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:owner"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getOwnerRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:mail"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="createOwnerResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:owner"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="signDocumentRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:doc"/>
+				<xs:element ref="schemas:name"/>
+				<xs:element ref="schemas:owner"/>
+				<xs:element maxOccurs="unbounded" ref="schemas:acquisition"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="signDocumentResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:doc"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="createCertificateRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:owner"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="createCertificateResponse">
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="verifyDocumentRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:doc"/>
+				<xs:element ref="schemas:document"/>
+				<xs:element ref="schemas:owner"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="verifyDocumentResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:validation"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocumentInformationsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:idDocument"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocumentInformationsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:owner"/>
+				<xs:element maxOccurs="unbounded" ref="schemas:acquisition"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="validation" type="xs:boolean"/>
+	<xs:element name="getDocumentByOwnerRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:idOwnerWs"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocumentRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:idDocument"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocumentResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:document"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="doc" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
+	<xs:element name="name" type="xs:string"/>
+	<xs:element name="owner">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:id"/>
+				<xs:element ref="schemas:mail_initial"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="firstName" type="xs:string"/>
+	<xs:element name="lastName" type="xs:string"/>
+	<xs:element name="mail" type="xs:string"/>
+	<xs:element name="mail_initial" type="xs:string"/>
+	<xs:element name="competence">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:id"/>
+				<xs:element ref="schemas:name"/>
+				<xs:element ref="schemas:description"/>
+				<xs:element ref="schemas:acronym"/>
+				<xs:element minOccurs="0" ref="schemas:creationDate"/>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="description" type="xs:string"/>
+	<xs:element name="document">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:id"/>
+				<xs:element ref="schemas:name"/>
+				<xs:element ref="schemas:url"/>
+				<xs:element ref="schemas:checkSum"/>
+				<xs:element maxOccurs="unbounded" ref="schemas:p7s"/>
+				<xs:element ref="schemas:creationDate"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="acquisition">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="schemas:id"/>
+				<xs:element ref="schemas:id_item"/>				
+				<xs:element ref="schemas:creationDate"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="checkSum" type="xs:string"/>
+	<xs:element name="creationDate" type="xs:date"/>
+	<xs:element name="url" type="xs:string"/>
+	<xs:element name="p7s" type="xs:base64Binary" xmime:expectedContentTypes="*/*"/>
+	<xs:element name="id" type="xs:long"/>
+	<xs:element name="idOwnerWs" type="xs:long"/>
+	<xs:element name="id_item" type="xs:string"/>
+	<xs:element name="idDocument" type="xs:long"/>
+	<xs:element name="acronym" type="xs:string"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createOwnerResponse">
+    <wsdl:part element="tns:createOwnerResponse" name="createOwnerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="signDocumentRequest">
+    <wsdl:part element="tns:signDocumentRequest" name="signDocumentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentByOwnerRequest">
+    <wsdl:part element="tns:getDocumentByOwnerRequest" name="getDocumentByOwnerRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="signDocumentResponse">
+    <wsdl:part element="tns:signDocumentResponse" name="signDocumentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOwnerRequest">
+    <wsdl:part element="tns:getOwnerRequest" name="getOwnerRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentInformationsResponse">
+    <wsdl:part element="tns:getDocumentInformationsResponse" name="getDocumentInformationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyDocumentRequest">
+    <wsdl:part element="tns:verifyDocumentRequest" name="verifyDocumentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentRequest">
+    <wsdl:part element="tns:getDocumentRequest" name="getDocumentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOwnerRequest">
+    <wsdl:part element="tns:createOwnerRequest" name="createOwnerRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createCertificateRequest">
+    <wsdl:part element="tns:createCertificateRequest" name="createCertificateRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentInformationsRequest">
+    <wsdl:part element="tns:getDocumentInformationsRequest" name="getDocumentInformationsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyDocumentResponse">
+    <wsdl:part element="tns:verifyDocumentResponse" name="verifyDocumentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createCertificateResponse">
+    <wsdl:part element="tns:createCertificateResponse" name="createCertificateResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentResponse">
+    <wsdl:part element="tns:getDocumentResponse" name="getDocumentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SadocServices">
+    <wsdl:operation name="createOwner">
+      <wsdl:input message="tns:createOwnerRequest" name="createOwnerRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:createOwnerResponse" name="createOwnerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="signDocument">
+      <wsdl:input message="tns:signDocumentRequest" name="signDocumentRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:signDocumentResponse" name="signDocumentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByOwner">
+      <wsdl:input message="tns:getDocumentByOwnerRequest" name="getDocumentByOwnerRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getOwner">
+      <wsdl:input message="tns:getOwnerRequest" name="getOwnerRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentInformations">
+      <wsdl:input message="tns:getDocumentInformationsRequest" name="getDocumentInformationsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentInformationsResponse" name="getDocumentInformationsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyDocument">
+      <wsdl:input message="tns:verifyDocumentRequest" name="verifyDocumentRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:verifyDocumentResponse" name="verifyDocumentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocument">
+      <wsdl:input message="tns:getDocumentRequest" name="getDocumentRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentResponse" name="getDocumentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createCertificate">
+      <wsdl:input message="tns:createCertificateRequest" name="createCertificateRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:createCertificateResponse" name="createCertificateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SadocServicesSoap11" type="tns:SadocServices">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createOwner">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="createOwnerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createOwnerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="signDocument">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="signDocumentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="signDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByOwner">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getDocumentByOwnerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getOwner">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getOwnerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentInformations">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getDocumentInformationsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDocumentInformationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyDocument">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="verifyDocumentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verifyDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocument">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getDocumentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createCertificate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="createCertificateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createCertificateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SadocServicesService">
+    <wsdl:port binding="tns:SadocServicesSoap11" name="SadocServicesSoap11">
+      <soap:address location="/services/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

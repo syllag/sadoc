@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -21,6 +22,7 @@ public class Certificate implements Serializable {
 	private static final long serialVersionUID = -9114570813117740742L;
 
 	@Id
+	@GeneratedValue
 	private long id;
 	
 	@Temporal(TemporalType.DATE)

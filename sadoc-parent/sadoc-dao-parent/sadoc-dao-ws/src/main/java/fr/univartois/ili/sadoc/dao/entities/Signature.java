@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -16,6 +17,7 @@ public class Signature implements Serializable {
 	private static final long serialVersionUID = 4108334434685842141L;
 	
 	@Id
+	@GeneratedValue
 	private long id;
 	@Temporal(TemporalType.DATE)
 	private Date dateSignature;

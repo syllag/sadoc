@@ -328,6 +328,8 @@ public class Mapper {
 	 * @throws ClassNotFoundException 
 	 */
 	public final static Owner ownerDOToOwnerVO(fr.univartois.ili.sadoc.dao.entities.OwnerWS ownerDO) throws ClassNotFoundException, SQLException, IOException{
+		if(ownerDO==null)
+			return null;
 		Owner ownerVO = new Owner();
 		List<Certificate> certifs = new ArrayList<Certificate>();
 		ownerVO.setId(ownerDO.getId());

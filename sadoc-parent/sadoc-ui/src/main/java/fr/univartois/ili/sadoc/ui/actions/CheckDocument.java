@@ -11,9 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.univartois.ili.sadoc.client.webservice.ClientWebServiceImpl;
 import fr.univartois.ili.sadoc.client.webservice.IClientWebService;
-
 import fr.univartois.ili.sadoc.metier.ui.services.IMetierUIServices;
-import fr.univartois.ili.sadoc.metier.ui.vo.Acquisition;
 import fr.univartois.ili.sadoc.metier.ui.vo.Competence;
 import fr.univartois.ili.sadoc.metier.ui.vo.Document;
 import fr.univartois.ili.sadoc.metier.ui.vo.Owner;
@@ -73,7 +71,7 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 
 					// TODO anicet :) le pk7 n'existe plus
 					//Byte[] fakearraytmp = docws.getPk7();
-					Byte[] fakearraytmp = docws.getP7s();
+					Byte[] fakearraytmp = new Byte[0];//docws.getP7S();
 					byte[] fakearrayP7S = new byte[fakearraytmp.length];
 					for (int i = 0; i < fakearraytmp.length; i++) {
 						fakearrayP7S[i] = fakearraytmp[i];
@@ -104,7 +102,7 @@ public class CheckDocument extends ActionSupport implements SessionAware {
 						Owner owntoregister = new Owner();
 //						owntoregister.setFirstName(incowner.getFirstName());
 //						owntoregister.setLastName(incowner.getLastName());
-						owntoregister.setMail(incowner.getMail_initial());
+						owntoregister.setMail(incowner.getMailInitial());
 
 						owntoregister.setId(incowner.getId());
 						
