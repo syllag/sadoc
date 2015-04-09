@@ -1,0 +1,1 @@
+![http://sadoc.googlecode.com/git/sadoc.png](http://sadoc.googlecode.com/git/sadoc.png)
